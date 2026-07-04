@@ -84,6 +84,7 @@
       `<div class="grp">Show tiers: ${tchk(1, "2023+ Exams")} ${tchk(2, "Homework")} ${tchk(3, "Pre-2023")}</div>
        <div class="grp"><label class="chk ${ui.weak ? "on" : ""}"><input type="checkbox" id="weak" ${ui.weak ? "checked" : ""}>Show only my Shaky / Failed</label></div>
        <div class="grp" style="margin-left:auto">
+         <a class="btn" href="Advanced-Algorithms-Practice-Workbook.pdf" download title="Questions-only PDF workbook for iPad / Notability (solutions stay here on the site)">📄 iPad workbook</a>
          <button class="btn" id="theme">${ui.theme === "light" ? "🌙 Dark" : "☀️ Light"}</button>
          <button class="btn" id="reset">Reset progress</button></div>`;
     el.querySelectorAll("[data-tier]").forEach(c => c.onchange = () => { ui.tiers[c.dataset.tier] = c.checked; persist(); renderAll(); });
