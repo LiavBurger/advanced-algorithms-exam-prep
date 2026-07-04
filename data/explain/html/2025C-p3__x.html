@@ -1,15 +1,10 @@
-<p>Let \(A\) be the normalized adjacency matrix of \(G\). As shown in class, since \(G\) is regular and connected, \(A\) is symmetric with eigenvalues \(\mu_n\le\cdots\le\mu_1\) satisfying \(-1\le\mu_i\le 1\), with \(\mu_1=1\) (the uniform vector is its eigenvector) and a spectral gap \(\mu_2\le 1-\tfrac1{4n^5}\).</p>
-<p>The lazy walk is given by the matrix \(C=\tfrac13 I+\tfrac23 A\). It has the same eigenvectors as \(A\), with eigenvalues \(\lambda_i=\tfrac13+\tfrac23\mu_i\). So \(\lambda_1=\tfrac13+\tfrac23=1\), and</p>
-<p>\[\lambda_2=\tfrac13+\tfrac23\mu_2\le \tfrac13+\tfrac23\big(1-\tfrac1{4n^5}\big)=1-\tfrac1{6n^5}.\]</p>
-<p>Also \(\mu_n\ge -1\) gives \(\lambda_n\ge \tfrac13-\tfrac23=-\tfrac13\), so every eigenvalue lies in \([-\tfrac13,1]\); hence \(|\lambda_i|\le|\lambda_2|\le 1-\tfrac1{6n^5}\) for all \(i\ge 2\). The laziness is exactly what keeps the smallest eigenvalue away from \(-1\).</p>
-<p>Now run the standard mixing argument. Let \(e_s\) be the indicator vector of the start vertex \(s\); after \(T\) steps the distribution is \(p_T=C^T e_s\). Since \(C\) is symmetric, its unit eigenvectors \(v_1=\tfrac1{\sqrt n}\mathbf 1,v_2,\dots,v_n\) form an orthonormal basis. Writing \(e_s=\sum_i\langle e_s,v_i\rangle v_i\),</p>
-<p>\[p_T=C^T e_s=\sum_i \lambda_i^{T}\langle e_s,v_i\rangle v_i.\]</p>
-<p>The \(i=1\) term is \(\langle e_s,v_1\rangle v_1=\tfrac1n\mathbf 1=\pi\), the uniform distribution. Subtracting it and using orthonormality,</p>
-<p>\[\|p_T-\pi\|_2^2=\sum_{i\ge 2}\lambda_i^{2T}\langle e_s,v_i\rangle^2\le |\lambda_2|^{2T}\sum_{i\ge 2}\langle e_s,v_i\rangle^2\le|\lambda_2|^{2T}\,\|e_s\|_2^2=|\lambda_2|^{2T},\]</p>
-<p>so \(\|p_T-\pi\|_2\le|\lambda_2|^{T}\le\big(1-\tfrac1{6n^5}\big)^{T}\).</p>
-<p>Pick \(T=6n^5\ln(2n)\), which is polynomial in \(n\). Using \((1-x)^T\le e^{-xT}\), the error shrinks fast:</p>
-<p>\[\|p_T-\pi\|_2\le e^{-T/(6n^5)}=e^{-\ln(2n)}=\tfrac1{2n}.\]</p>
-<p>Finally, the single coordinate at the target \(t\) is within the \(\ell_2\) distance of the uniform value:</p>
-<p>\[\big|p_T(t)-\tfrac1n\big|\le\|p_T-\pi\|_2\le\tfrac1{2n},\]</p>
-<p>so \(p_T(t)\ge \tfrac1n-\tfrac1{2n}=\tfrac1{2n}\). Thus after \(T=\mathrm{poly}(n)\) steps the walk is at \(t\) with probability at least \(\tfrac1{2n}\).</p>
-<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> Laziness stops the walk from oscillating, so it spreads out to nearly uniform, and uniform already puts about \(1/n\) on \(t\).</p>
+<p>The solution reduces the lazy walk to the standard random-walk theorem from class by expressing its transition matrix through the graph's normalized adjacency matrix and checking that all its eigenvalues lie in \([-1/3,1]\), with the second-largest magnitude bounded away from \(1\). Once those spectral facts hold, "the rest is identical to class."</p>
+<div class="box">Key idea: laziness \(C=\tfrac13 I+\tfrac23 A\) only rescales eigenvalues \(\lambda_i=\tfrac13+\tfrac23\mu_i\); this keeps the top eigenvalue at \(1\) and pushes all others safely inside \([-1/3,1]\), so the class mixing argument applies verbatim.</div>
+<ol class="gsteps">
+<li><strong>Class facts about \(A\).</strong> Let \(A\) be the normalized adjacency matrix (a step to a uniform random neighbor). Since \(G\) is regular and connected, \(A\)'s eigenvalues satisfy \(-1\le\mu_n\le\cdots\le\mu_1=1\), with the spectral-gap bound \(\mu_2\le 1-\tfrac1{4n^5}\).</li>
+<li><strong>Transition matrix of the lazy walk.</strong> Each step stays with prob. \(\tfrac13\) (the \(\tfrac13 I\) term) or moves to a uniform neighbor with prob. \(\tfrac23\) (the \(\tfrac23 A\) term), so \(C=\tfrac13 I+\tfrac23 A\). Because \(I\) and \(A\) share eigenvectors, \(C\) has the same eigenvectors with eigenvalues \(\lambda_i=\tfrac13+\tfrac23\mu_i\).</li>
+<li><strong>Top eigenvalue unchanged:</strong> \(\lambda_1=\tfrac13+\tfrac23\mu_1=\tfrac13+\tfrac23=1\) (the stationary/uniform direction survives).</li>
+<li><strong>Second eigenvalue bounded below \(1\):</strong> \(\lambda_2=\tfrac13+\tfrac23\mu_2\le\tfrac13+\tfrac23\big(1-\tfrac1{4n^5}\big)=1-\tfrac1{6n^5}\). So there is still a spectral gap of order \(n^{-5}\).</li>
+<li><strong>No negative eigenvalue hurts.</strong> The point of laziness: from \(\mu_n\ge-1\), \(\lambda_n=\tfrac13+\tfrac23\mu_n\ge\tfrac13-\tfrac23=-\tfrac13\). Thus every \(\lambda_i\in[-\tfrac13,1]\), so \(|\lambda_i|\le|\lambda_2|\le1-\tfrac1{6n^5}\) for all \(i>1\) — no eigenvalue near \(-1\) can slow mixing.</li>
+<li><strong>Conclusion.</strong> With top eigenvalue \(1\) and all others of magnitude \(\le 1-\tfrac1{6n^5}\), the class theorem gives: after \(\text{poly}(n)\) steps (roughly \(O(n^5\log n)\), enough for \((1-\tfrac1{6n^5})^t\) to become small) the distribution is close to uniform, so the probability of being at \(t\) is at least \(\tfrac1n-o(\tfrac1n)\ge\tfrac1{2n}\).</li>
+</ol>

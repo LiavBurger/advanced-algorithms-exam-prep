@@ -1,9 +1,7 @@
-<p>The algorithm computes a minimum cycle cover and then stitches its cycles into one tour:</p>
-<ol>
-<li>Compute a minimum-weight cycle cover \(C\) of \(G\) (the given first step; this runs in polynomial time, and a cover exists because \(G\) is complete). Write \(C=\{C_1,\dots,C_k\}\) in any order, with \(C_i=c_{i,1}-c_{i,2}-\cdots-c_{i,l_i}-c_{i,1}\), so \((c_{i,l_i}-c_{i,1})\) is its closing edge.</li>
-<li>For each \(1\le i<k\), delete the closing edge of \(C_i\) and instead add \((c_{i,l_i}-c_{i+1,1})\): rather than closing cycle \(i\), continue into the first vertex of cycle \(i+1\).</li>
-<li>For the last cycle, replace \((c_{k,l_k}-c_{k,1})\) by \((c_{k,l_k}-c_{1,1})\), returning to the first vertex of \(C_1\) and closing the whole thing into one loop.</li>
-<li>Return the resulting tour.</li>
+<p>\(G\) is a complete graph whose every edge costs \(1\) or \(2\), and we want a \(\tfrac43\)-approximation for TSP. The first step is given: since \(G\) is complete it has a cycle cover, so let \(C\) be a <em>minimum-cost cycle cover</em> — a set of vertex-disjoint cycles that together visit every vertex exactly once, of least total edge cost (computable in polynomial time). We must finish the algorithm by turning \(C\) into a single tour.</p>
+<ol class="gsteps">
+  <li>Fix an arbitrary order \(C_1,C_2,\dots,C_k\) of the cycles of \(C\). Write the vertices of \(C_i\) around the cycle as \(c_{i,1}-c_{i,2}-\cdots-c_{i,l_i}-c_{i,1}\), so \((c_{i,l_i}-c_{i,1})\) is the edge that closes cycle \(C_i\).</li>
+  <li>For each \(1\le i<k\), do not close cycle \(C_i\): delete its closing edge \((c_{i,l_i}-c_{i,1})\) and instead add the edge \((c_{i,l_i}-c_{i+1,1})\) jumping to the first vertex of the next cycle.</li>
+  <li>For the last cycle \(C_k\), replace its closing edge \((c_{k,l_k}-c_{k,1})\) by \((c_{k,l_k}-c_{1,1})\), an edge back to the very first vertex, which closes everything into one big cycle.</li>
 </ol>
-<p>Every replacement edge exists because \(G\) is complete, and chaining \(C_1\to C_2\to\cdots\to C_k\to C_1\) leaves a single cycle through all vertices exactly once, which is a valid TSP tour.</p>
-<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> Reroute each cycle's last edge into the next cycle, stitching the small cycles into one big loop.</p>
+<p>Because \(G\) is complete, every replacement edge exists. Each cycle contributes its path of vertices, and the new "bridge" edges chain the cycles \(C_1\to C_2\to\cdots\to C_k\to C_1\). The result is a single closed cycle passing through every vertex exactly once, i.e. a Hamiltonian tour — a valid TSP solution. Its cost bound is proved in part (2).</p>

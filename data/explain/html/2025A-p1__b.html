@@ -1,7 +1,10 @@
-<p>True. We compute \(f(x)^n\) by repeated squaring, using an FFT-based multiplication for each squaring, and the total cost is \(O(n^2\log n)\).</p>
-<p>Since \(n\) is a power of \(2\), we reach \(f^n\) through the chain \(f^2, f^4, f^8,\dots,f^n\), squaring the current polynomial each time. This is only \(\log n\) multiplications.</p>
-<p>In the \(i\)-th squaring we multiply a polynomial of degree about \(n\cdot 2^i\) by itself. Multiplying two polynomials of degree \(D\) with FFT costs \(O(D\log D)\), so this step costs \(O(n\,2^i\log(n\,2^i))\).</p>
-<p>Summing over the \(\log n\) steps, and using \(2^i\le n\) so that \(\log(n\,2^i)=O(\log n)\),
-\[\sum_{i=1}^{\log n} O\!\left(n\,2^i\log(n\,2^i)\right)=\sum_{i=1}^{\log n} O(n\,2^i\log n)=O(n\log n)\sum_{i=1}^{\log n}2^i=O(n^2\log n).\]
-The last sum is a geometric series bounded by \(2n\). So the coefficients of \(f^n\) are computed in \(O(n^2\log n)\) operations, and the statement is true.</p>
-<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> Squaring reaches the \(n\)-th power in only \(\log n\) multiplications, and the final, largest one already costs \(O(n^2\log n)\).</p>
+<p>The claim is <strong>true</strong>. We compute \(f(x)^n\) by <em>repeated squaring</em>, and each polynomial multiplication is done with FFT, which multiplies two degree-\(D\) polynomials in \(O(D\log D)\) arithmetic operations.</p>
+<ol class="gsteps">
+<li>Since \(n\) is a power of \(2\), write \(f^n = ((\cdots((f^2)^2)^2\cdots)^2)\): square \(\log n\) times. Starting from \(f = f^1\), squaring gives \(f^2\), then \(f^4\), then \(f^8\), up to \(f^n\). That is exactly \(\log n\) multiplications, not \(n\).</li>
+<li>Track the degree. The polynomial before the \(i\)-th squaring is \(f^{2^{i-1}}\), which has degree \(n\cdot 2^{i-1}\); we multiply it by itself. So the operands of the \(i\)-th squaring have degree on the order of \(n\cdot 2^{i}\). One FFT multiplication of degree-\(D\) polynomials costs \(O(D\log D)\), giving cost \(O\!\left(n\,2^{i}\log(n\,2^{i})\right)\) for step \(i\).</li>
+<li>Sum over all squarings: \(\displaystyle\sum_{i=1}^{\log n} O\!\left(n\,2^{i}\log(n\,2^{i})\right)\).</li>
+<li>Simplify the logarithm. Because \(2^{i}\le n\) throughout, \(\log(n\,2^{i}) = \log n + i \le 2\log n = O(\log n)\). Pull that factor out:
+\[\sum_{i=1}^{\log n} O\!\left(n\,2^{i}\log n\right) = O(n\log n)\cdot\sum_{i=1}^{\log n} 2^{i}.\]</li>
+<li>The geometric sum is \(\sum_{i=1}^{\log n} 2^{i} = 2^{\log n + 1} - 2 = O(n)\). Therefore the total is \(O(n\log n)\cdot O(n) = O(n^2\log n)\).</li>
+</ol>
+<p>So the coefficients of \(f(x)^n\) are computed in \(O(n^2\log n)\) arithmetic operations, matching the stated bound. The whole cost is dominated by the final squaring, whose operands have degree \(\Theta(n^2)\).</p>

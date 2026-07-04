@@ -1,7 +1,9 @@
-<p>The graph has \(V_1=\{a,b,c\}\), \(V_2=\{d,e\}\), and edges \(e_1=ad,\ e_2=ae,\ e_3=bd,\ e_4=be,\ e_5=ce\). We build the constraint matrix \(A\) with one row per vertex and one column per edge, putting a \(1\) where the edge touches the vertex; the right-hand side is each vertex's degree cap (\(1\) for \(V_1\), \(2\) for \(V_2\)):</p>
-<p>\[A=\begin{pmatrix}1&1&0&0&0\\0&0&1&1&0\\0&0&0&0&1\\1&0&1&0&0\\0&1&0&1&1\end{pmatrix}\begin{matrix}a\\b\\c\\d\\e\end{matrix}\]</p>
-<p>Primal:</p>
-<p>\[\max\ (1,1,1,1,1)\,x\quad\text{s.t.}\quad Ax\le(1,1,1,2,2)^{\mathsf T},\qquad x_i\in\{0,1\}.\]</p>
-<p>The dual swaps the pieces: the cost vector becomes the primal right-hand side, the matrix transposes, and the direction flips. Writing the dual variables as \(y_a,\dots,y_e\):</p>
-<p>\[\min\ (1,1,1,2,2)\,y\quad\text{s.t.}\quad A^{\mathsf T}y\ge(1,1,1,1,1)^{\mathsf T},\qquad y_j\in\{0,1\}.\]</p>
-<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> Rows are vertices and columns are edges; the dual just transposes that incidence matrix.</p>
+<p>We instantiate part (1) for the drawn graph and then write its dual. The graph has \(V_1=\{a,b,c\}\), \(V_2=\{d,e\}\) and edges \(e_1=ad,\ e_2=ae,\ e_3=bd,\ e_4=be,\ e_5=ce\). Order the constraint rows as the vertices \(a,b,c,d,e\).</p>
+<ol class="gsteps">
+  <li>Each row is a vertex; a row has a \(1\) in the columns of the edges incident to that vertex. Vertex \(a\) touches \(e_1,e_2\Rightarrow(1,1,0,0,0)\); \(b\) touches \(e_3,e_4\Rightarrow(0,0,1,1,0)\); \(c\) touches \(e_5\Rightarrow(0,0,0,0,1)\); \(d\) touches \(e_1,e_3\Rightarrow(1,0,1,0,0)\); \(e\) touches \(e_2,e_4,e_5\Rightarrow(0,1,0,1,1)\).</li>
+  <li>The right-hand side is the degree cap: \(1\) for the \(V_1\)-vertices \(a,b,c\) and \(2\) for the \(V_2\)-vertices \(d,e\), giving \((1,1,1,2,2)^{\mathsf T}\). The objective vector is all-ones (maximize \(\sum_e x_e\)). With \(A\) the matrix above, the primal is
+  \[\max\ (1,1,1,1,1)\,x\quad\text{s.t.}\quad A\,x\le(1,1,1,2,2)^{\mathsf T},\quad x_i\in\{0,1\}.\]</li>
+  <li>The dual BIP swaps roles: a variable \(y_j\) per row/vertex, a constraint per column/edge. The dual objective coefficients are the primal RHS \((1,1,1,2,2)\), the dual RHS is the primal objective \((1,1,1,1,1)^{\mathsf T}\), and the constraint matrix is transposed:
+  \[\min\ (1,1,1,2,2)\,y\quad\text{s.t.}\quad A^{\mathsf T}y\ge(1,1,1,1,1)^{\mathsf T},\quad y_j\in\{0,1\}.\]</li>
+</ol>
+<p>Because the exam asks for the dual <em>as a BIP</em>, the dual variables are also constrained to \(\{0,1\}\); each dual constraint \(A^{\mathsf T}y\ge 1\) corresponds to one edge and forces at least one of its endpoints to be picked.</p>

@@ -1,8 +1,13 @@
-<p>We compute \(H_n x\) by a recursive divide-and-conquer, just like FFT: split \(x\) in half, make two half-size transforms, and combine them with one addition and one subtraction. The running time is \(O(N\log N)\), where \(N=2^n\).</p>
-<p>Write \(x=(x_0,x_1)\), where \(x_0,x_1\) are the two halves, each of length \(N/2=2^{n-1}\). Using the recursive block structure of the matrix,
-\[H_n x=\begin{bmatrix}H_{n-1}&H_{n-1}\\ H_{n-1}&-H_{n-1}\end{bmatrix}\begin{bmatrix}x_0\\ x_1\end{bmatrix}=\begin{bmatrix}H_{n-1}x_0+H_{n-1}x_1\\ H_{n-1}x_0-H_{n-1}x_1\end{bmatrix}.\]</p>
-<p>Only the two products \(H_{n-1}x_0\) and \(H_{n-1}x_1\) appear, and each is a Walsh–Hadamard transform of order \(N/2\). So we recursively compute those two half-size transforms, then form the top half by adding them and the bottom half by subtracting them, which is \(O(N)\) extra work. The base case \(n=1\) applies \(H_1=\begin{bmatrix}1&1\\1&-1\end{bmatrix}\) directly in \(O(1)\).</p>
-<p>Let \(T(N)\) be the running time. We make two recursive calls of size \(N/2\) plus \(O(N)\) to combine, so
-\[T(N)=2\,T(N/2)+O(N),\]
-which is the same recurrence as merge sort and FFT, giving \(T(N)=O(N\log N)\).</p>
-<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> Both halves of the answer reuse the same two half-size transforms, so one add and one subtract finish the job.</p>
+<p>We compute \(H_n x\) with a divide-and-conquer recursion, exactly like FFT, exploiting the block structure of the Walsh–Hadamard matrix
+\[H_n=\begin{bmatrix} H_{n-1} & H_{n-1}\\ H_{n-1} & -H_{n-1}\end{bmatrix},\qquad N=2^n.\]</p>
+<ol class="gsteps">
+<li><strong>Split the input.</strong> Write \(x=(x_0,x_1)\) where \(x_0\) is the top half and \(x_1\) the bottom half, each of length \(2^{n-1}=N/2\).</li>
+<li><strong>Use the block formula.</strong> Multiplying out the \(2\times 2\) block matrix by the stacked halves,
+\[H_n x=\begin{bmatrix} H_{n-1} & H_{n-1}\\ H_{n-1} & -H_{n-1}\end{bmatrix}\begin{bmatrix} x_0\\ x_1\end{bmatrix}=\begin{bmatrix} H_{n-1}x_0+H_{n-1}x_1\\ H_{n-1}x_0-H_{n-1}x_1\end{bmatrix}.\]
+The crucial point: only <em>two distinct</em> smaller products appear, \(H_{n-1}x_0\) and \(H_{n-1}x_1\). We do not recompute them for each block.</li>
+<li><strong>Recurse then combine.</strong> Recursively compute the two half-size products \(H_{n-1}x_0\) and \(H_{n-1}x_1\) (each on a vector of length \(N/2\)). Then form the top half by adding them and the bottom half by subtracting them; this combining is \(N/2\) additions and \(N/2\) subtractions, i.e. \(O(N)\) work.</li>
+<li><strong>Base case.</strong> At \(n=1\), \(H_1=\begin{bmatrix}1&1\\1&-1\end{bmatrix}\) and \(H_1 x\) is computed directly in \(O(1)\).</li>
+</ol>
+<p><strong>Running time.</strong> Let \(T(N)\) be the cost on length-\(N\) input. We make two recursive calls on size \(N/2\) plus \(O(N)\) combining, so
+\[T(N)=2\,T(N/2)+O(N).\]
+By the master theorem (the classic FFT/merge-sort recurrence), \(T(N)=O(N\log N)\), as required.</p>

@@ -1,5 +1,8 @@
-<p>False. No nonzero polynomial can vanish on every integer assignment, by the Schwartz–Zippel lemma.</p>
-<p>Suppose \(f\) is a nonzero polynomial in the five variables \(x_1,\dots,x_5\), and let \(d\) be its total degree. Consider the finite set of integers \(S=\{1,2,\dots,d+1\}\), which has \(|S|=d+1\) values, and choose each \(\alpha_i\) uniformly and independently from \(S\). By the Schwartz–Zippel lemma,
-\[ \Pr[f(\alpha_1,\dots,\alpha_5)=0] \le \frac{d}{|S|} = \frac{d}{d+1} < 1. \]
-Since this probability is strictly less than \(1\), there must exist some choice \(\alpha_1,\dots,\alpha_5 \in \{1,\dots,d+1\}\) with \(f(\alpha_1,\dots,\alpha_5)\neq 0\). These are integer values, so \(f\) does not vanish on every integer assignment. Hence no such nonzero polynomial exists and the statement is false.</p>
-<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> A nonzero low-degree polynomial has only "few" roots, so a large enough grid of integers always contains a point where it is nonzero.</p>
+<p>The statement is <strong>false</strong>: no nonzero five-variable polynomial can vanish at every integer point. The Schwartz–Zippel lemma provides an explicit non-root, contradicting the claim.</p>
+<ol class="gsteps">
+  <li><strong>Set up.</strong> Suppose \(f(x_1,\dots,x_5)\) is a nonzero polynomial and let \(d\) be its total degree. We want an integer assignment where \(f\) does not vanish.</li>
+  <li><strong>Pick a finite grid.</strong> Take the set \(S=\{1,2,\dots,d+1\}\), which has \(|S|=d+1\) integer values. Consider assignments \((\alpha_1,\dots,\alpha_5)\) drawn from \(S^5\), i.e. each variable ranges over \(S\).</li>
+  <li><strong>Apply Schwartz–Zippel.</strong> For a nonzero polynomial of degree \(d\) and a uniformly random point of \(S^5\), the lemma bounds the probability of hitting a root by \(\Pr[f=0] \le \dfrac{d}{|S|} = \dfrac{d}{d+1} < 1\).</li>
+  <li><strong>Conclude a non-root exists.</strong> Since the probability of being a root is strictly less than \(1\), some point \((\alpha_1,\dots,\alpha_5)\in S^5\) satisfies \(f(\alpha_1,\dots,\alpha_5)\neq 0\).</li>
+</ol>
+<div class="box">The values \(\alpha_1,\dots,\alpha_5\in\{1,\dots,d+1\}\) are integers, so we have exhibited an integer assignment on which \(f\) is nonzero. Hence a nonzero polynomial cannot vanish on <em>every</em> integer assignment, and the statement is false.</div>

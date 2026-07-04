@@ -1,11 +1,17 @@
-<p>Take \(p(n)=10n^5\) and give every edge an independent uniform weight from \(\{1,\dots,p(n)\}\). We bound the failure chance for one pair and then union-bound over all pairs.</p>
-<p>Fix vertices \(u,v\) and let \(\mathcal{F}_{u,v}\) be the family of all \(u\)-\(v\) paths, each viewed as its set of edges. The number of edges is \(m\le\binom{n}{2}\le n^2\). By the isolation lemma, when \(m\) elements get independent uniform weights from a range of size \(p(n)\), the minimum-weight member of \(\mathcal{F}_{u,v}\) is unique except with probability at most</p>
-\[
-\frac{m}{p(n)}\ \le\ \frac{n^2}{10n^5}\ =\ \frac{1}{10n^3}.
-\]
-<p>Call the pair \(u,v\) bad if its lightest path is not unique; then each pair is bad with probability at most \(1/(10n^3)\). There are \(\binom{n}{2}\le n^2\) pairs, so by the union bound the probability that some pair is bad is at most</p>
-\[
-\binom{n}{2}\cdot\frac{1}{10n^3}\ \le\ \frac{1}{10n}\ \le\ \frac{1}{10}.
-\]
-<p>Hence with probability at least \(1-\tfrac{1}{10}=0.9\) no pair is bad, so every pair \(u,v\) has a unique minimum-weight path, as required.</p>
-<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> One random weighting quietly breaks all the ties at once, and the isolation bound depends only on the number of edges, not on how many paths there are.</p>
+<p>We must find a polynomial \(p(n)\) so that random edge weights from \(\{1,\dots,p(n)\}\) make the minimum-weight path unique for <em>every</em> pair \(u,v\) simultaneously, with probability \(\ge0.9\). The plan is: apply the Isolation Lemma to a single fixed pair to bound the chance its optimum is not unique, then take a union bound over all pairs.</p>
+<ol class="gsteps">
+  <li><strong>Recall the Isolation Lemma.</strong> Given a universe of \(m\) elements, each assigned an independent uniformly random integer weight in \(\{1,\dots,N\}\), and any family of subsets of the universe, the probability that the minimum-weight subset in the family is <em>not</em> unique is at most \(m/N\).</li>
+  <li><strong>Set up one pair.</strong> Fix \(u,v\) and let the family \(\mathcal F_{u,v}\) be all \(u\)–\(v\) paths, each identified with its set of edges; the universe is the edge set \(E\). The number of edges is \(m\le\binom{n}{2}\le n^2\). Choose \(p(n)=10n^5\) as the weight range \(N\).</li>
+  <li><strong>Bound a "bad" pair.</strong> Call \(u,v\) <em>bad</em> if the minimum-weight \(u\)–\(v\) path is not unique. By the lemma the probability of this is at most
+  \[
+  \frac{m}{p(n)}\le \frac{n^2}{10n^5}=\frac{1}{10n^3}.
+  \]</li>
+  <li><strong>Union bound over all pairs.</strong> There are \(\binom{n}{2}\le n^2\) pairs. The probability that <em>some</em> pair is bad is at most
+  \[
+  \binom{n}{2}\cdot\frac{1}{10n^3}\le n^2\cdot\frac{1}{10n^3}=\frac{1}{10n}\le\frac{1}{10}.
+  \]</li>
+</ol>
+<div class="box">
+With \(p(n)=10n^5\), the probability that any pair fails is at most \(1/10\); hence with probability at least \(0.9\) every pair \(u,v\) has a unique minimum-weight path.
+</div>
+<p>The same random weights are used for all pairs at once, which is why the single union bound over the \(\binom n2\) pairs suffices.</p>

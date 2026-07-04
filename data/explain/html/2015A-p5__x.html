@@ -1,27 +1,10 @@
-<p>We need roughly \(n=\dfrac{1800\ln 8}{\pi}\) samples. We sample points uniformly in the unit cube, count the fraction that land inside the ball, scale it to estimate \(\pi\), and use the Chernoff bound to see how many samples force the error below \(10\%\) with probability at least \(3/4\).</p>
-<p>For the \(i\)-th sampled point, let \(X_i\) be an indicator r.v. that is \(1\) if the point falls inside the ball of radius \(1/2\) and \(0\) otherwise. Since the ball has volume \(\pi/6\) and the point is uniform in the unit cube, \(\mathbb{E}[X_i]=\pi/6\). Let \(X=\sum_{i=1}^{n}X_i\) be the number of points inside the ball, so \(\mathbb{E}[X]=n\pi/6\). The algorithm outputs \(\dfrac{6X}{n}\) as its estimate of \(\pi\), because \(\dfrac{X}{n}\) estimates \(\pi/6\).</p>
-<p>We want the estimate to miss \(\pi\) by more than \(10\%\) with probability at most \(1/4\):</p>
+<p>We sample points uniformly in the unit cube and count how many land inside the radius-\(1/2\) ball, whose volume is \(\pi/6\). Let \(X_i\) be an indicator random variable for the event that the \(i\)-th sample falls inside the ball; since the cube has volume \(1\), \(E[X_i]=\pi/6\). Let \(X=\sum_{i=1}^n X_i\), so \(\mu:=E[X]=n\pi/6\), and the algorithm outputs \(6X/n\), whose expectation is \(\pi\).</p>
+<ol class="gsteps">
+<li><strong>Translate the accuracy requirement into a deviation of \(X\).</strong> We want \(\Pr[\,|6X/n-\pi|>0.1\pi\,]<\tfrac14\). Dividing the inequality inside by \(6\) gives \(|X/n-\pi/6|>0.1\pi/6\); multiplying by \(n\) gives a deviation of \(X\) from its mean of \(0.1\cdot\tfrac{n\pi}{6}=0.1\mu\). So we need the relative deviation \(\delta=0.1\).</li>
+<li><strong>Apply the (two-sided) Chernoff bound</strong> for a sum of independent \(\{0,1\}\) variables, \(\Pr[|X-\mu|>\delta\mu]\le 2e^{-\mu\delta^2/3}\), with \(\delta=0.1\):
 \[
-\Pr\!\left[\left|\tfrac{6X}{n}-\pi\right|>0.1\,\pi\right]
-=\Pr\!\left[\left|\tfrac{X}{n}-\tfrac{\pi}{6}\right|>\tfrac{0.1\,\pi}{6}\right].
-\]
-<p>This is a deviation of the average \(X/n\) from its mean \(\pi/6\) by \(\varepsilon=\pi/60\). Apply the Chernoff bound for a sum of independent \(0/1\) variables:</p>
-\[
-\Pr\!\left[\left|\tfrac{X}{n}-\tfrac{\pi}{6}\right|>\tfrac{\pi}{60}\right]
-<2\,e^{-\,n(\pi/60)^2/(3\cdot \pi/6)}
-=2\,e^{-\,n\pi/1800}.
-\]
-<p>Now we just require this bound to be at most \(1/4\):</p>
-\[
-2\,e^{-n\pi/1800}\le \tfrac14
-\;\Longleftrightarrow\;
-e^{-n\pi/1800}\le \tfrac18
-\;\Longleftrightarrow\;
--\tfrac{n\pi}{1800}\le \ln\!\tfrac18=-\ln 8,
-\]
-<p>which rearranges to</p>
-\[
-n\;\ge\;\frac{1800\,\ln 8}{\pi}.
-\]
-<p>So taking \(n=\left\lceil \dfrac{1800\ln 8}{\pi}\right\rceil\) samples guarantees that with probability at least \(3/4\) the estimate is within \(10\%\) of \(\pi\). This is the requested closed-form expression, no numeric evaluation needed.</p>
-<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> More samples make the observed fraction hug its true value, and Chernoff tells us exactly how many are enough to pin the error down.</p>
+\Pr\!\left[\Bigl|\tfrac{6X}{n}-\pi\Bigr|>0.1\pi\right]\le 2\exp\!\left(-\frac{\mu(0.1)^2}{3}\right)=2\exp\!\left(-\frac{(n\pi/6)(0.01)}{3}\right)=2e^{-n\pi/1800}.\]</li>
+<li><strong>Force this below \(1/4\).</strong> Require \(2e^{-n\pi/1800}<\tfrac14\), i.e. \(e^{-n\pi/1800}<\tfrac18\). Taking logs: \(-\tfrac{n\pi}{1800}<\ln\tfrac18=-\ln 8\), which rearranges to \(\tfrac{n\pi}{1800}>\ln 8\).</li>
+<li><strong>Solve for \(n\):</strong> \(\displaystyle n>\frac{1800\ln 8}{\pi}\).</li>
+</ol>
+<div class="box">A number of samples \(n>\dfrac{1800\ln 8}{\pi}\) suffices (a closed-form expression, as requested).</div>

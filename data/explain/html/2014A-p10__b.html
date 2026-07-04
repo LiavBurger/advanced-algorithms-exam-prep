@@ -1,11 +1,16 @@
-<p>The vertex is \(x_1=10,\;s_2=6\), with \(x_2=x_3=s_1=0\).</p>
-<p>The basis is \(\{x_1,s_2\}\), so we set the three non-basic variables to \(0\): \(x_2=x_3=s_1=0\). Now solve the two equations for the basic variables. From the first equation,</p>
+<p>A basis picks two of the five variables to be <em>basic</em>; the other three are <em>non-basic</em> and forced to \(0\). Here the basis is \(\{x_1,s_2\}\), so the non-basic variables are \(x_2=x_3=s_1=0\). The basic-feasible solution (the vertex) is obtained by solving the two equality constraints for \(x_1\) and \(s_2\) once the non-basic variables are zeroed out.</p>
+<ol class="gsteps">
+  <li>Solve the first equality for the basic variable \(x_1\): from \(x_1+2x_2+s_1=10\) we get \(x_1=10-2x_2-s_1\).</li>
+  <li>Solve the second equality for the basic variable \(s_2\): from \(2x_1+x_2-x_3-s_2=14\) we get \(s_2=2x_1+x_2-x_3-14\). To express \(s_2\) purely in terms of non-basic variables, substitute the \(x_1\) from step 1:
+  \[
+  s_2=2(10-2x_2-s_1)+x_2-x_3-14=20-4x_2-2s_1+x_2-x_3-14=6-3x_2-x_3-2s_1 .
+  \]</li>
+  <li>Now set every non-basic variable to \(0\) (\(x_2=x_3=s_1=0\)). Step 1 gives \(x_1=10\) and step 2 gives \(s_2=6\).</li>
+</ol>
+<p>Both basic values came out non-negative (\(x_1=10\ge 0,\ s_2=6\ge 0\)), so this basis is <em>feasible</em> and the point is a genuine vertex of the feasible polytope:</p>
+<div class="box">
 \[
-x_1=10-2x_2-s_1=10 .
+x_1=10,\quad s_2=6,\quad x_2=x_3=s_1=0 .
 \]
-<p>From the second equation \(2x_1+x_2-x_3-s_2=14\), so</p>
-\[
-s_2=-14+2x_1+x_2-x_3=6-3x_2-x_3-2s_1=6 .
-\]
-<p>Both basic values are \(\ge 0\), so this is a valid basic feasible solution: the vertex \((x_1,x_2,x_3)=(10,0,0)\) with \(s_1=0,\;s_2=6\).</p>
-<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> Fix the non-basic variables at \(0\) and the two equations pin down the two basic ones.</p>
+</div>
+<p>The rewritten equations \(x_1=10-2x_2-s_1\) and \(s_2=6-3x_2-x_3-2s_1\) are exactly the "dictionary" the simplex algorithm will read in the next parts to decide how to pivot.</p>

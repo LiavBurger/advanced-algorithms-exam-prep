@@ -1,6 +1,12 @@
-<p>The dual has one variable \(y_v\) per vertex \(v\in V\) (one per primal constraint), and reads
-\[\max \sum_{v\in V} y_v \quad\text{s.t.}\quad \forall\, uv\in E:\ y_u+y_v\le w(e),\qquad y_v\ \text{free}.\]</p>
-<p>Dual variables: each primal constraint is the vertex equality at some \(v\), so we introduce one dual variable \(y_v\) for each \(v\in V\). Because the primal constraint is an equality, \(y_v\) is unconstrained in sign (free).</p>
-<p>Objective: the primal right-hand sides are all \(1\), so the dual objective is \(\sum_{v\in V} 1\cdot y_v=\sum_{v} y_v\), and since the primal is a minimization the dual is a maximization.</p>
-<p>Constraints, one per primal variable \(x_e\): edge \(x_{uv}\) appears with coefficient \(1\) in exactly the two endpoint equalities of \(u\) and \(v\), and its objective coefficient is \(w(e)\). A primal minimization with \(x_e\ge 0\) yields a \(\le\) dual constraint, namely \(y_u+y_v\le w(e)\).</p>
-<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> Give each vertex a potential \(y_v\); every edge caps the sum of its two endpoints' potentials by its weight, and we maximize the total.</p>
+<p>We take the dual of the relaxed primal from part (b):
+\[\min \sum_{e\in E} w(e)\,x_e \quad\text{s.t.}\quad \forall v\in V:\ \sum_{uv\in E} x_{uv} = 1,\qquad x_e\ge 0.\]
+There is one primal constraint per vertex, so the dual has one variable per vertex.</p>
+<div class="box">Dual variables: for each vertex \(v\in V\) introduce \(y_v\). Because its primal constraint is an <em>equality</em>, the dual variable \(y_v\) is <em>unconstrained</em> in sign (free), rather than restricted to be nonnegative.</div>
+<ol class="gsteps">
+<li><strong>Objective.</strong> The primal right-hand sides are all \(1\) (the vertex equalities \(=1\)). The dual maximizes the inner product of right-hand sides with dual variables: \(\max \sum_{v\in V} y_v\).</li>
+<li><strong>Constraints, one per primal variable \(x_e\).</strong> The primal variable \(x_{uv}\) appears in exactly two vertex constraints, those of its endpoints \(u\) and \(v\), each with coefficient \(1\). Its primal objective coefficient is \(w(e)\). A primal minimization with \(x_e\ge 0\) yields a dual "\(\le\)" constraint, so for edge \(e = uv\) we get \(y_u + y_v \le w(e)\).</li>
+<li><strong>Sign of \(y_v\).</strong> An equality primal constraint dualizes to a free variable, so each \(y_v\) is unconstrained.</li>
+</ol>
+<p>The dual is therefore
+\[\max \sum_{v\in V} y_v \quad\text{s.t.}\quad \forall\, uv\in E:\ y_u + y_v \le w(e),\qquad y_v\ \text{free}.\]
+Intuitively each vertex is assigned a "potential" \(y_v\); every edge caps the sum of its endpoints' potentials by its weight, and we maximize total potential.</p>

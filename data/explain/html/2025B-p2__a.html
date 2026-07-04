@@ -1,4 +1,10 @@
-<p>We use one binary variable per set. For each subset \(S_i\) let \(x_i\in\{0,1\}\), where \(x_i=1\) means \(S_i\) is included in the cover. We minimize the total weight of chosen sets, and for each element \(j\) we require that at least one chosen set contains it, which is a linear "\(\ge 1\)" constraint over the sets holding \(j\). The program is</p>
-<p>\[\min\ \sum_{i=1}^m c_i x_i\quad\text{s.t.}\quad \sum_{i:\,S_i\ni j}x_i\ge 1\ \ \text{for every }1\le j\le n,\qquad x_i\in\{0,1\}\ \ \text{for every }1\le i\le m.\]</p>
-<p>Each element constraint guarantees that some chosen set covers element \(j\), so a feasible \(0/1\) vector is a valid cover and its objective is that cover's weight; an optimal solution is a minimum-weight set cover.</p>
-<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> Switch on sets at cheapest total weight so that every element is hit at least once.</p>
+<p>In weighted set cover the input is subsets \(S_1,\dots,S_m\subseteq\{1,\dots,n\}\) with costs \(c_1,\dots,c_m\), every element lying in at least one set, and we want a minimum-cost subfamily whose union is all of \(\{1,\dots,n\}\). We model the yes/no choice "is set \(S_i\) taken?" with a binary variable.</p>
+<ol class="gsteps">
+  <li>For each set \(S_i\) introduce \(x_i\in\{0,1\}\), with \(x_i=1\) meaning \(S_i\) is in the cover and \(x_i=0\) meaning it is not.</li>
+  <li>The cost of the chosen family is \(\sum_{i=1}^m c_i x_i\); since we want the cheapest cover, the objective is to minimize it.</li>
+  <li>"Covering" means every element \(j\) is contained in at least one chosen set. The sets containing \(j\) are those \(i\) with \(S_i\ni j\), and the number of chosen such sets is \(\sum_{i:\,S_i\ni j}x_i\). Requiring this to be at least \(1\) gives one constraint per element: \(\sum_{i:\,S_i\ni j}x_i\ge 1\) for every \(1\le j\le n\).</li>
+</ol>
+<div class="box">
+\[\min\ \sum_{i=1}^{m}c_i x_i\quad\text{s.t.}\quad \sum_{i:\,S_i\ni j}x_i\ge 1\ \ \forall\,1\le j\le n,\qquad x_i\in\{0,1\}\ \ \forall\,1\le i\le m.\]
+</div>
+<p>Each element-constraint guarantees at least one chosen set covers that element, so any feasible \(0/1\) vector is exactly (the indicator of) a valid cover, and its objective is that cover's total cost. An optimal integer solution is therefore a minimum-weight set cover. Feasibility is never empty because each element already appears in some set.</p>

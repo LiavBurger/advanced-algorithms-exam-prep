@@ -1,9 +1,11 @@
-<p>Let \(A\) be the adjacency matrix of \(G\) and set \(B=A+I\). Then \((A^k)_{i,j}\) counts walks of length exactly \(k\) from \(i\) to \(j\); adding the identity lets a walk "wait", so \((B^k)_{i,j}>0\) exactly when there is a walk of length at most \(k\), that is, when \(d(i,j)\le k\). Since \(G\) is strongly connected every distance is finite, and a shortest path repeats no vertex, so the diameter is at most \(n\). Hence the diameter is the smallest \(m\) for which every entry of \(B^m\) is positive.</p>
-<p>The algorithm:</p>
-<ol>
-<li>Precompute \(B^{2^i}\) for every \(0\le i\le\log n\) by repeated squaring, storing them.</li>
-<li>Binary-search the smallest \(m\in[1,n]\) with \(B^m\) all-positive: to test a value \(m\), multiply the stored powers to form \(B^m\) and check whether all entries are positive; if so the diameter is \(\le m\), otherwise it is \(>m\), and recurse on the appropriate half.</li>
-<li>Return that smallest \(m\), which is the diameter.</li>
+<p>We compute the diameter \(\max_{u\ne v}d(u,v)\) of a strongly connected digraph in time \(o(n^3)\) using fast matrix multiplication (exponent \(\omega<3\)) and binary search over the diameter value. Let \(A\) be the adjacency matrix.</p>
+<ol class="gsteps">
+  <li><strong>Reachability via powers.</strong> \((A^k)_{i,j}\) counts walks of length exactly \(k\) from \(i\) to \(j\). Set \(B=A+I\). Then \((B^k)_{i,j}>0\) iff there is a walk of length <em>at most</em> \(k\) from \(i\) to \(j\) — the added identity lets a walk "stay put", so reaching in \(\le k\) steps is captured. Equivalently \((B^k)_{i,j}>0\iff d(i,j)\le k\).</li>
+  <li><strong>Finite, bounded diameter.</strong> Since \(G\) is strongly connected every \(d(i,j)\) is finite, and a shortest path never repeats a vertex, so \(d(i,j)\le n-1<n\); the diameter is at most \(n\).</li>
+  <li><strong>Binary search.</strong> The diameter is the smallest \(m\) for which \((B^{m})_{i,j}>0\) for <em>all</em> \(i,j\). Test a candidate \(m\): if all entries of \(B^{m}\) are positive the diameter is \(\le m\), otherwise it is \(>m\); recurse on the appropriate half of \([1,n]\). This is \(O(\log n)\) tests.</li>
+  <li><strong>Cost.</strong> Each \(B^k\) (with \(k\le n\)) is computed by repeated squaring in \(O(n^{\omega}\log n)\), and scanning all entries for positivity is \(O(n^2)\), negligible. Total \(O(n^{\omega}\log^2 n)\).</li>
 </ol>
-<p>Runtime: precomputing the powers is \(O(\log n)\) matrix multiplications, each \(O(n^\omega)\) with fast matrix multiplication, so \(O(n^\omega\log n)\). The binary search has \(O(\log n)\) steps, each reusing stored powers, and each positivity check costs \(O(n^2)\), which is negligible. The total is \(O(n^\omega\log n)\), and since \(\omega<3\) this is asymptotically below \(n^3\).</p>
-<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> Powers of \(A+I\) detect "reachable within \(k\) steps", so binary-search the smallest \(k\) that connects every pair.</p>
+<div class="box">
+<p>Sharper: precompute \(B^{2^i}\) for all \(0\le i\le\log n\) once, in \(O(n^{\omega}\log n)\) total. Then each of the \(O(\log n)\) binary-search steps only multiplies by an already-stored power, so the whole search also runs in \(O(n^{\omega}\log n)\).</p>
+</div>
+<p>Since \(\omega<3\), \(O(n^{\omega}\log n)=o(n^3)\), as required.</p>

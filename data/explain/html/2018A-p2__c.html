@@ -1,8 +1,8 @@
-<p>We run the exact same greedy from part (a), processing each subset when it arrives:</p>
-<ol>
-  <li>Keep \(X\), initially empty.</li>
-  <li>When a subset \(D\) arrives: if \(X\cap D=\emptyset\), add all of \(D\) to \(X\); otherwise leave \(X\) unchanged.</li>
+<p>In the online version the subsets \(D\) arrive one at a time; after each arrival \(X\) must already hit everything seen so far, and once an element is added it can never be removed. We must be \(3\)-competitive: our final \(|X|\) at most \(3\) times the optimal hitting set for the whole (final) instance.</p>
+<div class="box">Online algorithm: keep the greedy from part (a). When a new subset \(D\) arrives, check \(X\cap D\). If \(X\cap D=\emptyset\), add all of \(D\): \(X\leftarrow X\cup D\). Otherwise leave \(X\) unchanged.</div>
+<ol class="gsteps">
+<li>The key observation is that the offline greedy of part (a) already processes subsets in an <em>arbitrary</em> order and never revisits or removes a decision. Its analysis did not rely on knowing future subsets.</li>
+<li>Therefore we may let "arbitrary order" be exactly the online arrival order. Each arriving \(D\) is handled with the same rule, using only \(X\) as it currently stands.</li>
+<li>The requirement is met at every step: after we process an arriving \(D\), we have \(X\cap D\ne\emptyset\) (either it was already hit, or we just added all of \(D\)), so \(X\) hits all subsets seen so far. Decisions are irrevocable, matching the online rules.</li>
 </ol>
-<p>This is a valid online algorithm: it never looks at future subsets and never removes an element once added. After each arriving \(D\) we have \(X\cap D\ne\emptyset\), so \(X\) is a hitting set for everything seen so far.</p>
-<p>It is \(3\)-competitive: the offline analysis in part (b) allowed the subsets to be processed in an arbitrary order and never used any lookahead. So let that arbitrary order be the arrival order. The set \(X\) we build online is exactly what the offline greedy would build on the same sequence, so the bound \(|X|\le 3\,\mathrm{OPT}\) carries over and the algorithm is \(3\)-competitive.</p>
-<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> The offline greedy already works in any order and never undoes a choice, so the arrival order is just one more valid order.</p>
+<p>Since the final \(X\) is identical to what the offline greedy would produce on that sequence, part (b)'s bound \(|X|\le 3\,\mathrm{OPT}\) applies verbatim. Hence the same greedy is a \(3\)-competitive online algorithm.</p>

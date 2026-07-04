@@ -1,6 +1,7 @@
-<p>True. We use the averaging (probabilistic) argument: the average number of satisfied clauses over all assignments equals \(7m/8\), so some assignment satisfies at most that many.</p>
-<p>Pick an assignment at random by setting each variable to true or false independently with probability \(1/2\). A single clause has three literals; it is unsatisfied only when all three literals are false, which happens with probability \((1/2)^3=1/8\). So each clause is satisfied with probability \(7/8\).</p>
-<p>For clause \(i\), let \(X_i\) be an indicator random variable for the event that clause \(i\) is satisfied, and let \(X=\sum_{i=1}^m X_i\) be the number of satisfied clauses. By linearity of expectation
-\[\mathbb{E}[X]=\sum_{i=1}^m \mathbb{E}[X_i]=\frac{7m}{8}.\]
-A random quantity cannot always be strictly above its own average, so there must exist at least one assignment that satisfies at most \(7m/8\) clauses. Hence the statement is true.</p>
-<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> On average \(7/8\) of the clauses are satisfied, so some assignment must land at or below that average.</p>
+<p>The claim is <strong>true</strong>. Read the statement carefully: it asks whether there is <em>always</em> an assignment satisfying <em>at most</em> \(7m/8\) clauses. This is a weaker demand than the familiar "at least \(7m/8\)" statement, and it follows from the same averaging (probabilistic-method) argument.</p>
+<ol class="gsteps">
+<li>Pick a uniformly random assignment: set each variable to true or false independently with probability \(1/2\). A fixed clause of a 3-CNF has 3 literals; it is <em>unsatisfied</em> only when all 3 literals are false, which happens with probability \((1/2)^3 = 1/8\). So it is satisfied with probability \(7/8\).</li>
+<li>Let \(Y\) be the number of satisfied clauses. By linearity of expectation, \(\mathbb{E}[Y] = \sum_{j=1}^{m}\Pr[\text{clause } j \text{ satisfied}] = m\cdot\tfrac{7}{8} = \tfrac{7m}{8}\).</li>
+<li>A random variable cannot always lie strictly above its mean, nor always strictly below it. Formally, if every assignment satisfied strictly more than \(7m/8\) clauses, then \(\mathbb{E}[Y] > 7m/8\), a contradiction. Hence there exists at least one assignment with \(Y \le 7m/8\).</li>
+</ol>
+<p>That is exactly the requested assignment satisfying at most \(7m/8\) clauses, so the statement holds. Note the same expectation also gives an assignment satisfying <em>at least</em> \(7m/8\); the mean is sandwiched, so both directions have witnesses.</p>

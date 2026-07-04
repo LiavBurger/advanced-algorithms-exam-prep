@@ -1,7 +1,8 @@
-<p>Let \(H\) be a Hamiltonian cycle. Define a solution by setting \(x_{u,v}=1\) if the edge \((u,v)\) belongs to \(H\) and \(x_{u,v}=0\) otherwise. These values are in \(\{0,1\}\), so the integrality constraint holds.</p>
-<p>Now check the degree constraints. A Hamiltonian cycle is a single closed tour that visits each vertex exactly once, so at every vertex \(v\) it enters through exactly one edge and leaves through exactly one edge. Hence for each \(v\) the chosen incoming edges sum to \(1\),</p>
-<p>\[\sum_{u:(u,v)\in E} x_{u,v}=1,\]</p>
-<p>and the chosen outgoing edges sum to \(1\),</p>
-<p>\[\sum_{w:(v,w)\in E} x_{v,w}=1.\]</p>
-<p>All constraints are satisfied, so this indicator vector is a feasible solution (and its objective value equals the total weight of the cycle, which is why the IP models TSP).</p>
-<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> Marking the cycle's edges automatically gives every vertex one edge in and one out, exactly what the constraints demand.</p>
+<p>We must show any Hamiltonian cycle yields a point satisfying every constraint of the integer program. The natural encoding is to let the variables be the indicator of "is this edge used by the cycle".</p>
+<ol class="gsteps">
+<li>Given a Hamiltonian cycle \(H\), define \(x_{u,v}=1\) if the directed edge \((u,v)\) belongs to \(H\), and \(x_{u,v}=0\) otherwise. These values are in \(\{0,1\}\), satisfying the integrality constraint \(x_{u,v}\in\{0,1\}\).</li>
+<li>Recall the two families of constraints: for every vertex \(v\), the incoming edges sum to \(1\) (\(\sum_{u:(u,v)\in E}x_{u,v}=1\)), and the outgoing edges sum to \(1\) (\(\sum_{w:(v,w)\in E}x_{v,w}=1\)).</li>
+<li>A Hamiltonian cycle visits every vertex exactly once and is a single closed tour. Hence at each vertex \(v\) the cycle enters through exactly one edge and leaves through exactly one edge — in-degree \(1\) and out-degree \(1\) inside \(H\).</li>
+<li>Therefore, for each \(v\), exactly one incoming variable equals \(1\) (the rest \(0\)), so the incoming sum is \(1\); likewise exactly one outgoing variable equals \(1\), so the outgoing sum is \(1\). Both constraint families hold.</li>
+</ol>
+<p>All constraints are met, so the edge-indicator vector of \(H\) is a feasible solution to the program. (Its objective value \(\sum_{(u,v)}c_{u,v}x_{u,v}\) is exactly the weight of the cycle, which is why the IP models TSP.)</p>

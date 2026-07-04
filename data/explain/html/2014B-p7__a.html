@@ -1,9 +1,11 @@
-<p>There always exists a packing into at most \(n\) bins (\(n\) is the number of items), so we may use \(n\) candidate bins. Introduce a variable \(y_j\in\{0,1\}\) indicating whether bin \(j\) is open, and a variable \(x_{ij}\in\{0,1\}\) indicating whether item \(i\) is packed in bin \(j\). The integer linear program is:
-\[\min \sum_{j=1}^{n} y_j\]
-subject to
-\[\sum_{j=1}^{n} x_{ij}\ge 1 \quad \forall i=1,\dots,n \qquad\text{(each item is packed into some bin)}\]
-\[y_j\ge x_{ij} \quad \forall i,j \qquad\text{(an item can be placed only in an open bin)}\]
-\[\sum_{i=1}^{n} x_{ij}\,w_i \le 1 \quad \forall j=1,\dots,n \qquad\text{(no bin exceeds capacity \(1\))}\]
-\[x_{ij},\,y_j\in\{0,1\}.\]
-The objective counts the open bins, which we minimize.</p>
-<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> One switch per item-bin pair and one per bin; open as few bins as possible while every item lands somewhere and no bin overflows.</p>
+<p>Bin packing input: items \(1,\dots,n\) with weights \(w_i\); pack all items into as few bins as possible, each bin holding total weight \(\le 1\). We model it as an ILP.</p>
+<ol class="gsteps">
+<li><strong>Bound the number of bins.</strong> There is always a valid packing using at most \(n\) bins — put each item in its own bin (each holds one item of weight \(\le 1\), assuming weights are \(\le 1\)). So we may index candidate bins \(j=1,\dots,n\) and never need more.</li>
+<li><strong>Variables.</strong> Two families of 0/1 variables. \(x_{ij}=1\) iff item \(i\) is placed in bin \(j\); \(y_j=1\) iff bin \(j\) is "open" (used at all). Both are forced into \(\{0,1\}\).</li>
+<li><strong>Objective.</strong> Minimize the number of open bins, \(\min\sum_{j=1}^n y_j\).</li>
+<li><strong>Each item packed.</strong> Every item must land in at least one bin: \(\sum_{j=1}^n x_{ij}\ge 1\) for all \(i\). (At the optimum this is exactly one bin.)</li>
+<li><strong>Only open bins receive items.</strong> If item \(i\) is in bin \(j\) then bin \(j\) must be open: \(y_j \ge x_{ij}\) for all \(i,j\). This links the \(x\) and \(y\) variables so the objective actually counts every bin we use.</li>
+<li><strong>Capacity.</strong> Each bin's total weight is at most \(1\): \(\sum_{i=1}^n x_{ij} w_i \le 1\) for all \(j\).</li>
+</ol>
+<p>Full ILP:
+\[\min \sum_{j=1}^n y_j \ \text{ s.t. }\ \sum_{j=1}^n x_{ij}\ge 1\,(\forall i),\quad y_j\ge x_{ij}\,(\forall i,j),\quad \sum_{i=1}^n x_{ij}w_i\le 1\,(\forall j),\quad x_{ij},y_j\in\{0,1\}.\]</p>

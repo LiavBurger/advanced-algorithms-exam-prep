@@ -1,2 +1,8 @@
-<p>True. Suppose \(\det(A+I)=0\). Then \(A+I\) is singular, so there is a nonzero vector \(v\) with \((A+I)v=0\), that is \(Av=-v\). Hence \(-1\) is an eigenvalue of \(A\) (with eigenvector \(v\)). We saw in class that for a connected regular graph the normalized adjacency matrix \(A\) has \(-1\) as an eigenvalue if and only if \(G\) is bipartite. Therefore \(G\) is bipartite.</p>
-<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> The most negative eigenvalue reaching \(-1\) is the algebraic signature of a graph with no odd cycles, i.e. a bipartite graph.</p>
+<p>The statement is <strong>true</strong>. The solution connects a determinant condition to an eigenvalue, and then invokes a spectral characterization of bipartiteness proved in class.</p>
+<ol class="gsteps">
+<li>A determinant is zero exactly when the matrix is singular, i.e. has a non-trivial kernel. So \(\det(A+I)=0\) means there is a <em>nonzero</em> vector \(v\) with \((A+I)v=0\).</li>
+<li>Expand: \((A+I)v=Av+v=0\), hence \(Av=-v\). By definition this says \(v\) is an eigenvector of \(A\) with eigenvalue \(-1\). So \(-1\) is an eigenvalue of the normalized adjacency matrix \(A\).</li>
+<li>Recall the spectral facts about the normalized adjacency matrix of a graph: all its eigenvalues lie in \([-1,1]\), the largest is \(+1\) (with multiplicity one when the graph is connected), and the smallest possible value \(-1\) is attained <em>if and only if</em> the graph is bipartite. This is the theorem proved in class.</li>
+<li>Since we just showed \(-1\) is an eigenvalue of \(A\), the "only if" direction of that theorem forces \(G\) to be bipartite.</li>
+</ol>
+<div class="box">The chain is: \(\det(A+I)=0\) \(\Rightarrow\) \(-1\) is an eigenvalue of \(A\) \(\Rightarrow\) (by the class theorem) \(G\) is bipartite. Connectivity is used implicitly so that the spectral characterization applies cleanly.</div>

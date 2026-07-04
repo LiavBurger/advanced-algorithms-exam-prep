@@ -1,25 +1,11 @@
-<p>The algorithm returns the maximum achievable rank, runs in polynomial time, and errs with probability at most \(1/10\). The idea is to replace every star by a random integer, compute the ordinary rank of the resulting numeric matrix, and argue with the Schwartz&ndash;Zippel lemma that this random substitution almost surely realizes the best possible rank.</p>
-
-<p>The algorithm is the following:</p>
-<ol>
-<li>For each entry \((i,j)\) marked by a star, replace the star by an integer chosen uniformly and independently at random from \(\{1,2,\dots,10n\}\).</li>
-<li>Compute the rank \(r\) of the resulting numeric matrix (by Gaussian elimination, or the parallel rank algorithm from class).</li>
-<li>Return \(r\).</li>
-</ol>
-
-<p>The algorithm is efficient because the rank of a numeric matrix can be computed in polynomial time, and drawing the random integers takes time proportional to the number of stars.</p>
-
-<p>We now prove correctness, i.e. that the returned value equals the true maximum with probability at least \(9/10\). Let \(k\) be the number of stars in \(A\). For a vector \(c\in\mathbb{R}^k\), let \(A_c\) be the matrix obtained by substituting the entries of \(c\) for the stars. Let \(r'=\max_{c\in\mathbb{R}^k}\operatorname{rank}(A_c)\) be the maximum achievable rank, and let \(c_0\in\mathbb{R}^k\) be an assignment that attains it, so \(\operatorname{rank}(A_{c_0})=r'\).</p>
-
-<p>Since \(A_{c_0}\) has rank \(r'\), it contains an \(r'\times r'\) submatrix of rank \(r'\): there are subsets \(T_1,T_2\subseteq\{1,\dots,n\}\) with \(|T_1|=|T_2|=r'\) such that the submatrix on the rows \(T_1\) and columns \(T_2\) has rank \(r'\), and hence a nonzero determinant.</p>
-
-<p>Now treat the stars as variables \(x_1,\dots,x_k\). The determinant of the submatrix on \(T_1,T_2\) is then a polynomial \(P\) in \(x_1,\dots,x_k\). Because a determinant is a sum of products of entries with one entry from each row and column, each variable appears to degree at most \(1\) in any term, so \(\deg P\le r'\le n\). Moreover \(P\) is not identically zero: substituting \((x_1,\dots,x_k)=c_0\) makes it equal to the nonzero determinant found above.</p>
-
-<p>By the Schwartz&ndash;Zippel lemma, a nonzero polynomial of degree \(d\) evaluated at a point whose coordinates are chosen uniformly and independently from a finite set of size \(N\) vanishes with probability at most \(d/N\). Here \(d\le n\) and \(N=10n\), so</p>
+<p>The hint links rank to determinants: a matrix has rank \(\ge r\) iff it has some \(r\times r\) submatrix with nonzero determinant. The randomized algorithm exploits this together with Schwartz&ndash;Zippel.</p>
+<div class="box"><strong>Algorithm.</strong> For each starred entry \((i,j)\), independently replace it with a uniformly random integer from \(\{1,2,\dots,10n\}\); compute the rank \(r\) of the resulting numeric matrix (Gaussian elimination, polynomial time) and return \(r\).</div>
+<ol class="gsteps">
+<li><strong>The answer we want.</strong> Let \(k\) be the number of stars, and for \(c\in\mathbb R^k\) let \(A_c\) be \(A\) with the stars set to \(c\). Let \(r'=\max_{c\in\mathbb R^k}\mathrm{rank}(A_c)\) be the true optimum, achieved by some \(c_0\). Since \(\mathrm{rank}(A_{c_0})=r'\), there exist row set \(T_1\) and column set \(T_2\) with \(|T_1|=|T_2|=r'\) whose \(r'\times r'\) submatrix has nonzero determinant.</li>
+<li><strong>Set up a polynomial.</strong> Replace the stars by variables \(x_1,\dots,x_k\). The determinant of that \(T_1,T_2\) submatrix is a polynomial \(P(x_1,\dots,x_k)\). It is <em>not</em> the zero polynomial, because evaluating it at \((x_1,\dots,x_k)=c_0\) gives the nonzero determinant from step 1.</li>
+<li><strong>Bound the degree.</strong> Each matrix entry is either a constant or a single variable, so it has degree \(\le1\); the determinant of an \(r'\times r'\) matrix is a sum of products of \(r'\) entries, hence \(\deg P\le r'\le n\).</li>
+<li><strong>Schwartz&ndash;Zippel.</strong> For a nonzero polynomial of degree \(d\) evaluated at points chosen independently and uniformly from a set of size \(N\), the probability of hitting a root is \(\le d/N\). With \(d\le n\) and \(N=10n\),
 \[
-\Pr_{\alpha_1,\dots,\alpha_k\in\{1,\dots,10n\}}\big[P(\alpha_1,\dots,\alpha_k)=0\big]\;\le\;\frac{n}{10n}\;=\;\frac{1}{10}.
-\]
-
-<p>Therefore, when we pick the \(k\) starred entries independently and uniformly from \(\{1,\dots,10n\}\), the determinant of this \(r'\times r'\) submatrix is nonzero with probability at least \(9/10\), and in that case the random matrix has an \(r'\times r'\) submatrix with nonzero determinant, so its rank is at least \(r'\). On the other hand its rank can never exceed \(r'\), since \(r'\) is by definition the maximum rank achievable by any substitution for the stars. Hence with probability at least \(9/10\) the rank of the random matrix equals \(r'\), and the algorithm returns \(r'\). The error probability is at most \(1/10\), and the running time is polynomial.</p>
-
-<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> The best rank is witnessed by some submatrix determinant being nonzero, and that determinant is a low-degree polynomial in the stars, so a random plug-in almost never lands on one of its rare roots.</p>
+\Pr_{\alpha_1,\dots,\alpha_k\in\{1,\dots,10n\}}\!\left[P(\alpha_1,\dots,\alpha_k)=0\right]\le\frac{n}{10n}=\frac1{10}.\]</li>
+</ol>
+<p><strong>Correctness &amp; error.</strong> With probability \(\ge9/10\) the random substitution keeps that submatrix determinant nonzero, so the numeric matrix has rank \(\ge r'\); and it can never exceed \(r'\), which is the maximum over all real substitutions. Hence the algorithm returns exactly \(r'\) with probability at least \(9/10\) (error \(\le1/10\)). <strong>Running time</strong> is polynomial, since computing a rank via Gaussian elimination is polynomial.</p>

@@ -1,5 +1,7 @@
-<p>False. The \(n\) products \(Av_1,\dots,Av_n\) can be computed in \(O(n^\omega)\) time with \(\omega<3\) using fast matrix multiplication, so \(n^3\) is not required.</p>
-<p>Stack the vectors as the columns of a matrix \(B=[\,v_1\mid\cdots\mid v_n\,]\). Then the product \(AB\) is an \(n\times n\) matrix whose columns are exactly \(Av_1,\dots,Av_n\). So computing all \(n\) products is the same as one matrix–matrix multiplication.</p>
-<p>We saw in class that matrix multiplication can be done in time \(O(n^\omega)\) with \(\omega<3\) (for example Strassen already gives \(\omega\approx 2.81\)). This applies to any matrices and never uses the assumption that \(v_1,\dots,v_n\) are linearly independent.</p>
-<p>Hence the batch of products is computed in \(O(n^\omega)=o(n^3)\) time, so the claim that it requires time \(n^3\) is false.</p>
-<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> Many matrix–vector products with the same \(A\) are just one matrix–matrix product, which fast multiplication does below \(n^3\).</p>
+<p>The claim is <strong>false</strong>. The statement asserts that computing the \(n\) products \(Av_1,\dots,Av_n\) <em>requires</em> time \(n^3\); the word "requires" means it is a proven lower bound. It is not.</p>
+<ol class="gsteps">
+<li>Stack the vectors as the columns of an \(n\times n\) matrix \(B = [\,v_1 \mid v_2 \mid \cdots \mid v_n\,]\). Then the matrix product \(AB\) has columns \(Av_1,\dots,Av_n\). So computing all \(n\) products is the same task as one \(n\times n\) matrix multiplication.</li>
+<li>Fast matrix multiplication (Strassen and its successors) multiplies two \(n\times n\) matrices in \(O(n^{\omega})\) time, where \(\omega < 3\) (Strassen already gives \(\omega \le \log_2 7 \approx 2.81\)). This beats the naive \(n^3\).</li>
+<li>The hypothesis that \(v_1,\dots,v_n\) are linearly independent is irrelevant: the algorithm forms \(B\) and multiplies regardless of any relationship among the columns, so it never uses independence.</li>
+</ol>
+<p>Since there is an algorithm running in \(O(n^{\omega})\) with \(\omega < 3\), the claim that \(n^3\) time is required is refuted.</p>

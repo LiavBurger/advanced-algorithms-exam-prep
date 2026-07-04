@@ -1,9 +1,10 @@
-<p>Split the variables into basic \(x_B\) and nonbasic \(x_N\). Since \(x\) is a basic feasible solution with basis \(B\), the constraint \(Ax=b\) reads \(A_Bx_B+A_Nx_N=b\), and as \(A_B\) is invertible,
-\[x_B=A_B^{-1}b-A_B^{-1}A_Nx_N,\]
-which holds at every feasible point. Plugging this into the objective,
-\[c^Tx=c_B^Tx_B+c_N^Tx_N=c_B^T\big(A_B^{-1}b-A_B^{-1}A_Nx_N\big)+c_N^Tx_N=c_B^TA_B^{-1}b+\tilde c_N^Tx_N,\]
-where \(\tilde c_N=c_N-(A_B^{-1}A_N)^Tc_B\) is exactly the reduced cost vector.</p>
-<p>At the basic feasible solution \(x\) the nonbasic variables vanish, \(x_N=0\), so \(c^Tx=c_B^TA_B^{-1}b\). Now let \(y\) be any feasible solution; the same identity applied to \(y\) gives \(c^Ty=c_B^TA_B^{-1}b+\tilde c_N^Ty_N\). Since \(y\ge 0\) we have \(y_N\ge 0\), and by assumption \(\tilde c_N\ge 0\), so \(\tilde c_N^Ty_N\ge 0\) and therefore
-\[c^Ty=c_B^TA_B^{-1}b+\tilde c_N^Ty_N\ge c_B^TA_B^{-1}b=c^Tx.\]</p>
-<p>Thus \(c^Tx\le c^Ty\) for every feasible \(y\), which means \(x\) is an optimal solution.</p>
-<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> Rewriting the objective, its value at any feasible point is \(x\)'s value plus a nonnegative reduced-cost term, so nothing can do better than \(x\).</p>
+<p>Let \(x\) be a basic feasible solution of a standard-form LP (minimize \(c^Tx\) subject to \(Ax=b,\ x\ge 0\)) with basis \(B\); split the columns of \(A\) into the basic part \(A_B\) and the nonbasic part \(A_N\), and correspondingly \(x=(x_B,x_N)\) and \(c=(c_B,c_N)\). We show that if the reduced cost vector \(\tilde c_N\ge 0\), then \(x\) is optimal. The idea is to rewrite the objective so its dependence on the (free) nonbasic variables is exactly \(\tilde c_N\).</p>
+<ol class="gsteps">
+<li><strong>Express basic variables.</strong> The equality constraint is \(A_Bx_B+A_Nx_N=b\). Since \(A_B\) is invertible (it is a basis), \(x_B=A_B^{-1}b-A_B^{-1}A_Nx_N\). This holds for <em>every</em> feasible point, not just \(x\).</li>
+<li><strong>Substitute into the objective.</strong> Then
+\[c^Tx=c_B^Tx_B+c_N^Tx_N=c_B^T\big(A_B^{-1}b-A_B^{-1}A_Nx_N\big)+c_N^Tx_N=c_B^TA_B^{-1}b+\big(c_N^T-c_B^TA_B^{-1}A_N\big)x_N.\]
+The bracketed row vector is precisely the reduced cost \(\tilde c_N^T\), so \(c^Tx=c_B^TA_B^{-1}b+\tilde c_N^Tx_N\).</li>
+<li><strong>Value at \(x\).</strong> At the basic feasible solution \(x\) the nonbasic variables vanish, \(x_N=0\), so \(c^Tx=c_B^TA_B^{-1}b\).</li>
+<li><strong>Lower bound for any feasible \(y\).</strong> The identity in step 2 applies to any feasible \(y\ge 0\), giving \(c^Ty=c_B^TA_B^{-1}b+\tilde c_N^Ty_N\). Because \(\tilde c_N\ge 0\) and \(y_N\ge 0\), the term \(\tilde c_N^Ty_N\ge 0\), so \(c^Ty\ge c_B^TA_B^{-1}b=c^Tx\).</li>
+<li>Thus \(x\) attains the smallest objective value among all feasible points, i.e. \(x\) is optimal.</li>
+</ol>

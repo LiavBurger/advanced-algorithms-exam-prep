@@ -1,4 +1,8 @@
-<p>The relaxation keeps the same objective and weight constraint but replaces each integrality constraint \(x_i\in\{0,1\}\) by the interval \(0\le x_i\le 1\), allowing fractional items:
-\[\max \sum_i b_i x_i \quad\text{s.t.}\quad \sum_i w_i x_i \le W,\qquad x_i\le 1\ \ \forall i,\qquad x_i\ge 0\ \ \forall i.\]
-This is now a linear program, since every constraint and the objective are linear.</p>
-<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> Drop the "whole item only" rule and let items be taken in fractions, turning the integer program into a solvable LP.</p>
+<p>The LP relaxation is obtained from the BIP of part (b) by <em>relaxing</em> the integrality constraint: we keep the objective and the capacity constraint but let each \(x_i\) take any real value in \([0,1]\) instead of only \(\{0,1\}\).</p>
+<ol class="gsteps">
+<li><strong>Replace \(x_i\in\{0,1\}\) by the interval \([0,1]\).</strong> The discrete set \(\{0,1\}\) is exactly the integer points of the interval \([0,1]\); dropping integrality means allowing every value in between. We write the interval as two linear inequalities: \(x_i\le 1\) and \(x_i\ge 0\).</li>
+<li><strong>Everything else is unchanged.</strong> Objective \(\sum_i b_i x_i\) and constraint \(\sum_i w_i x_i \le W\) are already linear, so they carry over verbatim.</li>
+</ol>
+<p>The relaxation is therefore
+\[\max \sum_i b_i x_i \quad\text{s.t.}\quad \sum_i w_i x_i \le W,\qquad x_i \le 1\ \forall i,\qquad x_i \ge 0\ \forall i.\]</p>
+<p>Why do this: the integer program is NP-hard, but this LP is solvable in polynomial time, and its optimum is an upper bound on the integer optimum (any feasible 0/1 solution is also LP-feasible). Interpreting \(x_i\in[0,1]\) as "the fraction of item \(i\) taken" makes this the <em>fractional knapsack</em>.</p>

@@ -1,11 +1,21 @@
-<p>The dual is \[(D)\quad \max\; c^Tz \quad\text{s.t.}\quad Az\le c,\ z\ge 0.\]</p>
-<p>We first put \((P)\) in the standard equality form the dual recipe uses. Multiply \(Ax\ge c\) by \(-1\) to get \(-Ax\le -c\), then add slack \(s\ge 0\) to reach equalities:</p>
+<p>To dualize \((P):\ \min c^{\top}x\ \text{s.t.}\ Ax\ge c,\ x\ge0\), the solution first rewrites \((P)\) in the equality "standard form" that the dual recipe applies to, then reads off the dual, and finally cleans it up with a sign change. The one place symmetry is used is \(A^{\top}=A\).</p>
+<ol class="gsteps">
+  <li><strong>Standard form.</strong> Flip each "\(\ge\)" constraint by multiplying by \(-1\): \(Ax\ge c\iff -Ax\le -c\). Then absorb the slack with non-negative variables \(s\ge0\) to make it an equality: \(-Ax+Is=-c\). This gives
+  \[
+  \min\ c^{\top}x\quad\text{s.t.}\quad -Ax+Is=-c,\ \ x,s\ge0 .
+  \]</li>
+  <li><strong>Apply the dual recipe.</strong> For a standard-form primal \(\min\{b^{\top}\xi:\ M\xi=d,\ \xi\ge0\}\) the dual is \(\max\{d^{\top}y:\ M^{\top}y\le b,\ y\ \text{free}\}\). Here \(\xi=(x,s)\), \(b=(c,0)\), \(M=(-A\mid I)\), \(d=-c\). So \(M^{\top}y\le b\) splits into two blocks: \(-A^{\top}y\le c\) and \(Iy\le0\), i.e. \(y\le0\); the objective is \(\max\,(-c)^{\top}y\). Using \(A^{\top}=A\):
+  \[
+  \max\ -c^{\top}y\quad\text{s.t.}\quad -Ay\le c,\ \ y\le0 .
+  \]</li>
+  <li><strong>Tidy up.</strong> Substitute \(z=-y\) (so \(y\le0\) becomes \(z\ge0\), and \(-Ay=Az\), \(-c^{\top}y=c^{\top}z\)):
+  \[
+  (D)\quad \max\ c^{\top}z\quad\text{s.t.}\quad Az\le c,\ \ z\ge0 .
+  \]</li>
+</ol>
+<div class="box">
 \[
-\min\; c^Tx \quad\text{s.t.}\quad -Ax+Is=-c,\ \ x,s\ge 0.
+(D)\qquad \max\ c^{\top}z \quad\text{s.t.}\quad Az\le c,\ \ z\ge0 .
 \]
-<p>The recipe: for \(\min\{b^\top\xi: M\xi=d,\ \xi\ge 0\}\) the dual is \(\max\{d^\top y: M^\top y\le b,\ y\text{ free}\}\). Here \(\xi=(x,s)\), \(M=(-A\mid I)\), \(b=(c,0)\), and \(d=-c\). The two blocks of \(M^\top y\le b\) give \(-A^\top y\le c\) and \(Iy\le 0\), i.e. \(y\le 0\), with objective \(\max\,(-c)^\top y\). Since \(A^\top=A\), the first block is \(-Ay\le c\), so the dual is</p>
-\[
-\max\; -c^Ty \quad\text{s.t.}\quad -Ay\le c,\ \ y\le 0.
-\]
-<p>Finally set \(z=-y\ge 0\); then \(-c^Ty=c^Tz\) and \(-Ay=Az\), giving the clean form \((D)\) above. Note \((D)\) is the mirror image of \((P)\): same \(A\), same \(c\), just \(\max\) with \(\le\) instead of \(\min\) with \(\ge\).</p>
-<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> Because \(A\) is symmetric the dual comes back looking almost exactly like the primal, so the LP is essentially self-dual.</p>
+</div>
+<p>Notice \((D)\) has the same data \((A,c)\) as \((P)\), just with \(\ge/\min\) swapped for \(\le/\max\): thanks to symmetry the problem is essentially self-dual. This is exactly what part (b) exploits.</p>

@@ -1,14 +1,13 @@
-<p>We generalize the maximal-matching \(2\)-approximation for vertex cover to triples. The algorithm:</p>
-<ol>
-<li>Set \(C=\varnothing\).</li>
-<li>While edges remain: pick any edge \(\{u,v,w\}\), add all three of \(u,v,w\) to \(C\), and erase every edge containing at least one of \(u,v,w\).</li>
-<li>Return \(C\).</li>
+<p>Both standard 2-approximations for vertex cover in ordinary graphs generalize to a 3-approximation on a 3-uniform hypergraph, where each edge is a triple \(\{u,v,w\}\) and a cover must hit every triple. We give the combinatorial one in full and note the LP version.</p>
+<ol class="gsteps">
+  <li><strong>Greedy algorithm.</strong> Start with \(C=\varnothing\). While \(E\neq\varnothing\): pick an arbitrary edge \(\{u,v,w\}\), add all three vertices \(u,v,w\) to \(C\), and erase every edge that contains at least one of \(u,v,w\). Each iteration deletes at least the picked edge, so the loop ends in polynomial time.</li>
+  <li><strong>Output size.</strong> Let \(k\) be the number of iterations. Each adds exactly \(3\) vertices, so \(|C|=3k\).</li>
+  <li><strong>Lower bound on \(\mathrm{OPT}\).</strong> The \(k\) edges that were picked are pairwise <em>disjoint</em>: when an edge is picked, every other edge sharing a vertex with it is erased, so a later-picked edge shares no vertex with earlier ones. Any valid cover must contain a vertex from each picked edge; since these \(k\) edges are vertex-disjoint, that forces \(k\) <em>distinct</em> vertices. Hence \(\mathrm{OPT}\ge k\).</li>
+  <li><strong>Ratio.</strong> Combining, \(|C|=3k\le 3\,\mathrm{OPT}\), a 3-approximation.</li>
 </ol>
-<p>This runs in polynomial time, since each round removes at least the picked edge. It returns a valid cover: the loop ends only when no edge is left, and every erased edge had one of its vertices placed in \(C\).</p>
-<p>Let \(k\) be the number of rounds. Each round adds exactly \(3\) vertices, so \(|C|=3k\). When an edge is picked, every other edge sharing a vertex with it is erased, so later picks share no vertex with earlier ones; the \(k\) picked edges are pairwise vertex-disjoint. Any valid cover must contain a vertex from each picked edge, and since these \(k\) edges share no vertices, that forces \(k\) distinct vertices. Hence \(\mathrm{OPT}\ge k\), and</p>
+<div class="box">
 \[
-|C|=3k\le 3\,\mathrm{OPT},
+|C|=3k\ \le\ 3\,\mathrm{OPT},\qquad\text{since the }k\text{ picked edges are disjoint and }\mathrm{OPT}\ge k .
 \]
-<p>so the algorithm is a \(3\)-approximation.</p>
-<p>Alternatively, use LP rounding: write \(\min\sum_v x_v\) with \(x_u+x_v+x_w\ge 1\) for every edge and \(x_v\in\{0,1\}\), relax to \(0\le x_v\le 1\), solve to get an optimal fractional \(x^*\), and round \(x_v\) to \(1\) exactly when \(x^*_v\ge\tfrac13\). Each edge's three values sum to at least \(1\), so one is at least \(\tfrac13\) and is rounded up, keeping the edge covered; and each rounded-up variable had \(x^*_v\ge\tfrac13\), so the cost grows by at most a factor \(3\).</p>
-<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> The picked edges are disjoint, so the optimum pays at least one vertex each while we pay three, and a triple costs three where a pair cost two.</p>
+</div>
+<p><strong>LP-rounding alternative.</strong> The IP is \(\min\sum_{v}x_v\) subject to \(x_u+x_v+x_w\ge1\) for every edge \(\{u,v,w\}\) and \(x_v\in\{0,1\}\). Relax to \(0\le x_v\le1\), solve for an optimal fractional \(x^{*}\), and round \(x_v\) to \(1\) iff \(x^{*}_v\ge\tfrac13\). Feasibility: each edge's three fractional values sum to \(\ge1\), so at least one is \(\ge\tfrac13\) and gets rounded up, covering the edge. Cost: rounding only raises a variable when \(x^{*}_v\ge\tfrac13\), i.e. \(1\le 3x^{*}_v\), so the rounded cost is at most \(3\sum_v x^{*}_v\le 3\,\mathrm{OPT}\) — the class analysis with \(3\) in place of \(2\).</p>

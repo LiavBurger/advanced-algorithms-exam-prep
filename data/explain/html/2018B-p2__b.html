@@ -1,9 +1,13 @@
-<p>True. We show the output is an independent set, bound its size from below, and compare to the trivial upper bound on the optimum.</p>
-<p>Output is independent: whenever a vertex \(v\) is added to \(S\), all of its neighbors are removed from \(G\), so no later pick can be adjacent to \(v\). Hence \(S\) has no internal edges.</p>
-<p>Trivial ceiling: an independent set is a subset of vertices, so \(\mathrm{OPT}\le |V|\).</p>
-<p>Lower bound on \(|S|\): let \(k\) be the number of iterations. Each iteration adds exactly one vertex to \(S\) and removes \(v\) together with its neighbors, at most \(1+\Delta\) vertices. So \(|S|=k\) and the total removed is at most \(k(\Delta+1)\). The algorithm stops only when \(G\) is empty, i.e. all \(|V|\) vertices are removed, so \(k(\Delta+1)\ge |V|\), giving</p>
+<p>When every vertex has degree at most \(\Delta\), the same greedy is a polynomial-time \((\Delta+1)\)-approximation. The proof has three ingredients: correctness (the output really is independent), a counting bound relating the output size to \(|V|\), and a trivial upper bound on \(\mathrm{OPT}\).</p>
+<ol class="gsteps">
+  <li><strong>Output is independent.</strong> Each time a vertex \(v\) is added to \(S\), all of \(v\)'s neighbors are immediately deleted from the graph, so no later-chosen vertex can be adjacent to \(v\). Hence no two vertices of \(S\) are adjacent.</li>
+  <li><strong>Upper bound on the optimum.</strong> An independent set is a subset of \(V\), so trivially \(\mathrm{OPT}\le|V|\).</li>
+  <li><strong>Counting iterations.</strong> Let \(k\) be the number of loop iterations. Each iteration adds exactly one vertex to \(S\), so the returned set has size \(|S|=k\). Each iteration deletes the chosen vertex plus its remaining neighbors — at most \(1+\Delta\) vertices in total. The loop runs until the graph is empty, i.e. until all \(|V|\) vertices have been deleted, so the deletions must account for everything: \(k\,(\Delta+1)\ge|V|\), giving \(k\ge \dfrac{|V|}{\Delta+1}\).</li>
+  <li><strong>Combine.</strong> \(|S|=k\ge \dfrac{|V|}{\Delta+1}\ge \dfrac{\mathrm{OPT}}{\Delta+1}\), which rearranges to \(\mathrm{OPT}\le(\Delta+1)\,|S|\). That is exactly a \((\Delta+1)\)-approximation.</li>
+</ol>
+<div class="box">
 \[
-|S|=k\ \ge\ \frac{|V|}{\Delta+1}\ \ge\ \frac{\mathrm{OPT}}{\Delta+1}.
+|S|=k\ \ge\ \frac{|V|}{\Delta+1}\ \ge\ \frac{\mathrm{OPT}}{\Delta+1}\quad\Longrightarrow\quad \mathrm{OPT}\le(\Delta+1)\,|S| .
 \]
-<p>Thus \(S\) is within a factor \(\Delta+1\) of optimal. Running time is polynomial: there are at most \(|V|\) iterations, and storing the vertex degrees in a heap lets us find the minimum-degree vertex and update after each deletion in polynomial time.</p>
-<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> Each vertex you take knocks out at most its \(\Delta\) neighbors plus itself, so you can never fall more than a factor \(\Delta+1\) behind.</p>
+</div>
+<p><strong>Running time.</strong> There are at most \(|V|\) iterations. Keeping the vertices' current degrees in a heap lets us extract a minimum-degree vertex, delete it and its neighbors, and update the affected degrees, all in polynomial time per iteration — so the whole algorithm is polynomial.</p>

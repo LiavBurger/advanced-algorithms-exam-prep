@@ -1,6 +1,17 @@
-<p>Standard form here means a maximization in which every constraint is a "\(\le\)" inequality and every variable is \(\ge 0\). We repair each part of the given LP that breaks one of these requirements.</p>
-<p>First fix the variable signs. We have \(x_1\le 0\) and \(x_3\le 0\), while \(x_2\ge 0\) is already fine. Substitute \(x_1\mapsto -x_1\) and \(x_3\mapsto -x_3\), so the new \(x_1,x_3\) are \(\ge 0\). Under this substitution the objective \(2x_1+5x_2-3x_3\) becomes \(-2x_1+5x_2+3x_3\).</p>
-<p>Next handle the equality \(x_1+2x_2=3\). An equality is the same as the two inequalities \(x_1+2x_2\le 3\) and \(x_1+2x_2\ge 3\). Applying \(x_1\mapsto -x_1\): the first becomes \(-x_1+2x_2\le 3\); the second becomes \(-x_1+2x_2\ge 3\), and multiplying by \(-1\) to make it "\(\le\)" gives \(x_1-2x_2\le -3\).</p>
-<p>Finally the inequality \(x_2-3x_3\le 10\) is already "\(\le\)"; applying \(x_3\mapsto -x_3\) turns it into \(x_2+3x_3\le 10\). Collecting everything, the standard form is</p>
-\[\max\ -2x_1+5x_2+3x_3\quad\text{s.t.}\quad -x_1+2x_2\le 3,\ \ x_1-2x_2\le -3,\ \ x_2+3x_3\le 10,\ \ x_1,x_2,x_3\ge 0.\]
-<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> Flip the negative variables, split the equality into two one-sided bounds, and point every inequality the same way.</p>
+<p>Standard form here means a maximization \(\max c^\top x\) whose constraints are all &quot;\(\le\)&quot; inequalities and whose variables are all sign-constrained to be \(\ge0\). The given LP violates this in three ways: it has an equality, and two variables constrained \(\le0\). We fix each.</p>
+<ol class="gsteps">
+<li><strong>Flip the nonpositive variables.</strong> For \(x_1\le0\) substitute \(x_1\mapsto -x_1\) with the new \(x_1\ge0\); likewise \(x_3\le0\) becomes \(x_3\mapsto -x_3\) with new \(x_3\ge0\). Variable \(x_2\ge0\) is already fine. After substitution every variable satisfies \(x_1,x_2,x_3\ge0\).</li>
+<li><strong>Rewrite the objective.</strong> Under \(x_1\mapsto-x_1,\ x_3\mapsto-x_3\), the objective \(2x_1+5x_2-3x_3\) becomes \(2(-x_1)+5x_2-3(-x_3)=-2x_1+5x_2+3x_3\).</li>
+<li><strong>Split the equality into two inequalities.</strong> \(x_1+2x_2=3\) is equivalent to \(x_1+2x_2\le3\) and \(x_1+2x_2\ge3\). Applying \(x_1\mapsto-x_1\): \(-x_1+2x_2\le3\), and the &quot;\(\ge\)&quot; half \(-x_1+2x_2\ge3\) is turned into a &quot;\(\le\)&quot; by negating: \(x_1-2x_2\le-3\).</li>
+<li><strong>Convert the remaining inequality.</strong> \(x_2-3x_3\le10\) with \(x_3\mapsto-x_3\) becomes \(x_2+3x_3\le10\), already of the correct form.</li>
+</ol>
+<div class="box">Standard form:
+\[
+\max\ -2x_1+5x_2+3x_3\quad\text{s.t.}\quad
+\begin{aligned}
+&-x_1+2x_2\le3,\\
+&x_1-2x_2\le-3,\\
+&x_2+3x_3\le10,\\
+&x_1,x_2,x_3\ge0.
+\end{aligned}
+\]</div>

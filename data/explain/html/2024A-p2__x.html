@@ -1,11 +1,10 @@
-<p>The algorithm estimates \(D(\varphi)\) by sampling. On input \(\varphi\):</p>
-<ol>
-<li>Draw \(t\) independent, uniformly random assignments \(\alpha_1,\dots,\alpha_t\in\{0,1\}^n\) (the value of \(t\) is chosen below).</li>
-<li>Evaluate \(\varphi(\alpha_1),\dots,\varphi(\alpha_t)\); each evaluation is fast (linear in the size of \(\varphi\)).</li>
-<li>Output \(A(\varphi)=\dfrac1t\sum_{i=1}^{t}X_i\), the fraction of the sampled assignments that satisfy \(\varphi\).</li>
+<p>We want to estimate the density \(D(\varphi)\) — the fraction of the \(2^n\) assignments that satisfy \(\varphi\) — to within \(1/10\), with failure probability at most \(2^{-n}\). The idea is Monte-Carlo sampling: \(D(\varphi)\) is exactly the probability that a uniformly random assignment satisfies \(\varphi\), so estimate that probability by sampling.</p>
+<ol class="gsteps">
+<li><strong>Algorithm.</strong> Draw \(t\) independent uniformly random assignments \(\alpha_1,\dots,\alpha_t\in\{0,1\}^n\), evaluate \(\varphi(\alpha_i)\) for each (checking a CNF against an assignment is fast — linear in the formula size), and output the fraction that satisfy: \(A(\varphi)=\frac1t\sum_{i=1}^{t}X_i\).</li>
+<li><strong>Unbiasedness.</strong> Let \(X_i\) be an indicator random variable for the event "\(\alpha_i\) satisfies \(\varphi\)". Since \(\alpha_i\) is uniform, \(\mathbb{E}[X_i]=D(\varphi)\). Setting \(X=\sum_i X_i\), linearity gives \(\mathbb{E}[X]=t\,D(\varphi)\), so \(\mathbb{E}[A(\varphi)]=\mathbb{E}[X]/t=D(\varphi)\) — our estimator is centered on the right value.</li>
+<li><strong>Concentration.</strong> The \(X_i\) are independent and bounded in \([0,1]\). The Chernoff/Hoeffding bound gives, for the <em>bad</em> event,
+\[\Pr\Big[\big|A(\varphi)-D(\varphi)\big|>\tfrac1{10}\Big]=\Pr\Big[\big|\tfrac{X}{t}-\tfrac{\mathbb{E}[X]}{t}\big|>\tfrac1{10}\Big]\le e^{-\Omega(t)}.\]
+(The printed line's \(\le/\ge\) direction is a typo; the quantity being bounded is the deviation exceeding \(1/10\).)</li>
+<li><strong>Choosing \(t\).</strong> Take \(t=O(n)\) large enough that \(e^{-\Omega(t)}\le 2^{-n}\). Then the failure probability is \(\le 2^{-n}\), i.e. success \(\ge 1-2^{-n}\).</li>
 </ol>
-<p>To analyze it, let \(X_i\) be an indicator random variable for the event that \(\alpha_i\) satisfies \(\varphi\). The \(X_i\) are mutually independent, and since \(\alpha_i\) is uniform over all \(2^n\) assignments, \(\mathbb{E}[X_i]=D(\varphi)\). Let \(X=\sum_{i=1}^{t}X_i\), so \(\mathbb{E}[X]=t\,D(\varphi)\) and the output is \(A(\varphi)=X/t\), giving \(\mathbb{E}[A(\varphi)]=D(\varphi)\).</p>
-<p>By the Chernoff bound, the probability that the estimate is off by more than \(1/10\),</p>
-<p>\[\Pr\!\left[\,|A(\varphi)-D(\varphi)|>\tfrac{1}{10}\,\right]\;\le\;e^{-O(t)},\]</p>
-<p>shrinks fast as \(t\) grows. Taking \(t=O(n)\) makes this error drop below \(2^{-n}\), so with probability at least \(1-2^{-n}\) the output satisfies \(|A(\varphi)-D(\varphi)|\le \tfrac1{10}\). Since \(t=O(n)\) and each evaluation is fast, the algorithm runs in polynomial time.</p>
-<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> The density is just the chance a random assignment works, so a fraction over enough random tries lands close to it.</p>
+<p>With \(t=O(n)\) samples, each evaluated in polynomial time, the whole algorithm runs in polynomial time, as required.</p>

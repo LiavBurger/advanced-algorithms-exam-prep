@@ -1,6 +1,10 @@
-<p>We add an auxiliary variable \(z\) that bounds the absolute value from above by two linear inequalities, and minimize \(z\):
-\[\min z \quad\text{s.t.}\quad 4x-5\ge 0,\qquad z\ge 2x-10,\qquad z\ge -(2x-10).\]</p>
-<p>The idea is that for any number \(t\), the value \(|t|\) is the smallest \(z\) satisfying both \(z\ge t\) and \(z\ge -t\). Taking \(t=2x-10\), the constraints \(z\ge 2x-10\) and \(z\ge -2x+10\) together say \(z\ge |2x-10|\).</p>
-<p>Minimizing \(z\) then drives it down until one of the two inequalities is tight, so at the optimum \(z=|2x-10|\). No separate sign constraint on \(z\) is needed, since the two inequalities already force \(z\ge 0\).</p>
-<p>The original constraint \(4x-5\ge 0\) is already linear, so it stays unchanged. Everything is now linear in \(x\) and \(z\), and the optimal \(z\) equals \(\min|2x-10|\) subject to \(4x-5\ge 0\).</p>
-<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> An absolute value in a minimization becomes a new variable squeezed above both branches, \(z\ge t\) and \(z\ge -t\).</p>
+<p>The obstacle is that \(|2x-10|\) is not a linear function of \(x\), so \(\min |2x-10|\) is not directly an LP. The standard trick is to introduce an auxiliary variable \(z\) that stands for the absolute value from above.</p>
+<div class="box">Key identity: for any real \(t\), the value \(|t|\) equals the smallest \(z\) satisfying both \(z\ge t\) and \(z\ge -t\). Minimizing such a \(z\) therefore reproduces \(|t|\).</div>
+<ol class="gsteps">
+<li>Set \(t = 2x-10\) and introduce \(z\). Impose \(z \ge 2x-10\) and \(z \ge -(2x-10) = -2x+10\). Together these say \(z \ge \max(2x-10,\,-2x+10) = |2x-10|\).</li>
+<li>Make \(z\) the objective: \(\min z\). At the optimum the minimization pushes \(z\) down until one of the two constraints is tight, so \(z = |2x-10|\); minimizing \(z\) is thus equivalent to minimizing \(|2x-10|\). We do not need a sign constraint on \(z\) because the two inequalities already force \(z\ge 0\).</li>
+<li>Keep the original feasibility constraint \(4x-5\ge 0\) unchanged; it is already linear.</li>
+</ol>
+<p>The resulting linear program is
+\[\min z \quad\text{s.t.}\quad 4x-5\ge 0,\qquad z\ge 2x-10,\qquad z\ge -2x+10.\]
+Every constraint and the objective are linear in the variables \(x\) and \(z\), so this is a valid LP whose optimal \(z\) equals \(\min|2x-10|\) subject to \(4x-5\ge0\).</p>

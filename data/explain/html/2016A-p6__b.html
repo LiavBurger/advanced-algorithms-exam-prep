@@ -1,4 +1,11 @@
-<p>The LP relaxation from (a) is \(\max\sum_{uv\in E}w(uv)\,x_{uv}\) subject to \(\sum_{uv\ni v}x_{uv}\le 1\) for every vertex \(v\), and \(x_{uv}\ge 0\). It is a maximization with "\(\le\)" constraints, so its dual is a minimization with "\(\ge\)" constraints: one dual variable \(y_v\ge 0\) per vertex constraint, and one dual constraint per primal variable \(x_{uv}\), that is, per edge.</p>
-<p>The edge \(uv\) appears only in the two vertex constraints of \(u\) and \(v\), each with coefficient \(1\), and its objective coefficient is \(w(uv)\), so its dual constraint is \(y_u+y_v\ge w(uv)\). The primal right-hand sides are all \(1\), so the dual objective is \(\min\sum_{v}y_v\). The dual is</p>
-<p>\[\min\ \sum_{v\in V}y_v \quad\text{s.t.}\quad y_u+y_v\ge w(uv)\ \ \forall uv\in E,\qquad y_v\ge 0\ \ \forall v\in V.\]</p>
-<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> Each vertex constraint of the primal turns into a dual variable, and each edge turns into a dual constraint.</p>
+<p>We dualize the LP relaxation of part (a), i.e. the program \(\max\sum_{uv}x_{uv}w(uv)\) subject to \(\sum_{uv\in E}x_{uv}\le 1\) for each \(v\in V\) and \(x_{uv}\ge 0\) (the integrality \(x_{uv}\in\{0,1\}\) is dropped for the relaxation).</p>
+<ol class="gsteps">
+  <li>The primal is a maximization with "\(\le\)" constraints and nonnegative variables. The standard dual is then a minimization with "\(\ge\)" constraints and nonnegative dual variables.</li>
+  <li>There is one dual variable per primal constraint. The primal has one constraint per vertex, so we get a variable \(y_v\ge 0\) for every \(v\in V\).</li>
+  <li>There is one dual constraint per primal variable, i.e. per edge \(uv\). The column of \(x_{uv}\) in the constraint matrix has a \(1\) exactly in the two rows for its endpoints \(u\) and \(v\) (edge \(uv\) appears in vertex-\(u\)'s and vertex-\(v\)'s constraints). Hence the dual constraint is \(y_u+y_v\ge w(uv)\), where the right-hand side is the primal objective coefficient of \(x_{uv}\).</li>
+  <li>The dual objective coefficients are the primal right-hand sides, all equal to \(1\); so we minimize \(\sum_{v\in V}y_v\).</li>
+</ol>
+<div class="box">
+\[\min\ \sum_{v\in V}y_v\quad\text{s.t.}\quad y_u+y_v\ge w(uv)\ \ \forall uv\in E,\qquad y_v\ge 0\ \ \forall v\in V.\]
+</div>
+<p>By weak duality every feasible \(y\) upper-bounds the matching LP value, which is the intuition behind the covering interpretation in part (c).</p>

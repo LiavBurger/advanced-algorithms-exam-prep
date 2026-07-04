@@ -1,3 +1,10 @@
-<p>The LP in (b) is a (fractional) weighted vertex cover. Read each variable \(y_v\ge 0\) as an amount of weight (resource) placed on vertex \(v\). The constraint \(y_u+y_v\ge w(uv)\) says that for every edge \(uv\), the weight sitting on its two endpoints must total at least its weight \(w(uv)\). The objective \(\min\sum_v y_v\) asks to do this using as little total weight as possible.</p>
-<p>In words: put enough weight on the vertices so that for each edge \(e\) the amount on its two endpoints is at least \(w(e)\), while minimizing the total weight used. It is fractional because we are in the LP relaxation rather than the integer program.</p>
-<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> Cover every edge's weight using the cheapest total load spread over its endpoints.</p>
+<p>We read off what the dual LP of part (b) is "asking for". Recall it is</p>
+<div class="box">
+\[\min\ \sum_{v\in V}y_v\quad\text{s.t.}\quad y_u+y_v\ge w(uv)\ \ \forall uv\in E,\qquad y_v\ge 0.\]
+</div>
+<ol class="gsteps">
+  <li>Interpret each variable \(y_v\ge 0\) as an amount of a "resource" (a weight, or budget) that we place on vertex \(v\).</li>
+  <li>The constraint \(y_u+y_v\ge w(uv)\) says: for every edge \(uv\), the total resource sitting on its two endpoints must be at least the edge's demand \(w(uv)\). So every edge is "covered" by the resource at its endpoints.</li>
+  <li>The objective \(\min\sum_v y_v\) says we want to use as little total resource as possible.</li>
+</ol>
+<p>This is a <strong>(fractional) weighted vertex cover</strong>: assign weights \(y_v\) to the vertices so that each edge \(uv\) has its endpoints' weights summing to at least \(w(uv)\), while minimizing the total weight assigned. In the classic unweighted vertex cover we pick a set of vertices touching every edge; here each edge instead demands a real amount \(w(uv)\) that must be met by the amounts placed on its two endpoints, and the variables are allowed to be fractional because this is the LP (not the integer program). This matches the official phrasing: put enough resource at the vertices so that for each edge \(e\) the amount at its endpoints is at least \(w(e)\).</p>

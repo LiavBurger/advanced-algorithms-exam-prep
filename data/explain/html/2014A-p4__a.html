@@ -1,4 +1,7 @@
-<p>Introduce a variable \(x_v\in\{0,1\}\) for each vertex, where \(x_v=1\) means \(v\) is placed in the set \(S\). The cost of \(S\) is \(\sum_{v\in V}w_v x_v\), which we minimize. Vertex \(v\) is dominated exactly when \(v\in S\) or some neighbor of \(v\) is in \(S\), i.e. when at least one vertex of the closed neighborhood \(N(v)\cup\{v\}\) is chosen; this is the constraint \(\sum_{u\in N(v)\cup\{v\}}x_u\ge 1\). The ILP is</p>
-<p>\[\min\sum_{v\in V}w_v x_v\quad\text{s.t.}\quad \sum_{u\in N(v)\cup\{v\}}x_u\ge 1\ \ \forall v\in V,\qquad x_v\in\{0,1\}\ \ \forall v\in V.\]</p>
-<p>Any \(0/1\) solution picks the set \(S=\{v:x_v=1\}\); the constraints say exactly that every vertex is dominated, and the objective is the total weight of \(S\). So feasible integer solutions correspond exactly to dominating sets and their weights, and the ILP optimum is the minimum-weight dominating set.</p>
-<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> Each vertex just needs at least one chosen vertex in its closed neighborhood, which is what "dominated" means.</p>
+<p>We model "choose a minimum-weight set \(S\) that dominates every vertex". Introduce one binary variable per vertex: \(x_v\in\{0,1\}\), with \(x_v=1\) meaning \(v\in S\). A \(0/1\) assignment is then the same as a subset \(S\subseteq V\).</p>
+<ol class="gsteps">
+<li><strong>Objective.</strong> The weight of \(S\) is \(\sum_{v\in S}w_v=\sum_{v\in V}w_v x_v\) (terms with \(x_v=0\) drop out). We minimize it: \(\min\sum_{v\in V}w_v x_v\).</li>
+<li><strong>Domination constraint.</strong> A vertex \(v\) is dominated iff \(v\in S\) or some neighbor of \(v\) is in \(S\); equivalently, at least one vertex of the closed neighborhood \(N(v)\cup\{v\}\) is chosen. In LP terms: \(\displaystyle\sum_{u\in N(v)\cup\{v\}}x_u\ge 1\), for <em>every</em> \(v\in V\). With \(0/1\) values this sum is \(\ge 1\) exactly when at least one of those vertices has \(x_u=1\).</li>
+<li><strong>Integrality.</strong> \(x_v\in\{0,1\}\) makes it an integer program (and encodes the yes/no membership).</li>
+</ol>
+<p>So the ILP is \(\min\sum_{v}w_v x_v\) s.t. \(\sum_{u\in N(v)\cup\{v\}}x_u\ge 1\ \forall v\in V,\ x_v\in\{0,1\}\). Every feasible \(0/1\) vector is a dominating set of that weight, and conversely, so optimal ILP value = minimum weight dominating set.</p>

@@ -1,3 +1,7 @@
-<p>Every bin other than the last one opened holds items of total weight at least \(1-\tfrac1k\).</p>
-<p>The reason a new bin was opened for the item of weight \(1/k\) is that this item did not fit into any existing bin. That means every existing bin had less than \(1/k\) of free space at that moment, so each of them was already filled to more than \(1-\tfrac1k\). Since this was the last time a new bin was opened, all later items are only added to existing bins, and no bin's load ever decreases. Therefore, in the final packing, every bin except the last-opened one contains items of total weight at least \(1-\tfrac1k\).</p>
-<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> The algorithm opens a new bin only as a last resort, so the moment it does, every other bin must have been almost completely full.</p>
+<p>Suppose that during the run the very last item that forced a new bin to be opened had weight \(1/k\). We give a lower bound of \(1-\tfrac1k\) on the load of every bin other than the one opened last.</p>
+<ol class="gsteps">
+  <li><strong>What "opening a new bin" tells us.</strong> The algorithm opens a new bin for an item only when the item does not fit in any existing bin. So at the moment this weight-\(1/k\) item was placed, every already-open bin had less than \(1/k\) of free space — otherwise the item would have gone there instead.</li>
+  <li><strong>Translate free space into load.</strong> Free space below \(1/k\) means each of those bins was filled to more than \(1-\tfrac1k\); at least \(1-\tfrac1k\) of every such bin was already occupied.</li>
+  <li><strong>Loads only grow afterwards.</strong> Since this was the <em>last</em> bin-opening event, any items placed after it are merely added into existing bins, so no bin's load ever decreases. Every bin except the last-opened therefore keeps a load of at least \(1-\tfrac1k\) at the end.</li>
+</ol>
+<div class="box">Hence in the final packing, each bin other than the one opened last contains items of total weight at least \(1-\tfrac1k\).</div>

@@ -1,9 +1,9 @@
-<p>The two programs are equal iff the polynomials they compute are equal, so we test whether the difference is identically zero using a random evaluation. First bound the degree: each entry of a matrix has degree at most \(1\), and each matrix multiplication adds at most \(1\) to the degree, so after \(m\) products the \((1,1)\)-entries \(P_A\) of \(A_1\cdots A_m\) and \(P_B\) of \(B_1\cdots B_m\), and their difference \(Q=P_A-P_B\), all have degree at most \(m\).</p>
-<p>The algorithm:</p>
-<ol>
-<li>Assign each variable \(x_i\) an independent, uniformly random value from the set \(\{1,2,\dots,100m\}\).</li>
-<li>Compute both matrix products \(A_1\cdots A_m\) and \(B_1\cdots B_m\) numerically at this assignment, and read off their \((1,1)\)-entries.</li>
-<li>Answer "equal" if the two entries are equal, and "different" otherwise.</li>
+<p>Each branching program computes the \((1,1)\)-entry of a product of \(m\) matrices whose entries are variables or rational scalars. Two programs compute the same polynomial iff the difference of these two polynomials is identically zero, which we test by random evaluation via Schwartz–Zippel.</p>
+<ol class="gsteps">
+  <li><strong>Degree bound.</strong> Every entry of a single matrix has degree \(\le 1\) (it is a variable or a constant). When two matrices are multiplied, each entry of the product is a sum of products of two entries, so degrees add by at most \(1\) per multiplication. Multiplying \(m\) matrices therefore yields entries of total degree \(\le m\). Hence the polynomials \(P_A=(A_1\cdots A_m)_{1,1}\) and \(P_B=(B_1\cdots B_m)_{1,1}\) each have degree \(\le m\), and so does \(Q=P_A-P_B\).</li>
+  <li><strong>The test.</strong> Assign each variable \(x_i\) an independent uniform value from \(S=\{1,2,\dots,100m\}\) (so \(|S|=100m\)), compute both matrix products numerically, and declare "equal" iff the two \((1,1)\)-entries agree.</li>
+  <li><strong>Error analysis.</strong> If the programs compute the same polynomial then \(Q\equiv 0\), the entries always match, and the test is correct with certainty. If they differ then \(Q\not\equiv 0\) has degree \(\le m\), and by Schwartz–Zippel
+  \[\Pr[Q\text{ evaluates to }0]\le\frac{\deg Q}{|S|}\le\frac{m}{100m}=\frac{1}{100}<0.1.\]
+  So a false "equal" verdict occurs with probability under \(0.1\).</li>
 </ol>
-<p>Correctness: if the programs compute the same polynomial then \(Q\equiv 0\), the two entries always agree, and the test never errs. If they compute different polynomials then \(Q\neq 0\) has degree at most \(m\), so by the Schwartz-Zippel lemma the chance that our random point is a root is at most \(\dfrac{m}{100m}=\dfrac{1}{100}<0.1\). Thus the error probability is below \(0.1\). Runtime: each run is \(m\) multiplications of \(3\times 3\) matrices, which is efficient.</p>
-<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> A nonzero low-degree polynomial almost never vanishes at a random point, so plugging in random values and comparing catches any difference with high probability.</p>
+<p>The error is one-sided and below \(0.1\) as required. Efficiency: each run does \(m\) multiplications of \(3\times 3\) matrices over \(\mathbb{Q}\) with numbers of polynomially bounded size, so it runs in polynomial time.</p>

@@ -1,4 +1,8 @@
-<p>True. To bound the minimum \(\alpha_{k^2}\) from above, it is enough to exhibit one method that multiplies \(k^2\times k^2\) matrices using \((\alpha_k)^2\) multiplications.</p>
-<p>Let \(A,B\) be two \(k^2\times k^2\) matrices. Partition each into \(k\times k\) blocks, where every block is itself a \(k\times k\) matrix; so \(A\) and \(B\) become \(k\times k\) matrices whose entries are \(k\times k\) blocks. Multiply these two block matrices using the optimal \(k\times k\) scheme, which uses \(\alpha_k\) block multiplications. Each such block multiplication is a multiplication of two \(k\times k\) matrices, which can be done with \(\alpha_k\) scalar multiplications.</p>
-<p>So the total number of scalar multiplications is \(\alpha_k\cdot\alpha_k=(\alpha_k)^2\). Since \(\alpha_{k^2}\) is the minimum over all methods, \(\alpha_{k^2}\le(\alpha_k)^2\).</p>
-<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> Treat a \(k^2\times k^2\) product as a \(k\times k\) grid of \(k\times k\) blocks — \(\alpha_k\) outer products, each an \(\alpha_k\)-multiplication, giving \((\alpha_k)^2\).</p>
+<p>The statement is <strong>true</strong>. Here \(\alpha_k\) denotes the minimum number of scalar multiplications needed to multiply two \(k\times k\) matrices. We must exhibit <em>some</em> algorithm for \(k^2\times k^2\) matrices using \((\alpha_k)^2\) scalar multiplications; since \(\alpha_{k^2}\) is the minimum over all algorithms, this proves \(\alpha_{k^2}\le(\alpha_k)^2\).</p>
+<ol class="gsteps">
+<li>Let \(A,B\) be two \(k^2\times k^2\) matrices. Partition each into a \(k\times k\) grid of blocks, where every block is itself a \(k\times k\) matrix. This is consistent because \(k\cdot k=k^2\).</li>
+<li>Matrix multiplication respects this block structure: the product \(AB\) is computed by the same formulas as a \(k\times k\) matrix product, except the "entries" are the \(k\times k\) blocks and "entry multiplication" is block (matrix) multiplication.</li>
+<li>By definition of \(\alpha_k\), multiplying these \(k\times k\) arrays of blocks can be done with \(\alpha_k\) block-multiplications (the additions of blocks are free, as they use no scalar multiplications).</li>
+<li>Each such block-multiplication is a product of two \(k\times k\) matrices, which again by definition costs \(\alpha_k\) scalar multiplications.</li>
+<li>Hence the total number of scalar multiplications is \(\alpha_k\cdot\alpha_k=(\alpha_k)^2\). Since this is a valid method, the minimum satisfies \(\alpha_{k^2}\le(\alpha_k)^2\).</li>
+</ol>

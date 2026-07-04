@@ -1,2 +1,7 @@
-<p>Take \(G=K_{100}\), the complete graph on \(100\) vertices, in which every pair of vertices is joined by an edge. Any independent set can contain at most one vertex: if it contained two vertices \(u,v\), the edge \((u,v)\) would make \(x_u+x_v=2>1\), violating the constraint. A single vertex is trivially independent, so the maximum independent set — the optimum of the ILP in (a) — has size exactly \(1\).</p>
-<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> In a clique everyone is everyone's neighbor, so you can keep only one vertex.</p>
+<p>We want a \(100\)-vertex graph on which the maximum independent set has size exactly \(1\). Take the <em>clique</em> \(K_{100}\): the complete graph where every pair of the \(100\) vertices is joined by an edge.</p>
+<ol class="gsteps">
+<li>Any two distinct vertices \(u,v\) are adjacent (that is what "complete" means). So no set containing two vertices can be independent — every such pair is an edge, violating independence.</li>
+<li>Therefore every independent set has at most one vertex.</li>
+<li>A single vertex is trivially independent (there is no pair inside it to form an edge), so size \(1\) is achievable.</li>
+</ol>
+<p>Hence the ILP optimum \(\max\sum_v x_v\) equals \(1\). Combined with part (c), on \(K_{100}\) the LP optimum is \(\ge 50\) while the ILP optimum is \(1\): a large integrality gap.</p>

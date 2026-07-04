@@ -1,6 +1,14 @@
-<p>The primal from part (a) has \(|V|\) equality constraints, so the dual has \(|V|\) variables, a free vector \(y\in\mathbb{R}^{|V|}\). Applying the standard dual rule to \(\min -\mathbf{1}^\top x\) s.t. \([\,A_G\mid I\,]\begin{bmatrix}x\\ s\end{bmatrix}=\mathbf{1},\ x,s\ge 0\), the dual is</p>
-<p>\[\max\ \mathbf{1}^\top y\quad\text{s.t.}\quad [\,A_G\mid I\,]^\top y\le\begin{bmatrix}-\mathbf{1}\\ \mathbf{0}\end{bmatrix}.\]</p>
-<p>Splitting the constraint by column-block, the \(x\)-columns give \(A_G^\top y\le -\mathbf{1}\) and the slack columns give \(I y\le\mathbf{0}\), i.e. \(y\le 0\). To simplify, change variables \(y\mapsto -y\): the objective becomes \(\min\mathbf{1}^\top y\), the constraint \(A_G^\top y\le-\mathbf{1}\) becomes \(A_G^\top y\ge\mathbf{1}\), and \(y\le 0\) becomes \(y\ge 0\). The clean dual is</p>
-<p>\[\min\ \mathbf{1}^\top y\quad\text{s.t.}\quad A_G^\top y\ge\mathbf{1},\ \ y\ge 0,\]</p>
-<p>which per edge \((u,v)\) reads \(y_u+y_v\ge 1\).</p>
-<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> The slack columns are just the identity, so their dual constraints simply pin the sign of \(y\), and one sign flip cleans everything up.</p>
+<p>The primal from part (a) is \(\min -\mathbf{1}^\top x\) s.t. \(A_G x+Is=\mathbf{1},\ x,s\ge 0\). We dualize it and then simplify.</p>
+<ol class="gsteps">
+  <li><strong>One dual variable per equality.</strong> There are \(|V|\) equality constraints (one per vertex), and equality constraints produce <em>free</em> (unconstrained) dual variables, so the dual has a vector \(y\in\mathbb{R}^{|V|}\).</li>
+  <li><strong>Apply the standard dual rule.</strong> For \(\min c^\top w\) s.t. \(Mw=\mathbf{1},\ w\ge 0\) the dual is \(\max \mathbf{1}^\top y\) s.t. \(M^\top y\le c\). Here the variable is \(w=(x,s)\), the constraint matrix is \(M=[\,A_G\mid I\,]\), and the cost is \(c=(-\mathbf{1},\,\mathbf{0})\) (\(-1\) on each \(x\)-coordinate, \(0\) on each slack). The block \(M^\top y\le c\) splits into two families:
+  \[A_G^\top y\le -\mathbf{1}\quad(\text{from the }x\text{ columns}),\qquad I^\top y\le \mathbf{0}\ \Rightarrow\ y\le 0\quad(\text{from the slack columns}).\]
+  So the dual is \(\max \mathbf{1}^\top y\) s.t. \(A_G^\top y\le -\mathbf{1},\ y\le 0\).</li>
+  <li><strong>Clean up by flipping signs.</strong> Substitute \(y\mapsto -y\). Then \(\mathbf{1}^\top y\) becomes \(-\mathbf{1}^\top y\) (so \(\max\) turns into \(\min \mathbf{1}^\top y\)), \(A_G^\top y\le-\mathbf{1}\) becomes \(A_G^\top y\ge\mathbf{1}\), and \(y\le 0\) becomes \(y\ge 0\).</li>
+</ol>
+<div class="box">
+\[
+\min\; \mathbf{1}^\top y\qquad\text{s.t.}\qquad A_G^\top y\ge \mathbf{1},\quad y\ge 0.
+\]
+</div>
+<p>Reading \(A_G^\top y\ge\mathbf{1}\) row by row: for each edge \((u,v)\), \(y_u+y_v\ge 1\).</p>

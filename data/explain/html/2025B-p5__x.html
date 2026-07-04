@@ -1,11 +1,7 @@
-<p>The algorithm samples many random colorings and reports the fraction that are legal:</p>
-<ol>
-<li>Draw \(t\) independent, uniformly random \(3\)-colorings \(c_1,\dots,c_t:V\to\{1,2,3\}\) (each vertex colored uniformly and independently), where \(t\) is chosen below.</li>
-<li>Check each \(c_i\) for legality by scanning all edges (linear time).</li>
-<li>Output \(A(G)=\tfrac1t\sum_{i=1}^t X_i\), the fraction of the sampled colorings that are legal, where \(X_i\) is defined below.</li>
+<p>We estimate the versatility \(R(G)\), the fraction of the \(3^n\) colorings that are legal, by sampling colorings and reporting the empirical legal-fraction. The only tools needed are a legality check and a Chernoff (Hoeffding) bound.</p>
+<ol class="gsteps">
+  <li><strong>The algorithm.</strong> Pick \(t\) independent, uniformly random colorings \(c_1,\dots,c_t : V\to\{1,2,3\}\) (choose each vertex's color uniformly). For each \(c_i\), check legality by scanning all edges and verifying \(c_i(u)\neq c_i(v)\); this takes linear time. Output \(A(G)=\frac1t\sum_{i=1}^{t} X_i\), the fraction that are legal.</li>
+  <li><strong>Expectation.</strong> Let \(X_i\) be an indicator random variable for the event that \(c_i\) is legal. A uniform coloring is legal with probability equal to (number of legal colorings)\(/3^n=R(G)\), so \(\mathbb E[X_i]=R(G)\). With \(X=\sum_i X_i\) we get \(\mathbb E[X]=tR(G)\), and the output \(X/t\) has mean \(R(G)\) — it is an unbiased estimator.</li>
+  <li><strong>Concentration.</strong> The \(X_i\) are independent and lie in \([0,1]\), so the additive Chernoff/Hoeffding bound gives \[ \Pr\!\Big[\,\big|A(G)-R(G)\big|\ge \tfrac1n\,\Big]=\Pr\!\Big[\big|\tfrac{X}{t}-\tfrac{\mathbb E[X]}{t}\big|\ge \tfrac1n\Big]\le e^{-O(t/n^2)}. \] The exponent \(t/n^2\) comes from the deviation \(\varepsilon=1/n\) entering the bound as \(\varepsilon^2 t\).</li>
 </ol>
-<p>Correctness. Let \(X_i\) be an indicator random variable for the event that \(c_i\) is a legal coloring. Since \(c_i\) is a uniform \(3\)-coloring, \(\mathbb E[X_i]=R(G)\). The \(X_i\) are mutually independent. Let \(X=\sum_{i=1}^t X_i\); then \(\mathbb E[X]=t\,R(G)\) and the output is \(X/t\), so \(\mathbb E[A(G)]=R(G)\). By the Chernoff bound,
-\[ \Pr\!\left[\,|A(G)-R(G)|\ge \tfrac1n\,\right] = \Pr\!\left[\,\Big|\tfrac{X}{t}-\tfrac{\mathbb E[X]}{t}\Big|\ge \tfrac1n\,\right] \le e^{-O(t/n^2)}, \]
-because the deviation \(1/n\) enters the exponent squared.</p>
-<p>Choosing \(t=O(n^3)\) makes \(t/n^2=O(n)\), so the failure probability drops below \(2^{-n}\). Thus with probability at least \(1-2^{-n}\) the output is within \(1/n\) of \(R(G)\). Sampling \(O(n^3)\) colorings and checking each in linear time is polynomial, so the algorithm is efficient.</p>
-<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> A random coloring is legal with probability exactly \(R(G)\), so the observed legal-fraction estimates \(R(G)\), and enough samples make that estimate sharp with overwhelming probability.</p>
+<div class="box">Take \(t=O(n^3)\): then \(t/n^2=O(n)\), so the failure probability is \(e^{-O(n)}\le 2^{-n}\). The algorithm samples \(O(n^3)\) colorings and checks each in linear time, so it runs in polynomial time and outputs an estimate within \(1/n\) of \(R(G)\) with probability at least \(1-2^{-n}\).</div>

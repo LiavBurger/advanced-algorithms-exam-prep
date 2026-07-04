@@ -1,7 +1,13 @@
-<p>The objective value after the first pivot is \(32\).</p>
-<p>From part (c) the objective in non-basic form is \(20+x_2+2x_3-2s_1\). After the pivot the basis is \(\{x_1,x_3\}\), so \(x_2=s_1=0\) and \(x_3=6\). Substituting,</p>
-\[
-20+x_2+2x_3-2s_1=20+0+2(6)-0=32 .
-\]
-<p>This matches the intuition: \(x_3\) climbed \(6\) units at rate \(+2\), adding \(12\) to the starting value \(20\).</p>
-<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> The non-basic form already carries the constant, so the new value is one substitution away.</p>
+<p>The objective value at any basic solution is found by plugging the current variable values into the objective. The most convenient form is the one from part (c), where the objective is already written using only the non-basic variables plus a constant.</p>
+<ol class="gsteps">
+  <li>Recall from part (c) that the objective equals \(20+x_2+2x_3-2s_1\).</li>
+  <li>Identify the new solution after the pivot of parts (c)–(d): the basis is \(\{x_1,x_3\}\), so the non-basic variables are \(x_2=0\) and \(s_1=0\), while the entering variable reached \(x_3=6\).</li>
+  <li>Substitute these values:
+  \[
+  20+x_2+2x_3-2s_1=20+0+2(6)-0=20+12=32 .
+  \]</li>
+</ol>
+<div class="box">
+After the first pivot the objective value is \(32\).
+</div>
+<p>As a sanity check, this matches the increase predicted by the pivot: \(x_3\) entered with per-unit rate \(+2\) and rose by \(6\), adding \(2\times 6=12\) to the previous objective value of \(20\).</p>

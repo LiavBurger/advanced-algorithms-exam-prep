@@ -1,2 +1,7 @@
-<p>Making DLP1 integral means adding \(y_{uv}\in\{0,1\}\), so \(y_{uv}=1\) marks that edge \(uv\) is picked and a solution is a set \(M=\{uv:y_{uv}=1\}\subseteq E\). For each vertex \(v\) the constraint \(\sum_{u\in N(v)} y_{uv}\le 1\) says that at most one picked edge is incident to \(v\), i.e. no two chosen edges share an endpoint. The objective \(\max\sum_{uv} y_{uv}=|M|\) maximizes the number of chosen edges. So the integer program asks for the largest set of pairwise non-adjacent edges, which is the maximum matching problem.</p>
-<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> "At most one chosen edge per vertex" is exactly a matching, and maximizing the count gives maximum matching, the natural dual of minimum vertex cover.</p>
+<p>We now read the integer version of DLP1 — the dual — as a graph problem. Adding integrality means \(y_{uv}\in\{0,1\}\) for every edge, so an assignment picks a subset of edges \(M=\{uv : y_{uv}=1\}\).</p>
+<ol class="gsteps">
+  <li><strong>The variables.</strong> \(y_{uv}\in\{0,1\}\) indicates whether edge \(uv\) is selected. The point is thus a choice of an edge subset \(M\subseteq E\).</li>
+  <li><strong>The constraints.</strong> For each vertex \(v\), \(\sum_{u\in N(v)} y_{uv}\le 1\) says that among the edges incident to \(v\), at most one is selected. Equivalently, no two selected edges share an endpoint — exactly the definition of \(M\) being a <em>matching</em>.</li>
+  <li><strong>The objective.</strong> Maximizing \(\sum_{uv\in E} y_{uv}\) maximizes \(|M|\), the number of selected edges.</li>
+</ol>
+<div class="box">So the integer program corresponding to DLP1 asks for the largest set of pairwise non-adjacent edges: this is the <strong>maximum matching</strong> problem. It is the natural dual counterpart to the minimum vertex cover of part (a) — every edge in a matching must be covered by a distinct vertex, so matching size lower-bounds cover size.</div>

@@ -1,11 +1,9 @@
-<p>Algorithm \(B\) uses \(A\) as a black box with a time budget:</p>
-<ol>
-<li>Run \(A(x)\) for at most \(100n\) steps.</li>
-<li>If \(A\) terminates within that budget, return its answer.</li>
-<li>Otherwise, halt \(A\) and return \(0\).</li>
+<p>We are given a Las Vegas algorithm \(A\): it is <em>always correct</em>, but its running time \(T(n)\) is random with expectation \(\mathbb{E}[T(n)]\le 10n\). We must build a Monte Carlo algorithm \(B\) that always runs in \(O(n)\) time and is correct with probability \(\ge 9/10\). The idea is to run \(A\) but cut it off after a fixed budget of steps, using \(A\) as a black box.</p>
+<ol class="gsteps">
+<li><strong>Algorithm \(B\).</strong> Run \(A(x)\) for at most \(100n\) steps. If \(A\) finishes within that budget, output \(A\)'s answer. If \(A\) has not finished, halt it and output \(0\).</li>
+<li><strong>Running time.</strong> By construction \(B\) never runs more than \(100n\) steps (plus the trivial cutoff overhead), so \(B\) runs in \(O(n)\) time on every execution — deterministically bounded.</li>
+<li><strong>When can \(B\) err?</strong> If \(A\) finishes, its answer is correct (\(A\) is Las Vegas, always correct), so \(B\) is correct. The only way \(B\) can be wrong is when \(A\) fails to finish within \(100n\) steps and \(B\) outputs the default \(0\).</li>
+<li><strong>Bounding that probability.</strong> \(T(n)\ge0\), so Markov's inequality applies:
+\[\Pr[\,T(n)\ge 100n\,]\le\frac{\mathbb{E}[T(n)]}{100n}\le\frac{10n}{100n}=\frac1{10}.\]</li>
 </ol>
-<p>Running time: \(B\) never runs more than \(100n\) steps, so it runs in \(O(n)\) time on every input.</p>
-<p>Correctness: if \(A\) terminates, its answer is correct, since \(A\) is a Las Vegas algorithm that always returns \(f(x)\). So \(B\) can only be wrong when \(A\) fails to finish within \(100n\) steps and \(B\) outputs the default \(0\). Since the running time \(T(n)\ge 0\) and \(\mathbb{E}[T(n)]\le 10n\), Markov's inequality gives</p>
-<p>\[\Pr[T(n)\ge 100n]\;\le\;\frac{\mathbb{E}[T(n)]}{100n}\;\le\;\frac{10n}{100n}=\frac{1}{10}.\]</p>
-<p>So \(B\) errs with probability at most \(1/10\), i.e. it is correct with probability at least \(9/10\). This bound uses only \(\mathbb{E}[T(n)]\le 10n\), so it depends on the algorithm's randomness and not on the particular input \(x\).</p>
-<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> A run much longer than average is rare, so cutting off at ten times the expected time almost always still lets \(A\) finish and answer correctly.</p>
+<p>Thus \(B\) errs with probability at most \(1/10\), i.e. it is correct with probability at least \(9/10\). This bound uses only \(\mathbb{E}[T(n)]\le10n\), so it depends solely on the algorithm's internal randomness and not on the particular input \(x\), exactly as required.</p>

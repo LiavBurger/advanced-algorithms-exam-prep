@@ -1,10 +1,11 @@
-<p>We relax the given ILP and round at the threshold \(1/d\):</p>
-<ol>
-<li>Replace \(x_i\in\{0,1\}\) by \(0\le x_i\le 1\) and solve the LP for an optimal \(x^*\). Since every integer solution is LP-feasible, \(\text{LPOPT}=\sum_i w_i x_i^*\le\text{OPT}\).</li>
-<li>Round: set \(x_i=1\) if \(x_i^*\ge 1/d\), else \(x_i=0\); let \(H\) be the corresponding set.</li>
+<p>We want a minimum-weight <em>representative</em> set \(H\subseteq V\) — one meeting every \(T_j\) — where each \(|T_j|\le d\). This is a hitting-set problem, and we \(d\)-approximate it by relaxing and rounding the given integer program \(\min\sum_i w_i x_i\) s.t. \(\sum_{i\in T_j}x_i\ge 1\ \forall j,\ x_i\in\{0,1\}\).</p>
+<ol class="gsteps">
+  <li><strong>Relax and solve.</strong> Replace \(x_i\in\{0,1\}\) by \(0\le x_i\le 1\) and solve the LP in polynomial time; let \(x^{*}\) be an optimal fractional solution, with value \(\text{LPOPT}=\sum_i w_i x_i^{*}\).</li>
+  <li><strong>Round.</strong> For each \(i\), set \(x_i=1\) if \(x_i^{*}\ge 1/d\), else \(x_i=0\); let \(H\) be the set whose characteristic vector is \(x\).</li>
+  <li><strong>\(H\) is representative.</strong> Fix \(T_j\). The constraint \(\sum_{i\in T_j}x_i^{*}\ge 1\) is a sum of at most \(|T_j|\le d\) terms, so their average is at least \(1/d\); hence some \(i\in T_j\) has \(x_i^{*}\ge 1/d\), giving \(x_i=1\) and \(i\in H\). Thus \(H\) hits every \(T_j\).</li>
+  <li><strong>Weight bound.</strong> For every \(i\), \(x_i\le d\,x_i^{*}\): if \(x_i=0\) this holds as \(x_i^{*}\ge 0\); if \(x_i=1\) then by construction \(x_i^{*}\ge 1/d\), so \(d\,x_i^{*}\ge 1=x_i\).</li>
 </ol>
-<p>The set \(H\) is representative. Fix any \(T_j\). Its constraint \(\sum_{i\in T_j}x_i^*\ge 1\) is a sum of at most \(d\) nonnegative terms, so not all can be below \(1/d\); some \(i\in T_j\) has \(x_i^*\ge 1/d\), hence \(x_i=1\) and \(i\in H\). So \(H\) contains an element of every \(T_j\).</p>
-<p>The weight of \(H\) is at most \(d\cdot\text{OPT}\). For every \(i\) we have \(x_i\le d\,x_i^*\): if \(x_i=0\) this holds since \(x_i^*\ge 0\), and if \(x_i=1\) then \(x_i^*\ge 1/d\) makes \(d\,x_i^*\ge 1\). Summing with weights \(w_i\ge 0\),</p>
-<p>\[w(H)=\sum_i w_i x_i\le d\sum_i w_i x_i^*=d\cdot\text{LPOPT}\le d\cdot\text{OPT}.\]</p>
-<p>So \(H\) is a valid representative set of weight at most \(d\) times optimal, found in polynomial time.</p>
-<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> Since each \(T_j\) has at most \(d\) elements, one must carry a \(1/d\) LP share, so rounding at \(1/d\) covers it while losing at most a factor of \(d\).</p>
+<div class="box">
+\[w(H)=\sum_{i=1}^{n}w_i x_i\ \le\ d\sum_{i=1}^{n}w_i x_i^{*}\ =\ d\cdot\text{LPOPT}\ \le\ d\cdot\text{OPT}.\]
+</div>
+<p>The first inequality multiplies \(x_i\le d\,x_i^{*}\) by \(w_i\ge 0\) and sums; the last uses \(\text{LPOPT}\le\text{OPT}\), which holds because every integer solution is LP-feasible, so relaxing only lowers the minimum. Hence \(H\) is a representative set of weight at most \(d\) times optimal — a polynomial-time \(d\)-approximation.</p>

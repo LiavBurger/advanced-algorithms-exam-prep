@@ -1,4 +1,10 @@
-<p>False. Let \(\Omega_m\subseteq\mathbb{C}\) be the roots of unity of order \(m\), so \(|\Omega_m|=m\). Take any nonzero polynomial \(f(x_1,\dots,x_n)\) with \(\deg(f)<m\), and pick each \(a_1,\dots,a_n\) independently and uniformly from \(\Omega_m\). By the Schwartz-Zippel lemma,</p>
-<p>\[\Pr_{a_1,\dots,a_n\in\Omega_m}\big[f(a_1,\dots,a_n)=0\big]\;\le\;\frac{\deg f}{m}\;<\;1.\]</p>
-<p>Since this probability is strictly less than \(1\), there must exist some point \(a_1,\dots,a_n\in\Omega_m\) with \(f(a_1,\dots,a_n)\neq0\). So no nonzero \(f\) of degree \(<m\) can vanish on all of \(\Omega_m^n\), and the statement is false.</p>
-<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> A low-degree polynomial simply doesn't have enough roots to cover every point of a grid this large.</p>
+<p>The statement is <strong>false</strong>. The claim is that some nonzero polynomial of degree less than \(m\) vanishes at <em>every</em> point whose coordinates are order-\(m\) roots of unity. Schwartz–Zippel rules this out.</p>
+<ol class="gsteps">
+<li>Let \(\Omega_m\subseteq\mathbb{C}\) be the set of \(m\)-th roots of unity. There are exactly \(m\) of them, so \(|\Omega_m|=m\).</li>
+<li>Suppose \(f(x_1,\dots,x_n)\) is a nonzero polynomial with total degree \(\deg(f)<m\). Draw each coordinate \(a_1,\dots,a_n\) independently and uniformly from the set \(\Omega_m\).</li>
+<li>The Schwartz–Zippel lemma bounds the chance a nonzero polynomial vanishes on a random point drawn from a finite set \(S\) per coordinate:
+\[\Pr_{a_1,\dots,a_n\in\Omega_m}\big[f(a_1,\dots,a_n)=0\big]\le \frac{\deg(f)}{|\Omega_m|}=\frac{\deg(f)}{m}<1,\]
+where the last inequality is exactly the hypothesis \(\deg(f)<m\).</li>
+<li>Since the probability of vanishing is strictly less than \(1\), the event "\(f\neq 0\)" has positive probability. A positive-probability event is non-empty, so there <em>exists</em> a point \((a_1,\dots,a_n)\in\Omega_m^{\,n}\) with \(f(a_1,\dots,a_n)\neq0\).</li>
+</ol>
+<p>Therefore no nonzero polynomial of degree below \(m\) can vanish on all such points, contradicting the claim. The probabilistic argument is just a clean way to prove existence of a non-root.</p>

@@ -1,8 +1,12 @@
-<p>Take \(n\) independent samples, output the sample mean as the estimate, and use a Chernoff bound to fix \(n\); about \(30000\ln 20\) samples suffice, independent of the stream length.</p>
-<p>Let \(X_i\) be an indicator random variable for whether the \(i\)-th sampled bit is a one, and let \(\mu\) be the true fraction of ones. The samples are independent with \(\mathbb{E}[X_i]=\mu\), and the estimate is \(\frac1n\sum_{i=1}^n X_i\).</p>
-<p>By the Chernoff bound (both tails, hence the factor \(2\)),
-\[\Pr\!\left[\Big|\tfrac1n\sum_{i=1}^n X_i-\mu\Big|\ge 0.01\right]\le 2\,e^{-\frac{n(0.01)^2}{3\mu}}.\]
-We want this to be at most \(1-0.9=0.1\). Taking logarithms, it suffices that \(\ln 20\le \frac{n(0.01)^2}{3\mu}=\frac{n}{30000\,\mu}\), i.e.
-\[n\ge 30000\,\mu\,\ln 20.\]</p>
-<p>Since \(\mu\le 1\) always, taking \(n=30000\ln 20\) works for every possible \(\mu\). So \(30000\ln 20\approx 90000\) samples guarantee the estimate is within \(0.01\) of the true frequency with probability at least \(0.9\); note this is a fixed constant, independent of the sequence length.</p>
-<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> Chernoff sets the number of samples needed for accuracy \(0.01\) at confidence \(0.9\), and \(\mu\le 1\) lets us drop the unknown \(\mu\).</p>
+<p>We sample bits from the stream and output the sample mean as our estimate of the true fraction \(\mu\) of ones. We must choose the number of samples \(n\) so that the estimate is within \(0.01\) of \(\mu\) with probability at least \(0.9\). Chernoff tells us how large \(n\) must be.</p>
+<ol class="gsteps">
+<li><strong>Setup.</strong> Let \(X_i\) be an indicator random variable for whether the \(i\)-th sampled bit is a one; the samples are independent, and \(\mathbb{E}[X_i]=\mu\). The estimate is \(\frac{1}{n}\sum_i X_i\), with mean \(\mu\).</li>
+<li><strong>Chernoff.</strong> Using the multiplicative (additive-in-this-form) Chernoff bound for the deviation of the sample mean,
+\[\Pr\!\left[\Big|\tfrac{1}{n}\sum_i X_i-\mu\Big|\ge 0.01\right]\le 2\,e^{-\frac{n(0.01)^2}{3\mu}}.\]
+The factor \(2\) covers both tails (estimate too high or too low).</li>
+<li><strong>Impose the confidence requirement.</strong> We need this failure probability at most \(1-0.9=0.1\):
+\[2\,e^{-\frac{n(0.01)^2}{3\mu}}\le 0.1 \iff e^{-\frac{n(0.01)^2}{3\mu}}\le 0.05 \iff e^{\frac{n(0.01)^2}{3\mu}}\ge 20.\]
+Taking logs, \(\frac{n(0.01)^2}{3\mu}\ge\ln 20\), i.e. \(\ln 20\le \frac{n}{30000\,\mu}\) because \((0.01)^2=10^{-4}\) and \(3/10^{-4}=30000\).</li>
+<li><strong>Solve for \(n\) without knowing \(\mu\).</strong> Rearranging gives \(n\ge \ln(20)\cdot 30000\cdot \mu\). Since \(\mu\le 1\) always, it suffices to take \(n=\ln(20)\cdot 30000\), which guarantees the bound for every possible \(\mu\).</li>
+</ol>
+<p>So \(\lceil 30000\ln 20\rceil\) samples (a fixed constant, about \(90000\), independent of the stream length) suffice to estimate the fraction of ones within \(0.01\) with probability at least \(0.9\).</p>

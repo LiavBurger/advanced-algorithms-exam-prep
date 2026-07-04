@@ -1,4 +1,8 @@
-<p>In part (a), after the first pivot, set the non-basic variables to \(0\): \(x_1=x_3=x_4=0\) and \(s_3=0\). This gives \(x_2=10\), \(s_1=2\), \(s_2=37\). All variables are non-negative, so this is a feasible solution of the primal maximization LP, and its objective value is</p>
-<p>\[2x_1+4x_2+3x_3+x_4=4\cdot 10=40.\]</p>
-<p>Since the primal is a maximization and we have a feasible point of value \(40\), the primal optimum is at least \(40\). By the strong duality theorem the dual optimum equals the primal optimum, so the dual optimum is also at least \(40\).</p>
-<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> One feasible primal point already gives value \(40\), and duality passes that bound straight to the dual.</p>
+<p>We want a lower bound of \(40\) on the dual optimum. We get it for free by exhibiting one feasible primal solution of value \(40\) and then invoking LP duality — no dual computation needed.</p>
+<ol class="gsteps">
+<li>Part (a) already produced such a solution. After the pivot, set the non-basic variables to \(0\): \(x_1=x_3=x_4=0\) and \(s_3=0\). Then \(x_2=10\), \(s_1=2\), \(s_2=37\).</li>
+<li>Check feasibility: all of \(x_2,s_1,s_2\ge0\) and all original variables are non-negative, so every constraint of the primal \(\max\)-LP is satisfied. The objective value is \(2x_1+4x_2+3x_3+x_4=4\cdot10=40\).</li>
+<li>Because the primal is a maximization and we have a feasible point of value \(40\), the primal optimum is <em>at least</em> \(40\) (any feasible value is a lower bound on the max).</li>
+<li>By the strong duality theorem, the dual optimum equals the primal optimum. Therefore the dual optimum is also at least \(40\).</li>
+</ol>
+<div class="box">The logic chain: feasible primal value \(40\ \le\ \text{primal optimum}\ =\ \text{dual optimum}\). Hence the dual optimum \(\ge 40\). We only needed one concrete feasible primal solution plus strong duality.</div>

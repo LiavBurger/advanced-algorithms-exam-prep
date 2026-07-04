@@ -1,5 +1,8 @@
-<p>The primal LP from part (b) is \(\max\sum_{v\in V} x_v\) subject to \(x_u+x_v\le 1\) for every edge \((u,v)\in E\), and \(x\ge 0\). It is in standard maximization form (all \(\le\) constraints, \(x\ge 0\)), so its dual is a minimization with one variable per primal constraint and one constraint per primal variable.</p>
-<p>Introduce a dual variable \(y_{uv}\ge 0\) for each edge \((u,v)\in E\). Each edge constraint has right-hand side \(1\), so the dual objective is \(\min\sum_{(u,v)\in E} y_{uv}\). Each primal variable \(x_v\) has objective coefficient \(1\) and appears with coefficient \(1\) in exactly the edge constraints touching \(v\); this gives one dual constraint per vertex \(v\).</p>
-<p>So the dual is
-\[ \min \sum_{(u,v)\in E} y_{uv}\quad\text{s.t.}\quad \sum_{u:\,(u,v)\in E} y_{uv}\ge 1 \ \text{ for every } v\in V,\qquad y\ge 0. \]</p>
-<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> The dual spreads weight over the edges so that every vertex is "covered" with total weight at least \(1\) — a fractional edge cover, the mirror image of the primal picking vertices.</p>
+<p>The dual is built mechanically from the primal (b): \(\max\sum_v x_v\) s.t. \(x_u+x_v\le 1\ \forall(u,v)\in E,\ x\ge 0\). For a maximization LP with \(\le\) constraints and nonnegative variables, the rules are: one dual variable per primal constraint, the dual minimizes, primal right-hand sides become the dual objective, primal objective coefficients become dual right-hand sides, and the constraint matrix is transposed. The dual has \(\ge\) constraints and nonnegative dual variables.</p>
+<ol class="gsteps">
+<li>One dual variable \(y_{uv}\ge 0\) per primal constraint, i.e. per edge \((u,v)\in E\).</li>
+<li>Dual objective = primal RHS \(\cdot y\). Each edge constraint has RHS \(1\), so the objective is \(\min\sum_{uv\in E} y_{uv}\).</li>
+<li>One dual constraint per primal variable \(x_v\). In the transposed matrix, the column of \(x_v\) lists the constraints \(x_v\) appears in: exactly the edges incident to \(v\), each with coefficient \(1\). The RHS of this dual constraint is the primal objective coefficient of \(x_v\), which is \(1\).</li>
+<li>Hence for every vertex \(v\): \(\displaystyle\sum_{u:\,(u,v)\in E} y_{uv}\ge 1\), with \(y_{uv}\ge 0\).</li>
+</ol>
+<p>So the dual is \(\min\sum_{uv\in E}y_{uv}\) s.t. \(\sum_{uv\ni v}y_{uv}\ge 1\) for all \(v\in V\), \(y\ge 0\) — the sum over edges touching \(v\) is at least \(1\).</p>

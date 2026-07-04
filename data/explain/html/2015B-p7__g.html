@@ -1,13 +1,9 @@
-<p>Algorithm:</p>
-<ol>
-  <li>Compute a maximum matching \(M\) in \(G\), using the polynomial-time matching algorithm from class.</li>
-  <li>For every vertex not covered by \(M\), add one arbitrary edge incident to it (such an edge exists because \(G\) is connected, so there are no isolated vertices). Output the resulting edge set \(F\).</li>
+<p>Goal: compute a minimum edge cover in polynomial time. (An edge cover exists only if there are no isolated vertices; here \(G\) is connected with \(n\ge 2\), so every vertex has an edge.)</p>
+<div class="box">Key idea: a maximum matching covers \(2\cdot\text{MAX-MATCHING}\) vertices with as few edges as possible; then spend exactly one extra edge per still-uncovered vertex.</div>
+<ol class="gsteps">
+<li><strong>Algorithm.</strong> Compute a maximum matching \(M\) (polynomial time, e.g. Blossom / the matching algorithm from class). \(M\) has \(\text{MAX-MATCHING}\) edges and covers \(2\,\text{MAX-MATCHING}\) distinct vertices. For each of the remaining \(|V|-2\,\text{MAX-MATCHING}\) unmatched vertices, add one arbitrary edge incident to it. The result covers all vertices.</li>
+<li><strong>Size of the output.</strong> \(\text{ALG}=\text{MAX-MATCHING}+\big(|V|-2\,\text{MAX-MATCHING}\big)=|V|-\text{MAX-MATCHING}.\)</li>
+<li><strong>Optimality (lower bound on any cover).</strong> Take any optimal cover \(\mathrm{OPT}\). Assign each vertex \(v\) to one edge of \(\mathrm{OPT}\) that covers it. Every vertex gets an edge, and each edge is assigned to at most \(2\) vertices (its two endpoints), so \(|\mathrm{OPT}|\ge\) number of edges that received an assignment.</li>
+<li>The edges assigned to \(2\) vertices are vertex-disjoint on those assignments, hence form a matching; a matching has at most \(\text{MAX-MATCHING}\) edges. So at most \(\text{MAX-MATCHING}\) assigned edges cover \(2\) vertices and the rest cover \(1\). Counting vertices: \(|V|\le 2\cdot(\#\text{double edges})+1\cdot(\#\text{single edges})\), and the number of assigned edges is at least \(|V|-\text{MAX-MATCHING}\).</li>
+<li>Therefore \(|\mathrm{OPT}|\ge |V|-\text{MAX-MATCHING}=\text{ALG}\). Since \(\mathrm{OPT}\) is optimal we also have \(|\mathrm{OPT}|\le\text{ALG}\), so \(\text{ALG}=|\mathrm{OPT}|\): the algorithm is exactly optimal.</li>
 </ol>
-<p>Correctness. \(F\) is an edge cover: a vertex matched by \(M\) is covered by its matching edge, and every unmatched vertex is covered by the edge we added for it. Its size is</p>
-<p>\[|F|=|M|+\big(|V|-2|M|\big)=|V|-|M|,\]</p>
-<p>because \(M\) covers \(2|M|\) vertices and we add exactly one edge for each of the remaining \(|V|-2|M|\) vertices.</p>
-<p>Now we show \(F\) is optimal. Let \(\mathrm{OPT}\) be a minimum edge cover. Assign each vertex to one edge of \(\mathrm{OPT}\) that covers it. Let \(p\) be the number of edges assigned two vertices and \(q\) the number assigned exactly one; every vertex is assigned to some edge, so \(|V|=2p+q\). All \(p+q\) edges that received a vertex are in \(\mathrm{OPT}\), so \(|\mathrm{OPT}|\ge p+q\). The \(p\) doubly-assigned edges have disjoint endpoints, so they form a matching, giving \(p\le|M|\). Therefore</p>
-<p>\[|\mathrm{OPT}|\ge p+q=(2p+q)-p=|V|-p\ge |V|-|M|=|F|.\]</p>
-<p>Since \(F\) is itself a valid edge cover we also have \(|F|\ge|\mathrm{OPT}|\), so \(|F|=|\mathrm{OPT}|\) and the algorithm returns a minimum edge cover.</p>
-<p>Runtime. The cost is dominated by the maximum matching computation, which is polynomial; adding one edge per unmatched vertex takes linear time. So the whole algorithm runs in polynomial time.</p>
-<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> A matching covers two vertices with one edge, the best an edge can do, so build on a biggest matching and patch up the leftovers one edge each.</p>

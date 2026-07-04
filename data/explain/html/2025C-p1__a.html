@@ -1,4 +1,8 @@
-<p>True. Since \(k\) divides \(n\), write \(n=km\) for some natural number \(m\). Let \(\omega\) be a root of unity of order \(k\), meaning \(\omega^k=1\). Then
-\[\omega^n=\omega^{km}=(\omega^k)^m=1^m=1,\]
-so \(\omega^n=1\), which is exactly the statement that \(\omega\) is a root of unity of order \(n\) as well.</p>
-<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> If \(\omega^k=1\) and \(k\) divides \(n\), then \(\omega^n\) is just \(\omega^k\) raised to a power, which stays \(1\).</p>
+<p>The statement is <strong>true</strong>. Here "root of unity of order \(k\)" means any complex number \(\omega\) with \(\omega^k=1\) (a \(k\)-th root of unity, not necessarily primitive). We are told \(k\mid n\) and must show every such \(\omega\) also satisfies \(\omega^n=1\).</p>
+<ol class="gsteps">
+<li>Since \(k\) divides \(n\), we can write \(n=km\) for some natural number \(m\).</li>
+<li>Let \(\omega\) be any root of unity of order \(k\), so by definition \(\omega^k=1\).</li>
+<li>Then \(\omega^n=\omega^{km}=(\omega^k)^m=1^m=1\), using the exponent law \(\omega^{km}=(\omega^k)^m\).</li>
+<li>Thus \(\omega^n=1\), i.e. \(\omega\) is a root of unity of order \(n\). As \(\omega\) was arbitrary, every order-\(k\) root of unity is an order-\(n\) root of unity.</li>
+</ol>
+<div class="box">Geometrically, the \(k\)-th roots of unity are the \(k\) evenly spaced points on the unit circle, and when \(k\mid n\) they form a subset of the \(n\) evenly spaced \(n\)-th roots of unity.</div>

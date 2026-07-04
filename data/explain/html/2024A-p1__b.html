@@ -1,4 +1,9 @@
-<p>False. Consider the symmetric matrix</p>
-<p>\[A=\begin{bmatrix}-1&0\\ 0&-1\end{bmatrix}=-I.\]</p>
-<p>Its determinant is \(\det(A)=(-1)(-1)-0=1\ge 0\), so the hypothesis holds. But its eigenvalues are both \(-1\), and for any \(x\neq 0\) we have \(x^\top A x=-\lVert x\rVert^2<0\), so \(A\) is not PSD (it is in fact negative definite). This gives a symmetric matrix with nonnegative determinant that fails to be PSD, so the statement is false.</p>
-<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> The determinant only sees the product of eigenvalues, so two negative eigenvalues cancel in sign and hide a matrix that is the opposite of PSD.</p>
+<p>The statement is <strong>false</strong>. A nonnegative determinant is far weaker than positive semidefiniteness, and a single counterexample settles it.</p>
+<ol class="gsteps">
+  <li>Take \(A=\begin{bmatrix}-1&0\\[2pt]0&-1\end{bmatrix}=-I\). It is symmetric (equal to its transpose), so it qualifies as a candidate for the statement.</li>
+  <li>Its determinant is \(\det(A)=(-1)\cdot(-1)-0=1\ge 0\), so the hypothesis "\(\det(A)\ge 0\)" holds.</li>
+  <li>But \(A\) is not PSD. Recall \(A\) is PSD iff \(x^\top A x\ge 0\) for all \(x\), equivalently iff all its eigenvalues are \(\ge 0\). Here \(A=-I\) has eigenvalue \(-1\) with multiplicity two, and \(x^\top(-I)x=-\lVert x\rVert^2<0\) for any \(x\ne 0\). So \(A\) is negative definite, the opposite of PSD.</li>
+</ol>
+<div class="box">
+<p>Why the implication fails in general: \(\det(A)=\prod_i\lambda_i\) is only the <em>product</em> of the eigenvalues. An even number of negative eigenvalues (here two) makes the product positive while the matrix is nowhere near PSD. The determinant sees the parity of the negative eigenvalues, not whether any exist.</p>
+</div>

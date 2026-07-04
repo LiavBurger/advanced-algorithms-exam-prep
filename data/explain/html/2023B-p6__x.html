@@ -1,19 +1,12 @@
-<p>The algorithm is as simple as possible: color each element \(i\in\{1,\dots,n\}\) independently, uniformly at random red or blue. We show that with high probability this random coloring makes every set have small discrepancy, using the Chernoff bound on each set and a union bound over the \(m\) sets.</p>
-<p>For each element \(i\), let \(X_i\) be a random variable equal to \(+1\) if \(i\) is colored red and \(-1\) if \(i\) is colored blue. The colors are chosen uniformly, so \(\mathbb{E}[X_i]=0\), and for a set \(S\) the discrepancy is exactly</p>
+<p>The algorithm is the simplest possible: color each element \(i\in\{1,\dots,n\}\) red or blue independently and uniformly at random. We show this achieves \(\mathrm{Disc}_h(\mathcal F)\le C\sqrt{n\log m}\) with high probability, for a suitably large constant \(C\).</p>
+<ol class="gsteps">
+<li><strong>Encode a color as \(\pm1\).</strong> For each \(i\) let \(X_i=+1\) if \(i\) is red and \(X_i=-1\) if blue. Then \(E[X_i]=0\), the \(X_i\) are independent, and for a set \(S\) the discrepancy is \(\mathrm{Disc}_h(S)=\bigl|\#\text{red}-\#\text{blue}\bigr|=\bigl|\sum_{i\in S}X_i\bigr|\).</li>
+<li><strong>Fix one set and bound its discrepancy.</strong> Fix \(S\in\mathcal F\) and let \(s=|S|\le n\). Because the target threshold \(C\sqrt{n\log m}\ge C\sqrt{s\log m}\), the event of exceeding the larger threshold is contained in that of exceeding the smaller one:
 \[
-\mathrm{Disc}_h(S)=\Big|\,(\#\text{red in }S)-(\#\text{blue in }S)\,\Big|=\Big|\sum_{i\in S}X_i\Big|.
-\]
-<p>Fix one set \(S\in\mathcal F\) and let \(s=|S|\); note \(s\le n\). Since \(s\le n\) we have \(C\sqrt{n\log m}\ge C\sqrt{s\log m}\), so exceeding the larger threshold implies exceeding the smaller one. Thus, applying the Chernoff bound to the sum of the \(s\) independent \(\pm 1\) variables in \(S\),</p>
+\Pr\!\left[\mathrm{Disc}_h(S)\ge C\sqrt{n\log m}\right]\le\Pr\!\left[\Bigl|\textstyle\sum_{i\in S}X_i\Bigr|\ge C\sqrt{s\log m}\right].\]</li>
+<li><strong>Apply Chernoff/Hoeffding for a \(\pm1\) sum of \(s\) terms:</strong> \(\Pr[|\sum_{i\in S}X_i|\ge t]\le 2e^{-t^2/(2s)}\). With \(t=C\sqrt{s\log m}\) the exponent is \(t^2/(2s)=\tfrac{C^2 s\log m}{2s}=\tfrac{C^2}{2}\log m\), i.e. the bound is \(e^{-\Omega(C^2\log m)}\). Choosing \(C\) large enough makes this at most \(\tfrac1{10m^2}\).</li>
+<li><strong>Union bound over all \(m\) sets.</strong>
 \[
-\Pr\!\left[\mathrm{Disc}_h(S)\ge C\sqrt{n\log m}\right]
-\le \Pr\!\left[\Big|\sum_{i\in S}X_i\Big|\ge C\sqrt{s\log m}\right]
-\le e^{-\Omega\!\left(C^2 s\log m/s\right)}
-= e^{-\Omega(C^2\log m)}.
-\]
-<p>By picking the absolute constant \(C\) large enough (it does not depend on \(n\) or \(m\)), this probability drops below \(\dfrac{1}{10\,m^2}\); the tail shrinks fast as \(C\) grows.</p>
-<p>Finally, take a union bound over all \(m\) sets in \(\mathcal F\). The probability that <em>some</em> set \(S\) has \(\mathrm{Disc}_h(S)\ge C\sqrt{n\log m}\) is at most</p>
-\[
-m\cdot\frac{1}{10\,m^2}=\frac{1}{10\,m}.
-\]
-<p>So with probability at least \(1-\dfrac{1}{10m}\) every set satisfies \(\mathrm{Disc}_h(S)\le C\sqrt{n\log m}\), i.e. \(\mathrm{Disc}_h(\mathcal F)\le C\sqrt{n\log m}\) with high probability, as required. The algorithm runs in \(O(n)\) time since it just flips one coin per element.</p>
-<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> Random \(\pm1\) colors mostly cancel, so each set's imbalance stays around \(\sqrt{s}\), and Chernoff plus a union bound keep all \(m\) sets small at once.</p>
+\Pr\!\left[\exists S\in\mathcal F:\ \mathrm{Disc}_h(S)\ge C\sqrt{n\log m}\right]\le m\cdot\frac{1}{10m^2}=\frac{1}{10m}.\]</li>
+</ol>
+<p>So with probability at least \(1-\tfrac1{10m}\) every set has discrepancy below \(C\sqrt{n\log m}\), giving \(\mathrm{Disc}_h(\mathcal F)\le C\sqrt{n\log m}\) with high probability.</p>

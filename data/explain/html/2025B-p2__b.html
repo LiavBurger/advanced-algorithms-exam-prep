@@ -1,10 +1,11 @@
-<p>We relax the ILP from (a) and round at the threshold \(1/f\):</p>
-<ol>
-<li>Replace \(x_i\in\{0,1\}\) by \(0\le x_i\le 1\) and solve the LP for an optimal \(x^*\). Since every integer cover is LP-feasible, \(\text{LPOPT}=\sum_i c_i x_i^*\le\text{OPT}\).</li>
-<li>Round: include \(S_i\) in the cover exactly when \(x_i^*\ge 1/f\); call the resulting vector \(x\).</li>
+<p>Frequency \(f\) means every element \(j\) lies in at most \(f\) of the sets. We use the LP-relaxation-and-round paradigm on the program from (a) to get a cover of cost at most \(f\cdot\text{OPT}\).</p>
+<ol class="gsteps">
+  <li><strong>Relax.</strong> Replace \(x_i\in\{0,1\}\) by \(0\le x_i\le 1\) and solve the resulting LP in polynomial time; call the optimum \(x^{*}\). Its value \(\text{LPOPT}=\sum_i c_i x_i^{*}\) satisfies \(\text{LPOPT}\le\text{OPT}\), because every integer cover is also LP-feasible, so relaxing can only lower the minimum.</li>
+  <li><strong>Round.</strong> Include set \(S_i\) in the cover iff \(x_i^{*}\ge 1/f\); let \(x\) be this \(0/1\) vector.</li>
+  <li><strong>Feasibility.</strong> Fix an element \(j\). Its constraint \(\sum_{i:\,S_i\ni j}x_i^{*}\ge 1\) is a sum of at most \(f\) terms (frequency \(f\)). If all were below \(1/f\) the sum would be below \(f\cdot\tfrac1f=1\), a contradiction; so some set containing \(j\) has \(x_i^{*}\ge 1/f\) and is taken. Thus every element is covered.</li>
+  <li><strong>Cost.</strong> For every \(i\), \(x_i\le f\,x_i^{*}\): if \(x_i=0\) this holds since \(x_i^{*}\ge 0\); if \(x_i=1\) then by the rounding rule \(x_i^{*}\ge 1/f\), so \(f\,x_i^{*}\ge 1=x_i\).</li>
 </ol>
-<p>The output is a valid cover. Fix an element \(j\). It appears in at most \(f\) sets, and the LP constraint gives \(\sum_{i:S_i\ni j}x_i^*\ge 1\). A sum of at most \(f\) nonnegative terms reaching \(1\) must have some term at least \(1/f\), so some set containing \(j\) has \(x_i^*\ge 1/f\) and is taken; thus \(j\) is covered.</p>
-<p>The weight is at most \(f\cdot\text{OPT}\). For every \(i\) we have \(x_i\le f\,x_i^*\): if \(x_i=0\) this holds since \(x_i^*\ge 0\), and if \(x_i=1\) then \(x_i^*\ge 1/f\) makes \(f\,x_i^*\ge 1\). Summing with weights \(c_i\ge 0\),</p>
-<p>\[\text{ALG}=\sum_i c_i x_i\le f\sum_i c_i x_i^*=f\cdot\text{LPOPT}\le f\cdot\text{OPT}.\]</p>
-<p>The LP is solvable in polynomial time, so this is a polynomial-time \(f\)-approximation.</p>
-<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> With only \(f\) sets over an element, one must carry a \(1/f\) share, so rounding at \(1/f\) still covers it while losing at most a factor of \(f\).</p>
+<div class="box">
+\[\text{ALG}=\sum_{i=1}^{m}c_i x_i\ \le\ f\sum_{i=1}^{m}c_i x_i^{*}\ =\ f\cdot\text{LPOPT}\ \le\ f\cdot\text{OPT}.\]
+</div>
+<p>The first inequality multiplies \(x_i\le f\,x_i^{*}\) by \(c_i\ge 0\) and sums; the last step uses \(\text{LPOPT}\le\text{OPT}\). So this polynomial-time algorithm returns a valid cover of cost at most \(f\) times optimal, an \(f\)-approximation.</p>

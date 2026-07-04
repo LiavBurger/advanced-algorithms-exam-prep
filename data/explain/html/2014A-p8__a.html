@@ -1,6 +1,10 @@
-<p>Algorithm: set each variable to \(0\) or \(1\) independently and uniformly at random. We show its expected number of satisfied clauses is at least \(\tfrac78\mathrm{OPT}\).</p>
-<p>Fix a clause. It has \(3\) literals from distinct variables (no two literals in a clause share a variable), so their truth values are independent, each false with probability \(1/2\). The clause is unsatisfied only when all three literals are false, which happens with probability \((1/2)^3=1/8\); hence it is satisfied with probability \(1-1/8=7/8\).</p>
-<p>For clause \(i\), let \(X_i\) be an indicator random variable for the event that clause \(i\) is satisfied, so \(\mathbb{E}[X_i]=7/8\), and let \(X=\sum_{i=1}^m X_i\) count the satisfied clauses. Even though clauses may share variables, by linearity of expectation
-\[\mathbb{E}[X]=\sum_{i=1}^m \mathbb{E}[X_i]=\frac{7m}{8}.\]
-Since no assignment can satisfy more than all \(m\) clauses, \(\mathrm{OPT}\le m\), and therefore \(\mathbb{E}[X]=\tfrac{7}{8}m\ge\tfrac{7}{8}\mathrm{OPT}\). So the algorithm is a \(7/8\)-approximation in expectation.</p>
-<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> A random clause fails only if all three coin flips go wrong (\(1/8\)), so on average \(7/8\) of the clauses are satisfied, and expectations add up even when clauses overlap.</p>
+<p>MAX-3SAT input: a 3CNF formula with \(m\) clauses over \(n\) variables, each clause an OR of three literals from distinct variables. The randomized algorithm is as simple as possible, and linearity of expectation does the work.</p>
+<div class="box">Key idea: a random assignment satisfies each individual clause with probability \(7/8\); summing these per-clause probabilities gives \(7m/8\) satisfied clauses in expectation, no independence needed.</div>
+<ol class="gsteps">
+<li><strong>Algorithm.</strong> Set each variable to \(0\) or \(1\) independently and uniformly at random (a fair coin per variable).</li>
+<li><strong>Probability one clause is satisfied.</strong> A clause of 3 literals is <em>un</em>satisfied only when all three literals are false. The three literals come from distinct variables, so their truth values are independent; each literal is false with probability \(1/2\). Thus \(\Pr[\text{clause unsatisfied}] = (1/2)^3 = 1/8\), and \(\Pr[\text{clause satisfied}] = 1 - 1/8 = 7/8\).</li>
+<li><strong>Indicators.</strong> For clause \(i\), let \(X_i\) be an indicator random variable for the event that clause \(i\) is satisfied. Then \(\mathbb{E}[X_i] = \Pr[X_i = 1] = 7/8\). The total number satisfied is \(X = \sum_{i=1}^m X_i\).</li>
+<li><strong>Linearity of expectation.</strong> Regardless of any dependence between clauses (they may share variables),
+\[\mathbb{E}[X] = \sum_{i=1}^m \mathbb{E}[X_i] = \frac{7m}{8}.\]</li>
+<li><strong>Approximation ratio.</strong> The optimum \(\mathrm{OPT}\) can satisfy at most every clause, so \(\mathrm{OPT}\le m\). Hence \(\mathbb{E}[X] = \tfrac{7}{8}m \ge \tfrac{7}{8}\mathrm{OPT}\), making this a \(7/8\)-approximation in expectation.</li>
+</ol>

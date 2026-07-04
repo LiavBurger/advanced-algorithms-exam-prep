@@ -1,14 +1,13 @@
-<p>Add slack variables \(s_1,s_2,s_3\ge0\), one per inequality, to get the starting dictionary (the non-basic variables \(x_1,x_2,x_3,x_4\) are set to \(0\)):</p>
-<p>\[z=2x_1+4x_2+3x_3+x_4,\]
-\[s_1=12-3x_1-x_2-x_3-4x_4,\]
-\[s_2=7-x_1+3x_2-2x_3-3x_4,\]
-\[s_3=10-2x_1-x_2-3x_3+x_4.\]</p>
-<p>For the first pivot I choose an entering variable with a positive objective coefficient; \(x_2\) has the largest (\(4\)), so \(x_2\) enters. Now I raise \(x_2\) and check which basic variable reaches \(0\) first: the \(s_1\) row allows \(x_2\le 12\), the \(s_2\) row has coefficient \(+3\) so it never binds, and the \(s_3\) row allows \(x_2\le 10\). The tightest bound is \(10\), so \(s_3\) leaves the basis.</p>
-<p>Solving the \(s_3\) row for \(x_2\):</p>
-<p>\[x_2=10-2x_1-3x_3+x_4-s_3.\]</p>
-<p>Substituting this into the other rows gives the dictionary after the first pivot:</p>
-<p>\[z=40-6x_1-9x_3+5x_4-4s_3,\]
-\[s_1=2-x_1+2x_3-5x_4+s_3,\]
-\[s_2=37-7x_1-11x_3-3s_3,\]
-\[x_2=10-2x_1-3x_3+x_4-s_3.\]</p>
-<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> One pivot swaps a zero variable for the constraint that blocks it first, then rewrites everything in the new set of zero variables.</p>
+<p>We turn the three "\(\le\)" inequalities into equalities by adding a non-negative slack variable to each, then run one simplex pivot in dictionary form (each basic variable and the objective written in terms of the current non-basic variables).</p>
+<ol class="gsteps">
+<li><strong>Initial dictionary.</strong> With slacks \(s_1,s_2,s_3\ge0\), the non-basic variables are \(x_1,x_2,x_3,x_4\) (all \(=0\)):
+\[z=2x_1+4x_2+3x_3+x_4,\quad s_1=12-3x_1-x_2-x_3-4x_4,\]
+\[s_2=7-x_1+3x_2-2x_3-3x_4,\quad s_3=10-2x_1-x_2-3x_3+x_4.\]</li>
+<li><strong>Entering variable.</strong> Choose a non-basic variable with a positive objective coefficient; \(x_2\) has the largest (\(4\)), so \(x_2\) enters.</li>
+<li><strong>Ratio test (leaving variable).</strong> Increase \(x_2\) and see which basic hits \(0\) first. In \(s_1\) the coefficient of \(x_2\) is \(-1\Rightarrow\) bound \(12\); in \(s_2\) it is \(+3\), so \(s_2\) only grows (no bound); in \(s_3\) it is \(-1\Rightarrow\) bound \(10\). The minimum is \(10\), so \(s_3\) leaves.</li>
+<li><strong>Solve for the entering variable.</strong> From the \(s_3\) row, \(x_2=10-2x_1-3x_3+x_4-s_3\).</li>
+<li><strong>Substitute</strong> this into \(z,s_1,s_2\):
+\[z=40-6x_1-9x_3+5x_4-4s_3,\quad s_2=37-7x_1-11x_3-3s_3,\]
+\[s_1=2-x_1+2x_3-5x_4+s_3.\]</li>
+</ol>
+<p>For \(s_1\): substituting \(-x_2\) contributes \(-x_4\), which adds to the original \(-4x_4\) to give \(-5x_4\). (The printed solution writes \(-4x_4\) here, a small slip; the correct coefficient is \(-5x_4\).)</p>

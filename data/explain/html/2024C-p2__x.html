@@ -1,9 +1,9 @@
-<p>We compute the boolean product by casting it to ordinary integer matrix multiplication and using fast matrix multiplication.</p>
-<p>Observe that \((A\circ B)_{i,j}=\bigvee_{k=1}^n (A_{i,k}\wedge B_{k,j})\) equals \(1\) exactly when there is some index \(k\) with both \(A_{i,k}=1\) and \(B_{k,j}=1\). If we treat the \(0/1\) entries as ordinary integers and form the usual product \(C=A\cdot B\), then \(C_{i,j}=\sum_{k=1}^n A_{i,k}B_{k,j}\) counts exactly those indices \(k\). So \((A\circ B)_{i,j}=1\) if and only if \(C_{i,j}>0\).</p>
-<p>Algorithm:</p>
-<ol>
-<li>Compute \(C=A\cdot B\) over the integers using fast matrix multiplication.</li>
-<li>Output the matrix whose \((i,j)\) entry is \(1\) if \(C_{i,j}>0\) and \(0\) otherwise.</li>
+<p>Boolean product is defined by \((A\circ B)_{i,j}=\bigvee_{k=1}^n (A_{i,k}\wedge B_{k,j})\): entry \((i,j)\) is \(1\) iff some index \(k\) has both \(A_{i,k}=1\) and \(B_{k,j}=1\). Computing this directly costs \(\Theta(n^3)\). We beat that by reducing to <em>ordinary integer</em> matrix multiplication, which has fast \(O(n^\omega)\) algorithms with \(\omega<3\).</p>
+<div class="box">Key idea: a Boolean OR-of-ANDs is positive exactly when the corresponding integer inner product is positive. So run fast matrix multiplication over the integers, then threshold each entry at \(0\).</div>
+<ol class="gsteps">
+<li><strong>Rewrite AND/OR as arithmetic.</strong> Treat the 0/1 entries as integers. For each \(k\), \(A_{i,k}\wedge B_{k,j}\) equals the integer product \(A_{i,k}B_{k,j}\) (it is \(1\) iff both are \(1\)). The OR over \(k\) is true iff at least one product is \(1\), i.e. iff the integer sum \((A\cdot B)_{i,j}=\sum_{k=1}^n A_{i,k}B_{k,j}\) is strictly positive.</li>
+<li><strong>Equivalence.</strong> Hence \((A\circ B)_{i,j}=1 \iff (A\cdot B)_{i,j} > 0\), where \(A\cdot B\) is the standard integer matrix product. (The sum is a nonnegative integer; it is \(0\) iff every term is \(0\).)</li>
+<li><strong>Compute \(C=A\cdot B\) fast.</strong> Run a fast matrix-multiplication algorithm over the integers in time \(O(n^\omega)\), where \(\omega<3\) (e.g. \(\omega\approx 2.37\)). This dominates the runtime.</li>
+<li><strong>Threshold.</strong> Output the matrix whose \((i,j)\) entry is \(1\) if \(C_{i,j}>0\) and \(0\) otherwise. Scanning all \(n^2\) entries costs \(O(n^2)\).</li>
 </ol>
-<p>Runtime: step 1 takes \(O(n^{\omega})\) time, where \(\omega<3\) is the fast matrix-multiplication exponent, and step 2 thresholds each of the \(n^2\) entries in \(O(n^2)\) time. The total is \(O(n^{\omega})\), which is asymptotically smaller than \(n^3\), as required.</p>
-<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> An OR of ANDs is nonzero exactly when the integer dot product is positive, so one fast integer multiply then a "is it \(>0\)?" test does the job below \(n^3\).</p>
+<p>Total time \(O(n^\omega)+O(n^2)=O(n^\omega)\), which is \(o(n^3)\) since \(\omega<3\), as required.</p>

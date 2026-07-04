@@ -1,8 +1,12 @@
-<p>We bring the LP to the equality (dictionary) form simplex runs on by adding one nonnegative variable to each inequality.</p>
-<p>The "\(\ge\)" constraint \(2x_1-x_2\ge -5\) loses a surplus \(s_1\ge 0\): \(2x_1-x_2-s_1=-5\).</p>
-<p>The "\(\le\)" constraint \(3x_1-x_2+2x_3\le 9\) gains a slack \(s_2\ge 0\): \(3x_1-x_2+2x_3+s_2=9\).</p>
-<p>So the equality form is, with all variables \(\ge 0\),</p>
-<p>\[\max\ 5x_1-7x_2+2x_3 \quad\text{s.t.}\quad 2x_1-x_2-s_1=-5,\quad 3x_1-x_2+2x_3+s_2=9,\quad s_i,x_i\ge 0.\]</p>
-<p>Solving each equation for its slack gives the dictionary form simplex starts from:</p>
-<p>\[s_1=5+2x_1-x_2,\qquad s_2=9-3x_1+x_2-2x_3.\]</p>
-<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> Simplex only works on equalities, so each inequality trades its gap for one nonnegative slack variable.</p>
+<p>The simplex algorithm needs every inequality turned into an equality by adding a nonnegative slack/surplus variable, after which the "slack" variables are expressed as functions of the original ones (the dictionary/slack form used to read off a starting vertex).</p>
+<ol class="gsteps">
+  <li>The first constraint \(2x_1-x_2\ge -5\) is a "\(\ge\)" inequality. Subtract a nonnegative surplus \(s_1\ge 0\) to make it an equality: \(2x_1-x_2-s_1=-5\).</li>
+  <li>The second constraint \(3x_1-x_2+2x_3\le 9\) is a "\(\le\)" inequality. Add a nonnegative slack \(s_2\ge 0\): \(3x_1-x_2+2x_3+s_2=9\).</li>
+  <li>Keeping all variables nonnegative, \(s_i,x_i\ge 0\), the standard (equality) form is
+  \[\max\ 5x_1-7x_2+2x_3\ \text{ s.t. } 2x_1-x_2-s_1=-5,\ \ 3x_1-x_2+2x_3+s_2=9.\]</li>
+  <li>Now solve each equation for its slack to get the dictionary form (slacks basic, original variables nonbasic). From line one, \(s_1=2x_1-x_2+5=5+2x_1-x_2\); from line two, \(s_2=9-3x_1+x_2-2x_3\).</li>
+</ol>
+<div class="box">
+\[\max\ 5x_1-7x_2+2x_3\quad\text{s.t.}\quad s_1=5+2x_1-x_2,\qquad s_2=9-3x_1+x_2-2x_3,\qquad s_i,x_i\ge 0.\]
+</div>
+<p>This is exactly the form simplex runs on: the basic variables \(s_1,s_2\) are written in terms of the nonbasic \(x_1,x_2,x_3\), so setting the nonbasic variables to \(0\) reads off a candidate vertex.</p>

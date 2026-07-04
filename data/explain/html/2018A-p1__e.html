@@ -1,2 +1,6 @@
-<p>Monte Carlo. Karger's randomized min-cut algorithm always runs in a fixed (polynomial) number of steps, but it may return a cut that is not minimum — it outputs a minimum cut only with some probability. An algorithm whose running time is fixed but whose answer can be wrong is Monte Carlo. (A Las Vegas algorithm is the other way around: always correct, but with random running time.)</p>
-<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> It can be wrong but is never slow, and that trade-off is exactly what "Monte Carlo" means.</p>
+<p>Answer: <strong>Monte Carlo.</strong> The distinction is about which resource is fixed versus random:</p>
+<ol class="gsteps">
+<li>A <em>Las Vegas</em> algorithm always returns a correct answer; only its running time is random.</li>
+<li>A <em>Monte Carlo</em> algorithm has a fixed (bounded) running time but may return a wrong answer with some probability.</li>
+</ol>
+<p>Karger's randomized min-cut contracts a uniformly random edge repeatedly until two vertices remain, outputting the surviving cut. It always halts within the same number of contractions (bounded runtime), but it can output a non-minimum cut: a single run finds a fixed minimum cut only with probability \(\ge \binom{n}{2}^{-1}=\tfrac{2}{n(n-1)}\), because it succeeds only if it never contracts an edge of that cut. Fixed time, possibly wrong answer — that is Monte Carlo. (Repeating \(O(n^2\log n)\) times drives the failure probability down, but each run is still Monte Carlo.)</p>

@@ -1,5 +1,12 @@
-<p>True. Let \(z\) be the basic feasible solution with basis \(B\), so \(z_N=0\) and its objective value is \(c^\top z=c_B^\top A_B^{-1}b\). Let \(y\) be any feasible solution, i.e. \(Ay=b\) and \(y\ge 0\). Writing \(y\) in terms of the basis, its cost is</p>
-<p>\[c^\top y=c_B^\top A_B^{-1}b+\tilde c_N^\top y_N=c^\top z+\tilde c_N^\top y_N,\]</p>
-<p>where \(\tilde c_N\) is the reduced-cost vector on the nonbasic variables.</p>
-<p>Since \(y\) is feasible, \(y_N\ge 0\), and by assumption every entry of \(\tilde c_N\) is strictly positive, so \(\tilde c_N^\top y_N\ge 0\) and therefore \(c^\top y\ge c^\top z\); hence \(z\) is optimal. For uniqueness: if some coordinate of \(y_N\) were strictly positive, then \(\tilde c_N^\top y_N>0\) and \(c^\top y>c^\top z\), so \(y\) would not be optimal. Thus any optimal \(y\) has \(y_N=0\), and then \(Ay=b\) forces \(y_B=A_B^{-1}b=z_B\), so \(y=z\). Therefore \(z\) is the unique optimal solution.</p>
-<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> Any move off \(z\) has to switch on a nonbasic variable, and with positive reduced costs each such move only makes the cost worse.</p>
+<p>The statement is <strong>true</strong>. Strictly positive reduced costs certify that the basic feasible solution \(z\) beats every other feasible point, uniquely.</p>
+<ol class="gsteps">
+  <li>Setup: \((P)\) is \(\min c^\top x\) s.t. \(Ax=b,\ x\ge 0\). At the basic feasible solution \(z\) with basis \(B\) (nonbasic set \(N\)) we have \(z_N=0\) and \(z_B=A_B^{-1}b\), so the objective value is \(c^\top z=c_B^\top A_B^{-1}b\).</li>
+  <li>Express any feasible \(y\) (with \(Ay=b,\ y\ge 0\)) through the basis. From \(A_B y_B+A_N y_N=b\) we get \(y_B=A_B^{-1}b-A_B^{-1}A_N y_N\), hence
+  \[
+  c^\top y=c_B^\top y_B+c_N^\top y_N=c_B^\top A_B^{-1}b+\big(c_N-(A_B^{-1}A_N)^\top c_B\big)^\top y_N=c^\top z+\tilde c_N^\top y_N,
+  \]
+  where \(\tilde c_N\) is exactly the reduced-cost vector.</li>
+  <li>Since \(y\ge 0\) gives \(y_N\ge 0\), and every entry of \(\tilde c_N\) is strictly positive, the term \(\tilde c_N^\top y_N\ge 0\), so \(c^\top y\ge c^\top z\): \(z\) is optimal.</li>
+  <li>Uniqueness: if any coordinate of \(y_N\) were positive, then \(\tilde c_N^\top y_N>0\) and \(c^\top y>c^\top z\), so \(y\) is not optimal. Thus any optimum must have \(y_N=0\); then \(Ay=b\) forces \(y_B=A_B^{-1}b=z_B\), i.e. \(y=z\).</li>
+</ol>
+<p>So \(z\) is the one and only optimal solution.</p>

@@ -1,2 +1,7 @@
-<p>This is the maximum independent set problem. Each variable \(x_v\in\{0,1\}\) decides whether vertex \(v\) is chosen, and the objective \(\max\sum_{v\in V}x_v\) counts the chosen vertices, so we are picking as many vertices as possible. The constraint \(x_u+x_v\le 1\) for every edge \((u,v)\in E\) forces at most one endpoint of each edge to be chosen, so no two chosen vertices are adjacent. A set of vertices with no edge inside it is exactly an independent set, so maximizing the number of chosen vertices is finding a maximum independent set.</p>
-<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> Forbidding both endpoints of every edge is the same as saying no two picked vertices are neighbors.</p>
+<p>Read the ILP variable by variable. There is one binary variable \(x_v\in\{0,1\}\) per vertex, which we read as: \(x_v=1\) means "put \(v\) in the chosen set \(S\)", \(x_v=0\) means "leave it out". A \(0/1\) vector is therefore the same thing as a subset \(S\subseteq V\).</p>
+<ol class="gsteps">
+<li>The objective \(\max\sum_{v\in V}x_v\) counts how many vertices are chosen, so maximizing it means picking a set \(S\) of maximum size.</li>
+<li>The constraint \(x_u+x_v\le 1\) for every edge \((u,v)\in E\) says that among the two endpoints of any edge, their indicators sum to at most \(1\). With \(0/1\) values that forbids \(x_u=x_v=1\): the two endpoints of an edge cannot both be chosen.</li>
+<li>"No edge has both endpoints in \(S\)" is exactly the definition of an independent set: no two chosen vertices are adjacent.</li>
+</ol>
+<p>So we are choosing a largest vertex subset with no edge inside it. This is the <em>maximum independent set</em> problem.</p>
