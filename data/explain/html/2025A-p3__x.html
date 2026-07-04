@@ -1,0 +1,7 @@
+<p>We must model Minimum Makespan — assign \(n\) jobs with processing times \(p_1,\dots,p_n\) to \(m\) parallel machines so that the most heavily loaded machine finishes as early as possible — as an integer linear program. The trick for turning a "minimize the maximum load" objective into a linear one is to introduce an auxiliary variable that upper-bounds every load.</p>
+<ol class="gsteps">
+  <li><strong>Assignment variables.</strong> For each job \(i\) and machine \(j\) take a boolean variable \(x_{i,j}\in\{0,1\}\), where \(x_{i,j}=1\) means job \(i\) is placed on machine \(j\).</li>
+  <li><strong>Makespan variable.</strong> Introduce a variable \(T\) meant to represent the makespan (the finishing time of the last machine), which we will minimize.</li>
+  <li><strong>The program.</strong> \[ \begin{aligned} \text{minimize}\quad & T\\ \text{s.t.}\quad & \sum_{j=1}^{m} x_{i,j}=1 && \forall\, 1\le i\le n,\\ & \sum_{i=1}^{n} x_{i,j}\,p_i \le T && \forall\, 1\le j\le m,\\ & x_{i,j}\in\{0,1\} && \forall\, i,j. \end{aligned} \]</li>
+</ol>
+<div class="box">The first constraints force each job onto exactly one machine (a valid assignment). The second constraints say the load \(\sum_i x_{i,j}p_i\) of every machine \(j\) is at most \(T\), so \(T\) is an upper bound on all loads; minimizing \(T\) drives it down to the maximum load itself. Hence the optimum \(T\) equals the minimum achievable makespan.</div>

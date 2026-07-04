@@ -1,0 +1,8 @@
+<p><strong>Statement (weak duality).</strong> Let \((P)\) be an LP in standard form, \(\min c^\top x\) s.t. \(Ax=b,\ x\ge 0\), and let \((D)\) be its dual, \(\max b^\top y\) s.t. \(A^\top y\le c\) (with \(y\) free). Then for every feasible \(x\) of \((P)\) and every feasible \(y\) of \((D)\), \(c^\top x\ge b^\top y\).</p>
+<ol class="gsteps">
+  <li><strong>Use dual feasibility together with \(x\ge 0\).</strong> Dual feasibility says \(A^\top y\le c\), i.e. \((A^\top y)_j\le c_j\) for every coordinate \(j\). Since \(x\ge 0\), multiplying coordinate \(j\) by \(x_j\ge 0\) preserves the direction of the inequality: \(x_j(A^\top y)_j\le x_j c_j\). Summing over \(j\) gives
+  \[x^\top A^\top y\le x^\top c,\qquad\text{equivalently}\qquad y^\top A x\le c^\top x.\]</li>
+  <li><strong>Use primal feasibility \(Ax=b\).</strong> Substitute \(Ax=b\) into the left side: \(y^\top A x=y^\top b\). Therefore \(y^\top b\le c^\top x\).</li>
+  <li><strong>Rewrite as scalars.</strong> Both sides are scalars, and \(y^\top b=b^\top y\), so \(b^\top y\le c^\top x\), which is the claim \(c^\top x\ge b^\top y\). \(\qquad\blacksquare\)</li>
+</ol>
+<p>The single subtle point is step 1: the inequality \(A^\top y\le c\) may only be multiplied by \(x^\top\) without flipping because \(x\) is nonnegative — this is exactly where primal nonnegativity is used.</p>

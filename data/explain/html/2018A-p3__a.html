@@ -1,0 +1,11 @@
+<p>We model minimum-cost perfect matching as an integer linear program (ILP) with one binary decision variable per edge.</p>
+<div class="box">Variable meaning: for each edge \(e\in E\) introduce \(x_e\in\{0,1\}\), where \(x_e = 1\) means edge \(e\) is chosen for the matching and \(x_e = 0\) means it is not.</div>
+<p>With these variables, "cost of the chosen matching" is \(\sum_{e\in E} w(e)\,x_e\), and we minimize it. The remaining job is to force the chosen edge set to be a <em>perfect</em> matching, i.e. every vertex is covered by exactly one chosen edge.</p>
+<ol class="gsteps">
+<li>For a vertex \(v\), the edges incident to it are the \(uv\in E\). The number of chosen edges touching \(v\) is \(\sum_{uv\in E} x_{uv}\).</li>
+<li>Perfect matching means each vertex is met by exactly one matched edge, so we impose \(\sum_{uv\in E} x_{uv} = 1\) for every \(v\in V\). Equality (not \(\le 1\)) is what makes it perfect rather than just a matching: it forbids leaving a vertex uncovered, and being \(\le 1\) simultaneously forbids two matched edges at a vertex.</li>
+<li>Integrality \(x_e\in\{0,1\}\) makes each edge either fully in or fully out.</li>
+</ol>
+<p>The complete ILP is
+\[\min \sum_{e\in E} w(e)\,x_e \quad\text{s.t.}\quad \forall v\in V:\ \sum_{uv\in E} x_{uv} = 1,\qquad \forall e\in E:\ x_e\in\{0,1\}.\]
+Any feasible \(x\) is exactly the indicator of a perfect matching, and its objective is that matching's weight, so an optimal solution is a minimum-cost perfect matching.</p>

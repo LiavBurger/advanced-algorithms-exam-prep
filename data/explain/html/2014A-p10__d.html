@@ -1,0 +1,14 @@
+<p>We are raising the entering variable \(x_3\) from \(0\), while the other non-basic variables \(x_2\) and \(s_1\) stay at \(0\). The leaving variable is the first currently-basic variable that would be driven down to \(0\) as \(x_3\) grows. We find it by looking at how each basic variable depends on \(x_3\) in the dictionary from part (b).</p>
+<ol class="gsteps">
+  <li>Write the basic variables with \(x_2=s_1=0\):
+  \[
+  x_1=10-2x_2-s_1=10,\qquad s_2=6-3x_2-x_3-2s_1=6-x_3 .
+  \]</li>
+  <li>Check \(x_1\): its expression contains no \(x_3\) term, so increasing \(x_3\) does not change \(x_1\); it stays at \(10\ge 0\) and never forces us to stop. It imposes no bound.</li>
+  <li>Check \(s_2\): it equals \(6-x_3\), which <em>decreases</em> as \(x_3\) increases and reaches \(0\) when \(x_3=6\). The non-negativity requirement \(s_2\ge 0\) therefore caps \(x_3\) at \(6\). This is the min-ratio test: the only limiting basic variable has ratio \(6/1=6\).</li>
+  <li>The binding variable, \(s_2\), is the one pushed to \(0\), so \(s_2\) leaves the basis and \(x_3\) takes its place at value \(x_3=6\).</li>
+</ol>
+<p>After the pivot we solve the \(s_2\)-equation for the new basic variable \(x_3\): from \(s_2=6-3x_2-x_3-2s_1\) we get \(x_3=6-3x_2-s_2-2s_1\), while \(x_1=10-2x_2-s_1\) is unchanged.</p>
+<div class="box">
+The variable \(s_2\) leaves the basis; the new basis is \(\{x_1,x_3\}\) with \(x_3=6\).
+</div>

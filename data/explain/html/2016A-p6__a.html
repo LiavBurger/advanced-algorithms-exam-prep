@@ -1,0 +1,11 @@
+<p>A matching is a set of edges no two of which share a vertex. We encode the decision "is edge \(uv\) in the matching?" with a binary variable and translate the two defining properties of a matching into an objective and a family of constraints.</p>
+<ol class="gsteps">
+  <li>For every edge \(uv\in E\) introduce a variable \(x_{uv}\) that is forced to be \(0\) or \(1\); the last line \(x_{uv}\in\{0,1\}\) makes this an <em>integer</em> (binary) program. Reading \(x_{uv}=1\) as "edge \(uv\) is selected" and \(x_{uv}=0\) as "not selected".</li>
+  <li>The total weight of the selected edges is \(\sum_{uv\in E}x_{uv}\,w(uv)\); since we want a maximum-weight matching we maximize this sum.</li>
+  <li>The matching property is exactly: no vertex is used by two selected edges. For a fixed vertex \(v\), the edges touching \(v\) are those \(uv\in E\), and the count of selected ones is \(\sum_{uv\in E}x_{uv}\) (sum over edges incident to \(v\)). Requiring at most one selected edge at each vertex gives \(\sum_{uv\in E}x_{uv}\le 1\) for every \(v\in V\).</li>
+</ol>
+<p>Putting it together yields the binary integer program</p>
+<div class="box">
+\[\max\ \sum_{uv\in E}x_{uv}\,w(uv)\quad\text{s.t.}\quad \sum_{uv\in E}x_{uv}\le 1\ \ \forall v\in V,\qquad x_{uv}\in\{0,1\}\ \ \forall uv\in E.\]
+</div>
+<p>Any feasible \(0/1\) vector satisfies "each vertex covered at most once", i.e. it is the indicator vector of a matching, and its objective value is that matching's weight, so an optimal solution is a maximum-weight matching.</p>

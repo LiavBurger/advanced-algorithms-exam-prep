@@ -1,0 +1,9 @@
+<p>Goal: compute a minimum edge cover in polynomial time. (An edge cover exists only if there are no isolated vertices; here \(G\) is connected with \(n\ge 2\), so every vertex has an edge.)</p>
+<div class="box">Key idea: a maximum matching covers \(2\cdot\text{MAX-MATCHING}\) vertices with as few edges as possible; then spend exactly one extra edge per still-uncovered vertex.</div>
+<ol class="gsteps">
+<li><strong>Algorithm.</strong> Compute a maximum matching \(M\) (polynomial time, e.g. Blossom / the matching algorithm from class). \(M\) has \(\text{MAX-MATCHING}\) edges and covers \(2\,\text{MAX-MATCHING}\) distinct vertices. For each of the remaining \(|V|-2\,\text{MAX-MATCHING}\) unmatched vertices, add one arbitrary edge incident to it. The result covers all vertices.</li>
+<li><strong>Size of the output.</strong> \(\text{ALG}=\text{MAX-MATCHING}+\big(|V|-2\,\text{MAX-MATCHING}\big)=|V|-\text{MAX-MATCHING}.\)</li>
+<li><strong>Optimality (lower bound on any cover).</strong> Take any optimal cover \(\mathrm{OPT}\). Assign each vertex \(v\) to one edge of \(\mathrm{OPT}\) that covers it. Every vertex gets an edge, and each edge is assigned to at most \(2\) vertices (its two endpoints), so \(|\mathrm{OPT}|\ge\) number of edges that received an assignment.</li>
+<li>The edges assigned to \(2\) vertices are vertex-disjoint on those assignments, hence form a matching; a matching has at most \(\text{MAX-MATCHING}\) edges. So at most \(\text{MAX-MATCHING}\) assigned edges cover \(2\) vertices and the rest cover \(1\). Counting vertices: \(|V|\le 2\cdot(\#\text{double edges})+1\cdot(\#\text{single edges})\), and the number of assigned edges is at least \(|V|-\text{MAX-MATCHING}\).</li>
+<li>Therefore \(|\mathrm{OPT}|\ge |V|-\text{MAX-MATCHING}=\text{ALG}\). Since \(\mathrm{OPT}\) is optimal we also have \(|\mathrm{OPT}|\le\text{ALG}\), so \(\text{ALG}=|\mathrm{OPT}|\): the algorithm is exactly optimal.</li>
+</ol>

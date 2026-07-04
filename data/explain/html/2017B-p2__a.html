@@ -1,0 +1,11 @@
+<p>To show the ratio-sorted greedy has <em>unbounded</em> approximation ratio, we exhibit one family of instances on which greedy's value is a factor \(\Theta(W)\) below optimal — and \(W\) can be arbitrarily large, so no constant bound holds.</p>
+<div class="box">Key idea: sorting by density \(b_i/w_i\) can make greedy grab a tiny high-density item that then blocks a much more valuable heavy item.</div>
+<ol class="gsteps">
+<li><strong>The instance.</strong> Two items and capacity \(W\): item 1 has \(w_1=1,\ b_1=1\); item 2 has \(w_2=W,\ b_2=W/2\).</li>
+<li><strong>Densities.</strong> Item 1 has ratio \(b_1/w_1 = 1\); item 2 has ratio \(b_2/w_2 = (W/2)/W = 1/2\). Since \(1 > 1/2\), greedy sorts item 1 first.</li>
+<li><strong>What greedy does.</strong> It adds item 1 (weight \(1\le W\), fine). Now the remaining capacity is \(W-1\), which is less than \(w_2=W\), so item 2 no longer fits and is rejected. Greedy's total cost is \(b_1 = 1\).</li>
+<li><strong>What OPT does.</strong> Taking item 2 alone uses weight \(W\le W\) and yields cost \(W/2\). So \(\mathrm{OPT}\ge W/2\).</li>
+<li><strong>The ratio.</strong> The approximation ratio on this instance is at least
+\[\frac{\mathrm{OPT}}{\mathrm{greedy}} \ge \frac{W/2}{1} = \frac{W}{2}.\]</li>
+</ol>
+<p>As \(W\to\infty\), this ratio grows without bound. Hence for any claimed constant \(\rho\), choosing \(W>2\rho\) breaks it, so the greedy algorithm has no bounded approximation ratio.</p>

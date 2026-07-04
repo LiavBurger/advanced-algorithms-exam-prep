@@ -1,0 +1,11 @@
+<p>We bound the cost of the tour built in part (1) from the minimum cycle cover \(C\). Write \(\text{ALG}\) for its cost and \(\text{OPT}\) for the optimal TSP cost; recall every edge costs \(1\) or \(2\), and \(n=|V|\).</p>
+<ol class="gsteps">
+  <li><strong>It is a tour.</strong> Merging the cycles as in (1) (drop each cycle's closing edge, bridge to the next, and close the last back to the first) produces one cycle through every vertex exactly once, so the output is a legal TSP tour.</li>
+  <li><strong>Few cycles.</strong> A cycle in a simple graph has at least \(3\) vertices, and the cycles of \(C\) are vertex-disjoint and cover all \(n\) vertices, so their number \(k\) satisfies \(k\le n/3\).</li>
+  <li><strong>Cheap patching.</strong> Building the tour performs one edge replacement per cycle. Each swaps out an edge of cost \(\ge 1\) for an edge of cost \(\le 2\), so it raises the cost by at most \(2-1=1\). Over \(k\le n/3\) replacements the total increase is at most \(n/3\), giving \(\text{ALG}\le \text{cost}(C)+n/3\).</li>
+  <li><strong>Lower bounds on \(\text{OPT}\).</strong> First, \(\text{cost}(C)\le\text{OPT}\): the optimal tour is itself a cycle cover (a single cycle covering all vertices), so the minimum cycle cover is no costlier. Second, \(\text{OPT}\ge n\): any tour has exactly \(n\) edges, each costing at least \(1\).</li>
+</ol>
+<div class="box">
+\[\text{ALG}\ \le\ \text{cost}(C)+\frac{n}{3}\ \le\ \text{OPT}+\frac13\,\text{OPT}\ =\ \frac43\,\text{OPT},\]
+</div>
+<p>where the middle step uses \(\text{cost}(C)\le\text{OPT}\) and \(n/3\le\text{OPT}/3\). Hence the algorithm is a \(\tfrac43\)-approximation for TSP on these instances.</p>

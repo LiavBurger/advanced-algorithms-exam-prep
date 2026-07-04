@@ -1,0 +1,7 @@
+<p>An <em>LP relaxation</em> keeps the same objective and the same linear constraints of the ILP but drops the integrality requirement, replacing the discrete set \(x_v\in\{0,1\}\) by the interval \(0\le x_v\le 1\). The variables may now take fractional values, which is what makes the program a linear program (solvable in polynomial time).</p>
+<ol class="gsteps">
+<li>Objective and edge constraints are copied unchanged: \(\max\sum_{v\in V}x_v\) subject to \(x_u+x_v\le 1\) for every \((u,v)\in E\).</li>
+<li>Replace \(x_v\in\{0,1\}\) by \(0\le x_v\le 1\).</li>
+<li>The upper bound \(x_v\le 1\) is redundant here, so it is dropped: for any edge \((u,v)\), the constraint \(x_u+x_v\le 1\) together with \(x_u\ge 0\) already forces \(x_v\le 1\). (The graph is connected, so every vertex lies on some edge.) Hence writing only \(x_v\ge 0\) gives the same feasible region.</li>
+</ol>
+<p>This is why the official relaxation is \(\max\sum_{v}x_v\) s.t. \(x_u+x_v\le 1\ \forall (u,v)\in E,\ x_v\ge 0\ \forall v\in V\).</p>

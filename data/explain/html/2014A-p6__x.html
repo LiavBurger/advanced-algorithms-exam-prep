@@ -1,0 +1,9 @@
+<p>This is Karatsuba's algorithm: multiply two \(n\)-bit integers with only <em>three</em> half-size multiplications instead of the naive four, giving the recurrence \(T(n)=3T(n/2)+O(n)\).</p>
+<div class="box">Key idea: the middle coefficient \(bc+ad\) is recovered from the single product \((a+b)(c+d)\) by subtracting the \(ac\) and \(bd\) we already compute — trading one multiplication for a few cheap additions.</div>
+<ol class="gsteps">
+<li><strong>Split.</strong> Write each \(n\)-bit number by its high and low halves: \(A=a\,2^{n/2}+b\) and \(C=c\,2^{n/2}+d\), where \(a,b,c,d\) are \(n/2\)-bit numbers. (\(a\) = top \(n/2\) bits, \(b\) = bottom \(n/2\) bits; the \(2^{n/2}\) factor is a shift.)</li>
+<li><strong>Expand the product.</strong> \(A\cdot C=(a2^{n/2}+b)(c2^{n/2}+d)=ac\,2^{n}+(bc+ad)\,2^{n/2}+bd.\) Naively this needs the four products \(ac,bc,ad,bd\).</li>
+<li><strong>Karatsuba's trick.</strong> Note \((a+b)(c+d)=ac+ad+bc+bd\), so the needed middle term is \(bc+ad=(a+b)(c+d)-ac-bd\). Hence \(A\cdot C=ac\,2^{n}+\big((a+b)(c+d)-ac-bd\big)2^{n/2}+bd\), and we only compute the three products \(ac,\ bd,\ (a+b)(c+d)\), each on \(n/2\)-bit numbers (the sums \(a+b,c+d\) are \(n/2+1\) bits — still \(O(n/2)\)).</li>
+<li><strong>Cost of the glue.</strong> Everything else is a constant number of additions/subtractions of \(O(n)\)-bit numbers (\(O(n)\) each by the allowed basic op) and shifts by \(2^{n}\), \(2^{n/2}\) (\(O(n)\) each). So the non-recursive work is \(O(n)\), giving \(T(n)=3T(n/2)+O(n)\).</li>
+<li><strong>Solve.</strong> Master Theorem with \(a=3,\ b=2,\ k=1\): since \(a=3>b^k=2\), \(T(n)=\Theta\!\big(n^{\log_b a}\big)=O\!\big(n^{\log_2 3}\big)\approx O(n^{1.585})\), beating the \(O(n^2)\) schoolbook method.</li>
+</ol>

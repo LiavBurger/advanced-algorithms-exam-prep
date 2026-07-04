@@ -1,0 +1,13 @@
+<p>We are given \(n\) students \(A=\{a_1,\dots,a_n\}\) and \(m\) courses; course \(j\) is attended by the subset \(U_j\subseteq A\) and comes with a cap \(c_j\). We want to select as many students as possible subject to: for every course, at most \(c_j\) of the selected students who attend that course may be chosen. Modeling this as a 0/1 integer program (BIP) means choosing binary decision variables, an objective, and one linear constraint per rule.</p>
+<ol class="gsteps">
+  <li><strong>Variables.</strong> Introduce one binary variable per student: let \(x_i\in\{0,1\}\) for \(1\le i\le n\), where \(x_i=1\) means student \(a_i\) is selected and \(x_i=0\) means it is not. Binary values are what make each student an all-or-nothing choice.</li>
+  <li><strong>Objective.</strong> We want the largest possible selected group, i.e. to maximize the count of selected students. Since each selected student contributes exactly \(1\), the count is \(\sum_{i=1}^{n}x_i\), and we maximize it.</li>
+  <li><strong>Constraints.</strong> The cap is per course. For a fixed course \(j\), the students attending it are exactly those \(a_i\in U_j\), so the number selected among them is \(\sum_{a_i\in U_j}x_i\). Requiring "at most \(c_j\)" is the linear inequality \(\sum_{a_i\in U_j}x_i\le c_j\), one such constraint for every \(1\le j\le m\).</li>
+</ol>
+<div class="box">
+\[
+\max\ \sum_{i=1}^{n}x_i \quad\text{s.t.}\quad
+\sum_{a_i\in U_j}x_i\le c_j\ \ (1\le j\le m),\qquad x_i\in\{0,1\}\ \ (1\le i\le n).
+\]
+</div>
+<p>A student attending several courses appears in several of the \(U_j\), so setting \(x_i=1\) uses up one unit of each of those courses' caps simultaneously — which is exactly the intended "counts as a representative for each" behavior.</p>

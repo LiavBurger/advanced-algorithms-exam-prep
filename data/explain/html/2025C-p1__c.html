@@ -1,0 +1,8 @@
+<p>The statement is <strong>true</strong>, and it is a direct application of the isolation lemma. Recall the lemma: for any family \(\mathcal{F}\) of subsets of a ground set of size \(m\), if each element gets an independent uniform weight from \(\{1,\dots,N\}\) and set-weight is the sum of element weights, then the probability that the minimum-weight set in \(\mathcal{F}\) is <em>not</em> unique is at most \(m/N\).</p>
+<ol class="gsteps">
+<li>Take the ground set to be the edge set \(E\), so \(m=|E|\), and let \(\mathcal{F}\) be the family of edge-subsets that are exactly the cuts of \(G\). The weight of a cut is the sum of weights of its crossing edges—precisely the sum form the lemma needs.</li>
+<li>Weights are drawn uniformly and independently from \(\{1,\dots,4|E|\}\), so \(N=4|E|\). The lemma gives \(\Pr[\text{minimum cut not unique}]\le m/N=|E|/(4|E|)=\tfrac14\).</li>
+<li>For the maximum cut, apply the same argument to the negated weights (maximizing a sum is minimizing its negation; the value set is still \(N\) distinct values). This yields \(\Pr[\text{maximum cut not unique}]\le \tfrac14\) as well.</li>
+<li>By a union bound, the probability that <em>at least one</em> of the two failure events occurs is at most \(\tfrac14+\tfrac14=\tfrac12\).</li>
+<li>Therefore, with probability at least \(1-\tfrac12=\tfrac12\), both the minimum-weight cut and the maximum-weight cut are unique.</li>
+</ol>

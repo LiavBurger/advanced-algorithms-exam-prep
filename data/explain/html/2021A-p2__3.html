@@ -1,0 +1,13 @@
+<p>Here we write down the dual BIP of the general primal from part 1 and give it a combinatorial meaning. Because the primal has one constraint per course, the dual has one variable per course; because the primal has one variable per student, the dual has one constraint per student. Reading the transposed system this way turns a <em>packing</em> problem for students into a <em>covering</em> problem for courses.</p>
+<ol class="gsteps">
+  <li><strong>Variables.</strong> The dual has a binary variable \(y_j\in\{0,1\}\) for each course \(1\le j\le m\), where \(y_j=1\) means course \(j\) is chosen for the solution. Its cost coefficient is the primal right-hand side \(c_j\).</li>
+  <li><strong>Objective.</strong> The primal maximizes attendance and has right-hand sides \(c_j\); by duality these become the dual objective coefficients, and the direction flips to minimization: \(\min \sum_{j=1}^{m}c_j y_j\), the total cost of the chosen courses.</li>
+  <li><strong>Constraints.</strong> Transposing the constraint matrix, each primal variable \(x_i\) (student \(a_i\)) yields one dual constraint. Student \(a_i\) appears in the primal columns for exactly the courses \(j\) with \(a_i\in U_j\), so the dual constraint is \(\sum_{j:\,a_i\in U_j}y_j\ge 1\): every student must be enrolled in at least one chosen course.</li>
+</ol>
+<div class="box">
+\[
+\min\ \sum_{j=1}^{m}c_j y_j \quad\text{s.t.}\quad
+\sum_{j:\,a_i\in U_j}y_j\ge 1\ \ (1\le i\le n),\qquad y_j\in\{0,1\}.
+\]
+</div>
+<p>In words: choose a set of courses of minimum total cost so that every student is covered by (enrolled in) at least one chosen course. This is precisely a weighted set-cover: the courses are the sets, the students are the elements to be covered, and \(c_j\) is the cost of using set \(U_j\).</p>

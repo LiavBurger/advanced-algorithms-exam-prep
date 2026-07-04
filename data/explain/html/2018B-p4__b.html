@@ -1,0 +1,8 @@
+<p>The expectation is taken <strong>over the random choices of pivots made by the algorithm</strong>.</p>
+<p>This is the natural follow-up to part (a). When we write \(\mathbb{E}[T(n)]\), the running time \(T(n)\) is a random variable, and we must be clear about what probability space it lives in.</p>
+<ol class="gsteps">
+<li>The input array is treated as <em>fixed</em> (arbitrary, possibly worst-case). It contributes no randomness.</li>
+<li>The only random events are the pivot selections: at each recursive call the algorithm picks a pivot uniformly at random among the current elements.</li>
+<li>These independent uniform choices determine which subarray we recurse on and hence how much work is done, so \(T(n)\) is a function of the pivot sequence. Averaging \(T(n)\) over all equally likely pivot sequences gives \(\mathbb{E}[T(n)]\).</li>
+</ol>
+<p>In short, the randomness comes entirely from the coin flips inside the algorithm, which is precisely why the expectation bound is valid on every input.</p>

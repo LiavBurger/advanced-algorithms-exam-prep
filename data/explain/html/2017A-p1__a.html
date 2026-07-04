@@ -1,0 +1,9 @@
+<p>The algorithm makes \(a=3\) recursive calls, each on an input of size \(n/4\), so \(b=4\). The non-recursive work is the divide step \(\Theta(n)\) plus the combine step \(O(n^{2/3})\); since \(n\) dominates \(n^{2/3}\), the total work outside the recursion is \(f(n)=\Theta(n)\). This is exactly the recurrence \(T(n)=3T(n/4)+\Theta(n)\), which the master theorem resolves.</p>
+<ol class="gsteps">
+<li>Compute the &quot;watershed&quot; exponent \(\log_b a=\log_4 3\). Numerically \(\log_4 3=\frac{\ln 3}{\ln 4}\approx 0.79\), so \(n^{\log_b a}=n^{\log_4 3}\approx n^{0.79}\).</li>
+<li>Compare \(f(n)=\Theta(n)=\Theta(n^{1})\) with \(n^{\log_4 3}\). Because the exponent \(1>\log_4 3\), \(f(n)\) grows polynomially faster than \(n^{\log_b a}\): concretely \(f(n)=\Omega\!\left(n^{\log_4 3+\varepsilon}\right)\) for \(\varepsilon=1-\log_4 3>0\). This is <strong>Case 3</strong> of the master theorem.</li>
+<li>Verify the regularity condition needed for Case 3: \(a\,f(n/b)\le c\,f(n)\) for some constant \(c<1\). Here \(3\cdot\frac{n}{4}=\frac34 n\le c\cdot n\) with \(c=\frac34<1\), so it holds.</li>
+<li>Case 3 therefore gives \(T(n)=\Theta(f(n))=\Theta(n)\).</li>
+</ol>
+<p>The base case (inputs of size \(n<500\) solved directly in \(n^3\) time) does not change the asymptotics: it applies only for inputs of bounded size, so each direct solve costs at most a constant \(500^3=O(1)\).</p>
+<div class="box">Answer: the running time is \(\Theta(n)\).</div>

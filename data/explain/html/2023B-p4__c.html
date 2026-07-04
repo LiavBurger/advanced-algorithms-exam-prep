@@ -1,0 +1,10 @@
+<p>The new constraints are the <strong>subtour-elimination</strong> constraints: for every proper non-empty subset \(Q\subsetneq V\),
+\[\sum_{u\in Q}\sum_{v\in Q:(u,v)\in E}x_{u,v}\;\le\;|Q|-1.\]
+The double sum counts how many <em>chosen</em> edges have both endpoints inside \(Q\). The claim is that with these added, every feasible IP solution is a single Hamiltonian cycle.</p>
+<ol class="gsteps">
+<li>From the degree constraints alone (parts a–b), any feasible solution is a vertex-disjoint union of directed cycles covering all of \(V\) — every vertex has in- and out-degree exactly \(1\).</li>
+<li>Suppose, for contradiction, this union were more than one cycle. Pick one of the cycles and let \(Q_0\) be its set of vertices; since there is another cycle elsewhere, \(Q_0\subsetneq V\) (a proper subset).</li>
+<li>That cycle uses exactly \(|Q_0|\) edges, and all of them stay inside \(Q_0\). So the internal-edge count for \(Q_0\) is \(\sum_{u\in Q_0}\sum_{v\in Q_0}x_{u,v}=|Q_0|\).</li>
+<li>But the subtour constraint for \(Q_0\) demands this sum be \(\le|Q_0|-1\). Since \(|Q_0|>|Q_0|-1\), the constraint is violated — contradiction.</li>
+</ol>
+<p>Hence no feasible solution can contain a cycle on a proper subset of vertices. The only remaining possibility for a union of cycles covering \(V\) is a single cycle through all vertices, i.e. a Hamiltonian cycle. Together with part (a), the correspondence is now exact.</p>

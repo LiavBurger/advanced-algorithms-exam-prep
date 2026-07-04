@@ -1,0 +1,9 @@
+<p>Each branching program computes the \((1,1)\)-entry of a product of \(m\) matrices whose entries are variables or rational scalars. Two programs compute the same polynomial iff the difference of these two polynomials is identically zero, which we test by random evaluation via Schwartz–Zippel.</p>
+<ol class="gsteps">
+  <li><strong>Degree bound.</strong> Every entry of a single matrix has degree \(\le 1\) (it is a variable or a constant). When two matrices are multiplied, each entry of the product is a sum of products of two entries, so degrees add by at most \(1\) per multiplication. Multiplying \(m\) matrices therefore yields entries of total degree \(\le m\). Hence the polynomials \(P_A=(A_1\cdots A_m)_{1,1}\) and \(P_B=(B_1\cdots B_m)_{1,1}\) each have degree \(\le m\), and so does \(Q=P_A-P_B\).</li>
+  <li><strong>The test.</strong> Assign each variable \(x_i\) an independent uniform value from \(S=\{1,2,\dots,100m\}\) (so \(|S|=100m\)), compute both matrix products numerically, and declare "equal" iff the two \((1,1)\)-entries agree.</li>
+  <li><strong>Error analysis.</strong> If the programs compute the same polynomial then \(Q\equiv 0\), the entries always match, and the test is correct with certainty. If they differ then \(Q\not\equiv 0\) has degree \(\le m\), and by Schwartz–Zippel
+  \[\Pr[Q\text{ evaluates to }0]\le\frac{\deg Q}{|S|}\le\frac{m}{100m}=\frac{1}{100}<0.1.\]
+  So a false "equal" verdict occurs with probability under \(0.1\).</li>
+</ol>
+<p>The error is one-sided and below \(0.1\) as required. Efficiency: each run does \(m\) multiplications of \(3\times 3\) matrices over \(\mathbb{Q}\) with numbers of polynomially bounded size, so it runs in polynomial time.</p>

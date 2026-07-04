@@ -1,0 +1,8 @@
+<p>The claim is that solving the LP relaxation of the semi-matching program and rounding every \(x_e\ge \tfrac12\) up to \(1\) (and the rest to \(0\)) always yields a feasible integer semi-matching. This is <strong>false</strong>; we disprove it with one explicit counterexample.</p>
+<ol class="gsteps">
+  <li>Take \(V_1=\{a,b,c,d\}\), \(V_2=\{u\}\), and \(E=\{au,bu,cu,du\}\): a "star" of four edges all meeting the single \(V_2\)-vertex \(u\).</li>
+  <li>Consider the fractional point \(x_e=\tfrac12\) for all four edges. Check feasibility of the relaxation: each \(V_1\)-vertex is on one edge, contributing \(\tfrac12\le 1\); vertex \(u\) is on all four, contributing \(4\cdot\tfrac12=2\le 2\). So it is LP-feasible, with value \(4\cdot\tfrac12=2\).</li>
+  <li>This is in fact LP-optimal: the constraint at \(u\) is \(\sum_e x_e\le 2\), so no feasible point can exceed value \(2\); ours attains \(2\).</li>
+  <li>Now round: every \(x_e=\tfrac12\ge\tfrac12\), so all four variables become \(1\). But then vertex \(u\) has degree \(4>2\), violating its cap. The rounded vector is <em>not</em> a semi-matching.</li>
+</ol>
+<p>Hence the rounding rule can turn a feasible fractional optimum into an infeasible integer point, so the claim fails. (Other witnesses work too, e.g. a triangle-free star \(V_1=\{a,b,c\},V_2=\{u\}\) with \(x_e=\tfrac23\), or \(V_1=\{a\},V_2=\{u,v\}\) with \(x_e=\tfrac12\).) The moral: threshold rounding at \(\tfrac12\) has no reason to respect capacity-\(2\) constraints when many edges pile up on one vertex.</p>

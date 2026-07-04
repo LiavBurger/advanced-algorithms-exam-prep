@@ -1,0 +1,17 @@
+<p>The simplex algorithm does not work directly with inequalities: it manipulates a system of linear <em>equalities</em> together with the requirement that every variable be non-negative. So the whole job here is to turn each of the two inequality constraints into an equality by introducing one new non-negative variable per constraint, without changing the objective.</p>
+<ol class="gsteps">
+  <li>The first constraint \(x_1+2x_2\le 10\) has slack on its left side: the left-hand side may fall short of \(10\). We absorb that gap with a non-negative <em>slack</em> variable \(s_1\ge 0\), giving the equality \(x_1+2x_2+s_1=10\). Whenever \(x_1+2x_2\le 10\) held, \(s_1=10-(x_1+2x_2)\ge 0\), so the two forms are equivalent.</li>
+  <li>The second constraint \(2x_1+x_2-x_3\ge 14\) points the other way, so the left side <em>exceeds</em> \(14\). We remove that surplus by subtracting a non-negative variable \(s_2\ge 0\): \(2x_1+x_2-x_3-s_2=14\). Again \(s_2=(2x_1+x_2-x_3)-14\ge 0\) reproduces the original inequality.</li>
+  <li>The objective \(\max\, 2x_1+5x_2+2x_3\) is left untouched (the new variables have coefficient \(0\) in it), and we keep the sign restrictions on all variables.</li>
+</ol>
+<div class="box">
+\[
+\max\; 2x_1+5x_2+2x_3 \quad\text{s.t.}\quad
+\begin{aligned}
+&x_1+2x_2+s_1=10,\\
+&2x_1+x_2-x_3-s_2=14,\\
+&x_i,\,s_i\ge 0 .
+\end{aligned}
+\]
+</div>
+<p>This is exactly the standard form the simplex method needs: two equalities in five non-negative variables, ready to be read off as a basis (here \(s_1,s_2\)) with the remaining variables set to \(0\).</p>

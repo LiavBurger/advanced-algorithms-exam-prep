@@ -1,0 +1,10 @@
+<p>We bound \(\Pr[\text{fewer than } 3/4 \text{ of clauses satisfied}]\) in closed form. Let \(X=\sum_i X_i\) be the number of satisfied clauses; from part (a), \(\mathbb{E}[X]=7m/8\).</p>
+<div class="box">Key idea: "few satisfied" means "many unsatisfied." Switch to the count of <em>unsatisfied</em> clauses, which is nonnegative, so Markov's inequality applies directly.</div>
+<ol class="gsteps">
+<li><strong>Rewrite the event.</strong> Satisfying fewer than \(\tfrac34 m\) clauses means \(X < \tfrac{3m}{4}\). The number of unsatisfied clauses is \(m-X\), so \(X<\tfrac{3m}{4}\) is equivalent to \(m-X > m-\tfrac{3m}{4}=\tfrac{m}{4}\).</li>
+<li><strong>Expectation of the unsatisfied count.</strong> By linearity, \(\mathbb{E}[m-X] = m-\mathbb{E}[X] = m-\tfrac{7m}{8}=\tfrac{m}{8}\).</li>
+<li><strong>Markov's inequality.</strong> Since \(m-X\ge 0\), Markov gives, for the threshold \(\tfrac{m}{4}\),
+\[\Pr\!\Big[m-X > \tfrac{m}{4}\Big] \le \frac{\mathbb{E}[m-X]}{m/4} = \frac{m/8}{m/4} = \frac{1}{2}.\]</li>
+</ol>
+<p>So \(\Pr\big[X < \tfrac34 m\big] \le \tfrac12\), a closed-form bound.</p>
+<p><strong>Why not Chernoff:</strong> a Chernoff bound would need the summands \(X_i\) to be independent, but clauses can share variables, so the \(X_i\) are generally dependent. The solution notes that <em>if</em> we (incorrectly) assumed independence, Chernoff on \(\Pr\big[\tfrac{|X-\mathbb{E}[X]|}{m}\ge\tfrac18\big]\) would give \(\le 2e^{-m/(3\cdot 8^2)\cdot\frac{7}{8}} = 2e^{-m/168}\) — much sharper, but not rigorously justified here. Markov needs no independence, which is why it is the correct tool.</p>

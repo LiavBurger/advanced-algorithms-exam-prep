@@ -1,0 +1,9 @@
+<p>We prove the greedy algorithm achieves a \(\tfrac23\)-approximation: the legally colored weight is at least \(\tfrac23\) of the optimum. Let \(v_1,\dots,v_{|V|}\) be the vertices in the order they are processed, and let \(A_i,B_i,C_i\) denote the three classes at the moment \(v_i\) is considered (so they contain only vertices processed before \(v_i\)).</p>
+<ol class="gsteps">
+<li><strong>Per-vertex bound.</strong> When \(v_i\) is placed, it is added to the class minimizing \(w(v_i,\cdot)\). The minimum of three numbers is at most their average, so the illegal weight created at this step is
+\[\min\big(w(v_i,A_i),w(v_i,B_i),w(v_i,C_i)\big)\le \tfrac13\big(w(v_i,A_i)+w(v_i,B_i)+w(v_i,C_i)\big).\]</li>
+<li><strong>Each edge counted once.</strong> An edge \((v_i,v_j)\) with \(i<j\) is accounted for exactly when the later endpoint \(v_j\) is processed—at that time \(v_i\) is already placed in one of \(A_j,B_j,C_j\). Summing the three back-degrees over all vertices therefore counts every edge exactly once:
+\[\sum_{i=1}^{|V|}\big(w(v_i,A_i)+w(v_i,B_i)+w(v_i,C_i)\big)=w(E).\]</li>
+<li><strong>Total illegal weight.</strong> Summing the per-vertex bound in step 1 over all \(i\), the total weight of illegally colored edges is at most \(\tfrac13 w(E)\).</li>
+<li><strong>Legal weight and comparison to OPT.</strong> Hence the legal weight is at least \(w(E)-\tfrac13 w(E)=\tfrac23 w(E)\). Since no coloring can legalize more than all the edges, \(\mathrm{OPT}\le w(E)\), giving legal weight \(\ge \tfrac23 w(E)\ge \tfrac23\,\mathrm{OPT}\).</li>
+</ol>

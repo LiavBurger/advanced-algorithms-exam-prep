@@ -1,0 +1,11 @@
+<p>Take the dual from part (b) and impose integrality, \(y_D\in\{0,1\}\), to get the binary integer program
+\[
+\max\sum_{D\in C}y_D\quad\text{s.t.}\quad\sum_{D:\,i\in D}y_D\le1\ \ \forall i\in S,\qquad y_D\in\{0,1\}.
+\]
+We read off what this asks combinatorially.</p>
+<ol class="gsteps">
+<li>Since \(y_D\in\{0,1\}\), the variable \(y_D\) is the indicator of &quot;subset \(D\) is chosen&quot;. Let \(\mathcal{D}=\{D:y_D=1\}\) be the chosen collection.</li>
+<li>The objective \(\sum_D y_D=|\mathcal{D}|\) is the number of chosen subsets, which we <em>maximize</em>.</li>
+<li>The constraint \(\sum_{D:i\in D}y_D\le1\) says that each element \(i\in S\) belongs to <em>at most one</em> chosen subset. Equivalently, no two chosen subsets share an element &mdash; the chosen subsets are pairwise disjoint.</li>
+</ol>
+<div class="box">The BIP is the <strong>set packing</strong> problem: find a maximum-size collection of pairwise disjoint (mutually non-overlapping) subsets from \(C\).</div>

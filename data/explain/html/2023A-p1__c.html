@@ -1,0 +1,8 @@
+<p>The statement is <strong>true</strong>. Here \(\mathrm{BPP}(\alpha,\beta)\) means there is a polynomial-time randomized machine \(M\) with acceptance probability at least \(\beta\) on inputs in the language and at most \(\alpha\) on inputs outside it. So \(\mathrm{BPP}(\tfrac18,\tfrac14)\) requires \(\Pr[M(x)=1]\ge \tfrac14\) for \(x\in A\) and \(\le\tfrac18\) for \(x\notin A\), while \(\mathrm{BPP}(2^{-n},1-2^{-n})\) demands the much stronger gap \(1-2^{-n}\) vs. \(2^{-n}\).</p>
+<ol class="gsteps">
+<li>The easy inclusion \(\mathrm{BPP}(2^{-n},1-2^{-n})\subseteq \mathrm{BPP}(\tfrac18,\tfrac14)\) holds because, for large \(n\), \(1-2^{-n}\ge \tfrac14\) and \(2^{-n}\le \tfrac18\): a machine with tiny error already satisfies the weaker requirement.</li>
+<li>For the reverse inclusion, take \(A\in\mathrm{BPP}(\tfrac18,\tfrac14)\) with machine \(M\). The thresholds \(\tfrac18\) and \(\tfrac14\) are separated, and \(\tfrac{3}{16}\) is exactly their midpoint, so it cleanly distinguishes the two cases.</li>
+<li>Run \(M\) independently \(t=O(n)\) times on \(x\); let \(S\) be the number of accepting runs. If \(x\in A\) then \(\mathbb{E}[S]\ge t/4\); if \(x\notin A\) then \(\mathbb{E}[S]\le t/8\). Accept iff \(S\ge \tfrac{3}{16}t\).</li>
+<li>In either case the true acceptance rate is at distance \(\ge \tfrac{1}{16}\) from the threshold \(\tfrac{3}{16}\). By the Chernoff bound the probability that \(S\) lands on the wrong side decays like \(2^{-\Omega(t)}\).</li>
+<li>Choosing \(t=cn\) with a large enough constant \(c\) makes the error at most \(2^{-n}\), so the amplified machine witnesses \(A\in \mathrm{BPP}(2^{-n},1-2^{-n})\).</li>
+</ol>

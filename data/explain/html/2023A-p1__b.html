@@ -1,0 +1,8 @@
+<p>The statement is <strong>true</strong>. The original isolation lemma says: given a family \(\mathcal{F}\) of subsets of a ground set, if each element gets an independent weight chosen uniformly from \(\{1,\dots,N\}\) and the weight of a set is the <em>sum</em> of its elements' weights, then with high probability there is a unique minimum-weight set. The trick is that the proof never uses the arithmetic values \(1,\dots,N\) themselves—only that each element draws from a set of \(N\) distinct values, and that set-weight is monotone under changing one element's weight.</p>
+<ol class="gsteps">
+<li>Suppose now the weight of a set \(A\) is the <em>product</em> \(w(A)=\prod_{i\in A}w(i)\), with the \(w(i)\) positive. Define a new weight function \(w_\ell(x)=\log w(x)\).</li>
+<li>Since \(\log\) is strictly increasing, the map \(w\mapsto w_\ell\) is a one-to-one, onto, order-preserving correspondence between weight functions valued in \(\{1,\dots,N\}\) and weight functions valued in \(\{\log 1,\dots,\log N\}\). The latter is still a set of \(N\) distinct values.</li>
+<li>The logarithm turns products into sums: \(w_\ell(A)=\log\!\prod_{i\in A}w(i)=\sum_{i\in A}\log w(i)=\sum_{i\in A}w_\ell(i)\). So the product-weight of \(A\) becomes the ordinary sum-weight of \(A\) under \(w_\ell\).</li>
+<li>Apply the original lemma to \(w_\ell\): with high probability there is a unique set of minimal sum-weight \(w_\ell\).</li>
+<li>Because \(\log\) is strictly monotone, the ordering of sets by \(w_\ell\) matches their ordering by the product \(w\). Hence that same set is the unique minimum under the multiplicative definition.</li>
+</ol>

@@ -1,0 +1,11 @@
+<p>The statement is <strong>true</strong>, and it is exactly what the Schwartz–Zippel lemma buys us: a nonzero low-degree polynomial cannot vanish on a large enough grid of integer points.</p>
+<ol class="gsteps">
+  <li>Let \(f(x_1,\dots,x_n)\) be a nonzero polynomial of total degree \(d\) over \(\mathbb{Q}\). Draw each argument \(\alpha_i\) independently and uniformly from the finite set \(S=\{1,2,\dots,d+1\}\), which has \(|S|=d+1\) elements.</li>
+  <li>Schwartz–Zippel bounds the chance of accidentally hitting a root:
+  \[
+  \Pr_{\alpha_1,\dots,\alpha_n\in S}\big[f(\alpha_1,\dots,\alpha_n)=0\big]\;\le\;\frac{d}{|S|}\;=\;\frac{d}{d+1}.
+  \]</li>
+  <li>Since \(d<d+1\), we have \(\dfrac{d}{d+1}<1\). So the probability that \(f\) vanishes is strictly below \(1\), which means the complementary event \(f(\alpha_1,\dots,\alpha_n)\ne 0\) has strictly positive probability.</li>
+  <li>An event of positive probability over a finite sample space cannot be empty: there must exist at least one concrete choice \(\alpha_1,\dots,\alpha_n\in\{1,\dots,d+1\}\) with \(f(\alpha_1,\dots,\alpha_n)\ne 0\).</li>
+</ol>
+<p>The probabilistic language is just a counting device — it certifies that a nonzero point exists inside the grid \(\{1,\dots,d+1\}^n\), which is precisely the claim.</p>

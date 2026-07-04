@@ -1,7 +1,7 @@
 /* Advanced Algorithms — Exam Prep. Renders from window.DATA + window.GUIDES.
    All progress persists in localStorage; works offline via file://. */
 (function () {
-  const DATA = window.DATA, GUIDES = window.GUIDES || {};
+  const DATA = window.DATA, GUIDES = window.GUIDES || {}, EXPL = window.EXPL || {};
   const LS = {
     marks: "aa_marks_v1",     // { "sid#part": "got"|"shaky"|"failed" }
     reveal: "aa_reveal_v1",   // { "sid#part": true }
@@ -159,8 +159,11 @@
     if (hw) note = `<div class="hwnote">Homework PDF is solution-only — the prompt above is the curated summary; the image is the solution's framing.</div>`;
     else if (heb) note = `<div class="hebrew-note">Original 2021 statement is in Hebrew (no English version existed); see the summary above for the English.</div>`;
     const revealed = reveal[k];
+    const explBlock = EXPL[k]
+      ? `<button class="expl-btn" data-expl="${k}">🤔 I don't understand the solution</button><div class="expl" style="display:none">${EXPL[k]}</div>`
+      : "";
     const sol = `<div class="sol" ${revealed ? "" : "style=display:none"}><div class="solcap">Solution</div>
-      <img loading="lazy" src="${pt.solutionImage}">${pt.solutionImage2 ? `<img loading="lazy" src="${pt.solutionImage2}">` : ""}</div>`;
+      <img loading="lazy" src="${pt.solutionImage}">${pt.solutionImage2 ? `<img loading="lazy" src="${pt.solutionImage2}">` : ""}${explBlock}</div>`;
     return `<div class="part ${st ? "st-" + st : ""}" data-k="${k}">
       <div class="plab"><span class="lt">${lab}</span><span class="tag ${pt.difficulty}">${pt.difficulty}</span>
         <span class="psum">${esc(pt.summary)}</span></div>
@@ -181,6 +184,13 @@
       save(LS.reveal, reveal);
       const part = b.closest(".part"); const sol = part.querySelector(".sol");
       sol.style.display = reveal[k] ? "" : "none"; b.textContent = reveal[k] ? "Hide solution" : "Reveal solution";
+    });
+    el.querySelectorAll("[data-expl]").forEach(b => b.onclick = () => {
+      const box = b.nextElementSibling;
+      const open = box.style.display === "none";
+      box.style.display = open ? "" : "none";
+      b.textContent = open ? "Hide explanation" : "🤔 I don't understand the solution";
+      b.classList.toggle("on", open);
     });
     el.querySelectorAll("[data-mark]").forEach(b => b.onclick = () => {
       const k = b.dataset.k, m = b.dataset.mark;

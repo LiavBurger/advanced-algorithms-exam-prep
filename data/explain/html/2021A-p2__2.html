@@ -1,0 +1,21 @@
+<p>For the concrete instance \(n=5,\ m=4\) with \(U_1=\{a_1,a_3\}\), \(U_2=\{a_2,a_3,a_4,a_5\}\), \(U_3=\{a_1,a_3,a_4,a_5\}\), \(U_4=\{a_2,a_5\}\) and caps \(c=(1,2,2,1)\), we first encode "who attends what" in a matrix, write the primal compactly, and then form its dual by the standard rule for a packing program.</p>
+<ol class="gsteps">
+  <li><strong>Membership matrix.</strong> Let \(M\) be the \(5\times 4\) matrix with \(M_{ij}=1\) iff \(a_i\in U_j\). Reading off each student's courses gives the rows
+  \[
+  M=\begin{pmatrix}1&0&1&0\\0&1&0&1\\1&1&1&0\\0&1&1&0\\0&1&1&1\end{pmatrix}
+  \quad(\text{row }i=\text{student }a_i,\ \text{col }j=\text{course }j).
+  \]
+  Then \((M^{\top}x)_j=\sum_i M_{ij}x_i=\sum_{a_i\in U_j}x_i\), exactly the count of selected attendees of course \(j\).</li>
+  <li><strong>Primal in matrix form.</strong> With \(\vec x=(x_1,\dots,x_5)\) and objective vector all-ones, part 1 becomes
+  \[
+  \max\ (1,1,1,1,1)\,\vec x\quad\text{s.t.}\quad M^{\top}\vec x\le (1,2,2,1),\ \ x_i\in\{0,1\}.
+  \]</li>
+  <li><strong>Dual.</strong> For a packing LP \(\max\{1^{\top}x: M^{\top}x\le c,\ x\ge 0\}\), the dual is the covering LP \(\min\{c^{\top}y:(M^{\top})^{\top}y\ge 1,\ y\ge 0\}\), i.e. \(\min\{c^{\top}y: My\ge \mathbf 1,\ y\ge 0\}\), with one dual variable \(y_j\) per primal constraint (per course). Restricting to integers gives the dual BIP.</li>
+</ol>
+<div class="box">
+\[
+\min\ (1,2,2,1)\,(y_1,y_2,y_3,y_4)\quad\text{s.t.}\quad
+M\,\vec y\ge (1,1,1,1,1)^{\top},\ \ y_j\in\{0,1\}.
+\]
+</div>
+<p>Each of the five rows of \(My\ge\mathbf 1\) is one student's covering constraint (e.g. row 1: \(y_1+y_3\ge 1\)), matching the interpretation developed in part 3.</p>

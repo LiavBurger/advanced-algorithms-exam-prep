@@ -1,0 +1,11 @@
+<p>Let \(y^\*\) be an optimal solution of \((D)\), and let the chosen family be the sets whose dual constraint is <em>tight</em>: \(\mathcal F=\{S_i:\sum_{j\in S_i}y^\*_j=c_i\}\). We prove \(\mathcal F\) covers every element. The argument is by contradiction, exploiting optimality of \(y^\*\).</p>
+<ol class="gsteps">
+<li><strong>Assume not a cover.</strong> Suppose some element \(j_0\) is covered by no set in \(\mathcal F\). Then every set \(S_i\) that contains \(j_0\) is <em>not</em> in \(\mathcal F\), so its constraint is slack:
+\[
+\sum_{j\in S_i}y^\*_j<c_i\qquad\text{for every }S_i\text{ with }j_0\in S_i.
+\]</li>
+<li><strong>The variable \(y_{j_0}\) has room to grow.</strong> The dual variable \(y_{j_0}\) appears only in the constraints of sets \(S_i\) containing \(j_0\) &mdash; and we just saw all of those are strict inequalities. Constraints of sets not containing \(j_0\) do not involve \(y_{j_0}\) at all, so raising \(y_{j_0}\) leaves them untouched.</li>
+<li><strong>Push \(y_{j_0}\) up.</strong> Choose \(\varepsilon>0\) small enough that each strict slack \(c_i-\sum_{j\in S_i}y^\*_j\) can absorb \(\varepsilon\) (take \(\varepsilon\) below the smallest such positive slack). Setting \(y_{j_0}\gets y^\*_{j_0}+\varepsilon\) keeps <em>all</em> constraints (2) satisfied and keeps \(y\ge0\), so the new point is feasible.</li>
+<li><strong>Contradiction.</strong> The objective \(\sum_j y_j\) increases by \(\varepsilon>0\), giving a feasible dual solution strictly better than \(y^\*\). This contradicts the optimality of \(y^\*\).</li>
+</ol>
+<p>Hence no element can be left uncovered, so the family of tight sets \(\mathcal F\) is a set cover.</p>

@@ -1,0 +1,7 @@
+<p>We are told \(f=g\cdot h\) with \(\deg h=\deg f-\deg g<n\), and that \(g(\omega^i)\neq 0\) at all \(n\)-th roots of unity, where \(\omega\) is a primitive \(n\)-th root of unity. We recover \(h\) by working in the "point-value" domain: evaluate, divide pointwise, then interpolate.</p>
+<ol class="gsteps">
+  <li><strong>Evaluate.</strong> Evaluate both \(f\) and \(g\) at the \(n\) roots of unity \(1,\omega,\omega^2,\dots,\omega^{n-1}\). Evaluating a polynomial of degree \(<n\) at all \(n\)-th roots of unity is exactly a DFT, computable by the FFT in \(O(n\log n)\).</li>
+  <li><strong>Divide pointwise.</strong> For each \(i=0,\dots,n-1\) compute \(f(\omega^i)/g(\omega^i)\). These \(n\) divisions cost \(O(n)\), and they are well-defined because \(g(\omega^i)\neq 0\) by assumption, so no division by zero occurs.</li>
+  <li><strong>Interpolate.</strong> Since \(f=g\cdot h\), we have \(f(\omega^i)=g(\omega^i)\,h(\omega^i)\), hence \(f(\omega^i)/g(\omega^i)=h(\omega^i)\) exactly. So the quotients from Step 2 are the values of \(h\) at the \(n\) roots of unity. Interpolating a polynomial from its values at the roots of unity is an inverse DFT, again \(O(n\log n)\) via the FFT.</li>
+</ol>
+<div class="box">Correctness of the output: \(\deg h<n\), and a polynomial of degree less than \(n\) is uniquely determined by its values at \(n\) distinct points; the \(n\) roots of unity are distinct, so the interpolated polynomial is exactly \(h\). Total running time is \(O(n\log n)+O(n)+O(n\log n)=O(n\log n)\).</div>

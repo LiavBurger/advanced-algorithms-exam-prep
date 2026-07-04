@@ -1,0 +1,9 @@
+<p>The statement is <strong>true</strong>. The key is that the number of perfect matchings of a bipartite graph is the <em>permanent</em> of its biadjacency matrix, and the permanent equals the determinant when we work modulo \(2\).</p>
+<ol class="gsteps">
+  <li>Let the two sides of \(G\) have \(n\) vertices each, and let \(A\) be the \(n\times n\) matrix with \(A_{i,j}=1\) if left-vertex \(i\) is adjacent to right-vertex \(j\), and \(0\) otherwise. A perfect matching is a bijection \(\sigma\in S_n\) pairing left \(i\) with right \(\sigma(i)\) using only real edges, i.e. one with \(A_{i,\sigma(i)}=1\) for all \(i\). The product \(\prod_{i=1}^n A_{i,\sigma(i)}\) is \(1\) exactly when \(\sigma\) is such a matching and \(0\) otherwise, so the number of perfect matchings is
+  \[\operatorname{perm}(A)=\sum_{\sigma\in S_n}\prod_{i=1}^n A_{i,\sigma(i)}.\]</li>
+  <li>The determinant is the same sum with signs:
+  \[\det(A)=\sum_{\sigma\in S_n}(-1)^{\operatorname{sgn}(\sigma)}\prod_{i=1}^n A_{i,\sigma(i)}.\]</li>
+  <li>Modulo \(2\) the sign disappears, because \(-1\equiv 1\ (\mathrm{mod}\ 2)\), so every term of \(\det(A)\) equals the corresponding term of \(\operatorname{perm}(A)\). Hence \(\det(A)\equiv\operatorname{perm}(A)\ (\mathrm{mod}\ 2)\), i.e. \(\det(A)\bmod 2 = 1\) iff the number of perfect matchings is odd.</li>
+</ol>
+<p>The determinant is computable in polynomial time (e.g. Gaussian elimination), so the algorithm just computes \(\det(A)\) and outputs \(\det(A)\bmod 2\). This decides the parity efficiently.</p>

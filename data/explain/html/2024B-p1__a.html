@@ -1,0 +1,8 @@
+<p>The statement is <strong>true</strong>. Solving integer linear programs (ILP) is NP-hard, because many NP-complete problems encode naturally as ILPs. So a polynomial-time ILP solver would place an NP-hard problem in \(\mathrm{P}\), collapsing \(\mathrm{P}=\mathrm{NP}\).</p>
+<ol class="gsteps">
+<li>Recall the reduction seen in class from <strong>maximum independent set</strong>. Given a graph \(G=(V,E)\) and a target \(k\), introduce a \(0/1\) variable \(x_v\) for each vertex \(v\), with the integrality/bound constraints \(x_v\in\{0,1\}\).</li>
+<li>For every edge \((u,v)\in E\) add the constraint \(x_u+x_v\le 1\); this forbids selecting both endpoints, so the chosen vertices \(\{v: x_v=1\}\) form an independent set.</li>
+<li>Maximize \(\sum_{v\in V} x_v\). The optimum equals the size of the maximum independent set, and it is \(\ge k\) iff \(G\) has an independent set of size \(k\). This transformation is clearly polynomial.</li>
+<li>Since deciding maximum independent set is NP-complete, a polynomial-time ILP algorithm would solve it (and every NP problem, via such encodings) in polynomial time.</li>
+<li>ILP is itself in NP (a satisfying integer assignment is a short certificate). An NP-hard problem solvable in polynomial time forces \(\mathrm{P}=\mathrm{NP}\).</li>
+</ol>

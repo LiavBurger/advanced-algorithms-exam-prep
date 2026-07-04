@@ -1,0 +1,7 @@
+<p>The LP from part (b) is \(\min \mathbf{1}^\top y\) s.t. \(A_G^\top y\ge\mathbf{1},\ y\ge 0\), i.e. \(\min\sum_v y_v\) subject to \(y_u+y_v\ge 1\) for every edge \((u,v)\). Adding the integrality constraint \(y_v\in\{0,1\}\) turns this into the <strong>minimum vertex cover</strong> problem.</p>
+<ol class="gsteps">
+  <li><strong>What the integral constraint means.</strong> With \(y_v\in\{0,1\}\), read \(y_v=1\) as "vertex \(v\) is chosen" and collect \(S=\{v:y_v=1\}\). The edge constraint \(y_u+y_v\ge 1\) then says at least one of \(u,v\) is chosen — exactly the requirement that the edge \((u,v)\) is <em>covered</em> by \(S\). Imposing this for all edges says \(S\) is a vertex cover.</li>
+  <li><strong>What the objective means.</strong> \(\min\sum_v y_v=\min|S|\), so we are looking for the smallest set of vertices touching every edge — the minimum vertex cover.</li>
+  <li><strong>The duality picture.</strong> The primal (part (a)) is fractional maximum matching, and its dual (part (b)) is fractional minimum vertex cover. LP duality gives max fractional matching \(=\) min fractional vertex cover. The LP solutions may be non-integral in general, which is why we call them "fractional."</li>
+</ol>
+<p>For <em>bipartite</em> graphs the LPs have integral optima on both sides, so the fractional values collapse to genuine matchings and covers: maximum matching \(=\) minimum vertex cover. This is König's theorem, obtained here for free from LP duality plus integrality of the bipartite polytope.</p>

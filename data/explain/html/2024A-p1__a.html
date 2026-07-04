@@ -1,0 +1,7 @@
+<p>The statement is <strong>false</strong>. It is contradicted directly by the strong duality theorem.</p>
+<ol class="gsteps">
+  <li>Fix the standard convention: \((P)\) is a minimization LP in standard form, \(\min c^\top x\) s.t. \(Ax=b,\ x\ge 0\), and \((D)\) is its dual, \(\max b^\top y\) s.t. \(A^\top y\le c\). "Optimum of \((P)\)" is the minimized value, "optimum of \((D)\)" is the maximized value.</li>
+  <li>Weak duality already gives \(c^\top x\ge b^\top y\) for all feasible \(x,y\), so \(\text{opt}(P)\ge\text{opt}(D)\) always. The statement asks whether this can be a <em>strict</em> inequality when both are feasible.</li>
+  <li>Strong duality says: if both \((P)\) and \((D)\) are feasible, then both optima are finite and <em>equal</em>, \(\text{opt}(P)=\text{opt}(D)\). There is no duality gap.</li>
+</ol>
+<p>Because the two optimal values must coincide, it is impossible for the optimum of \((P)\) to be strictly greater than the optimum of \((D)\). Hence the claimed situation cannot occur, and the statement is false.</p>

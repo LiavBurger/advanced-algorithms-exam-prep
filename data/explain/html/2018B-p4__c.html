@@ -1,0 +1,9 @@
+<p>We must justify the recurrence \(\mathbb{E}[T(n)] \le \frac{2}{n}\sum_{k=n/2}^{n-1}\mathbb{E}[T(k)] + \Theta(n)\). The idea: condition on which element becomes the pivot, then bound each case by the largest subproblem it could create.</p>
+<ol class="gsteps">
+<li><strong>Condition on the pivot's rank.</strong> The pivot is uniform, so for each \(k\in\{1,\dots,n\}\) it is the \(k\)-th largest element with probability \(\tfrac1n\). Partitioning costs \(\Theta(n)\) regardless.</li>
+<li><strong>Bound the recursive call.</strong> If the pivot is the \(k\)-th largest, the two sides have sizes \(k-1\) and \(n-k\). Selection recurses on only one side, but we don't know which; to get an upper bound we pessimistically assume it recurses on the <em>larger</em> side, costing \(\max\big(\mathbb{E}[T(k-1)],\,\mathbb{E}[T(n-k)]\big)\).</li>
+<li><strong>Average over the pivot.</strong> By the law of total expectation,
+\[\mathbb{E}[T(n)] \le \frac1n\sum_{k=1}^{n}\max\big(\mathbb{E}[T(k-1)],\mathbb{E}[T(n-k)]\big) + \Theta(n).\]</li>
+<li><strong>Collapse the max.</strong> As \(k\) runs over \(1,\dots,n\), the two arguments \(k-1\) and \(n-k\) each range over \(0,\dots,n-1\). The larger of the pair is always some index in the upper half \(\{\lceil n/2\rceil,\dots,n-1\}\). Each such index is hit by at most two values of \(k\) (once as \(k-1\), once as \(n-k\)), so the sum of maxima is at most \(2\sum_{k=n/2}^{n-1}\mathbb{E}[T(k)]\).</li>
+</ol>
+<p>Substituting gives \(\mathbb{E}[T(n)] \le \frac{2}{n}\sum_{k=n/2}^{n-1}\mathbb{E}[T(k)] + \Theta(n)\), as required. (Rounding of \(n/2\) is ignored per the instructions.)</p>

@@ -1,0 +1,9 @@
+<p>The answer is <strong>Yes</strong>, and the reason is worth spelling out because it is exactly the point of randomization.</p>
+<div class="box">Key idea: the randomness lives in the algorithm's coin flips, not in the input. So the expected-time guarantee holds for <em>every</em> input, including the adversary's worst one.</div>
+<p>For a <em>deterministic</em> algorithm, "worst case" and "average case" refer to averaging over inputs, so a bound proved on random inputs need not survive on the single nastiest input. Randomized selection is different: for a fixed input array, the running time \(T(n)\) is still a random variable, but the source of that randomness is the algorithm's own uniformly random pivot choices, not any assumption about the array.</p>
+<ol class="gsteps">
+<li>Fix any input array \(A\), even one chosen adversarially to be worst possible.</li>
+<li>The analysis bounds \(\mathbb{E}[T(n)]\) where the expectation is taken over the internal coin flips (pivot selections). Nowhere does it assume the array elements are random or ordered in a lucky way.</li>
+<li>Hence the bound \(\mathbb{E}[T(n)] = O(n)\) is a statement about the worst-case input, averaged over the algorithm's randomness.</li>
+</ol>
+<p>So yes: the expected-running-time analysis applies to the worst-case input array. An adversary who sees the array but not the future coin flips cannot force bad behavior in expectation.</p>

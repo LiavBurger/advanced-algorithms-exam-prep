@@ -1,0 +1,11 @@
+<p>Frequency \(f\) means every element \(j\) lies in at most \(f\) of the sets. We use the LP-relaxation-and-round paradigm on the program from (a) to get a cover of cost at most \(f\cdot\text{OPT}\).</p>
+<ol class="gsteps">
+  <li><strong>Relax.</strong> Replace \(x_i\in\{0,1\}\) by \(0\le x_i\le 1\) and solve the resulting LP in polynomial time; call the optimum \(x^{*}\). Its value \(\text{LPOPT}=\sum_i c_i x_i^{*}\) satisfies \(\text{LPOPT}\le\text{OPT}\), because every integer cover is also LP-feasible, so relaxing can only lower the minimum.</li>
+  <li><strong>Round.</strong> Include set \(S_i\) in the cover iff \(x_i^{*}\ge 1/f\); let \(x\) be this \(0/1\) vector.</li>
+  <li><strong>Feasibility.</strong> Fix an element \(j\). Its constraint \(\sum_{i:\,S_i\ni j}x_i^{*}\ge 1\) is a sum of at most \(f\) terms (frequency \(f\)). If all were below \(1/f\) the sum would be below \(f\cdot\tfrac1f=1\), a contradiction; so some set containing \(j\) has \(x_i^{*}\ge 1/f\) and is taken. Thus every element is covered.</li>
+  <li><strong>Cost.</strong> For every \(i\), \(x_i\le f\,x_i^{*}\): if \(x_i=0\) this holds since \(x_i^{*}\ge 0\); if \(x_i=1\) then by the rounding rule \(x_i^{*}\ge 1/f\), so \(f\,x_i^{*}\ge 1=x_i\).</li>
+</ol>
+<div class="box">
+\[\text{ALG}=\sum_{i=1}^{m}c_i x_i\ \le\ f\sum_{i=1}^{m}c_i x_i^{*}\ =\ f\cdot\text{LPOPT}\ \le\ f\cdot\text{OPT}.\]
+</div>
+<p>The first inequality multiplies \(x_i\le f\,x_i^{*}\) by \(c_i\ge 0\) and sums; the last step uses \(\text{LPOPT}\le\text{OPT}\). So this polynomial-time algorithm returns a valid cover of cost at most \(f\) times optimal, an \(f\)-approximation.</p>

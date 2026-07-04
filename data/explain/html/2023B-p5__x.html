@@ -1,0 +1,11 @@
+<p>The goal is to compute the transitive closure \(G^{*}\) — which pairs \((i,j)\) are connected by <em>some</em> directed path — in total time asymptotically below \(n^3\). The trick is to reduce reachability to a single matrix power, then compute that power with fast matrix multiplication and repeated squaring.</p>
+<ol class="gsteps">
+  <li><strong>Path counts.</strong> Let \(A\) be the adjacency matrix of \(G\). A standard fact is that \((A^{k})_{ij}\) equals the number of walks of length <em>exactly</em> \(k\) from \(i\) to \(j\); in particular \((A^{k})_{ij}>0\) iff such a walk exists.</li>
+  <li><strong>Adding self-loops turns "exactly" into "at most".</strong> Let \(A'=A+I\), the adjacency matrix of \(G'\) obtained by adding a self-loop at every vertex. Then \((A')^{k}_{ij}>0\) iff \(G\) has a path from \(i\) to \(j\) of length <em>at most</em> \(k\). Reason: expanding \((A+I)^k\) mixes in the identity, and a self-loop lets us pad any shorter walk out to length exactly \(k\); conversely a positive entry corresponds to some walk of length \(\le k\) in \(G\).</li>
+  <li><strong>Which power to use.</strong> If \(i\) can reach \(j\) at all, it can do so along a simple path, which uses at most \(n\) vertices and hence has length at most \(n\). So reachability is captured exactly by \((A')^{n}\): set \((i,j)\in E^{*}\) iff \((A')^{n}_{ij}>0\).</li>
+  <li><strong>The algorithm.</strong> Compute \(A'=A+I\); compute \((A')^{n}\) by repeated squaring (\(\lceil\log_2 n\rceil\) squarings, each a fast matrix multiplication); read off \(G^{*}\) from the positive entries.</li>
+</ol>
+<div class="box">
+Forming \(A'\) and reading off \(G^{*}\) each cost \(O(n^{2})\). The power \((A')^{n}\) needs \(O(\log n)\) matrix multiplications, each \(O(n^{\omega})\), for \(O(n^{\omega}\log n)\) total. Since \(\omega<3\), \(n^{\omega}\log n=o(n^{3})\).
+</div>
+<p>Repeated squaring is what keeps the count of multiplications at \(O(\log n)\) rather than \(n\): \((A')^{n}\) is obtained by squaring \(O(\log n)\) times instead of multiplying \(n\) times.</p>

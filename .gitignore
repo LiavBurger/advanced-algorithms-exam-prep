@@ -11,3 +11,4 @@ __pycache__/
 .DS_Store
 study-workbook.html
 fonttest.*
+data/explain/batch-*.json

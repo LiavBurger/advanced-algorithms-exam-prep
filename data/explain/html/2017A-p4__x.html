@@ -1,0 +1,12 @@
+<p>We sample bits from the stream and output the sample mean as our estimate of the true fraction \(\mu\) of ones. We must choose the number of samples \(n\) so that the estimate is within \(0.01\) of \(\mu\) with probability at least \(0.9\). Chernoff tells us how large \(n\) must be.</p>
+<ol class="gsteps">
+<li><strong>Setup.</strong> Let \(X_i\) be an indicator random variable for whether the \(i\)-th sampled bit is a one; the samples are independent, and \(\mathbb{E}[X_i]=\mu\). The estimate is \(\frac{1}{n}\sum_i X_i\), with mean \(\mu\).</li>
+<li><strong>Chernoff.</strong> Using the multiplicative (additive-in-this-form) Chernoff bound for the deviation of the sample mean,
+\[\Pr\!\left[\Big|\tfrac{1}{n}\sum_i X_i-\mu\Big|\ge 0.01\right]\le 2\,e^{-\frac{n(0.01)^2}{3\mu}}.\]
+The factor \(2\) covers both tails (estimate too high or too low).</li>
+<li><strong>Impose the confidence requirement.</strong> We need this failure probability at most \(1-0.9=0.1\):
+\[2\,e^{-\frac{n(0.01)^2}{3\mu}}\le 0.1 \iff e^{-\frac{n(0.01)^2}{3\mu}}\le 0.05 \iff e^{\frac{n(0.01)^2}{3\mu}}\ge 20.\]
+Taking logs, \(\frac{n(0.01)^2}{3\mu}\ge\ln 20\), i.e. \(\ln 20\le \frac{n}{30000\,\mu}\) because \((0.01)^2=10^{-4}\) and \(3/10^{-4}=30000\).</li>
+<li><strong>Solve for \(n\) without knowing \(\mu\).</strong> Rearranging gives \(n\ge \ln(20)\cdot 30000\cdot \mu\). Since \(\mu\le 1\) always, it suffices to take \(n=\ln(20)\cdot 30000\), which guarantees the bound for every possible \(\mu\).</li>
+</ol>
+<p>So \(\lceil 30000\ln 20\rceil\) samples (a fixed constant, about \(90000\), independent of the stream length) suffice to estimate the fraction of ones within \(0.01\) with probability at least \(0.9\).</p>

@@ -1,0 +1,11 @@
+<p>Recall the setup: \(G=(V,E)\) is bipartite with \(V=V_1\cup V_2\) and \(E\subseteq V_1\times V_2\). A <em>semi-matching</em> is an edge set \(E'\subseteq E\) in which every vertex of \(V_1\) has degree \(0\) or \(1\), while every vertex of \(V_2\) has degree \(0,1\), or \(2\). We want the largest such \(E'\), and we model it as a \(0/1\) program.</p>
+<ol class="gsteps">
+  <li>For each edge \(e\in E\) introduce a binary variable \(x_e\in\{0,1\}\), where \(x_e=1\) means \(e\) is chosen for the solution and \(x_e=0\) means it is not.</li>
+  <li>"Largest semi-matching" means maximizing the number of chosen edges, so the objective is \(\max\sum_{e\in E}x_e\).</li>
+  <li>The degree cap on a \(V_1\)-vertex \(v\) is \(1\): the chosen edges touching \(v\) are \(\sum_{e=(v,u)}x_e\), so we require \(\sum_{e=(v,u)}x_e\le 1\) for every \(v\in V_1\).</li>
+  <li>The degree cap on a \(V_2\)-vertex \(v\) is \(2\): similarly \(\sum_{e=(u,v)}x_e\le 2\) for every \(v\in V_2\). There is exactly one constraint per vertex, and a \(V_i\)-vertex is capped at \(i\).</li>
+</ol>
+<div class="box">
+\[\max\ \sum_{e\in E}x_e\quad\text{s.t.}\quad \sum_{e=(v,u)}x_e\le 1\ \forall v\in V_1,\qquad \sum_{e=(u,v)}x_e\le 2\ \forall v\in V_2,\qquad x_e\in\{0,1\}.\]
+</div>
+<p>Any feasible \(0/1\) vector respects both degree caps, hence is the indicator of a semi-matching, and its objective is that set's size; so an optimal solution is a maximum semi-matching.</p>

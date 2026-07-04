@@ -1,0 +1,10 @@
+<p>The statement is <strong>true</strong>, and it is a direct application of Markov's inequality. The key move is to turn a statement about students into a statement about a single random variable.</p>
+<ol class="gsteps">
+<li>Pick a student uniformly at random and let \(X\) be that student's grade. Because the student is uniform, for any threshold \(a\) the probability \(\Pr[X\ge a]\) equals exactly the <em>fraction</em> of students whose grade is at least \(a\). This is what lets us translate "at most half the students" into "probability at most \(1/2\)".</li>
+<li>The average grade of the class is precisely \(\mathbb{E}[X]\), the mean of \(X\) over the uniform choice of student.</li>
+<li>Grades are non-negative, so Markov's inequality applies: for a non-negative random variable and any \(a>0\), \(\Pr[X\ge a]\le \mathbb{E}[X]/a\).</li>
+<li>Apply it with \(a=2\mathbb{E}[X]\) (twice the average):
+\[\Pr\big[X\ge 2\,\mathbb{E}[X]\big]\le \frac{\mathbb{E}[X]}{2\,\mathbb{E}[X]}=\frac12.\]</li>
+<li>By Step 1, the left-hand side is the fraction of students scoring at least twice the average. Hence at most half the class can achieve this.</li>
+</ol>
+<p>(This implicitly assumes \(\mathbb{E}[X]>0\), i.e. the average is not zero; otherwise "twice the average" is \(0\) and the statement is trivial anyway. Markov gives the bound for free precisely because it needs nothing beyond non-negativity.)</p>

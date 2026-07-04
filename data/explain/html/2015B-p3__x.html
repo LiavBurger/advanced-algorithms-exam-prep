@@ -1,0 +1,12 @@
+<p>Let \(\mathrm{OPT}\) be the weight of a minimum TSP tour and \(\mathrm{MATCH}\) the weight of a minimum-weight perfect (maximum) matching in the complete weighted graph \(G\). We prove \(\mathrm{MATCH}\le\mathrm{OPT}/2\) by extracting two matchings from an optimal tour.</p>
+<ol class="gsteps">
+<li><strong>Setup.</strong> Assume without loss of generality that \(n\) is even (a perfect matching needs an even number of vertices). Let \(x_1,x_2,\dots,x_n\) be the vertices in the order they are visited by a minimum TSP tour; the tour uses the \(n\) edges \(x_1x_2, x_2x_3,\dots,x_{n-1}x_n, x_nx_1\), of total weight \(\mathrm{OPT}\).</li>
+<li><strong>Split the tour's edges into two matchings.</strong> Take the alternating edges
+\[
+M_1=\{x_1x_2,\ x_3x_4,\ \dots,\ x_{n-1}x_n\},\qquad
+M_2=\{x_2x_3,\ x_4x_5,\ \dots,\ x_nx_1\}.\]
+Each \(M_i\) touches every vertex exactly once, so both are perfect (hence maximum) matchings, and together they use each tour edge exactly once, so \(w(M_1)+w(M_2)=\mathrm{OPT}\).</li>
+<li><strong>One of them is cheap.</strong> Since \(w(M_1)+w(M_2)=\mathrm{OPT}\), the smaller of the two satisfies \(\min\{w(M_1),w(M_2)\}\le\mathrm{OPT}/2\) (the minimum is at most the average).</li>
+<li><strong>Conclude.</strong> \(\mathrm{MATCH}\) is the minimum weight over <em>all</em> perfect matchings, so it is at most the weight of either \(M_1\) or \(M_2\); in particular \(\mathrm{MATCH}\le\min\{w(M_1),w(M_2)\}\le\mathrm{OPT}/2\).</li>
+</ol>
+<p>Thus \(\mathrm{MATCH}\le\mathrm{OPT}/2\), as required.</p>

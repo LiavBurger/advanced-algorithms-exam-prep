@@ -1,0 +1,9 @@
+<p>The algorithm is pure random sampling: pick \(v_1,\dots,v_s\) independently and uniformly from \(\{-1,1\}^n\) and output \(S=\{v_1,\dots,v_s\}\), with \(s=O(n/\varepsilon^2)\). We show this \(S\) is \(\varepsilon\)-unbiased with probability at least \(0.99\).</p>
+<ol class="gsteps">
+  <li><strong>Each character is a fair coin.</strong> Fix a nonempty \(I\subseteq\{1,\dots,n\}\). For a uniform \(v\in\{-1,1\}^n\), the value \(e_I(v)=\prod_{i\in I}v_i\) is a product of independent uniform \(\pm 1\) variables, hence itself uniform on \(\{-1,1\}\); in particular it has mean \(0\). So \(\sum_{j=1}^s e_I(v_j)\) is a sum of \(s\) independent, mean-zero, \(\pm1\)-bounded variables.</li>
+  <li><strong>Chernoff for one \(I\).</strong> Because the \(v_j\) are independent, a Chernoff/Hoeffding bound gives, for a constant \(c>0\),
+  \[\Pr\!\Big[\big|\textstyle\sum_{j=1}^s e_I(v_j)\big|>\varepsilon s\Big]\le e^{-c\varepsilon^2 s}.\]</li>
+  <li><strong>Choose the sample size.</strong> Pick \(s=O(n/\varepsilon^2)\) large enough that \(e^{-c\varepsilon^2 s}\le 2^{-2n}\); solving \(c\varepsilon^2 s\ge 2n\ln 2\) needs only \(s\ge \tfrac{2\ln 2}{c}\cdot\tfrac{n}{\varepsilon^2}\), which is \(O(n/\varepsilon^2)\).</li>
+  <li><strong>Union bound over all \(I\).</strong> There are fewer than \(2^n\) nonempty subsets \(I\). By the union bound the probability that <em>some</em> \(I\) has \(\big|\sum_j e_I(v_j)\big|>\varepsilon s\) is at most \(2^n\cdot 2^{-2n}=2^{-n}\).</li>
+</ol>
+<p>Thus with probability at least \(1-2^{-n}\ge 0.99\), every nonempty \(I\) satisfies \(\big|\sum_{v\in S}e_I(v)\big|\le \varepsilon s=\varepsilon|S|\), i.e. \(S\) is \(\varepsilon\)-unbiased. Sampling \(sn=O(n^2/\varepsilon^2)\) bits, the algorithm runs in time polynomial in \(n\).</p>

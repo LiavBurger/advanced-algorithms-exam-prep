@@ -1,0 +1,8 @@
+<p>We give a greedy algorithm for MAX-3-COL. Recall the goal: color the vertices with \(\{a,b,c\}\) so that the total weight of edges colored <em>legally</em> (endpoints differently colored) is as large as possible. Equivalently we partition \(V\) into three color classes \(A,B,C\) (containing the vertices colored \(a,b,c\)); an edge is legal iff its endpoints fall into different classes. The algorithm colors vertices one at a time, each time choosing the class that creates the least new illegal weight.</p>
+<ol class="gsteps">
+<li>Initialize the three classes empty: \(A=B=C=\varnothing\).</li>
+<li>Process the vertices \(v\) in an arbitrary fixed order. For the current vertex \(v\) and each class \(X\in\{A,B,C\}\), let \(w(v,X)\) be the total weight of edges connecting \(v\) to vertices <em>already placed</em> in \(X\).</li>
+<li>Add \(v\) to a class \(X\in\{A,B,C\}\) for which \(w(v,X)\) is minimal. (Placing \(v\) in class \(X\) makes exactly the edges from \(v\) to \(X\) illegal, since those endpoints now share \(v\)'s color, so we greedily minimize this newly created illegal weight.)</li>
+<li>After all vertices are placed, output the coloring: \(c(v)=a\) for \(v\in A\), \(c(v)=b\) for \(v\in B\), and \(c(v)=c\) for \(v\in C\).</li>
+</ol>
+<div class="box">This is the natural three-color extension of the two-color greedy max-cut algorithm from Homework 2; the algorithm and its analysis are identical in structure.</div>

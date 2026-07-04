@@ -1,0 +1,8 @@
+<p>Since no bin can help beyond one-item-per-bin, at most \(n\) bins are ever needed; so index candidate bins \(j\in\{1,\dots,n\}\). Use two families of \(0/1\) variables.</p>
+<ol class="gsteps">
+<li><strong>Variables.</strong> \(y_j\in\{0,1\}\): does bin \(j\) get used (\(1\)) or not (\(0\)). \(x_{i,j}\in\{0,1\}\): is item \(i\) placed in bin \(j\).</li>
+<li><strong>Objective.</strong> Minimize the number of used bins: \(\min\sum_{j=1}^{n}y_j\).</li>
+<li><strong>Each item placed exactly once:</strong> \(\sum_{j=1}^{n}x_{i,j}=1\) for every item \(i\). With \(0/1\) values, this forces exactly one \(x_{i,j}\) to be \(1\), i.e. item \(i\) sits in exactly one bin.</li>
+<li><strong>Capacity, tied to "used":</strong> \(\sum_{i=1}^{n}w_i x_{i,j}\le B\,y_j\) for every bin \(j\). The left side is the total weight loaded into bin \(j\). If \(y_j=1\) it reads \(\le B\) (respect capacity); if \(y_j=0\) it reads \(\le 0\), which (as \(w_i\ge0\)) forces every \(x_{i,j}=0\) — nothing may be placed in an unused bin. This single constraint enforces both capacity and the meaning of \(y_j\).</li>
+</ol>
+<div class="box">Why every feasible IP solution is a valid packing: the placement constraints put each item in exactly one bin; the capacity constraints keep each used bin within weight \(B\); and any bin holding an item is forced to have \(y_j=1\), so \(\sum_j y_j\) truly counts the bins used. Conversely any real packing yields a feasible \((x,y)\) of equal cost, so the IP optimum equals the minimum number of bins.</div>

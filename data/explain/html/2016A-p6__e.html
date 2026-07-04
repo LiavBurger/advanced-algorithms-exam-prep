@@ -1,0 +1,10 @@
+<p>A simplex "basis" names which variables are allowed to be nonzero; the remaining (nonbasic) variables are set to \(0\), and the basic ones are solved for from the two equality constraints. Here the basis is \(\{x_1,s_1\}\).</p>
+<ol class="gsteps">
+  <li>There are five variables \(x_1,x_2,x_3,s_1,s_2\). Since the basis is \(\{x_1,s_1\}\), the <em>nonbasic</em> variables are \(x_2,x_3,s_2\), and we set \(x_2=x_3=s_2=0\).</li>
+  <li>Use the second equality constraint \(3x_1-x_2+2x_3+s_2=9\). Substituting \(x_2=x_3=s_2=0\) leaves \(3x_1=9\), hence \(x_1=3\).</li>
+  <li>Use the first equality constraint \(2x_1-x_2-s_1=-5\). Substituting \(x_2=0\) gives \(2x_1-s_1=-5\); with \(x_1=3\) this is \(6-s_1=-5\), so \(s_1=11\).</li>
+</ol>
+<div class="box">
+\[x_1=3,\quad x_2=0,\quad x_3=0,\quad s_1=11,\quad s_2=0.\]
+</div>
+<p>Both basic variables came out nonnegative (\(x_1=3\ge 0\), \(s_1=11\ge 0\)), so this vertex is feasible. (Equivalently, from the dictionary form of part (d): \(s_2=9-3x_1+x_2-2x_3=0\) forces \(x_1=3\), and \(s_1=5+2x_1-x_2=5+6=11\).) The basis \(\{x_1,s_1\}\) therefore corresponds to the feasible vertex above.</p>

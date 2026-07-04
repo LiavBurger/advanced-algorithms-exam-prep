@@ -1,0 +1,11 @@
+<p>We want a single vector \(u\in\{0,1\}^n\) far from <em>every</em> vector in \(S\), specifically \(d(u,v)\ge n/3\) for all \(v\in S\), where \(|S|\le n^{2024}\). The algorithm is as simple as possible: <strong>pick \(u\) uniformly at random</strong>, i.e. each coordinate \(u_i\) is \(0\) or \(1\) independently with probability \(1/2\). We show it works with probability \(\ge 0.9\).</p>
+<ol class="gsteps">
+<li><strong>Expected distance to one fixed \(v\).</strong> Fix \(v\in S\). Let \(X_i\) be an indicator random variable for the event that \(u_i\ne v_i\). Since \(v_i\) is fixed and \(u_i\) is a fair coin, \(\mathbb{E}[X_i]=\Pr[X_i=1]=1/2\). The Hamming distance is \(d(u,v)=\sum_{i=1}^n X_i\), so by linearity \(\mathbb{E}[d(u,v)]=\sum_{i=1}^n\mathbb{E}[X_i]=n/2\).</li>
+<li><strong>Concentration for one fixed \(v\).</strong> The \(X_i\) are independent, so \(d(u,v)\) is a sum of independent bits and Chernoff applies. The bad event \(d(u,v)\le n/3\) means \(d\) is below its mean by \(n/2-n/3=n/6\), so \(\{d\le n/3\}\subseteq\{|d-\mathbb{E}[d]|\ge n/6\}\). Chernoff gives
+\[\Pr[d(u,v)\le n/3]\le\Pr\big[|d(u,v)-\mathbb{E}[d(u,v)]|\ge n/6\big]\le e^{-cn}\]
+for some constant \(c>0\) (the deviation \(n/6\) is a constant fraction of the mean \(n/2\), giving exponential decay).</li>
+<li><strong>Union bound over all of \(S\).</strong> The vector fails only if it is too close to <em>some</em> \(v\in S\). Summing the per-\(v\) failure probability,
+\[\Pr[\exists v\in S:\ d(u,v)\le n/3]\le |S|\cdot e^{-cn}\le n^{2024}\cdot e^{-cn}.\]</li>
+<li><strong>This is tiny for large \(n\).</strong> Since \(n^{2024}=e^{2024\ln n}\) grows only polynomially (logarithmically in the exponent) while \(e^{cn}\) grows exponentially, \(n^{2024}e^{-cn}\to 0\); in particular it is \(\le 0.1\) for large enough \(n\).</li>
+</ol>
+<p>Hence with probability at least \(0.9\) the random \(u\) satisfies \(d(u,v)\ge n/3\) for every \(v\in S\), as required.</p>

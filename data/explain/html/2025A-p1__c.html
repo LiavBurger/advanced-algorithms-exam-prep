@@ -1,0 +1,7 @@
+<p>The claim is <strong>false</strong>. The statement asserts that computing the \(n\) products \(Av_1,\dots,Av_n\) <em>requires</em> time \(n^3\); the word "requires" means it is a proven lower bound. It is not.</p>
+<ol class="gsteps">
+<li>Stack the vectors as the columns of an \(n\times n\) matrix \(B = [\,v_1 \mid v_2 \mid \cdots \mid v_n\,]\). Then the matrix product \(AB\) has columns \(Av_1,\dots,Av_n\). So computing all \(n\) products is the same task as one \(n\times n\) matrix multiplication.</li>
+<li>Fast matrix multiplication (Strassen and its successors) multiplies two \(n\times n\) matrices in \(O(n^{\omega})\) time, where \(\omega < 3\) (Strassen already gives \(\omega \le \log_2 7 \approx 2.81\)). This beats the naive \(n^3\).</li>
+<li>The hypothesis that \(v_1,\dots,v_n\) are linearly independent is irrelevant: the algorithm forms \(B\) and multiplies regardless of any relationship among the columns, so it never uses independence.</li>
+</ol>
+<p>Since there is an algorithm running in \(O(n^{\omega})\) with \(\omega < 3\), the claim that \(n^3\) time is required is refuted.</p>

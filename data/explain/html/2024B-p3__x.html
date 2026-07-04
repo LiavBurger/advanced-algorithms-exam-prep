@@ -1,0 +1,10 @@
+<p>The bound falls out of Karger's success-probability analysis together with the observation that the algorithm returns at most one cut, so different cuts correspond to disjoint events.</p>
+<ol class="gsteps">
+  <li><strong>Single-cut guarantee.</strong> Fix any particular minimum cut \((A_0,B_0)\). As shown in class, one run of Karger's contraction algorithm outputs exactly this cut with probability at least \(\dfrac{2}{n(n-1)}=\dfrac{1}{\binom{n}{2}}\) (the probability that no edge crossing \((A_0,B_0)\) is ever contracted). This lower bound holds for <em>every</em> minimum cut, since the analysis used nothing special about \((A_0,B_0)\) beyond it being minimum.</li>
+  <li><strong>Disjoint events.</strong> On any single run the algorithm outputs one specific cut, so the events "the algorithm returns \((A,B)\)" for distinct cuts \((A,B)\) are mutually exclusive. Therefore the probabilities of returning the various minimum cuts add up, and their sum is at most the probability of returning some minimum cut, which is at most \(1\).</li>
+  <li><strong>Sum and rearrange.</strong> Let \(M(G)\) be the set of minimum cuts. Combining the two points,
+  \[
+  1\;\ge\;\sum_{(A,B)\in M(G)}\Pr[\text{the algorithm returns }(A,B)]\;\ge\;\sum_{(A,B)\in M(G)}\frac{2}{n(n-1)}\;=\;\frac{2}{n(n-1)}\,\lvert M(G)\rvert.
+  \]</li>
+</ol>
+<p>Solving \(\dfrac{2}{n(n-1)}\lvert M(G)\rvert\le 1\) gives \(\lvert M(G)\rvert\le\dfrac{n(n-1)}{2}\), the claimed bound on the number of minimum cuts.</p>

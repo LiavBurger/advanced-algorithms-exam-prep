@@ -1,0 +1,9 @@
+<p>To lower-bound a maximization LP it suffices to exhibit <em>one</em> feasible point: the optimum is at least the objective value of any feasible solution. The proof does exactly this with the "all one-halves" point.</p>
+<div class="box">Key idea: set every \(x_v=\tfrac12\). It satisfies every constraint with room to spare, and its objective is \(n/2\), so the LP optimum is \(\ge n/2\).</div>
+<ol class="gsteps">
+<li>Feasibility of the edge constraints: for any edge \((u,v)\), \(x_u+x_v=\tfrac12+\tfrac12=1\le 1\). So each edge constraint holds (with equality).</li>
+<li>Nonnegativity: \(x_v=\tfrac12\ge 0\) for all \(v\). Hence the point is feasible.</li>
+<li>Objective value: \(\sum_{v\in V}x_v=\sum_{v\in V}\tfrac12=\tfrac{n}{2}\), since \(|V|=n\).</li>
+<li>Because the LP maximizes, its optimum is \(\ge\) the value of this feasible point, i.e. \(\mathrm{OPT}_{LP}\ge n/2\).</li>
+</ol>
+<p>This is notable because the integer optimum (maximum independent set) can be as small as \(1\), e.g. on a clique — so the relaxation can be a factor \(\Theta(n)\) larger than the true integer answer.</p>

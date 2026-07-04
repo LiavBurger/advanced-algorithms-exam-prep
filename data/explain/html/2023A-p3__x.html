@@ -1,0 +1,10 @@
+<p>Maximum Triple Cut: partition \(V\) into three sets \(V_1,V_2,V_3\) maximizing the number of edges whose endpoints land in different sets. We give a randomized \(2/3\)-approximation and note it derandomizes.</p>
+<div class="box">Key idea: with three parts, a random assignment separates any fixed edge's two endpoints with probability \(2/3\). Linearity of expectation turns this per-edge probability into an expected \(\tfrac23\) of all edges cut.</div>
+<ol class="gsteps">
+<li><strong>Randomized algorithm.</strong> Independently assign each vertex \(v\in V\) to \(V_1\), \(V_2\), or \(V_3\), each with probability \(1/3\).</li>
+<li><strong>Probability an edge is cut.</strong> Fix edge \((u,v)\). Condition on \(u\)'s set; whatever it is, \(v\) lands in that same set with probability exactly \(1/3\) (its assignment is independent). So the endpoints differ — the edge crosses the cut — with probability \(1-\tfrac13=\tfrac23\).</li>
+<li><strong>Expected cut size.</strong> Let \(X_e\) be an indicator random variable for the event that edge \(e\) is cut, so \(\mathbb{E}[X_e]=\tfrac23\). By linearity of expectation, the expected number of cut edges is
+\[\mathbb{E}[\mathrm{ALG}] = \sum_{e\in E}\mathbb{E}[X_e] = \frac{2}{3}|E|.\]</li>
+<li><strong>Approximation ratio.</strong> The optimum cuts at most every edge, \(\mathrm{OPT}\le|E|\), so \(\mathbb{E}[\mathrm{ALG}]=\tfrac23|E|\ge\tfrac23\mathrm{OPT}\).</li>
+<li><strong>Derandomization.</strong> By the method of conditional expectations (as in class), fix the vertices one at a time: for each vertex choose the set among \(V_1,V_2,V_3\) that maximizes the conditional expected cut given the choices so far. This never decreases the conditional expectation below its starting value \(\tfrac23|E|\), yielding a deterministic assignment cutting at least \(\tfrac23|E|\ge\tfrac23\mathrm{OPT}\) edges.</li>
+</ol>

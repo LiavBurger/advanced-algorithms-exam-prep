@@ -1,0 +1,13 @@
+<p>We prove three things: the algorithm runs in polynomial time, its output is a hitting set, and its size is at most \(3\cdot\mathrm{OPT}\). The structure copies the vertex-cover 2-approximation proof.</p>
+<ol class="gsteps">
+<li><strong>Polynomial time.</strong> Represent \(X\) as a linked list. Testing whether \(X\cap D=\emptyset\) for a subset \(D\) (with \(|D|\le 3\)) takes \(O(|X|)\) time. Since we only ever add elements that belong to some \(D\in C\), we have \(X\subseteq\bigcup_{D\in C} D\), so \(|X|\) is bounded by the input size and each of the \(|C|\) iterations is polynomial. Hence the whole algorithm is polynomial.</li>
+<li><strong>Correctness (it is a hitting set).</strong> By the "otherwise do nothing" branch, whenever we finished processing a subset \(D\) we had \(X\cap D\ne\emptyset\): either it was already hit, or we forced it by adding all of \(D\). So every subset ends up hit.</li>
+<li><strong>Approximation ratio.</strong> Let \(k\) be the number of subsets on which the "add" condition \(X\cap D=\emptyset\) fired. Two counts:
+<ul>
+<li><em>Upper bound on our output.</em> Each firing adds at most \(|D|\le 3\) elements, so \(|X|\le 3k\).</li>
+<li><em>Lower bound on OPT.</em> The \(k\) subsets we added are pairwise disjoint: we add \(D\) only when it currently shares no element with \(X\), and \(X\) already contains every previously added set. A single element can therefore hit at most one of these \(k\) disjoint subsets. Any hitting set, in particular an optimal one, must contain at least one element from each, so \(\mathrm{OPT}\ge k\).</li>
+</ul>
+</li>
+<li>Combine: \(|X|\le 3k \le 3\,\mathrm{OPT}\).</li>
+</ol>
+<p>Thus the greedy is a polynomial-time 3-approximation for minimum hitting set when \(|D|\le 3\).</p>

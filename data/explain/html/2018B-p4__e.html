@@ -1,0 +1,12 @@
+<p>We are given a Monte Carlo view: the selection algorithm runs in expected \(\le cn\) operations. We want a version that <em>always</em> stops within \(25cn\) operations and is correct with probability \(\ge 1-2^{-5}\). The trick is capped repetition plus Markov.</p>
+<div class="box">Key idea: a run that goes over \(2cn\) steps is "unlucky." By Markov each run is unlucky with probability \(\le\tfrac12\); make the runs independent and 5 of them all fail with probability \(\le 2^{-5}\).</div>
+<ol class="gsteps">
+<li><strong>Cap each run.</strong> Run the algorithm, but abort a run as soon as its step counter reaches \(2c n\). Do this at most 5 times, using fresh independent randomness each time.</li>
+<li><strong>Output rule.</strong> If some run finishes within its \(2cn\) budget, return its (correct) answer. If all 5 runs are aborted, return the first array element (a possibly wrong guess).</li>
+<li><strong>Worst-case operation count.</strong> Each run does at most \(2cn\) steps, so five runs do at most \(10cn\) steps. With the counter bookkeeping this stays within the required \(25cn\) operations — always, deterministically. So it is Las Vegas in time (bounded) and Monte Carlo only in correctness... actually the reverse: bounded worst-case time, small error probability.</li>
+<li><strong>Failure only if all runs overshoot.</strong> The output is wrong only when every run exceeded \(2cn\) steps, since any run that finishes returns the exact correct selection.</li>
+<li><strong>Markov on one run.</strong> Let \(T(n)\) be one run's step count, with \(\mathbb{E}[T(n)]\le cn\). Markov gives \(\Pr[T(n) > 2cn] = \Pr[T(n) > 2\mathbb{E}[T(n)]\cdot\tfrac{\mathbb{E}[T(n)]}{cn}]\le \Pr[T(n)>2\mathbb{E}[T(n)]]\le \tfrac12.\)</li>
+<li><strong>Independence across runs.</strong> The 5 runs use independent coins, so
+\[\Pr[\text{all 5 overshoot}] \le \Big(\tfrac12\Big)^5 = 2^{-5}.\]</li>
+</ol>
+<p>Therefore the algorithm returns the correct answer with probability \(\ge 1-2^{-5}\) while never exceeding \(25cn\) operations.</p>

@@ -1,0 +1,13 @@
+<p>We compute \(H_n x\) with a divide-and-conquer recursion, exactly like FFT, exploiting the block structure of the Walsh–Hadamard matrix
+\[H_n=\begin{bmatrix} H_{n-1} & H_{n-1}\\ H_{n-1} & -H_{n-1}\end{bmatrix},\qquad N=2^n.\]</p>
+<ol class="gsteps">
+<li><strong>Split the input.</strong> Write \(x=(x_0,x_1)\) where \(x_0\) is the top half and \(x_1\) the bottom half, each of length \(2^{n-1}=N/2\).</li>
+<li><strong>Use the block formula.</strong> Multiplying out the \(2\times 2\) block matrix by the stacked halves,
+\[H_n x=\begin{bmatrix} H_{n-1} & H_{n-1}\\ H_{n-1} & -H_{n-1}\end{bmatrix}\begin{bmatrix} x_0\\ x_1\end{bmatrix}=\begin{bmatrix} H_{n-1}x_0+H_{n-1}x_1\\ H_{n-1}x_0-H_{n-1}x_1\end{bmatrix}.\]
+The crucial point: only <em>two distinct</em> smaller products appear, \(H_{n-1}x_0\) and \(H_{n-1}x_1\). We do not recompute them for each block.</li>
+<li><strong>Recurse then combine.</strong> Recursively compute the two half-size products \(H_{n-1}x_0\) and \(H_{n-1}x_1\) (each on a vector of length \(N/2\)). Then form the top half by adding them and the bottom half by subtracting them; this combining is \(N/2\) additions and \(N/2\) subtractions, i.e. \(O(N)\) work.</li>
+<li><strong>Base case.</strong> At \(n=1\), \(H_1=\begin{bmatrix}1&1\\1&-1\end{bmatrix}\) and \(H_1 x\) is computed directly in \(O(1)\).</li>
+</ol>
+<p><strong>Running time.</strong> Let \(T(N)\) be the cost on length-\(N\) input. We make two recursive calls on size \(N/2\) plus \(O(N)\) combining, so
+\[T(N)=2\,T(N/2)+O(N).\]
+By the master theorem (the classic FFT/merge-sort recurrence), \(T(N)=O(N\log N)\), as required.</p>

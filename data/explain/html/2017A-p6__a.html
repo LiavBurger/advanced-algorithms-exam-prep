@@ -1,0 +1,14 @@
+<p>We must express &quot;pick a smallest subset \(X\subseteq S\) that meets every set \(D\in C\)&quot; as a binary integer program. The natural decision variables are one indicator per element of \(S\).</p>
+<ol class="gsteps">
+<li>For each \(i\in S\) introduce a variable \(x_i\in\{0,1\}\), where \(x_i=1\) means &quot;\(i\) is placed in the hitting set \(X\)&quot; and \(x_i=0\) means it is left out. The chosen set is then \(X=\{i:x_i=1\}\).</li>
+<li>The hitting requirement is \(X\cap D\neq\varnothing\) for every \(D\in C\), i.e. at least one element of \(D\) is selected. Since \(\sum_{i\in D}x_i\) counts how many elements of \(D\) are selected, &quot;at least one&quot; becomes the linear constraint
+\[
+\sum_{i\in D}x_i\ge 1\qquad\text{for all }D\in C.
+\]</li>
+<li>The objective is to minimize \(|X|=\sum_{i\in S}x_i\).</li>
+</ol>
+<p>Putting it together gives the binary integer program
+\[
+\min\ \sum_{i\in S}x_i\quad\text{s.t.}\quad \sum_{i\in D}x_i\ge 1\ \ \forall D\in C,\qquad x_i\in\{0,1\}\ \ \forall i\in S.
+\]
+Each \(\{0,1\}\) variable forces an all-or-nothing choice per element, and the constraints exactly encode &quot;hit every \(D\)&quot;, so optimal solutions are precisely minimum hitting sets.</p>

@@ -1,0 +1,13 @@
+<p>We prove \(\mathbb{E}[T(n)]\le cn\) for a suitable constant \(c\); this immediately gives \(\mathbb{E}[T(n)]=O(n)\). Let \(b\) be the constant hidden in the \(\Theta(n)\) partition cost, so that term is \(\le bn\).</p>
+<ol class="gsteps">
+<li><strong>Inductive hypothesis.</strong> Assume \(\mathbb{E}[T(n')]\le cn'\) for all \(n'<n\).</li>
+<li><strong>Base case.</strong> Let \(d\) be a constant with \(T(1)\le d\). Choosing \(c\ge d\) makes \(\mathbb{E}[T(1)]\le d\le c\cdot 1\), so the claim holds at \(n=1\).</li>
+<li><strong>Inductive step.</strong> Apply part (c)'s recurrence, then the hypothesis on each \(k<n\):
+\[\mathbb{E}[T(n)] \le \frac{2}{n}\sum_{k=n/2}^{n-1}\mathbb{E}[T(k)] + bn \le \frac{2}{n}\sum_{k=n/2}^{n-1}ck + bn.\]</li>
+<li><strong>Sum the arithmetic series.</strong> The terms \(ck\) for \(k=n/2,\dots,n-1\) form an arithmetic series. Using (first + last) × (half the count): first \(=\tfrac{cn}{2}\), last \(=c(n-1)\approx cn\), and there are \(\approx n/2\) terms, giving
+\[\sum_{k=n/2}^{n-1}ck \approx \frac{\left(\tfrac{cn}{2}+cn\right)\left(\tfrac{n}{2}\right)}{2}.\]</li>
+<li><strong>Simplify.</strong> Then
+\[\mathbb{E}[T(n)] \le \frac{2}{n}\cdot\frac{\left(\tfrac{cn}{2}+cn\right)\tfrac{n}{2}}{2} + bn = \frac{2}{n}\cdot\frac{\tfrac{3cn}{2}\cdot\tfrac{n}{2}}{2}+bn = \frac{3cn}{4}+bn = n\Big(\tfrac{3c}{4}+b\Big).\]</li>
+<li><strong>Close the induction.</strong> We need \(n\big(\tfrac{3c}{4}+b\big)\le cn\), i.e. \(\tfrac{3c}{4}+b\le c\), i.e. \(c\ge 4b\). Pick \(c=\max(d,4b)\); both requirements hold.</li>
+</ol>
+<p>Hence \(\mathbb{E}[T(n)]\le cn\) for all \(n\), so \(\mathbb{E}[T(n)]=O(n)\).</p>

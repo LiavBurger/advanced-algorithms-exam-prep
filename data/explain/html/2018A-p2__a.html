@@ -1,0 +1,8 @@
+<p>We want a hitting set \(X\subseteq S\): a set meeting every subset \(D\in C\) (that is \(X\cap D\ne\emptyset\) for all \(D\)), using as few elements as possible. When every \(D\) has \(|D|\le 3\), a simple greedy achieves a factor-3 approximation. The algorithm mirrors the maximal-matching idea behind the vertex-cover 2-approximation.</p>
+<div class="box">Algorithm: start with \(X=\emptyset\). Process the subsets \(D\in C\) in arbitrary order. When you reach \(D\), if \(X\) does not yet hit it (\(X\cap D=\emptyset\)), add <em>all</em> of \(D\) to \(X\), i.e. \(X\leftarrow X\cup D\). If \(X\cap D\ne\emptyset\), do nothing and move on.</div>
+<ol class="gsteps">
+<li>Why it returns a valid hitting set: consider any \(D\in C\) after the algorithm ends. Either it was already hit when we examined it (so \(X\cap D\ne\emptyset\)), or it was not, in which case we added all of \(D\), again making \(X\cap D = D\ne\emptyset\). So every subset is hit.</li>
+<li>Why "add all of \(D\)" is affordable: each time we add, we insert at most \(|D|\le 3\) elements, and the sets we add are pairwise disjoint (we only add \(D\) when it is currently unhit, so it shares no element with any previously added set). This disjointness is what powers the approximation bound proved in part (b).</li>
+<li>Polynomial time: for each of the \(|C|\) subsets we test \(X\cap D=\emptyset\), which is cheap, and \(|X|\) stays bounded by the total number of elements appearing in \(C\).</li>
+</ol>
+<p>So the greedy runs in polynomial time and outputs a hitting set; part (b) shows its size is within a factor 3 of optimal.</p>

@@ -1,0 +1,9 @@
+<p>We write knapsack as a binary integer linear program (BIP). Recall the input: items \(i\) with cost \(b_i\), weight \(w_i\), and a capacity \(W\); we want a subset of maximum total cost whose total weight is \(\le W\).</p>
+<ol class="gsteps">
+<li><strong>Decision variables.</strong> Introduce one variable \(x_i\) per item, forced to be integral in \(\{0,1\}\): \(x_i=1\) means "item \(i\) is chosen," \(x_i=0\) means "not chosen." A 0/1 vector \(x\) is exactly a subset of items.</li>
+<li><strong>Objective.</strong> The total cost of the chosen set is \(\sum_i b_i x_i\) (each chosen item contributes \(b_i\), each unchosen contributes \(0\)). We maximize it.</li>
+<li><strong>Capacity constraint.</strong> The total weight is \(\sum_i w_i x_i\); it must not exceed \(W\), giving \(\sum_i w_i x_i \le W\).</li>
+</ol>
+<p>Putting it together:
+\[\max \sum_i b_i x_i \quad\text{s.t.}\quad \sum_i w_i x_i \le W,\qquad x_i\in\{0,1\}\ \forall i.\]</p>
+<p>The integrality constraint \(x_i\in\{0,1\}\) is what makes this an exact model of the combinatorial problem: it forbids taking a fraction of an item.</p>

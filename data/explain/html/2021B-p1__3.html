@@ -1,0 +1,10 @@
+<p>We describe, in words, the general dual of the semi-matching BIP of part (1) and recognize it. The primal maximizes \(\sum_e x_e\) with a "\(\le 1\)" cap at each \(V_1\)-vertex and a "\(\le 2\)" cap at each \(V_2\)-vertex.</p>
+<ol class="gsteps">
+  <li>The dual has one variable \(y_v\) per vertex \(v\) (one per primal constraint). Read \(y_v\in\{0,1\}\) as "is vertex \(v\) chosen for the solution?".</li>
+  <li>The dual has one constraint per edge (one per primal variable). The column of edge \(e=(u,v)\) has \(1\)'s in the rows of \(u\) and \(v\), so the constraint is \(y_u+y_v\ge 1\): at least one endpoint of every edge must be selected. That is exactly the <strong>vertex cover</strong> condition.</li>
+  <li>The dual objective uses the primal right-hand sides as costs: a \(V_1\)-vertex has cap \(1\) and a \(V_2\)-vertex has cap \(2\), so the cost of picking \(v\) is \(1\) if \(v\in V_1\) and \(2\) if \(v\in V_2\). We minimize the total cost, \(\min\sum_{v\in V_1}y_v+2\sum_{v\in V_2}y_v\).</li>
+</ol>
+<div class="box">
+\[\min\ \sum_{v\in V_1}y_v+2\sum_{v\in V_2}y_v\quad\text{s.t.}\quad y_u+y_v\ge 1\ \ \forall\,(u,v)\in E,\qquad y_v\in\{0,1\}.\]
+</div>
+<p>So the dual is <strong>weighted vertex cover</strong> where every vertex of \(V_1\) has weight \(1\) and every vertex of \(V_2\) has weight \(2\): choose a minimum-weight set of vertices touching every edge.</p>
