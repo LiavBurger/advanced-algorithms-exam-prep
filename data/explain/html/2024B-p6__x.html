@@ -1,11 +1,13 @@
-<p class="ex-line"><span class="ex-lab">Goal</span> build, in poly time, a bipartite graph that is \((C\log n,\tfrac1{100})\)-balanced with probability \(\ge 0.9\).</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> include each possible edge independently with probability \(\tfrac12\); show every subset pair has close-to-ideal edge count via Chernoff, then union-bound over all pairs.</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> for fixed \(S,T\) of size \(m\), \(|E(S,T)|\) is a sum of \(m^2\) independent coin flips with mean \(\tfrac12 m^2\), so it concentrates tightly; the threshold \(k=C\log n\) makes each subset's tiny failure probability survive the huge number of subsets.</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> "for every pair of subsets, an edge count near its average" is a demand for concentration over exponentially many events — exactly the Chernoff-plus-union-bound pattern.</p>
-<ol class="gsteps">
-  <li><b>Algorithm & expectation.</b> For every pair \((i,j)\in L\times R\), add the edge independently with probability \(\tfrac12\). Let \(X_{i,j}\) be an indicator for the event that \((i,j)\) is an edge, so its expectation is \(\tfrac12\). For fixed \(S,T\) of size \(m\), \(|E(S,T)|=\sum_{i\in S,j\in T}X_{i,j}\) has mean \(\tfrac12 m^2\) by linearity.</li>
-  <li><b>Chernoff for one pair.</b> The allowed deviation \(\tfrac1{100}m^2\) is a constant fraction of the mean, so Chernoff gives a fast-shrinking tail: \(\Pr\big[\,\big||E(S,T)|-\tfrac12 m^2\big|\ge\tfrac1{100}m^2\big]\le e^{-c m^2}\) for an absolute constant \(c>0\).</li>
-  <li><b>Union bound over pairs of size \(m\).</b> There are \(\binom{n}{m}^2\le n^{2m}\) choices of \(S,T\), so the chance any of them fails is \(\le n^{2m}e^{-c m^2}=e^{2m\ln n-c m^2}\).</li>
-  <li><b>Choose \(C\).</b> Writing the exponent as \(m(2\ln n-cm)\): once \(m\ge C\log n\) with \(C\) large enough, \(cm\) beats \(2\ln n\), driving this below \(\tfrac1{10n}\) for every such \(m\).</li>
-  <li><b>Union bound over sizes.</b> Summing over the at most \(n\) values \(m=k,\dots,n\) gives total failure \(\le n\cdot\tfrac1{10n}=\tfrac1{10}\). So with probability \(\ge 0.9\) the graph is balanced, and generating it is just \(O(n^2)\) coin flips — poly time. The takeaway: random edges are balanced almost surely, and requiring \(m\ge C\log n\) is exactly what lets one bound beat all \(n^{2m}\) subsets at once.</li>
-</ol>
+<p>Use the following randomized algorithm: for every pair \(i\in L,\ j\in R\), independently include the edge \((i,j)\) with probability \(\tfrac12\) (and leave it out otherwise). This runs in time polynomial in \(n\): there are \(n^2\) pairs and we flip one coin per pair. We claim that, for a suitable constant \(C\), with probability at least \(0.9\) the resulting \(G\) is \((C\log n,\tfrac1{100})\)-balanced.</p>
+<p>Fix a size \(m\ge k\) and two subsets \(S\subseteq L,\ T\subseteq R\) with \(|S|=|T|=m\). For \(i\in S,\ j\in T\), let \(X_{ij}\) be an indicator random variable for the event that \((i,j)\) is an edge, so \(\mathbb{E}[X_{ij}]=\tfrac12\). Then \(|E(S,T)|=\sum_{i\in S,\,j\in T}X_{ij}\), and by linearity of expectation</p>
+<p>\[\mathbb{E}\big[|E(S,T)|\big]=\sum_{i\in S,\,j\in T}\tfrac12=\tfrac12 m^2.\]</p>
+<p>The \(X_{ij}\) are independent, and the deviation \(\tfrac1{100}m^2\) is a constant fraction of a sum of \(m^2\) independent bits, so by the Chernoff bound the chance of deviating that much from the mean shrinks fast:</p>
+<p>\[\Pr\!\Big[\,\big||E(S,T)|-\tfrac12 m^2\big|\ge \tfrac1{100}m^2\,\Big]\le e^{-c\,m^2}\]</p>
+<p>for some absolute constant \(c>0\).</p>
+<p>Now take a union bound over the choices of \(S\) and \(T\). The number of ways to pick \(S\) and \(T\) of size \(m\) is \(\binom{n}{m}^2\le n^{2m}\), so</p>
+<p>\[\Pr[\exists\,S,T\text{ of size }m\text{ with a bad edge count}]\le n^{2m}\,e^{-c m^2}=e^{\,2m\ln n-c m^2}.\]</p>
+<p>Write the exponent as \(2m\ln n-cm^2=m(2\ln n-cm)\). For \(m\ge k=C\log n\) with the constant \(C\) chosen large enough, \(cm\) beats \(2\ln n\) by enough that this bound is at most \(\tfrac1{10n}\); and since the exponent only becomes more negative as \(m\) grows, the bound \(\le\tfrac1{10n}\) holds for every \(m\) in the range \(k\le m\le n\).</p>
+<p>Finally union bound over these sizes (there are at most \(n\) of them):</p>
+<p>\[\Pr\big[G\text{ is not }(C\log n,\tfrac1{100})\text{-balanced}\big]\le n\cdot\tfrac1{10n}=\tfrac1{10}.\]</p>
+<p>Hence with probability at least \(1-\tfrac1{10}=0.9\) the graph \(G\) is \((C\log n,\tfrac1{100})\)-balanced, as required.</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> Random edges make every pair of equal-sized sides carry about half its pairs as edges, and Chernoff makes each failure chance tiny enough to survive counting all the subsets at once.</p>

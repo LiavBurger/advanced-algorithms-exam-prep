@@ -1,11 +1,3 @@
-<p class="ex-line"><span class="ex-lab">Claim</span> False: if a standard-form LP \((P)\) and its dual \((D)\) are both feasible, the optimum of \((P)\) cannot be strictly greater than the optimum of \((D)\).</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> Quote strong duality, which forces the two optimal values to be equal.</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> When both programs are feasible there is no duality gap, so a strict inequality is impossible.</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> Any T/F about the gap between a primal and its dual optimum is really a question about which duality theorem applies, and "both feasible" is exactly the trigger for strong duality.</p>
-<ol class="gsteps">
-  <li><b>Set the convention.</b> Take \((P)=\min c^\top x\) s.t. \(Ax=b,\ x\ge 0\), with dual \((D)=\max b^\top y\) s.t. \(A^\top y\le c\).</li>
-  <li><b>Weak duality gives one direction.</b> Always \(\mathrm{opt}(P)\ge \mathrm{opt}(D)\), so the only question is whether the inequality can be strict.</li>
-  <li><b>Strong duality closes the gap.</b> If both \((P)\) and \((D)\) are feasible, both optima are finite and equal: \(\mathrm{opt}(P)=\mathrm{opt}(D)\).</li>
-  <li><b>Conclude.</b> Equal values leave no room for "strictly greater," so the statement is false.</li>
-</ol>
-<p class="ex-line">Once both sides are feasible, the primal and dual meet at the same value, so neither can beat the other.</p>
+<p>False. By the strong duality theorem, if a standard-form LP \((P)\) and its dual \((D)\) are both feasible, then both have finite optima and those optimal values are equal. So the optimum of \((P)\) can never be strictly greater than the optimum of \((D)\).</p>
+<p>To be concrete, take \((P)=\min c^\top x\) s.t. \(Ax=b,\ x\ge 0\), with dual \((D)=\max b^\top y\) s.t. \(A^\top y\le c\). Weak duality always gives \(\operatorname{opt}(P)\ge\operatorname{opt}(D)\). Strong duality upgrades this: once both are feasible, the duality gap is zero and \(\operatorname{opt}(P)=\operatorname{opt}(D)\). Equal values leave no room for a strict inequality, so the statement is false.</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> Once both sides are feasible, the primal and dual meet at exactly the same value, so neither can beat the other.</p>

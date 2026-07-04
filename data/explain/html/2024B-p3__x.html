@@ -1,11 +1,5 @@
-<p class="ex-line"><span class="ex-lab">Claim</span> A graph \(G\) on \(n\) vertices has at most \(\dfrac{n(n-1)}{2}\) minimum cuts.</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> Use Karger's guarantee that each fixed min cut survives with probability at least \(\frac{2}{n(n-1)}\), then add these probabilities.</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> One run returns a single cut, so the events "returns this min cut" are disjoint and their probabilities can only sum to at most \(1\).</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> The hint points to Karger, and a lower bound per cut plus disjoint events is the standard way to turn a success probability into a counting bound.</p>
-<ol class="gsteps">
-  <li><b>Per-cut guarantee.</b> Fix any minimum cut \((A_0,B_0)\). As shown in class, one run of Karger's contraction returns it with probability at least \(\dfrac{2}{n(n-1)}\), and this holds for every minimum cut.</li>
-  <li><b>Events are disjoint.</b> A single run outputs exactly one cut, so "returns \((A,B)\)" for distinct cuts are mutually exclusive, and returning some min cut has probability at most \(1\).</li>
-  <li><b>Sum over all min cuts.</b> Letting \(M(G)\) be the set of minimum cuts, \(\displaystyle 1\ge\sum_{(A,B)\in M(G)}\Pr[\text{returns }(A,B)]\ge \frac{2}{n(n-1)}\,|M(G)|\).</li>
-  <li><b>Rearrange.</b> This gives \(|M(G)|\le \dfrac{n(n-1)}{2}\).</li>
-</ol>
-<p class="ex-line">Since each min cut claims its own slice of at least \(\frac{2}{n(n-1)}\) probability and the slices cannot overlap, there is only room for \(\frac{n(n-1)}{2}\) of them.</p>
+<p>Let \(M(G)\) be the set of minimum cuts of \(G\), a graph on \(n\) vertices. Fix any minimum cut \((A_0,B_0)\). As shown in class, a single run of Karger's contraction algorithm returns this particular cut with probability at least \(\dfrac{2}{n(n-1)}\), and this holds for every minimum cut, since the analysis never used anything special about \((A_0,B_0)\).</p>
+<p>A single run outputs exactly one cut, so the events "the algorithm returns \((A,B)\)" for distinct cuts \((A,B)\) are pairwise disjoint. Therefore the probability of returning some minimum cut is the sum of the individual probabilities, and this sum is at most \(1\):</p>
+<p>\[1\ \ge\ \sum_{(A,B)\in M(G)}\Pr[\text{the algorithm returns }(A,B)]\ \ge\ \sum_{(A,B)\in M(G)}\frac{2}{n(n-1)}\ =\ \frac{2}{n(n-1)}\,|M(G)|.\]</p>
+<p>Rearranging gives \(|M(G)|\le\dfrac{n(n-1)}{2}\), as required.</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> Each minimum cut claims its own disjoint slice of at least \(\frac{2}{n(n-1)}\) probability, and the slices must fit inside a total of \(1\), so there is room for at most \(\frac{n(n-1)}{2}\) of them.</p>

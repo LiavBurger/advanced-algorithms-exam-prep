@@ -1,9 +1,7 @@
-<p class="ex-line"><span class="ex-lab">Goal</span> solve \(T(n)=T\!\big(\tfrac{5n}{6}\big)+T\!\big(\tfrac{n}{10}\big)+\Theta(n^2)\).</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> this isn't Master-Theorem shaped (unequal subproblems), so reason level by level down the recursion tree.</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> the per-node work is \(\Theta(n^2)\) (the split dominates the combine), and squaring shrinks the total work each level by a constant factor, so the top level dominates.</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> when subproblem sizes differ, you can't just plug into a formula — but a geometric series across levels still settles it cleanly.</p>
-<ol class="gsteps">
-  <li><b>Local work.</b> The split costs \(\Theta(n^2)\), the combine only \(\Theta(n)\), so a node of size \(n\) does \(\Theta(n^2)\).</li>
-  <li><b>Work shrinks per level.</b> The children's work is \(\Theta\!\big((\tfrac{5n}{6})^2+(\tfrac{n}{10})^2\big)=\big(\tfrac{25}{36}+\tfrac1{100}\big)\Theta(n^2)\approx 0.70\,\Theta(n^2)\). Each level is a constant factor \(r<1\) of the one above.</li>
-  <li><b>Sum it.</b> Total \(=\Theta(n^2)(1+r+r^2+\cdots)=\Theta(n^2)\), a converging geometric series. The root alone already costs \(\Theta(n^2)\), so \(T(n)=\Theta(n^2)\) — the top level sets the pace.</li>
-</ol>
+<p>The running time is \(\Theta(n^2)\). The recurrence is</p>
+<p>\[T(n)=T\!\left(\tfrac{5n}{6}\right)+T\!\left(\tfrac{n}{10}\right)+\Theta(n^2),\]</p>
+<p>where the \(\Theta(n^2)\) is the split cost (it dominates the \(\Theta(n)\) combine). Look at the work level by level in the recursion tree. The top level does \(\Theta(n^2)\) work. The next level does</p>
+<p>\[\Theta\!\Big(\big(\tfrac{5n}{6}\big)^2+\big(\tfrac{n}{10}\big)^2\Big)=\Theta\!\Big(\big(\tfrac{25}{36}+\tfrac1{100}\big)n^2\Big)\approx 0.7\,n^2,\]</p>
+<p>which is a constant factor less than the level above. The same shrinking happens at every level, so the per-level work forms a decreasing geometric series and the total is a constant times the top level. Therefore</p>
+<p>\[T(n)=\Theta(n^2).\]</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> Each level does a fixed fraction less work than the one above, so the very first level's \(n^2\) already sets the total.</p>

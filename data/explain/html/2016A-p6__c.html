@@ -1,10 +1,3 @@
-<p class="ex-line"><span class="ex-lab">Claim</span> the dual from part (b) is (fractional) <b>weighted vertex cover</b>.</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> read each variable as an amount of "resource" placed on a vertex and read each constraint as a demand on an edge.</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> the constraint \(y_u+y_v\ge w(uv)\) says every edge's demand \(w(uv)\) is met by the resource sitting on its two endpoints.</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> "sum over the two endpoints \(\ge\) something, minimize total" is the signature of a covering problem, so naming it as vertex cover is immediate.</p>
-<ol class="gsteps">
-<li><b>Variables as weights.</b> Each \(y_v\ge 0\) is how much weight (budget) we put on vertex \(v\).</li>
-<li><b>Constraints as coverage.</b> For every edge \(uv\), the weights on its endpoints must total at least \(w(uv)\).</li>
-<li><b>Objective as thrift.</b> Minimize the total weight placed, \(\min\sum_v y_v\).</li>
-</ol>
-<p class="ex-line">So it is: put enough weight on the vertices that each edge \(e\) has at least \(w(e)\) on its endpoints, using as little total weight as possible — fractional because we are in the LP, not the integer program.</p>
+<p>The LP in (b) is a (fractional) weighted vertex cover. Read each variable \(y_v\ge 0\) as an amount of weight (resource) placed on vertex \(v\). The constraint \(y_u+y_v\ge w(uv)\) says that for every edge \(uv\), the weight sitting on its two endpoints must total at least its weight \(w(uv)\). The objective \(\min\sum_v y_v\) asks to do this using as little total weight as possible.</p>
+<p>In words: put enough weight on the vertices so that for each edge \(e\) the amount on its two endpoints is at least \(w(e)\), while minimizing the total weight used. It is fractional because we are in the LP relaxation rather than the integer program.</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> Cover every edge's weight using the cheapest total load spread over its endpoints.</p>

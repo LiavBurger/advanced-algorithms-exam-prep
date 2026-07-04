@@ -1,11 +1,7 @@
-<p class="ex-line"><span class="ex-lab">Claim</span> With the subtour-elimination constraints added, every feasible IP solution is a Hamiltonian cycle.</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> Assume a feasible solution were more than one cycle, then show the new constraint on one cycle's vertex set is violated.</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> A cycle on a proper vertex subset \(Q\) uses \(|Q|\) internal edges, but the constraint caps that at \(|Q|-1\).</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> Part (b) showed the only failure mode is disjoint subtours, so the natural fix is a constraint that forbids any cycle from closing inside a proper subset.</p>
-<ol class="gsteps">
-<li><b>Start from the structure.</b> The degree constraints already force any feasible solution to be a vertex-disjoint union of directed cycles covering all of \(V\).</li>
-<li><b>Suppose two or more cycles.</b> Pick one cycle and let \(Q_0\) be its vertex set; since another cycle exists, \(Q_0\subsetneq V\) is a proper subset.</li>
-<li><b>Count its internal edges.</b> That cycle uses exactly \(|Q_0|\) edges, all with both endpoints in \(Q_0\), so \(\sum_{u\in Q_0}\sum_{v\in Q_0}x_{u,v}=|Q_0|\).</li>
-<li><b>Hit the contradiction.</b> The subtour constraint for \(Q_0\) demands this be \(\le|Q_0|-1\), but \(|Q_0|>|Q_0|-1\) — contradiction.</li>
-</ol>
-<p class="ex-line">So no cycle can close on a proper subset; the only option left is one cycle through all vertices — a Hamiltonian cycle. With part (a), the correspondence is now exact.</p>
+<p>The added constraints are the subtour-elimination constraints: for every proper subset \(Q\subsetneq V\),</p>
+<p>\[\sum_{u\in Q}\ \sum_{v\in Q:(u,v)\in E} x_{u,v}\ \le\ |Q|-1,\]</p>
+<p>i.e. the number of chosen edges with both endpoints inside \(Q\) is at most \(|Q|-1\).</p>
+<p>Take any feasible solution. As in part (b), the degree constraints force the chosen edges to form a vertex-disjoint union of directed cycles that together cover all of \(V\). Suppose, for contradiction, that this is more than one cycle. Pick one of the cycles and let \(Q_0\) be its set of vertices; since at least one other cycle exists, \(Q_0\subsetneq V\) is a proper subset. That cycle uses exactly \(|Q_0|\) edges, all with both endpoints in \(Q_0\), so</p>
+<p>\[\sum_{u\in Q_0}\ \sum_{v\in Q_0:(u,v)\in E} x_{u,v}\ =\ |Q_0|.\]</p>
+<p>But the subtour constraint for \(Q_0\) requires this sum to be at most \(|Q_0|-1\), and \(|Q_0|>|Q_0|-1\), a contradiction. So no cycle can close on a proper subset of the vertices. The only remaining possibility is a single cycle through all vertices, that is, a Hamiltonian cycle. Together with part (a), the feasible solutions now correspond exactly to Hamiltonian cycles.</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> A short loop inside a small set uses one edge too many for that set, so the new cap on internal edges bans every subtour.</p>

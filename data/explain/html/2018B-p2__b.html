@@ -1,12 +1,9 @@
-<p class="ex-line"><span class="ex-lab">Claim</span> True — when every vertex has degree at most \(\Delta\), the min-degree greedy runs in polynomial time and is a \((\Delta+1)\)-approximation for maximum independent set.</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> Show the output is a valid independent set, then bound how many vertices each greedy pick can destroy, and compare the set's size to the trivial upper bound on the optimum.</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> Every iteration adds one vertex to the answer but deletes at most \(\Delta+1\) vertices from the graph, so the answer's size is at least a \(1/(\Delta+1)\) fraction of all vertices.</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> With no exact formula for the optimum, the standard approximation move is to sandwich it: lower-bound what greedy gets and upper-bound what anyone could get, both against the same simple quantity \(|V|\).</p>
-<ol class="gsteps">
-  <li><b>Output is independent.</b> Whenever a vertex \(v\) is added to \(S\), all of its neighbors are removed from \(G\), so no later pick can be adjacent to \(v\). Hence \(S\) has no internal edges.</li>
-  <li><b>Trivial ceiling on the optimum.</b> An independent set is just a subset of vertices, so \(\mathrm{OPT}\le |V|\).</li>
-  <li><b>Cost of each pick.</b> Let \(k\) be the number of iterations. Each iteration adds exactly one vertex to \(S\) and removes \(v\) together with its neighbors — at most \(1+\Delta\) vertices. So \(|S|=k\) and the total removed is at most \(k(\Delta+1)\).</li>
-  <li><b>Counting bound.</b> Greedy stops only when \(G\) is empty, i.e. all \(|V|\) vertices are gone, so \(k(\Delta+1)\ge |V|\), giving \(k\ge \frac{|V|}{\Delta+1}\ge \frac{\mathrm{OPT}}{\Delta+1}\).</li>
-  <li><b>Running time.</b> There are at most \(|V|\) iterations; keeping vertex degrees in a heap lets us find the minimum-degree vertex and update after deletions in polynomial time.</li>
-</ol>
-<p class="ex-line">So greedy always lands within a factor \(\Delta+1\) of the best possible. The intuition is simple: each vertex you take can only knock out a handful of others (its \(\le\Delta\) neighbors plus itself), so you can never fall too far behind the optimum.</p>
+<p>True. We show the output is an independent set, bound its size from below, and compare to the trivial upper bound on the optimum.</p>
+<p>Output is independent: whenever a vertex \(v\) is added to \(S\), all of its neighbors are removed from \(G\), so no later pick can be adjacent to \(v\). Hence \(S\) has no internal edges.</p>
+<p>Trivial ceiling: an independent set is a subset of vertices, so \(\mathrm{OPT}\le |V|\).</p>
+<p>Lower bound on \(|S|\): let \(k\) be the number of iterations. Each iteration adds exactly one vertex to \(S\) and removes \(v\) together with its neighbors, at most \(1+\Delta\) vertices. So \(|S|=k\) and the total removed is at most \(k(\Delta+1)\). The algorithm stops only when \(G\) is empty, i.e. all \(|V|\) vertices are removed, so \(k(\Delta+1)\ge |V|\), giving</p>
+\[
+|S|=k\ \ge\ \frac{|V|}{\Delta+1}\ \ge\ \frac{\mathrm{OPT}}{\Delta+1}.
+\]
+<p>Thus \(S\) is within a factor \(\Delta+1\) of optimal. Running time is polynomial: there are at most \(|V|\) iterations, and storing the vertex degrees in a heap lets us find the minimum-degree vertex and update after each deletion in polynomial time.</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> Each vertex you take knocks out at most its \(\Delta\) neighbors plus itself, so you can never fall more than a factor \(\Delta+1\) behind.</p>

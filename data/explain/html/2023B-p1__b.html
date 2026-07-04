@@ -1,10 +1,3 @@
-<p class="ex-line"><span class="ex-lab">Claim</span> True — one pivoting step of simplex runs in polynomial time.</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> List what happens in a single pivot and note each piece is cheap linear algebra.</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> The claim is about the cost of one pivot, not how many pivots the whole run takes (that count can be exponential).</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> "Polynomial per step" is decided by opening up the step into its operations, so we just itemize a pivot.</p>
-<ol class="gsteps">
-<li><b>Pick the entering variable.</b> Compute the reduced-cost vector and choose a coordinate \(i\) whose reduced cost shows the objective can improve. This is a matrix-vector computation on the input data.</li>
-<li><b>Pick the leaving variable.</b> Using the entering column, the ratio test scans polynomially many ratios and selects a coordinate \(j\) to drop from the basis.</li>
-<li><b>Update the basis.</b> Swapping \(i\) in and \(j\) out needs a basis-inverse recompute and the new basic solution — some matrix inversions and multiplications, each polynomial in the input dimensions.</li>
-</ol>
-<p class="ex-line">Every ingredient of a pivot is a standard polynomial-time routine, so the step is polynomial. The hard part of simplex is the possible number of steps, not the price of one.</p>
+<p>True. A single pivoting step runs in polynomial time in the input length.</p>
+<p>As seen in class, one pivoting step consists of a bounded amount of work. It computes the reduced cost vector and selects a coordinate \(i\) to bring into the basis; it runs the ratio test to select a coordinate \(j\) to remove from the basis; and it updates the basis using some matrix inversions and matrix multiplications. Each of these is a standard linear-algebra operation on matrices and vectors whose dimensions are at most the number of variables and constraints, so each runs in time polynomial in the input length. A step performs only a constant number of such operations, so the whole pivoting step is polynomial. The statement is therefore true.</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> One pivot is just a bit of linear algebra on the current basis; it is the possible number of pivots, not the cost of one, that is the real concern.</p>

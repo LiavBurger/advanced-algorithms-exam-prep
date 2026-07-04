@@ -1,9 +1,2 @@
-<p class="ex-line"><span class="ex-lab">Claim</span> this ILP is the <em>maximum independent set</em> problem.</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> read what each variable and constraint says in graph language, and match it to a known problem.</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> a \(0/1\) value \(x_v\) is just a yes/no for "is \(v\) chosen", so a solution is a vertex subset \(S\).</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> whenever you see one binary variable per vertex plus a per-edge constraint, translate literally — the graph problem falls right out.</p>
-<ol class="gsteps">
-  <li><b>Objective.</b> \(\max\sum_{v\in V}x_v\) counts the chosen vertices, so we want a set \(S\) as large as possible.</li>
-  <li><b>Edge constraint.</b> \(x_u+x_v\le 1\) for every edge \((u,v)\in E\) forbids \(x_u=x_v=1\): the two endpoints of an edge can't both be in \(S\).</li>
-  <li><b>Name it.</b> "no edge has both endpoints inside \(S\)" is exactly the definition of an independent set, and we maximize its size — the maximum independent set.</li>
-</ol>
+<p>This is the maximum independent set problem. Each variable \(x_v\in\{0,1\}\) decides whether vertex \(v\) is chosen, and the objective \(\max\sum_{v\in V}x_v\) counts the chosen vertices, so we are picking as many vertices as possible. The constraint \(x_u+x_v\le 1\) for every edge \((u,v)\in E\) forces at most one endpoint of each edge to be chosen, so no two chosen vertices are adjacent. A set of vertices with no edge inside it is exactly an independent set, so maximizing the number of chosen vertices is finding a maximum independent set.</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> Forbidding both endpoints of every edge is the same as saying no two picked vertices are neighbors.</p>

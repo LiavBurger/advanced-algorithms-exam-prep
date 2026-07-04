@@ -1,10 +1,6 @@
-<p class="ex-line"><span class="ex-lab">Claim</span> the basis \(\{x_1,s_1\}\) gives the vertex \(x_1=3,\ x_2=0,\ x_3=0,\ s_1=11,\ s_2=0\).</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> a basis names which variables may be nonzero; set the others to \(0\) and solve the two equality constraints for the basic ones.</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> the nonbasic variables \(x_2,x_3,s_2\) are all \(0\), which collapses each constraint to a single unknown.</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> a vertex of the feasible region is exactly a basic solution, so "read off the vertex" just means zero the nonbasic variables and back out the rest.</p>
-<ol class="gsteps">
-<li><b>Identify nonbasic.</b> Of \(x_1,x_2,x_3,s_1,s_2\), the basis is \(\{x_1,s_1\}\), so \(x_2=x_3=s_2=0\).</li>
-<li><b>Solve for \(x_1\).</b> From \(3x_1-x_2+2x_3+s_2=9\) with the zeros, \(3x_1=9\), so \(x_1=3\).</li>
-<li><b>Solve for \(s_1\).</b> From \(2x_1-x_2-s_1=-5\) with \(x_2=0\): \(6-s_1=-5\), so \(s_1=11\).</li>
-</ol>
-<p class="ex-line">Both basic values came out nonnegative (\(x_1=3\), \(s_1=11\)), so the vertex is feasible — the basis \(\{x_1,s_1\}\) sits at a real corner of the region.</p>
+<p>The vertex is \(x_1=3,\ x_2=0,\ x_3=0,\ s_1=11,\ s_2=0\).</p>
+<p>The basis is \(\{x_1,s_1\}\), so the nonbasic variables \(x_2,x_3,s_2\) are all \(0\). Substituting into the two equality constraints, each collapses to a single unknown.</p>
+<p>From \(3x_1-x_2+2x_3+s_2=9\) we get \(3x_1=9\), so \(x_1=3\).</p>
+<p>From \(2x_1-x_2-s_1=-5\) with \(x_2=0\) we get \(6-s_1=-5\), so \(s_1=11\).</p>
+<p>Both basic values are nonnegative, so this is a feasible vertex: \(x_1=3,\ x_2=0,\ x_3=0,\ s_1=11,\ s_2=0\).</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> A basis just means setting the other variables to \(0\) and solving the equations for the ones that remain.</p>

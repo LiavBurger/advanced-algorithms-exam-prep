@@ -1,11 +1,8 @@
-<p class="ex-line"><span class="ex-lab">Goal</span> Find how many samples estimate the fraction of ones within \(0.01\) with probability at least \(0.9\).</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> Sample bits, output the sample mean, and use Chernoff to size the number of samples \(n\) so the error stays under \(0.01\) with the required confidence.</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> Chernoff bounds the chance the sample mean strays \(0.01\) from the truth, and since the true fraction \(\mu\le 1\) we can bound \(n\) without knowing \(\mu\).</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> "How many samples for accuracy \(\varepsilon\) with confidence \(1-\delta\)" is exactly what a Chernoff concentration bound answers — set the tail probability to \(\delta\) and solve for \(n\).</p>
-<ol class="gsteps">
-  <li><b>Setup.</b> Let \(X_i\) be an indicator random variable for the \(i\)-th sampled bit being a one; the samples are independent with \(\mathbb{E}[X_i]=\mu\), the true fraction. The estimate is \(\frac1n\sum_i X_i\).</li>
-  <li><b>Chernoff.</b> \(\Pr\!\left[\left|\tfrac1n\sum_i X_i-\mu\right|\ge 0.01\right]\le 2\,e^{-\frac{n(0.01)^2}{3\mu}}\), where the \(2\) covers both tails.</li>
-  <li><b>Impose confidence.</b> Require this \(\le 0.1\). Taking logs gives \(\ln 20\le \frac{n(0.01)^2}{3\mu}=\frac{n}{30000\,\mu}\), i.e. \(n\ge 30000\,\mu\ln 20\).</li>
-  <li><b>Drop \(\mu\).</b> Since \(\mu\le 1\) always, taking \(n=30000\ln 20\) works for every possible \(\mu\).</li>
-</ol>
-<p>So about \(30000\ln 20\approx 90000\) samples — a fixed constant, independent of the stream length — guarantee the estimate is within \(0.01\) with probability at least \(0.9\).</p>
+<p>Take \(n\) independent samples, output the sample mean as the estimate, and use a Chernoff bound to fix \(n\); about \(30000\ln 20\) samples suffice, independent of the stream length.</p>
+<p>Let \(X_i\) be an indicator random variable for whether the \(i\)-th sampled bit is a one, and let \(\mu\) be the true fraction of ones. The samples are independent with \(\mathbb{E}[X_i]=\mu\), and the estimate is \(\frac1n\sum_{i=1}^n X_i\).</p>
+<p>By the Chernoff bound (both tails, hence the factor \(2\)),
+\[\Pr\!\left[\Big|\tfrac1n\sum_{i=1}^n X_i-\mu\Big|\ge 0.01\right]\le 2\,e^{-\frac{n(0.01)^2}{3\mu}}.\]
+We want this to be at most \(1-0.9=0.1\). Taking logarithms, it suffices that \(\ln 20\le \frac{n(0.01)^2}{3\mu}=\frac{n}{30000\,\mu}\), i.e.
+\[n\ge 30000\,\mu\,\ln 20.\]</p>
+<p>Since \(\mu\le 1\) always, taking \(n=30000\ln 20\) works for every possible \(\mu\). So \(30000\ln 20\approx 90000\) samples guarantee the estimate is within \(0.01\) of the true frequency with probability at least \(0.9\); note this is a fixed constant, independent of the sequence length.</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> Chernoff sets the number of samples needed for accuracy \(0.01\) at confidence \(0.9\), and \(\mu\le 1\) lets us drop the unknown \(\mu\).</p>

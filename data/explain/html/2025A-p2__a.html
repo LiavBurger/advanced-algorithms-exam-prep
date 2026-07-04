@@ -1,12 +1,11 @@
-<p class="ex-line"><span class="ex-lab">Goal</span> compute the dual of \((P)\): \(\min\, c^Tx\) s.t. \(Ax\ge c,\ x\ge 0\), with \(A\) symmetric.</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> rewrite \((P)\) in the equality "standard form" the dual recipe applies to, read off the dual mechanically, then simplify using \(A^T=A\).</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> because \(A\) is symmetric, the dual comes back looking almost exactly like the primal — same \(A\), same \(c\).</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> dualizing is just "plug into the recipe," but the recipe needs a fixed template (equalities with non-negative variables), so the real work is getting \((P)\) into that template first.</p>
-<ol class="gsteps">
-  <li><b>Flip the inequalities.</b> Multiply \(Ax\ge c\) by \(-1\) to get \(-Ax\le -c\), so every constraint faces the same way.</li>
-  <li><b>Add slack to reach equalities.</b> Introduce \(s\ge 0\) with \(-Ax+Is=-c\). Now \((P)\) reads \(\min c^Tx\) s.t. \(-Ax+Is=-c,\ x,s\ge 0\).</li>
-  <li><b>Apply the dual recipe.</b> For \(\min\{b^\top\xi: M\xi=d,\ \xi\ge0\}\) the dual is \(\max\{d^\top y: M^\top y\le b,\ y\text{ free}\}\). With \(\xi=(x,s)\), \(M=(-A\mid I)\), \(d=-c\), this gives \(-A^\top y\le c\) and \(y\le 0\), objective \(\max\,(-c)^\top y\).</li>
-  <li><b>Use symmetry.</b> Since \(A^T=A\), the \(x\)-constraint is \(-Ay\le c\). So the dual is \(\max\,-c^Ty\) s.t. \(-Ay\le c,\ y\le 0\).</li>
-  <li><b>Tidy with a sign flip.</b> Set \(z=-y\ge 0\); then \(-c^Ty=c^Tz\) and \(-Ay=Az\), giving the clean form \[(D)\quad \max\; c^Tz \quad\text{s.t.}\quad Az\le c,\ z\ge 0.\]</li>
-</ol>
-<p class="ex-line">Notice \((D)\) is the mirror image of \((P)\): same \(A\), same \(c\), just \(\max\) with \(\le\) instead of \(\min\) with \(\ge\). Thanks to symmetry the problem is essentially self-dual — exactly what part (b) leans on.</p>
+<p>The dual is \[(D)\quad \max\; c^Tz \quad\text{s.t.}\quad Az\le c,\ z\ge 0.\]</p>
+<p>We first put \((P)\) in the standard equality form the dual recipe uses. Multiply \(Ax\ge c\) by \(-1\) to get \(-Ax\le -c\), then add slack \(s\ge 0\) to reach equalities:</p>
+\[
+\min\; c^Tx \quad\text{s.t.}\quad -Ax+Is=-c,\ \ x,s\ge 0.
+\]
+<p>The recipe: for \(\min\{b^\top\xi: M\xi=d,\ \xi\ge 0\}\) the dual is \(\max\{d^\top y: M^\top y\le b,\ y\text{ free}\}\). Here \(\xi=(x,s)\), \(M=(-A\mid I)\), \(b=(c,0)\), and \(d=-c\). The two blocks of \(M^\top y\le b\) give \(-A^\top y\le c\) and \(Iy\le 0\), i.e. \(y\le 0\), with objective \(\max\,(-c)^\top y\). Since \(A^\top=A\), the first block is \(-Ay\le c\), so the dual is</p>
+\[
+\max\; -c^Ty \quad\text{s.t.}\quad -Ay\le c,\ \ y\le 0.
+\]
+<p>Finally set \(z=-y\ge 0\); then \(-c^Ty=c^Tz\) and \(-Ay=Az\), giving the clean form \((D)\) above. Note \((D)\) is the mirror image of \((P)\): same \(A\), same \(c\), just \(\max\) with \(\le\) instead of \(\min\) with \(\ge\).</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> Because \(A\) is symmetric the dual comes back looking almost exactly like the primal, so the LP is essentially self-dual.</p>

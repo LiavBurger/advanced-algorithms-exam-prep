@@ -1,12 +1,9 @@
-<p class="ex-line"><span class="ex-lab">Goal</span> Write bin packing as an integer linear program and explain the variables.</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> Use 0/1 variables for "item in bin" and "bin open," minimize open bins, and add constraints for coverage, linkage, and capacity.</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> Two families of indicators — \(x_{ij}\) placing items and \(y_j\) opening bins — let the objective count exactly the bins actually used.</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> Packing is a set of yes/no placements, so binary variables model it directly; the \(y_j\ge x_{ij}\) link is what ties usage to the count we minimize.</p>
-<ol class="gsteps">
-<li><b>Bound the bins.</b> There's always a packing into at most \(n\) bins (one item per bin), so index candidate bins \(j=1,\dots,n\).</li>
-<li><b>Variables.</b> \(x_{ij}=1\) iff item \(i\) goes in bin \(j\); \(y_j=1\) iff bin \(j\) is open (used at all). Both are in \(\{0,1\}\).</li>
-<li><b>Objective.</b> Minimize the number of open bins, \(\min\sum_{j=1}^n y_j\).</li>
-<li><b>Each item packed.</b> \(\sum_{j=1}^n x_{ij}\ge 1\) for every \(i\) (at optimum exactly one bin).</li>
-<li><b>Only open bins used.</b> If item \(i\) is in bin \(j\) then \(j\) must be open: \(y_j\ge x_{ij}\) for all \(i,j\). This links the two variable families so the objective really counts every bin we use.</li>
-<li><b>Capacity, then assemble.</b> Each bin holds weight \(\le 1\): \(\sum_{i=1}^n x_{ij}w_i\le 1\) for all \(j\). Altogether \[\min \sum_{j} y_j \ \text{ s.t. }\ \sum_{j} x_{ij}\ge 1,\ \ y_j\ge x_{ij},\ \ \sum_{i} x_{ij}w_i\le 1,\ \ x_{ij},y_j\in\{0,1\}.\]</li>
-</ol>
+<p>There always exists a packing into at most \(n\) bins (\(n\) is the number of items), so we may use \(n\) candidate bins. Introduce a variable \(y_j\in\{0,1\}\) indicating whether bin \(j\) is open, and a variable \(x_{ij}\in\{0,1\}\) indicating whether item \(i\) is packed in bin \(j\). The integer linear program is:
+\[\min \sum_{j=1}^{n} y_j\]
+subject to
+\[\sum_{j=1}^{n} x_{ij}\ge 1 \quad \forall i=1,\dots,n \qquad\text{(each item is packed into some bin)}\]
+\[y_j\ge x_{ij} \quad \forall i,j \qquad\text{(an item can be placed only in an open bin)}\]
+\[\sum_{i=1}^{n} x_{ij}\,w_i \le 1 \quad \forall j=1,\dots,n \qquad\text{(no bin exceeds capacity \(1\))}\]
+\[x_{ij},\,y_j\in\{0,1\}.\]
+The objective counts the open bins, which we minimize.</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> One switch per item-bin pair and one per bin; open as few bins as possible while every item lands somewhere and no bin overflows.</p>

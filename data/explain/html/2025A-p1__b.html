@@ -1,10 +1,7 @@
-<p class="ex-line"><span class="ex-lab">Claim</span> True — the coefficients of \(f(x)^n\) can be computed in \(O(n^2 \log n)\) arithmetic operations.</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> Reach \(f^n\) by repeated squaring (\(f^2, f^4, \dots, f^n\)), doing each polynomial multiplication with FFT, and sum the costs.</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> Repeated squaring needs only \(\log n\) multiplications, and each FFT multiply of degree-\(D\) polynomials costs \(O(D \log D)\).</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> Raising to a power with a target op-count is the signal for fast exponentiation, and multiplying polynomials cheaply is exactly what FFT is for.</p>
-<ol class="gsteps">
-  <li><b>Squaring ladder.</b> Since \(n\) is a power of \(2\), compute \(f^2, f^4, f^8, \dots, f^n\) by squaring the previous result — just \(\log n\) multiplications, not \(n\).</li>
-  <li><b>Cost of step \(i\).</b> The \(i\)-th squaring works on polynomials of degree about \(n\cdot 2^i\), costing \(O(n\,2^i \log(n\,2^i))\) via FFT.</li>
-  <li><b>Sum it up.</b> Since \(2^i \le n\), each term is \(O(n\,2^i \log n)\), and \(\sum_{i=1}^{\log n} O(n\,2^i \log n) = O(n\log n)\cdot\sum 2^i = O(n^2 \log n)\).</li>
-</ol>
-<p>So the whole computation stays within \(O(n^2 \log n)\) operations, dominated by the final squaring — matching the claim.</p>
+<p>True. We compute \(f(x)^n\) by repeated squaring, using an FFT-based multiplication for each squaring, and the total cost is \(O(n^2\log n)\).</p>
+<p>Since \(n\) is a power of \(2\), we reach \(f^n\) through the chain \(f^2, f^4, f^8,\dots,f^n\), squaring the current polynomial each time. This is only \(\log n\) multiplications.</p>
+<p>In the \(i\)-th squaring we multiply a polynomial of degree about \(n\cdot 2^i\) by itself. Multiplying two polynomials of degree \(D\) with FFT costs \(O(D\log D)\), so this step costs \(O(n\,2^i\log(n\,2^i))\).</p>
+<p>Summing over the \(\log n\) steps, and using \(2^i\le n\) so that \(\log(n\,2^i)=O(\log n)\),
+\[\sum_{i=1}^{\log n} O\!\left(n\,2^i\log(n\,2^i)\right)=\sum_{i=1}^{\log n} O(n\,2^i\log n)=O(n\log n)\sum_{i=1}^{\log n}2^i=O(n^2\log n).\]
+The last sum is a geometric series bounded by \(2n\). So the coefficients of \(f^n\) are computed in \(O(n^2\log n)\) operations, and the statement is true.</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> Squaring reaches the \(n\)-th power in only \(\log n\) multiplications, and the final, largest one already costs \(O(n^2\log n)\).</p>

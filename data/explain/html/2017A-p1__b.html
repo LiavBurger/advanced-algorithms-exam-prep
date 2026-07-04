@@ -1,10 +1,9 @@
-<p class="ex-line"><span class="ex-lab">Claim</span> the running time is \(T(m,n)=\Theta(m+n)\).</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> unroll the recurrence one level at a time and sum the per-level costs, which shrink geometrically.</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> each level halves both dimensions, so its work is half of the level above; a geometric series in \(\tfrac12\) sums to at most twice the top level.</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> there is only a single chain of recursive calls (no branching), so the total is just the sum down that chain, and a halving series is the classic thing to add up.</p>
-<ol class="gsteps">
-<li><b>Cost per level.</b> Write the per-call work \(\Theta(m+n)\) as \(c(m+n)\). The top level costs \(c(m+n)\); the recursive call is on a \(\lfloor m/2\rfloor\times\lfloor n/2\rfloor\) matrix, costing \(c\!\left(\tfrac m2+\tfrac n2\right)=\tfrac12 c(m+n)\); the next is \(\tfrac14 c(m+n)\), and so on.</li>
-<li><b>Sum the levels.</b> \[T(m,n)=c(m+n)\left(1+\tfrac12+\tfrac14+\tfrac18+\cdots\right).\]</li>
-<li><b>Bound the geometric series.</b> The bracket has ratio \(\tfrac12\), so it is at most \(2\), giving \(T(m,n)\le 2c(m+n)=O(m+n)\).</li>
-<li><b>Match with a lower bound.</b> The very first level already does \(c(m+n)\) work, so \(T(m,n)=\Omega(m+n)\). Together this pins it to \(\Theta(m+n)\) &mdash; the top level sets the size and everything below adds only a constant factor.</li>
-</ol>
+<p>The running time is \(\Theta(m+n)\). I write the recurrence, then unfold it and sum the resulting geometric series.</p>
+<p>Each call does \(\Theta(m+n)\) work outside the recursion (the divide step plus the combine step, each \(\Theta(m+n)\)), and then makes one recursive call on a matrix of size \(\lfloor m/2\rfloor\)-by-\(\lfloor n/2\rfloor\). Writing the per-call cost as \(c(m+n)\) for a constant \(c\),</p>
+<p>\[ T(m,n)=T\!\left(\tfrac{m}{2},\tfrac{n}{2}\right)+c(m+n). \]</p>
+<p>Now I unfold the recursion. Going one level deeper halves both dimensions, so the added cost at the next level is \(c\left(\tfrac{m}{2}+\tfrac{n}{2}\right)=\tfrac12\,c(m+n)\), the level after that contributes \(\tfrac14\,c(m+n)\), and so on. Summing the costs over all levels gives</p>
+<p>\[ T(m,n)=c(m+n)\left(1+\tfrac12+\tfrac14+\tfrac18+\cdots\right). \]</p>
+<p>The series in parentheses is a geometric sum with ratio \(\tfrac12\), so it is at most \(2\). Therefore</p>
+<p>\[ T(m,n)\le 2c(m+n)=\Theta(m+n). \]</p>
+<p>It is also \(\Omega(m+n)\), since the very first call already does \(c(m+n)\) work. The recursion stops once the matrix has a single row (a \(1\)-by-\(n'\) matrix handled directly in \(\Theta(n')\) time), which is consistent with this bound. Hence \(T(m,n)=\Theta(m+n)\).</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> The work halves at every deeper level, so the whole recursion costs only a constant factor more than the first call.</p>

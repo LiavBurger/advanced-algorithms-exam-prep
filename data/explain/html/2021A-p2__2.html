@@ -1,20 +1,14 @@
-<p class="ex-line"><span class="ex-lab">Goal</span> put the concrete instance in matrix/vector form and write its dual BIP with \(y_1,\dots,y_4\).</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> build the "who attends what" matrix, write the primal Max compactly, then transpose to get the dual Min.</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> the dual of this packing program swaps Max\(\leftrightarrow\)Min, rows\(\leftrightarrow\)columns, and the caps \(c\leftrightarrow\) the all-ones right-hand side.</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> once the primal is in matrix form, the dual is mechanical — transpose the matrix and flip the direction — so encoding membership as a matrix does all the work.</p>
-<ol class="gsteps">
-  <li><b>Membership matrix.</b> Let \(M\) be \(5\times 4\) with \(M_{ij}=1\) iff \(a_i\in U_j\) (row = student, column = course):
-  \[
-  M=\begin{pmatrix}1&0&1&0\\0&1&0&1\\1&1&1&0\\0&1&1&0\\0&1&1&1\end{pmatrix}.
-  \]
-  Then \((M^{\top}x)_j=\sum_{a_i\in U_j}x_i\), the count of selected attendees of course \(j\).</li>
-  <li><b>Primal.</b> With \(\vec x=(x_1,\dots,x_5)\) and caps \(c=(1,2,2,1)\),
-  \[
-  \max\ (1,1,1,1,1)\,\vec x\quad\text{s.t.}\quad M^{\top}\vec x\le (1,2,2,1),\ \ x_i\in\{0,1\}.
-  \]</li>
-  <li><b>Dual.</b> Transposing back, the dual takes one variable \(y_j\) per course, minimizes total cap-cost, and each student gives a "\(\ge 1\)" row:
-  \[
-  \min\ (1,2,2,1)\,(y_1,y_2,y_3,y_4)\quad\text{s.t.}\quad M\,\vec y\ge(1,1,1,1,1)^{\top},\ \ y_j\in\{0,1\}.
-  \]</li>
-</ol>
-<p>Each of the five rows of \(M\vec y\ge\mathbf 1\) is one student's requirement (for instance row 1 reads \(y_1+y_3\ge 1\)) — the same covering meaning spelled out in part 3.</p>
+<p>We build the "who attends what" matrix, write the primal in matrix form, then transpose it to read off the dual. Let \(M\) be the \(5\times 4\) membership matrix with \(M_{ij}=1\) iff \(a_i\in U_j\) (row = student, column = course):</p>
+\[
+M=\begin{pmatrix}1&0&1&0\\0&1&0&1\\1&1&1&0\\0&1&1&0\\0&1&1&1\end{pmatrix}.
+\]
+<p>Then \((M^{\top}x)_j=\sum_{a_i\in U_j}x_i\) is the number of selected attendees of course \(j\). With \(\vec x=(x_1,\dots,x_5)\) and caps \(c=(1,2,2,1)\), the primal is</p>
+\[
+\max\ (1,1,1,1,1)\,\vec x\quad\text{s.t.}\quad M^{\top}\vec x\le (1,2,2,1),\ \ x_i\in\{0,1\}.
+\]
+<p>Transposing back gives the dual, with one variable \(y_j\) per course, cost vector equal to the caps, and one "\(\ge 1\)" row per student:</p>
+\[
+\min\ (1,2,2,1)\,(y_1,y_2,y_3,y_4)\quad\text{s.t.}\quad M\,\vec y\ge(1,1,1,1,1)^{\top},\ \ y_j\in\{0,1\}.
+\]
+<p>Each of the five rows of \(M\vec y\ge\mathbf 1\) is one student's requirement; for instance row 1 reads \(y_1+y_3\ge 1\).</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> Encode membership as a matrix and the dual is mechanical: transpose it and flip Max\(\le\) into Min\(\ge\).</p>

@@ -1,10 +1,3 @@
-<p class="ex-line"><span class="ex-lab">Goal</span> Prove some assignment always satisfies at least \(m/2\) of the \(m\) clauses.</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> Pair any assignment \(x\) with its bitwise negation \(\bar x\) and show every clause is caught by at least one of them.</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> A clause failed by \(x\) has all its literals false, so flipping every variable makes them all true — the complement \(\bar x\) satisfies it.</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> To force a \(\ge m/2\) guarantee, average two complementary assignments; if their satisfied counts sum to \(\ge m\), the larger clears \(m/2\).</p>
-<ol class="gsteps">
-<li><b>The pairing.</b> Fix any assignment \(x\) and let \(\bar x\) flip every variable. Compare how many clauses each satisfies.</li>
-<li><b>Every clause is caught.</b> If \(x\) fails a clause, all three literals are false under \(x\); flipping every variable turns them all true, so \(\bar x\) satisfies it. No clause is failed by both.</li>
-<li><b>Count.</b> Summing over clauses, (clauses satisfied by \(x\)) + (clauses satisfied by \(\bar x\)) \(\ge m\), since each clause contributes at least \(1\).</li>
-</ol>
-<p class="ex-line">If two nonnegative numbers add to at least \(m\), the bigger is at least \(m/2\). So one of \(x,\bar x\) satisfies \(\ge m/2\) clauses — such an assignment always exists.</p>
+<p>Consider any assignment \(x\) together with its bitwise negation \(\bar x\), which assigns to each variable the opposite of its value in \(x\). We claim every clause is satisfied by at least one of \(x,\bar x\). Indeed, if a clause is not satisfied by \(x\), then all three of its literals are false under \(x\); flipping every variable turns all three literals true, so the clause is satisfied by \(\bar x\). Hence no clause is failed by both \(x\) and \(\bar x\).</p>
+<p>Summing over all \(m\) clauses, the number satisfied by \(x\) plus the number satisfied by \(\bar x\) is at least \(m\), since each clause contributes at least \(1\) to this sum. Two nonnegative numbers adding to at least \(m\) cannot both be below \(m/2\), so at least one of \(x,\bar x\) satisfies at least \(m/2\) clauses. Therefore an assignment satisfying at least \(m/2\) clauses always exists.</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> An assignment and its exact opposite together cover every clause, so one of the two must handle at least half of them.</p>

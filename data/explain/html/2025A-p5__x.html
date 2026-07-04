@@ -1,11 +1,9 @@
-<p class="ex-line"><span class="ex-lab">Goal</span> Give an efficient randomized algorithm deciding whether two directed graphs \(G_1,G_2\) are determinantally equivalent — their symbolic adjacency determinants are equal as polynomials — with error below \(0.1\).</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> Don't expand the determinants; instead test the polynomial identity \(\det(A_1)=\det(A_2)\) by plugging in random values and comparing the two numbers.</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> The difference \(P=\det(A_1)-\det(A_2)\) is a polynomial of degree at most \(n\); a random evaluation reveals whether it is the zero polynomial.</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> "Are these two huge symbolic expressions equal" is polynomial identity testing, and the reflex tool is Schwartz-Zippel: evaluate at a random point over a large enough set.</p>
-<ol class="gsteps">
-<li><b>The algorithm.</b> For each variable \(x_{i,j}\), pick an independent uniform integer \(r_{i,j}\in\{1,\dots,100n\}\), substitute it in, and compute both determinants numerically (each a plain number-matrix determinant, polynomial time). Declare equivalence iff the two numbers match.</li>
-<li><b>Bound the degree.</b> Let \(A_i\) be the symbolic adjacency matrix of \(G_i\) and \(P=\det(A_1)-\det(A_2)\). A determinant of an \(n\times n\) matrix is a sum of products of \(n\) entries, so \(\deg(P)\le n\).</li>
-<li><b>Equivalent case.</b> If the graphs are equivalent, \(P\equiv 0\), so it evaluates to \(0\) for any choice of \(r_{i,j}\); the determinants always agree and the algorithm is correct with certainty.</li>
-<li><b>Non-equivalent case.</b> If not equivalent, \(P\not\equiv 0\). By Schwartz-Zippel, a nonzero degree-\(\le n\) polynomial evaluated over a set of size \(100n\) vanishes with probability at most \(n/(100n)=1/100\).</li>
-<li><b>Conclude.</b> The only error is a false "equivalent", with probability at most \(1/100<0.1\), and the algorithm just computes two determinants — so it is efficient and correct enough.</li>
+<p>We test the polynomial identity \(\det(A_1)=\det(A_2)\) by evaluating both determinants at a random point (Schwartz–Zippel).</p>
+<ol>
+<li>For each variable \(x_{i,j}\), pick an independent uniformly random integer \(r_{i,j}\in\{1,\dots,100n\}\), and substitute \(x_{i,j}=r_{i,j}\) into both symbolic adjacency matrices.</li>
+<li>Compute the two numeric determinants \(\det(A_1)\) and \(\det(A_2)\), for instance by Gaussian elimination.</li>
+<li>Declare that \(G_1,G_2\) are determinantally equivalent if and only if the two numbers are equal.</li>
 </ol>
+<p>The algorithm is efficient, since it only computes two \(n\times n\) determinants. For correctness, let \(A_i\) be the symbolic adjacency matrix of \(G_i\) and consider the polynomial \(P=\det(A_1)-\det(A_2)\) in the variables \(x_{i,j}\). A determinant is a sum of products of \(n\) entries, so \(\deg(P)\le n\).</p>
+<p>If \(G_1,G_2\) are determinantally equivalent, then \(\det(A_1)\equiv\det(A_2)\) as polynomials, so \(P\equiv 0\); then for any choice of the \(r_{i,j}\) the two evaluations are equal and the algorithm answers correctly with no error. If they are not equivalent, then \(P\not\equiv 0\), and by the Schwartz–Zippel lemma the probability that a nonzero polynomial of degree at most \(n\) vanishes at a uniformly random point over a set of size \(100n\) is at most \(n/(100n)=1/100\). So the algorithm wrongly answers "equivalent" with probability at most \(1/100<0.1\), and otherwise correctly answers "not equivalent." The error probability is below \(0.1\).</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> Two determinants are equal as polynomials exactly when their difference is the zero polynomial, and a nonzero low-degree polynomial almost never vanishes at a random point.</p>

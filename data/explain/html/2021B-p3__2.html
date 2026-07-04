@@ -1,11 +1,8 @@
-<p class="ex-line"><span class="ex-lab">Claim</span> The greedy algorithm is a \(2/3\)-approximation: its legally colored weight is at least \(\tfrac23\) of the optimum.</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> Bound the illegal weight created at each step by an average, sum over vertices so every edge is counted once, then compare to the easy bound \(\mathrm{OPT}\le w(E)\).</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> Choosing the lightest of three classes puts the new illegal weight at most one-third of the vertex's edges into placed vertices, so total illegal weight is at most \(\tfrac13 w(E)\).</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> A greedy "pick the minimum" rule always pairs with "min \(\le\) average", and charging each edge to its later endpoint is the standard way to make the per-step bounds add up cleanly.</p>
-<ol class="gsteps">
-<li><b>Set up the timeline.</b> Let \(v_1,\dots,v_{|V|}\) be the processing order and \(A_i,B_i,C_i\) the classes when \(v_i\) is considered (only earlier vertices are in them).</li>
-<li><b>Per-vertex bound.</b> Since \(v_i\) goes to the class minimizing \(w(v_i,\cdot)\), and the minimum of three numbers is at most their average, the illegal weight created is \[\min\big(w(v_i,A_i),w(v_i,B_i),w(v_i,C_i)\big)\le \tfrac13\big(w(v_i,A_i)+w(v_i,B_i)+w(v_i,C_i)\big).\]</li>
-<li><b>Each edge once.</b> An edge \((v_i,v_j)\) with \(i<j\) is seen exactly when the later endpoint \(v_j\) is processed, so \[\sum_{i}\big(w(v_i,A_i)+w(v_i,B_i)+w(v_i,C_i)\big)=w(E).\]</li>
-<li><b>Total illegal weight.</b> Summing the per-vertex bound over all \(i\), the total illegally colored weight is at most \(\tfrac13 w(E)\).</li>
-<li><b>Compare to OPT.</b> So the legal weight is at least \(w(E)-\tfrac13 w(E)=\tfrac23 w(E)\). Since no coloring beats all edges, \(\mathrm{OPT}\le w(E)\), giving legal weight \(\ge \tfrac23 w(E)\ge \tfrac23\,\mathrm{OPT}\) — the greedy loses at most a third of the weight.</li>
-</ol>
+<p>Let \(v_1,v_2,\dots,v_{|V|}\) be the vertices in the order the algorithm considers them, and let \(A_i,B_i,C_i\) be the sets \(A,B,C\) at the moment \(v_i\) is placed (so they contain only earlier vertices). When \(v_i\) is added, it colors illegally exactly the edges to already-placed vertices of the set it joins; since the algorithm sends \(v_i\) to the set minimizing this weight, and the minimum of three numbers is at most their average, the illegal weight created at this step is
+\[\min\big(w(v_i,A_i),w(v_i,B_i),w(v_i,C_i)\big)\le \tfrac13\big(w(v_i,A_i)+w(v_i,B_i)+w(v_i,C_i)\big).\]</p>
+<p>Every edge \((v_i,v_j)\) with \(i<j\) is counted exactly once over the whole run — at the moment the later endpoint \(v_j\) is placed, when \(v_i\) is already present. Summing over all vertices,
+\[\sum_{i}\big(w(v_i,A_i)+w(v_i,B_i)+w(v_i,C_i)\big)=w(E),\]
+the total weight of all edges. Hence the total weight of illegally colored edges is
+\[\sum_i \min\big(w(v_i,A_i),w(v_i,B_i),w(v_i,C_i)\big)\le \tfrac{w(E)}{3}.\]</p>
+<p>Therefore the weight colored legally is at least \(w(E)-\tfrac{w(E)}{3}=\tfrac{2w(E)}{3}\). Finally, no coloring can beat the total edge weight, so \(\mathrm{OPT}\le w(E)\), and the algorithm's legal weight is at least \(\tfrac{2w(E)}{3}\ge \tfrac{2}{3}\mathrm{OPT}\). This is a \(2/3\)-approximation.</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> Each vertex dumps at most a third of its back-edge weight into color clashes, so at least two thirds of all edge weight is colored legally.</p>

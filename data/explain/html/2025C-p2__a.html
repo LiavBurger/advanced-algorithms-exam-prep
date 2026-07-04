@@ -1,10 +1,33 @@
-<p class="ex-line"><span class="ex-lab">Goal</span> show \((D)\) is the LP dual of the set-cover relaxation.</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> write the relaxation in matrix form, push it to equality standard form with slacks, apply the mechanical dual rule, then flip signs to recognize \((D)\).</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> once the primal is \(\min c^\top x\) s.t. \(Mx=b,\ x\ge0\), its dual is automatically \(\max b^\top y\) s.t. \(M^\top y\le c\).</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> going through matrix form lets you use the one dual recipe you already know instead of guessing constraint directions.</p>
-<ol class="gsteps">
-<li><b>Matrix form.</b> Let \(A\) be the \(n\times m\) incidence matrix, \(A_{j,i}=1\) if \(j\in S_i\) else \(0\). Then the constraints are \(Ax\ge\mathbf1\), and the relaxation is \(\min c^\top x\) s.t. \(Ax\ge\mathbf1,\ x\ge0\).</li>
-<li><b>Standard form.</b> Rewrite \(Ax\ge\mathbf1\) as \(-Ax\le-\mathbf1\), add slacks \(s\ge0\): \(-Ax+s=-\mathbf1\), i.e. \([-A\mid I]\begin{bmatrix}x\\s\end{bmatrix}=-\mathbf1\) with \(x,s\ge0\), still minimizing \(c^\top x\).</li>
-<li><b>Dual rule.</b> For \(\min \hat c^\top z\) s.t. \(Mz=\hat b,\ z\ge0\), the dual is \(\max \hat b^\top y\) s.t. \(M^\top y\le\hat c\). Here \(M=[-A\mid I]\), \(\hat b=-\mathbf1\), \(\hat c=(c;\,0)\), giving \(\max -\mathbf1^\top y\) s.t. \(-A^\top y\le c\) and \(y\le0\).</li>
-<li><b>Flip \(y\mapsto -y\).</b> With the new \(y\ge0\), the objective becomes \(\mathbf1^\top y=\sum_j y_j\) and \(-A^\top y\le c\) becomes \(A^\top y\le c\), i.e. \(\sum_{j:\,j\in S_i}y_j\le c_i\). That is exactly \((D)\): \(\max\sum_j y_j\) s.t. \(\sum_{j\in S_i}y_j\le c_i\ \forall i,\ y\ge0\).</li>
-</ol>
+<p>The relaxed primal is: minimize \(\sum_{i=1}^{m} c_i x_i\) subject to \(\sum_{i:\,S_i \ni j} x_i \ge 1\) for every \(j\), and \(x_i \ge 0\) for every \(i\). We put this in standard equality form and read off its dual, and the dual turns out to be exactly (D).</p>
+
+<p>Let \(A\) be the \(n \times m\) incidence matrix with \(A_{j,i} = 1\) if \(j \in S_i\) and \(A_{j,i} = 0\) otherwise, let \(c = (c_1,\dots,c_m)\), and let \(\mathbf{1}\) be the all-ones vector. Row \(j\) of \(A x\) is \(\sum_{i:\,S_i \ni j} x_i\), so the \(n\) covering constraints are exactly \(A x \ge \mathbf{1}\), and the relaxed primal is</p>
+
+\[
+\text{minimize } c^{\top} x \quad \text{subject to } A x \ge \mathbf{1}, \; x \ge 0.
+\]
+
+<p>To reach standard form we turn each \(\ge\) into an equality by subtracting a nonnegative slack vector \(s \ge 0\), so \(A x - s = \mathbf{1}\), i.e. \(-A x + s = -\mathbf{1}\). Writing the two variable blocks together,</p>
+
+\[
+\text{minimize } c^{\top} x \quad \text{subject to } [\,-A \mid I\,]\begin{bmatrix} x \\ s \end{bmatrix} = -\mathbf{1}, \; x,s \ge 0,
+\]
+
+<p>where the cost vector for \((x,s)\) is \((c,\mathbf{0})\) since the slacks carry no cost.</p>
+
+<p>For a standard-form primal "minimize \(b^{\top} z\) subject to \(M z = d,\ z \ge 0\)", the dual is "maximize \(d^{\top} y\) subject to \(M^{\top} y \le b\)", with \(y\) unrestricted in sign (one dual variable per equality constraint, here one \(y_j\) per element \(j\)). Plugging in \(d = -\mathbf{1}\), \(M = [\,-A \mid I\,]\), and \(b = (c,\mathbf{0})\), the dual is</p>
+
+\[
+\text{maximize } -\mathbf{1}^{\top} y \quad \text{subject to } \begin{bmatrix} -A^{\top} \\ I \end{bmatrix} y \le \begin{bmatrix} c \\ \mathbf{0} \end{bmatrix}, \; y \text{ free}.
+\]
+
+<p>The top block \(-A^{\top} y \le c\) has, in row \(i\), the entry \(\sum_{j:\,j \in S_i} (-y_j) \le c_i\); the bottom block \(I y \le \mathbf{0}\) says \(y_j \le 0\) for every \(j\).</p>
+
+<p>Now substitute \(y \mapsto -y\) (allowed because \(y\) is free). The objective \(-\mathbf{1}^{\top} y\) becomes \(\mathbf{1}^{\top} y = \sum_{j=1}^{n} y_j\); the top block becomes \(\sum_{j:\,j \in S_i} y_j \le c_i\) for every \(i\); and \(y_j \le 0\) becomes \(y_j \ge 0\) for every \(j\). This is precisely</p>
+
+\[
+\text{maximize } \sum_{j=1}^{n} y_j \quad \text{subject to } \sum_{j:\,j \in S_i} y_j \le c_i \text{ for all } i,\; y_j \ge 0 \text{ for all } j,
+\]
+
+<p>which is exactly (D). Hence (D) is the dual of the LP relaxation.</p>
+
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> One dual variable per element, and its constraints say the total charge packed onto any set must not exceed that set's cost.</p>

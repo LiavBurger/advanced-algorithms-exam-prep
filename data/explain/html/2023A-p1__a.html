@@ -1,10 +1,3 @@
-<p class="ex-line"><span class="ex-lab">Claim</span> False: the simplex algorithm from class never moves to a different vertex having the same objective value.</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> Recall the pivot rule: the algorithm only relocates when the move strictly improves the objective.</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> A "sideways" step to an equal-value vertex is never taken; the only place equal values show up is a degenerate pivot, and that keeps you at the same vertex.</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> The statement sounds like degeneracy, so the trigger is to separate "the basis changed" from "the vertex changed" — degeneracy changes the former without the latter.</p>
-<ol class="gsteps">
-<li><b>The pivot rule.</b> As presented in class, simplex leaves its current vertex only when it can strictly decrease the objective function.</li>
-<li><b>Degenerate case.</b> When the solution is degenerate, a pivot may swap which variables are in the basis, but the actual point (vertex) does not move, so its value is unchanged. This is not a move to a different vertex.</li>
-<li><b>So equal-value moves don't happen.</b> Either the objective strictly drops and you reach a genuinely new, better vertex, or the vertex stays put during a degenerate basis change. There is no step to a different vertex with the same value.</li>
-<li><b>Conclusion.</b> The described behavior contradicts the rule, so the statement is false — here a different vertex always means a strictly better value.</li>
-</ol>
+<p>False. In the simplex algorithm as presented in class, the algorithm moves to a different vertex only when it can strictly improve (decrease) the objective value. So a move to a different vertex always strictly changes the objective, and it never moves to a different vertex whose value equals the current one.</p>
+<p>The only place equal values appear is degeneracy: when the current basic feasible solution is degenerate, a pivot step may change the basis while the actual point stays the same. But that is a change of basis at the same vertex, not a move to a different vertex. Hence the described behavior — moving to a different vertex with the same objective value — does not happen, and the statement is false.</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> A real move to a new vertex always strictly improves the objective; equal-value steps are just basis swaps that stay at the same point.</p>

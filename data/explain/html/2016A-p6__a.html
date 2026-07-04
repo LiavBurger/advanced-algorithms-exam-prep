@@ -1,11 +1,4 @@
-<p class="ex-line"><span class="ex-lab">Goal</span> write maximum-weight matching as a binary integer program.</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> put one \(0/1\) variable on each edge saying whether it is picked, maximize the total weight of picked edges, and stop any vertex from being used twice.</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> a matching is exactly a set of edges where no vertex is used more than once, and "used at most once" is a linear inequality at each vertex.</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> the definition of a matching is a local rule per vertex (degree at most one), so it drops straight into one constraint per vertex — the natural way to turn it into an ILP.</p>
-<ol class="gsteps">
-<li><b>Choose the variables.</b> For each edge \(uv\in E\) let \(x_{uv}\in\{0,1\}\), with \(1\) meaning "this edge is in the matching."</li>
-<li><b>Write the objective.</b> We want the heaviest matching: \(\max \sum_{uv\in E} x_{uv}\,w(uv)\).</li>
-<li><b>Add the matching constraint.</b> At each vertex \(v\), the picked edges touching it may total at most one: \(\sum_{uv\ni v} x_{uv}\le 1\).</li>
-<li><b>Force integrality.</b> Require \(x_{uv}\in\{0,1\}\) so each edge is fully in or fully out.</li>
-</ol>
-<p class="ex-line">Any feasible \(0/1\) vector covers each vertex at most once, so it is exactly a matching, and its objective value is that matching's weight.</p>
+<p>We use one binary variable per edge and cap the degree at each vertex. For each edge \(uv\in E\) let \(x_{uv}\in\{0,1\}\), where \(x_{uv}=1\) means the edge is in the matching. We want the heaviest matching, and a matching is a set of edges using each vertex at most once, which is a linear inequality at every vertex. The program is</p>
+<p>\[\max\ \sum_{uv\in E}x_{uv}\,w(uv)\quad\text{s.t.}\quad \sum_{uv\ni v}x_{uv}\le 1\ \ \forall v\in V,\qquad x_{uv}\in\{0,1\}\ \ \forall uv\in E.\]</p>
+<p>Any feasible \(0/1\) vector touches each vertex at most once, so it is exactly a matching, and its objective value is that matching's total weight; an optimal solution is a maximum-weight matching.</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> Put an on/off switch on each edge and forbid any vertex from being used twice.</p>

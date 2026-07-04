@@ -1,11 +1,7 @@
-<p class="ex-line"><span class="ex-lab">Goal</span> write an ILP for bin packing and explain why every feasible solution is a valid packing.</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> use \(n\) candidate bins with a "used" variable each, plus an assignment variable per item-bin pair, and tie capacity to the used-flag.</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> the single constraint \(\sum_i w_i x_{i,j}\le B\,y_j\) does double duty: it caps a used bin at \(B\) and forbids putting anything into an unused bin.</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> since one item per bin is always feasible, at most \(n\) bins are ever needed, so indexing bins \(1,\dots,n\) loses nothing and makes the model finite.</p>
-<ol class="gsteps">
-  <li><b>Variables.</b> \(y_j\in\{0,1\}\): is bin \(j\) used. \(x_{i,j}\in\{0,1\}\): is item \(i\) placed in bin \(j\).</li>
-  <li><b>Objective.</b> Minimize the number of used bins: \(\min\sum_{j=1}^n y_j\).</li>
-  <li><b>Each item placed once.</b> \(\sum_{j=1}^n x_{i,j}=1\) for every item \(i\) forces exactly one bin to hold it.</li>
-  <li><b>Capacity tied to "used".</b> \(\sum_{i=1}^n w_i x_{i,j}\le B\,y_j\) for every bin \(j\). If \(y_j=1\) this reads \(\le B\) (respect capacity); if \(y_j=0\) it reads \(\le 0\), which (weights \(\ge 0\)) forces all \(x_{i,j}=0\) — nothing may go into an unused bin.</li>
-  <li><b>Why it's valid.</b> The placement constraints put each item in exactly one bin; the capacity constraints keep each used bin within weight \(B\); any bin holding an item is forced to \(y_j=1\), so \(\sum_j y_j\) truly counts bins used. Conversely any real packing gives a feasible \((x,y)\) of equal cost, so the ILP optimum equals the minimum number of bins.</li>
-</ol>
+<p>We never need more than \(n\) bins (in the worst case one item per bin), so index the possible bins by \(j\in\{1,\dots,n\}\). Use two kinds of \(0/1\) variables: \(y_j\in\{0,1\}\), where \(y_j=1\) means bin \(j\) is used; and \(x_{ij}\in\{0,1\}\), where \(x_{ij}=1\) means item \(i\) is placed in bin \(j\). The integer program is</p>
+<p>\[\min\sum_{j=1}^{n}y_j\]</p>
+<p>\[\text{s.t.}\quad \sum_{j=1}^{n}x_{ij}=1\ \ \forall i\in\{1,\dots,n\},\qquad \sum_{i=1}^{n}w_i x_{ij}\le B\,y_j\ \ \forall j\in\{1,\dots,n\},\]</p>
+<p>\[x_{ij}\in\{0,1\},\qquad y_j\in\{0,1\}.\]</p>
+<p>The objective \(\sum_j y_j\) counts the used bins, which we minimize. The first constraint puts every item in exactly one bin. The second constraint does two jobs at once: whenever bin \(j\) is used (\(y_j=1\)) its total weight is at most \(B\); and if any item is placed in bin \(j\), the left side is positive, which forces \(y_j=1\) so the bin is counted (and if \(y_j=0\) the right side is \(0\), forbidding any item there since all \(w_i\ge 0\)).</p>
+<p>So every feasible \(0/1\) solution assigns each item to exactly one bin, respects every used bin's capacity \(B\), and has objective equal to the number of nonempty bins — that is exactly a valid packing and its cost. Conversely any real packing gives a feasible \((x,y)\) of the same cost. Therefore minimizing \(\sum_j y_j\) gives the fewest bins.</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> One variable says "bin open," another says "item goes here," and tying capacity to the open flag makes every feasible point a genuine packing.</p>

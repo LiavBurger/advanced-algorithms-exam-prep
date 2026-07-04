@@ -1,12 +1,11 @@
-<p class="ex-line"><span class="ex-lab">Goal</span> Turn the expected-\(cn\) selection algorithm into one that always runs in \(\le 25cn\) operations and is correct with probability \(\ge 1-\tfrac{1}{2^5}\).</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> Run capped attempts: abort any run once it passes \(2cn\) steps, retry up to 5 times with fresh randomness, and return the first run that finishes.</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> A run that exceeds twice its expected length is "unlucky"; by Markov that happens with probability at most \(\tfrac12\), and five independent unlucky runs is at most \(\tfrac{1}{2^5}\).</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> We want a hard time cap but the base algorithm only bounds expected time — capping each run and repeating trades a small failure chance for a guaranteed running time, and Markov is the one tool that needs only the expectation.</p>
-<ol class="gsteps">
-<li><b>Cap each run.</b> Run the algorithm but stop a run the moment its step counter hits \(2cn\). Repeat at most 5 times, using independent randomness each time.</li>
-<li><b>Output rule.</b> If some run finishes within its \(2cn\) budget, return its (correct) answer. If all 5 are aborted, just return the first array element as a guess.</li>
-<li><b>Bound the operations.</b> Each run does at most \(2cn\) steps, so 5 runs do at most \(10cn\); with the counter bookkeeping the total stays under \(25cn\) always — a hard worst-case cap.</li>
-<li><b>Failure needs all to overshoot.</b> The answer is wrong only if every run exceeded \(2cn\) steps, since any run that finishes returns the exact correct selection.</li>
-<li><b>Markov on one run.</b> With \(\mathbb{E}[T(n)]\le cn\), Markov gives \(\Pr[T(n) > 2cn]\le \Pr[T(n)>2\mathbb{E}[T(n)]]\le \tfrac12\).</li>
-<li><b>Multiply independent runs.</b> The 5 runs use independent coins, so \(\Pr[\text{all 5 overshoot}] \le \big(\tfrac12\big)^5 = \tfrac{1}{2^5}\). Hence the answer is correct with probability \(\ge 1-\tfrac{1}{2^5}\), and each extra retry cuts the failure chance in half.</li>
+<p>We turn the Monte Carlo algorithm (whose expected number of operations is at most \(cn\)) into a Las Vegas style algorithm:</p>
+<ol>
+<li>Run the selection algorithm, but keep a counter of the operations performed and abort the run as soon as it reaches \(2cn\) operations.</li>
+<li>Repeat this capped run up to \(5\) times.</li>
+<li>If some run finishes within \(2cn\) operations, return its answer. If all \(5\) runs are aborted, return the first element of the array.</li>
 </ol>
+<p>Operation count: each run performs at most \(2cn\) operations, and we do at most \(5\) runs, so at most \(10cn\) operations inside the runs. Maintaining the counter and controlling the runs adds only a constant factor, and the whole thing can be arranged so the total does not exceed \(25cn\) operations. So the algorithm always performs at most \(25cn\) operations.</p>
+<p>Correctness probability: a run gives the correct answer whenever it finishes within its \(2cn\) budget (a completed selection run is always correct). Let \(T(n)\) be the running time of a single run, so \(E[T(n)]\le cn\). By Markov's inequality,
+\[\Pr[T(n)>2cn]\le \Pr\big[T(n)>2E[T(n)]\big]\le \frac{E[T(n)]}{2E[T(n)]}=\frac12.\]
+The \(5\) runs are independent, so the probability that all of them exceed the budget (the only way we fail) is at most \(\left(\tfrac12\right)^5=2^{-5}\). Hence the algorithm returns the correct answer with probability at least \(1-\tfrac{1}{2^{5}}\).</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> Cap each run so it can't run long, and since each run beats the cap at least half the time, five independent tries almost never all fail.</p>

@@ -1,10 +1,37 @@
-<p class="ex-line"><span class="ex-lab">Goal</span> give an efficient \(f\)-approximation for set cover, where every element lies in at most \(f\) sets.</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> solve the dual \((D)\), take the tight sets as the cover (valid by part b), then bound its cost against the LP optimum using frequency \(f\).</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> each chosen set's cost equals the sum of its elements' dual values, and when you re-sum by element, each \(y^{*}_j\) is counted at most \(f\) times.</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> tightness turns costs into dual sums, and swapping the summation order is the natural way to expose the frequency \(f\).</p>
-<ol class="gsteps">
-<li><b>Algorithm.</b> Solve \((D)\) for an optimal \(y^{*}\) (an LP, so polynomial time) and output \(C=\) the sets whose constraint is tight. By part (b) this is a valid cover.</li>
-<li><b>Cost via tightness.</b> Each \(S_i\in C\) is tight, so \(c_i=\sum_{j\in S_i}y^{*}_j\), and \[\sum_{S_i\in C}c_i=\sum_{S_i\in C}\sum_{j\in S_i}y^{*}_j.\]</li>
-<li><b>Swap the order.</b> Grouping by element, each \(y^{*}_j\) is counted once per chosen set containing \(j\): \[\sum_{S_i\in C}\sum_{j\in S_i}y^{*}_j=\sum_{j=1}^n \bigl|\{S_i\in C:j\in S_i\}\bigr|\,y^{*}_j.\]</li>
-<li><b>Use frequency \(f\).</b> Element \(j\) is in at most \(f\) sets, so each coefficient is \(\le f\), and since \(y^{*}_j\ge0\), \(\sum_{S_i\in C}c_i\le f\sum_j y^{*}_j=f\cdot\mathrm{LPOPT}\le f\cdot\mathrm{OPT}\) (the last step because the relaxation lower-bounds the integer optimum). So the cover costs at most \(f\) times optimal &mdash; an efficient \(f\)-approximation.</li>
+<p>Here \(f\) is the maximum frequency: every element \(j \in \{1,\dots,n\}\) appears in at most \(f\) of the sets. The algorithm solves the dual (D) and takes the tight sets, and we show its cost is at most \(f \cdot \mathrm{OPT}\).</p>
+
+<ol>
+<li>Solve the dual LP (D) to get an optimal solution \(y^{*}\).</li>
+<li>Let \(C = \{\, S_i : \sum_{j:\,j \in S_i} y^{*}_j = c_i \,\}\), the family of sets whose constraint (2) is tight.</li>
+<li>Output \(C\).</li>
 </ol>
+
+<p>By part (b), \(C\) is a valid set cover, so the algorithm is correct. It runs in polynomial time: solving the LP (D) is polynomial, and checking tightness of each of the \(m\) constraints is cheap.</p>
+
+<p>Now bound the cost. For every set \(S_i \in C\) we have \(\sum_{j:\,j \in S_i} y^{*}_j = c_i\) by definition of \(C\), so summing over the chosen sets,</p>
+
+\[
+\sum_{S_i \in C} c_i = \sum_{S_i \in C}\ \sum_{j:\,j \in S_i} y^{*}_j .
+\]
+
+<p>Swap the order of summation, grouping by element \(j\): the term \(y^{*}_j\) is counted once for each chosen set that contains \(j\). Writing that count as the number of \(S_i \in C\) with \(j \in S_i\),</p>
+
+\[
+\sum_{S_i \in C}\ \sum_{j:\,j \in S_i} y^{*}_j = \sum_{j=1}^{n} \bigl|\{ S_i \in C : j \in S_i \}\bigr|\, y^{*}_j .
+\]
+
+<p>Each element \(j\) appears in at most \(f\) sets in total, hence in at most \(f\) sets of \(C\); together with \(y^{*}_j \ge 0\) this gives \(\bigl|\{ S_i \in C : j \in S_i \}\bigr|\, y^{*}_j \le f\, y^{*}_j\). Therefore</p>
+
+\[
+\sum_{S_i \in C} c_i \;\le\; f \sum_{j=1}^{n} y^{*}_j \;=\; f \cdot \mathrm{LPOPT},
+\]
+
+<p>since \(\sum_{j} y^{*}_j\) is the optimal value of (D), which by LP duality equals the optimum of the primal relaxation, \(\mathrm{LPOPT}\). Finally the relaxation only enlarges the feasible region of the integer program, so \(\mathrm{LPOPT} \le \mathrm{OPT}\), the optimal integral set-cover weight. Combining,</p>
+
+\[
+\sum_{S_i \in C} c_i \;\le\; f \cdot \mathrm{LPOPT} \;\le\; f \cdot \mathrm{OPT}.
+\]
+
+<p>Thus the algorithm returns a set cover of weight at most \(f \cdot \mathrm{OPT}\), i.e. it is an \(f\)-approximation.</p>
+
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> Each element's dual value gets charged to every chosen set containing it, and that happens at most \(f\) times, so we overpay by a factor of at most \(f\).</p>

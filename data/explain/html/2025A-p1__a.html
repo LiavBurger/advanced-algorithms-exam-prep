@@ -1,9 +1,6 @@
-<p class="ex-line"><span class="ex-lab">Claim</span> True — every 3-CNF with \(m\) clauses has an assignment satisfying at most \(7m/8\) clauses.</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> Compute the average number of satisfied clauses over all assignments, then argue some assignment must sit at or below that average.</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> A random assignment satisfies exactly \(7m/8\) clauses in expectation, and no quantity is entirely above its own average.</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> "There exists an assignment with property X" is the classic cue for the averaging (probabilistic) argument — bound the average, then a real assignment must reach it.</p>
-<ol class="gsteps">
-  <li><b>Expected count.</b> Set each variable true or false by a fair coin. A 3-clause fails only when all three literals are false, probability \((1/2)^3 = 1/8\), so it is satisfied with probability \(7/8\). Let \(Y\) be the number of satisfied clauses; by linearity of expectation \(\mathbb{E}[Y] = 7m/8\).</li>
-  <li><b>Average forces a witness.</b> If every assignment satisfied strictly more than \(7m/8\), then \(\mathbb{E}[Y] > 7m/8\), a contradiction. So some assignment satisfies at most \(7m/8\) clauses.</li>
-</ol>
-<p>Such an assignment always exists — the average is just a value that some actual assignment cannot exceed. The same mean also gives a witness for "at least" \(7m/8\).</p>
+<p>True. We use the averaging (probabilistic) argument: the average number of satisfied clauses over all assignments equals \(7m/8\), so some assignment satisfies at most that many.</p>
+<p>Pick an assignment at random by setting each variable to true or false independently with probability \(1/2\). A single clause has three literals; it is unsatisfied only when all three literals are false, which happens with probability \((1/2)^3=1/8\). So each clause is satisfied with probability \(7/8\).</p>
+<p>For clause \(i\), let \(X_i\) be an indicator random variable for the event that clause \(i\) is satisfied, and let \(X=\sum_{i=1}^m X_i\) be the number of satisfied clauses. By linearity of expectation
+\[\mathbb{E}[X]=\sum_{i=1}^m \mathbb{E}[X_i]=\frac{7m}{8}.\]
+A random quantity cannot always be strictly above its own average, so there must exist at least one assignment that satisfies at most \(7m/8\) clauses. Hence the statement is true.</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> On average \(7/8\) of the clauses are satisfied, so some assignment must land at or below that average.</p>

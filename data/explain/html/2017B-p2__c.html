@@ -1,9 +1,4 @@
-<p class="ex-line"><span class="ex-lab">Goal</span> Write the LP relaxation of the knapsack BIP from part (b).</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> Keep the objective and capacity row, and just drop integrality — replace \(x_i\in\{0,1\}\) with the interval \(0\le x_i\le1\).</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> \(\{0,1\}\) is the integer endpoints of \([0,1]\); allowing everything in between makes the program linear and polynomial-time solvable.</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> Relaxing integrality is the standard way to get a tractable LP whose optimum upper-bounds the hard integer optimum.</p>
-<ol class="gsteps">
-<li><b>Relax the integrality.</b> Swap \(x_i\in\{0,1\}\) for the two linear inequalities \(x_i\le1\) and \(x_i\ge0\), letting each \(x_i\) be any real in \([0,1]\).</li>
-<li><b>Carry the rest over.</b> The objective \(\sum_i b_i x_i\) and constraint \(\sum_i w_i x_i\le W\) are already linear, so they stay as is: \[\max \sum_i b_i x_i \quad\text{s.t.}\quad \sum_i w_i x_i \le W,\qquad x_i \le 1,\ x_i \ge 0\ \forall i.\]</li>
-<li><b>Note what it buys.</b> This LP solves in polynomial time and its optimum is at least the integer optimum (every 0/1 solution is still feasible here). Reading \(x_i\in[0,1]\) as "the fraction of item \(i\) taken" makes it the fractional knapsack.</li>
-</ol>
+<p>The relaxation keeps the same objective and weight constraint but replaces each integrality constraint \(x_i\in\{0,1\}\) by the interval \(0\le x_i\le 1\), allowing fractional items:
+\[\max \sum_i b_i x_i \quad\text{s.t.}\quad \sum_i w_i x_i \le W,\qquad x_i\le 1\ \ \forall i,\qquad x_i\ge 0\ \ \forall i.\]
+This is now a linear program, since every constraint and the objective are linear.</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> Drop the "whole item only" rule and let items be taken in fractions, turning the integer program into a solvable LP.</p>

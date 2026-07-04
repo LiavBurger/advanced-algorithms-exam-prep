@@ -1,15 +1,14 @@
-<p class="ex-line"><span class="ex-lab">Goal</span> Add slacks and perform the first simplex pivot, writing the objective and basic variables in terms of the non-basic ones.</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> Build the starting dictionary with slacks, pick an entering variable with positive objective coefficient, do the ratio test, and substitute.</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> One pivot swaps one non-basic variable for one basic variable and rewrites every row in terms of the new non-basic set.</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> Slack variables turn "\(\le\)" rows into equalities you can read as a dictionary, and the simplex pivot is the mechanical way to raise the objective.</p>
-<ol class="gsteps">
-<li><b>Initial dictionary.</b> Add slacks \(s_1,s_2,s_3\ge0\); the non-basic variables \(x_1,x_2,x_3,x_4\) start at \(0\):
-\[z=2x_1+4x_2+3x_3+x_4,\quad s_1=12-3x_1-x_2-x_3-4x_4,\]
-\[s_2=7-x_1+3x_2-2x_3-3x_4,\quad s_3=10-2x_1-x_2-3x_3+x_4.\]</li>
-<li><b>Entering variable.</b> Pick a non-basic variable with a positive objective coefficient; \(x_2\) has the largest (\(4\)), so \(x_2\) enters.</li>
-<li><b>Ratio test.</b> Raise \(x_2\) and see which basic hits \(0\) first: \(s_1\) allows \(12\), \(s_2\) only grows (coefficient \(+3\)), \(s_3\) allows \(10\). The tightest is \(10\), so \(s_3\) leaves.</li>
-<li><b>Solve for it.</b> From the \(s_3\) row, \(x_2=10-2x_1-3x_3+x_4-s_3\).</li>
-<li><b>Substitute everywhere.</b> Plug this into \(z,s_1,s_2\):
-\[z=40-6x_1-9x_3+5x_4-4s_3,\quad s_2=37-7x_1-11x_3-3s_3,\quad s_1=2-x_1+2x_3-5x_4+s_3.\]</li>
-</ol>
-<p class="ex-line">(The printed solution writes \(-4x_4\) in the \(s_1\) row, a small slip — substituting \(-x_2\) into the original \(-4x_4\) adds another \(-x_4\), giving \(-5x_4\).)</p>
+<p>Add slack variables \(s_1,s_2,s_3\ge0\), one per inequality, to get the starting dictionary (the non-basic variables \(x_1,x_2,x_3,x_4\) are set to \(0\)):</p>
+<p>\[z=2x_1+4x_2+3x_3+x_4,\]
+\[s_1=12-3x_1-x_2-x_3-4x_4,\]
+\[s_2=7-x_1+3x_2-2x_3-3x_4,\]
+\[s_3=10-2x_1-x_2-3x_3+x_4.\]</p>
+<p>For the first pivot I choose an entering variable with a positive objective coefficient; \(x_2\) has the largest (\(4\)), so \(x_2\) enters. Now I raise \(x_2\) and check which basic variable reaches \(0\) first: the \(s_1\) row allows \(x_2\le 12\), the \(s_2\) row has coefficient \(+3\) so it never binds, and the \(s_3\) row allows \(x_2\le 10\). The tightest bound is \(10\), so \(s_3\) leaves the basis.</p>
+<p>Solving the \(s_3\) row for \(x_2\):</p>
+<p>\[x_2=10-2x_1-3x_3+x_4-s_3.\]</p>
+<p>Substituting this into the other rows gives the dictionary after the first pivot:</p>
+<p>\[z=40-6x_1-9x_3+5x_4-4s_3,\]
+\[s_1=2-x_1+2x_3-5x_4+s_3,\]
+\[s_2=37-7x_1-11x_3-3s_3,\]
+\[x_2=10-2x_1-3x_3+x_4-s_3.\]</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> One pivot swaps a zero variable for the constraint that blocks it first, then rewrites everything in the new set of zero variables.</p>

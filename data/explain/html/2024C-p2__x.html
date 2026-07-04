@@ -1,10 +1,9 @@
-<p class="ex-line"><span class="ex-lab">Goal</span> Compute the boolean product \(A\circ B\) in time \(o(n^3)\).</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> Cast the boolean OR-of-ANDs as an ordinary integer matrix product, run fast matrix multiplication, then threshold each entry at \(0\).</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> The boolean entry \((A\circ B)_{i,j}\) is \(1\) exactly when the integer inner product \(\sum_k A_{i,k}B_{k,j}\) is positive.</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> Fast matrix multiplication only exists over rings, not for boolean OR/AND directly — so we borrow it by turning the logic into arithmetic.</p>
-<ol class="gsteps">
-<li><b>Logic to arithmetic.</b> Treat entries as integers. For each \(k\), \(A_{i,k}\wedge B_{k,j}\) equals the product \(A_{i,k}B_{k,j}\), and the OR over \(k\) is true iff the sum \((A\cdot B)_{i,j}=\sum_{k=1}^n A_{i,k}B_{k,j}\) is strictly positive.</li>
-<li><b>Equivalence.</b> So \((A\circ B)_{i,j}=1 \iff (A\cdot B)_{i,j}>0\), where \(A\cdot B\) is the standard integer product (a nonnegative sum that is \(0\) only if every term is \(0\)).</li>
-<li><b>Multiply fast.</b> Compute \(C=A\cdot B\) with fast matrix multiplication in \(O(n^\omega)\), where \(\omega<3\) (about \(2.37\)); this dominates the cost.</li>
-<li><b>Threshold.</b> Output the matrix with entry \(1\) where \(C_{i,j}>0\) and \(0\) otherwise, scanning all entries in \(O(n^2)\). Total \(O(n^\omega)=o(n^3)\), as required.</li>
+<p>We compute the boolean product by casting it to ordinary integer matrix multiplication and using fast matrix multiplication.</p>
+<p>Observe that \((A\circ B)_{i,j}=\bigvee_{k=1}^n (A_{i,k}\wedge B_{k,j})\) equals \(1\) exactly when there is some index \(k\) with both \(A_{i,k}=1\) and \(B_{k,j}=1\). If we treat the \(0/1\) entries as ordinary integers and form the usual product \(C=A\cdot B\), then \(C_{i,j}=\sum_{k=1}^n A_{i,k}B_{k,j}\) counts exactly those indices \(k\). So \((A\circ B)_{i,j}=1\) if and only if \(C_{i,j}>0\).</p>
+<p>Algorithm:</p>
+<ol>
+<li>Compute \(C=A\cdot B\) over the integers using fast matrix multiplication.</li>
+<li>Output the matrix whose \((i,j)\) entry is \(1\) if \(C_{i,j}>0\) and \(0\) otherwise.</li>
 </ol>
+<p>Runtime: step 1 takes \(O(n^{\omega})\) time, where \(\omega<3\) is the fast matrix-multiplication exponent, and step 2 thresholds each of the \(n^2\) entries in \(O(n^2)\) time. The total is \(O(n^{\omega})\), which is asymptotically smaller than \(n^3\), as required.</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> An OR of ANDs is nonzero exactly when the integer dot product is positive, so one fast integer multiply then a "is it \(>0\)?" test does the job below \(n^3\).</p>

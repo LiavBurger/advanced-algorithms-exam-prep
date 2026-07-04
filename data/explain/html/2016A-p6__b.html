@@ -1,11 +1,4 @@
-<p class="ex-line"><span class="ex-lab">Goal</span> write the dual of the LP relaxation from part (a): \(\min \sum_{v} y_v\) s.t. \(y_u+y_v\ge w(uv)\) for every edge, \(y_v\ge 0\).</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> apply the standard primal-dual recipe: one dual variable per primal constraint (vertex), one dual constraint per primal variable (edge), and flip max to min.</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> each edge variable \(x_{uv}\) appears in exactly its two endpoint constraints, so its dual constraint involves only \(y_u\) and \(y_v\).</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> the primal has "\(\le\)" constraints and \(x\ge 0\), which is the textbook shape whose dual is a minimization with "\(\ge\)" constraints — just read the recipe off the columns.</p>
-<ol class="gsteps">
-<li><b>Relax first.</b> Drop \(x_{uv}\in\{0,1\}\) down to \(x_{uv}\ge 0\); the LP is \(\max\sum x_{uv}w(uv)\) s.t. \(\sum_{uv\ni v}x_{uv}\le 1\), \(x\ge 0\).</li>
-<li><b>Dual variables.</b> One per vertex constraint: \(y_v\ge 0\) for each \(v\in V\).</li>
-<li><b>Dual constraints.</b> One per edge. Edge \(uv\) sits in the constraints of \(u\) and \(v\), so \(y_u+y_v\ge w(uv)\), the objective coefficient of \(x_{uv}\).</li>
-<li><b>Dual objective.</b> The primal right-hand sides are all \(1\), so we minimize \(\sum_{v\in V} y_v\).</li>
-</ol>
-<p class="ex-line">By weak duality any feasible \(y\) upper-bounds the matching value, which is the covering picture spelled out in part (c).</p>
+<p>The LP relaxation from (a) is \(\max\sum_{uv\in E}w(uv)\,x_{uv}\) subject to \(\sum_{uv\ni v}x_{uv}\le 1\) for every vertex \(v\), and \(x_{uv}\ge 0\). It is a maximization with "\(\le\)" constraints, so its dual is a minimization with "\(\ge\)" constraints: one dual variable \(y_v\ge 0\) per vertex constraint, and one dual constraint per primal variable \(x_{uv}\), that is, per edge.</p>
+<p>The edge \(uv\) appears only in the two vertex constraints of \(u\) and \(v\), each with coefficient \(1\), and its objective coefficient is \(w(uv)\), so its dual constraint is \(y_u+y_v\ge w(uv)\). The primal right-hand sides are all \(1\), so the dual objective is \(\min\sum_{v}y_v\). The dual is</p>
+<p>\[\min\ \sum_{v\in V}y_v \quad\text{s.t.}\quad y_u+y_v\ge w(uv)\ \ \forall uv\in E,\qquad y_v\ge 0\ \ \forall v\in V.\]</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> Each vertex constraint of the primal turns into a dual variable, and each edge turns into a dual constraint.</p>

@@ -1,10 +1,3 @@
-<p class="ex-line"><span class="ex-lab">Claim</span> True — this is exactly strong duality.</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> Recognize the hypothesis as the setup of the strong duality theorem and quote its conclusion.</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> If the primal is feasible ("non-empty") and its objective can't run off to infinity ("bounded"), then the dual is feasible too and both optima are equal.</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> Any statement equating primal and dual optimal values over a nice feasible region is a duality question, so reach straight for the duality theorem.</p>
-<ol class="gsteps">
-<li><b>Primal has a finite optimum.</b> Non-empty means a feasible point exists; bounded means the objective doesn't go to \(\pm\infty\). So the primal optimum is a finite number.</li>
-<li><b>Weak duality orders them.</b> For any feasible primal \(x\) and dual \(y\), the dual value is at most the primal value, so the dual can't be unbounded.</li>
-<li><b>Strong duality closes the gap.</b> The theorem then guarantees the dual is feasible and the two optimal values are equal, not just ordered.</li>
-</ol>
-<p class="ex-line">The parenthetical is the same idea in reverse: an infeasible dual would force an unbounded primal, which can't happen here.</p>
+<p>True. This is precisely the strong duality theorem.</p>
+<p>If the primal polyhedron is bounded and non-empty, then the primal is feasible and its objective is bounded over the feasible region, so the primal has a finite optimum. By the strong duality theorem, whenever the primal is feasible and bounded the dual is also feasible and both problems have the same optimal objective value. Indeed, if the dual were infeasible then by weak duality the primal would be unbounded, which contradicts boundedness. Hence the primal and dual optima coincide, and the statement is true.</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> A bounded, non-empty primal pins down a finite optimum, and strong duality guarantees the dual meets it exactly with no gap.</p>

@@ -1,9 +1,4 @@
-<p class="ex-line"><span class="ex-lab">Claim</span> True — at most half the students score at least twice the average.</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> Model a random student's grade and apply Markov's inequality.</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> Grades are non-negative, so the fraction scoring at least twice the mean is bounded by Markov.</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> "Fraction of students above a multiple of the average" is exactly a tail probability of a non-negative variable, which is Markov's home ground.</p>
-<ol class="gsteps">
-<li><b>Set up the variable.</b> Let \(X\) be the grade of a student chosen uniformly at random. The average grade is then \(\mathbb{E}[X]\), and for any threshold \(a\), \(\Pr[X\ge a]\) is the fraction of students scoring at least \(a\).</li>
-<li><b>Apply Markov.</b> Grades are non-negative, so \(\Pr[X \ge 2\,\mathbb{E}[X]] \le \tfrac{\mathbb{E}[X]}{2\,\mathbb{E}[X]} = \tfrac12\).</li>
-<li><b>Read it back.</b> That probability is just the fraction of students scoring at least twice the average, so at most half of them do.</li>
-</ol>
+<p>True. Let \(X\) be the grade of a student chosen uniformly at random, so the average grade is \(\mathbb{E}[X]\), and for any threshold \(a\) the probability \(\Pr[X\ge a]\) equals the fraction of students scoring at least \(a\). Grades are non-negative, so Markov's inequality applies and gives</p>
+<p>\[\Pr[X\ge 2\,\mathbb{E}[X]] \le \frac{\mathbb{E}[X]}{2\,\mathbb{E}[X]} = \frac12.\]</p>
+<p>This probability is exactly the fraction of students scoring at least twice the average, so at most half of the students do.</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> Since grades can't be negative, too many students can't all sit far above the average, or they would drag the average up.</p>

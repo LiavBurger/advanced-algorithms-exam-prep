@@ -1,8 +1,2 @@
-<p class="ex-line"><span class="ex-lab">Claim</span> Yes — the expected-runtime bound holds for every input, the worst-case array included.</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> Locate where the randomness actually comes from, then check what the guarantee is averaging over.</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> The only random thing is the pivot the algorithm flips for; the array itself is fixed, whatever an adversary hands us.</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> For a randomized algorithm "expected running time" always means the average over its own coin flips, not over random inputs — so it can't be broken by a bad input.</p>
-<ol class="gsteps">
-<li><b>Separate fixed from random.</b> The input array \(A\) is arbitrary (possibly the nastiest one an adversary can pick); the pivots are chosen uniformly at random by the algorithm.</li>
-<li><b>Read off the conclusion.</b> The analysis bounds \(\mathbb{E}[T(n)]\) for a fixed but arbitrary \(A\), averaging only over pivots. So the \(O(n)\) bound already covers the worst-case input — the answer is Yes.</li>
-</ol>
+<p>Yes. The randomness in the algorithm comes only from the pivots it chooses, not from the input. For a fixed input array \(A\), we analyze \(\mathbb{E}[T(n)]\) where the expectation is taken over the algorithm's own random pivot choices. This holds no matter what \(A\) is, including the worst-case array an adversary could hand us, since the array is fixed and only the pivots are random. So the expected-time bound applies to every input, the worst case included.</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> The average is over the coin flips of the algorithm, so no bad input can spoil it.</p>

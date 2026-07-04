@@ -1,15 +1,7 @@
-<p class="ex-line"><span class="ex-lab">Goal</span> write the dual BIP of the general primal from part 1 and say in words what it means.</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> transpose the primal — one dual variable per course, one dual constraint per student — and read off the objective and rows.</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> duality turns the students' <em>packing</em> problem into a <em>covering</em> problem over courses: pick cheapest courses that reach every student.</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> the primal's caps \(c_j\) become the dual's costs and its right-hand ones become the dual's "\(\ge 1\)" demands, so transposing directly exposes a familiar set-cover.</p>
-<ol class="gsteps">
-  <li><b>Variables.</b> One binary \(y_j\in\{0,1\}\) per course \(1\le j\le m\), where \(y_j=1\) means course \(j\) is chosen; its cost is the primal cap \(c_j\).</li>
-  <li><b>Objective.</b> The primal's right-hand sides \(c_j\) become dual objective coefficients and the direction flips: \(\min\sum_{j=1}^{m} c_j y_j\), the total cost of chosen courses.</li>
-  <li><b>Constraints.</b> Each student \(a_i\) gives one row. Since \(a_i\) sits in exactly the courses \(j\) with \(a_i\in U_j\), the row is \(\sum_{j:\,a_i\in U_j} y_j\ge 1\): every student must be enrolled in at least one chosen course.</li>
-  <li><b>Full dual.</b>
-  \[
-  \min \sum_{j=1}^{m} c_j y_j \quad\text{s.t.}\quad
-  \sum_{j:\,a_i\in U_j} y_j\ge 1\ (1\le i\le n),\qquad y_j\in\{0,1\}.
-  \]</li>
-</ol>
-<p>Read plainly: choose courses of least total cost so that every student is covered by at least one — a weighted set-cover where courses are the sets, students are the elements, and \(c_j\) is the price of using \(U_j\).</p>
+<p>We transpose the general primal from part 1: one dual variable per course and one dual constraint per student. Let \(y_j\in\{0,1\}\) for each course \(1\le j\le m\), where \(y_j=1\) means course \(j\) is chosen; the cost of choosing it is the primal cap \(c_j\). The primal's right-hand sides become the dual objective and the direction flips, so we minimize the total cost \(\sum_{j=1}^{m} c_j y_j\). Each student \(a_i\) gives one row: since \(a_i\) sits in exactly the courses \(j\) with \(a_i\in U_j\), the row is \(\sum_{j:\,a_i\in U_j} y_j\ge 1\), forcing every student into at least one chosen course. The full dual is</p>
+\[
+\min \sum_{j=1}^{m} c_j y_j \quad\text{s.t.}\quad
+\sum_{j:\,a_i\in U_j} y_j\ge 1\ (1\le i\le n),\qquad y_j\in\{0,1\}.
+\]
+<p>In words: choose courses of least total cost so that every student is covered by at least one chosen course. This is a weighted set cover where the courses are the sets, the students are the elements, and \(c_j\) is the price of using \(U_j\).</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> Duality turns the students' packing problem into a covering problem over courses: buy the cheapest courses that reach everyone.</p>

@@ -1,11 +1,4 @@
-<p class="ex-line"><span class="ex-lab">Goal</span> formulate maximum semi-matching in the bipartite graph as a \(0/1\) integer program.</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> one binary variable per edge, maximize how many edges are chosen, and cap each vertex's degree — \(1\) on the \(V_1\) side, \(2\) on the \(V_2\) side.</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> a semi-matching is just a degree-capped edge set, and the only twist from ordinary matching is that \(V_2\)-vertices are allowed two edges instead of one.</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> every rule defining a semi-matching is a per-vertex degree bound, which is a linear inequality, so the model writes itself once you set an edge variable.</p>
-<ol class="gsteps">
-<li><b>Choose variables.</b> For each edge \(e\in E\), \(x_e\in\{0,1\}\), with \(1\) meaning \(e\) is selected.</li>
-<li><b>Objective.</b> Largest semi-matching means the most edges: \(\max\sum_{e\in E}x_e\).</li>
-<li><b>Cap the \(V_1\) side.</b> Each \(v\in V_1\) may touch at most one chosen edge: \(\sum_{e\ni v}x_e\le 1\).</li>
-<li><b>Cap the \(V_2\) side.</b> Each \(v\in V_2\) may touch at most two: \(\sum_{e\ni v}x_e\le 2\).</li>
-</ol>
-<p class="ex-line">Any feasible \(0/1\) vector respects both caps, so it is a semi-matching, and its objective counts its edges — an optimal solution is a maximum semi-matching.</p>
+<p>We use one binary variable per edge and cap each vertex's degree, with the only twist being that \(V_2\)-vertices may take two edges instead of one. For each edge \(e\in E\) let \(x_e\in\{0,1\}\), where \(x_e=1\) means \(e\) is selected. The objective maximizes the number of selected edges, and there is one constraint per vertex: each \(V_1\)-vertex may touch at most one selected edge, each \(V_2\)-vertex at most two. The program is</p>
+<p>\[\max\ \sum_{e\in E}x_e\quad\text{s.t.}\quad \sum_{e\ni v}x_e\le 1\ \ \forall v\in V_1,\qquad \sum_{e\ni v}x_e\le 2\ \ \forall v\in V_2,\qquad x_e\in\{0,1\}.\]</p>
+<p>Any feasible \(0/1\) vector respects both caps, so it is a semi-matching, and the objective counts its edges; an optimal solution is a maximum semi-matching.</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> One on/off switch per edge, and each side of the graph gets its own degree cap.</p>

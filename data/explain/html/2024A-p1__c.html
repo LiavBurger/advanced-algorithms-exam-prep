@@ -1,11 +1,5 @@
-<p class="ex-line"><span class="ex-lab">Claim</span> True: there is a polynomial-time algorithm that, given \(v_1,\dots,v_k\in\mathbb{R}^n\), finds an orthonormal basis of their span.</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> Run Gram-Schmidt to get an orthogonal basis, then normalize, and note every step is a cheap vector computation.</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> Subtracting from each vector its projections onto the earlier ones makes them mutually orthogonal.</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> "Orthonormal basis of a span" is the textbook job of Gram-Schmidt, and the only thing to check is that it runs in polynomial time.</p>
-<ol class="gsteps">
-  <li><b>Reduce to independent vectors.</b> If the \(v_i\) are dependent, greedily keep a maximal independent subset (each independence test is a rank computation, polynomial time); it spans the same subspace.</li>
-  <li><b>Orthogonalize.</b> Set \(\tilde b_1=v_1\) and \(\tilde b_i=v_i-\sum_{j=1}^{i-1}\mu_{i,j}\,\tilde b_j\) with \(\mu_{i,j}=\dfrac{\langle v_i,\tilde b_j\rangle}{\langle \tilde b_j,\tilde b_j\rangle}\).</li>
-  <li><b>Check orthogonality.</b> The coefficient \(\mu_{i,j}\) is chosen exactly so that \(\langle \tilde b_i,\tilde b_j\rangle=0\) for every \(j<i\).</li>
-  <li><b>Normalize.</b> Divide each \(\tilde b_i\) by its length to get unit vectors, giving an orthonormal basis.</li>
-</ol>
-<p class="ex-line">The whole thing is just a bounded number of inner products and subtractions, so it finishes quickly and hands back the basis we wanted.</p>
+<p>True. The Gram-Schmidt process finds an orthonormal basis in polynomial time. First, if \(v_1,\dots,v_k\) are linearly dependent, greedily keep a maximal linearly independent subset of them (each independence check is a rank computation, done in polynomial time); this subset spans the same subspace. Assume now the vectors are independent.</p>
+<p>Define \(\tilde b_1=v_1\) and, for \(i\ge 2\),</p>
+<p>\[\tilde b_i=v_i-\sum_{j=1}^{i-1}\mu_{i,j}\,\tilde b_j,\qquad \mu_{i,j}=\frac{\langle v_i,\tilde b_j\rangle}{\langle \tilde b_j,\tilde b_j\rangle}.\]</p>
+<p>The coefficient \(\mu_{i,j}\) is chosen exactly so that \(\langle\tilde b_i,\tilde b_j\rangle=0\) for every \(j<i\), so \(\tilde b_1,\dots,\tilde b_k\) is an orthogonal basis of the span. Finally normalize each vector, replacing \(\tilde b_i\) by \(\tilde b_i/\lVert\tilde b_i\rVert\), to obtain an orthonormal basis. Each step is a bounded number of inner products and vector subtractions, so the whole computation runs in polynomial time.</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> Subtracting from each vector its projection onto the earlier ones makes them mutually orthogonal, and it is all just inner products and subtractions.</p>

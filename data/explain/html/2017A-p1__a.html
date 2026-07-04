@@ -1,9 +1,7 @@
-<p class="ex-line"><span class="ex-lab">Claim</span> the running time is \(\Theta(n)\).</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> collect all the costs into one recurrence, then read the answer off the master theorem.</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> the \(3\) subproblems of size \(n/4\) shrink faster than the linear work per call, so the top-level \(\Theta(n)\) dominates.</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> a recurrence of the shape \(T(n)=aT(n/b)+f(n)\) is exactly what the master theorem is built to solve, so we just line up the pieces.</p>
-<ol class="gsteps">
-<li><b>Write the recurrence.</b> There are \(a=3\) calls on size \(n/4\), so \(b=4\). The non-recursive work is the divide step \(\Theta(n)\) plus the combine step \(O(n^{2/3})\); since \(n\) dominates \(n^{2/3}\), that total is \(f(n)=\Theta(n)\). So \(T(n)=3T(n/4)+\Theta(n)\).</li>
-<li><b>Compare the two costs.</b> The recursion-tree cost is \(n^{\log_4 3}\approx n^{0.79}\), while the top-level work is \(\Theta(n)=\Theta(n^{1})\). Since \(1>\log_4 3\), the linear term is polynomially larger.</li>
-<li><b>Read off the answer.</b> The work is dominated by the top of the tree, so \(T(n)=\Theta(n)\). The base case \(n<500\) solved in \(500^3=O(1)\) only affects bounded inputs and does not change the asymptotics. Intuitively, all the recursive pieces together cost less than the single linear pass at the top.</li>
-</ol>
+<p>The running time is \(\Theta(n)\). I set up the recurrence from the costs given and apply the master theorem.</p>
+<p>Each call splits the input into \(3\) subproblems of size \(n/4\), so \(a=3\) and \(b=4\). The work done outside the recursive calls is the divide step, which takes \(\Theta(n)\), plus the combine step, which takes \(O(n^{2/3})\). Since \(n\) grows faster than \(n^{2/3}\), the total non-recursive work is \(f(n)=\Theta(n)\). This gives</p>
+<p>\[ T(n)=3T(n/4)+\Theta(n). \]</p>
+<p>To apply the master theorem I compare \(f(n)=n\) with \(n^{\log_b a}=n^{\log_4 3}\). We have \(\log_4 3\approx 0.79<1\), so \(f(n)=n\) is polynomially larger than \(n^{\log_4 3}\): concretely \(f(n)=\Omega\!\left(n^{\log_4 3+\varepsilon}\right)\) for a small \(\varepsilon>0\). The regularity condition also holds, since \(3\cdot(n/4)=\tfrac34 n\le c\cdot n\) for \(c=\tfrac34<1\). We are therefore in the third case of the master theorem, where the top-level work dominates, and</p>
+<p>\[ T(n)=\Theta(f(n))=\Theta(n). \]</p>
+<p>The base case (problems of size \(n<500\) solved directly in \(500^3=O(1)\) time) applies only to inputs of bounded size and so does not affect the asymptotic running time.</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> The subproblems shrink so fast that all of them together cost less than the single linear pass at the top, so that top pass sets the running time.</p>

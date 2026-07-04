@@ -1,12 +1,7 @@
-<p class="ex-line"><span class="ex-lab">Goal</span> Write an integer linear program for weighted Max-SAT and justify the variables and constraints.</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> Use one binary variable per Boolean variable and one per clause, cap each clause variable by a linear count of its satisfied literals, and maximize total satisfied weight.</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> A clause is satisfied exactly when at least one of its literals is true, and "at least one" is captured by bounding \(z_j\) above by the number of true literals.</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> To turn a logical formula into an IP, encode truth values as \(0/1\) and translate "clause satisfied" into a linear inequality — the standard SAT-to-IP recipe.</p>
-<ol class="gsteps">
-  <li><b>Variables.</b> For each variable \(x_i\) take \(y_i\in\{0,1\}\) (\(y_i=1\) means \(x_i\) true); for each clause \(C_j\) take \(z_j\in\{0,1\}\) meant to be \(1\) when \(C_j\) is satisfied. Let \(C_j^{+}\), \(C_j^{-}\) be the variables appearing positively, negatively in \(C_j\).</li>
-  <li><b>The program.</b>
-  \[\max\ \sum_{j=1}^{m} w_j z_j\quad\text{s.t.}\quad z_j\le \sum_{i\in C_j^{+}} y_i+\sum_{i\in C_j^{-}}(1-y_i),\qquad y_i,z_j\in\{0,1\}.\]</li>
-  <li><b>Right side counts true literals.</b> A positive literal contributes \(y_i\) (true iff \(x_i\) true); a negative literal contributes \(1-y_i\) (true iff \(x_i\) false). So the sum is the number of satisfied literals in \(C_j\).</li>
-  <li><b>Constraint links \(z_j\) to satisfaction.</b> If no literal is satisfied the sum is \(0\), forcing \(z_j=0\); if some literal is satisfied the sum is \(\ge 1\), permitting \(z_j=1\). Since \(w_j\ge 0\) in a maximization, the optimum sets \(z_j=1\) whenever allowed, so \(z_j=1\) iff \(C_j\) is satisfied.</li>
-</ol>
-<p>Every choice of the \(y_i\) is just a truth assignment, and the objective then sums the weights of the satisfied clauses — so maximizing it solves weighted Max-SAT.</p>
+<p>We use one \(0/1\) variable per Boolean variable and one per clause; the clause variable is allowed to be \(1\) only when at least one literal of the clause is satisfied, and we maximize the total weight of satisfied clauses.</p>
+<p>Variables: for each variable \(x_i\) of the formula \(\varphi\) take \(y_i\in\{0,1\}\), where \(y_i=1\) means \(x_i\) is true. For each clause \(C_j\) take \(z_j\in\{0,1\}\), intended to be \(1\) exactly when \(C_j\) is satisfied. Let \(C_j^{+}\) be the set of variables appearing in positive literals of \(C_j\), and \(C_j^{-}\) those in negative literals.</p>
+<p>The integer linear program is
+\[\max\ \sum_{j=1}^{m} w_j z_j \quad\text{s.t.}\quad z_j\le \sum_{i\in C_j^{+}} y_i+\sum_{i\in C_j^{-}}(1-y_i)\ \ (1\le j\le m),\qquad y_i,z_j\in\{0,1\}.\]</p>
+<p>The right-hand side counts the satisfied literals of \(C_j\): a positive literal on \(x_i\) is satisfied exactly when \(y_i=1\), contributing \(y_i\); a negative literal on \(x_i\) is satisfied exactly when \(y_i=0\), contributing \(1-y_i\). So the constraint says: if no literal is satisfied the sum is \(0\) and forces \(z_j=0\); if some literal is satisfied the sum is at least \(1\) and permits \(z_j=1\). Since \(w_j\ge 0\) in a maximization, an optimal solution sets \(z_j=1\) whenever it is allowed, so \(z_j=1\) if and only if \(C_j\) is satisfied.</p>
+<p>Therefore every feasible solution corresponds to a real solution of the problem: the \(y_i\) form a truth assignment, and the objective \(\sum_j w_j z_j\) equals the total weight of the clauses that this assignment satisfies. Maximizing it solves weighted Max-SAT.</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> Encode truth as \(0/1\), let each clause "count" its satisfied literals, and let \(z_j\) turn on only when that count is positive.</p>

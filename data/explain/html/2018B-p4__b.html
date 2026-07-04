@@ -1,9 +1,2 @@
-<p class="ex-line"><span class="ex-lab">Claim</span> The expectation is over the algorithm's random pivot choices.</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> Ask what probability space \(T(n)\) lives in, and name its only source of randomness.</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> The input is treated as fixed; the pivots are the coins, so averaging is over pivot sequences.</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> This is the direct follow-up to part (a): whenever we write \(\mathbb{E}[T(n)]\) we must say what is random, and here it is only the pivots.</p>
-<ol class="gsteps">
-<li><b>Input contributes nothing.</b> The array is fixed and arbitrary; it carries no randomness.</li>
-<li><b>Pivots are the coins.</b> At each recursive call the algorithm picks a pivot uniformly at random, and those choices decide which side we recurse on, hence how much work happens.</li>
-<li><b>State the answer.</b> So \(T(n)\) is a function of the pivot sequence, and \(\mathbb{E}[T(n)]\) averages \(T(n)\) over all equally likely pivot sequences — the expectation is over the pivot choices.</li>
-</ol>
+<p>The expectation is over the random choices of pivots made by the algorithm. The input array is fixed; the only source of randomness is which pivot the algorithm picks at each step, and \(\mathbb{E}[T(n)]\) averages over those choices.</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> The algorithm's coin flips are the only random thing, so that is what we average over.</p>

@@ -1,11 +1,4 @@
-<p class="ex-line"><span class="ex-lab">Claim</span> True: random edge weights in \(\{1,\dots,4|E|\}\) give both a unique minimum-weight cut and a unique maximum-weight cut with probability at least \(1/2\).</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> Treat cuts as sets of edges and apply the isolation lemma once for the minimum and once for the maximum, then union-bound the two failure chances.</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> With weights drawn from a range \(4|E|\) times the ground-set size, the isolation lemma makes a non-unique extremal set very unlikely — at most \(1/4\) each way.</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> "Unique minimum/maximum over a family of subsets under random weights" is the exact signature of the isolation lemma, so it is the natural tool to reach for.</p>
-<ol class="gsteps">
-<li><b>Model cuts as a set family.</b> Let \(\mathcal{F}\) be the family of edge-sets that are the cuts of \(G\); the ground set is \(E\), and a cut's weight is the sum of its crossing-edge weights.</li>
-<li><b>Bound the min failure.</b> Weights are uniform over \(\{1,\dots,4|E|\}\), so the range is \(4|E|\) against ground-set size \(|E|\). The isolation lemma gives that the minimum-weight cut fails to be unique with probability at most \(1/4\).</li>
-<li><b>Bound the max failure.</b> Apply the same lemma to the negated weights (maximizing is minimizing the negation), so the maximum-weight cut is non-unique also with probability at most \(1/4\).</li>
-<li><b>Union bound.</b> The chance that at least one of the two bad events happens is at most \(1/4+1/4=1/2\).</li>
-<li><b>Conclude.</b> So with probability at least \(1/2\) both extremal cuts are unique — random weights isolate a single best and single worst cut.</li>
-</ol>
+<p>True. Let \(\mathcal{F}\) be the family of edge-sets that form the cuts of \(G\), over the ground set \(E\); the weight of a cut is the sum of the weights of its edges. Each edge gets an independent uniform weight from \(\{1,\dots,4|E|\}\).</p>
+<p>By the isolation lemma, when the weights are drawn uniformly from \(\{1,\dots,K\}\), the probability that the minimum-weight member of \(\mathcal{F}\) is not unique is at most \(|E|/K\). Here \(K=4|E|\), so this probability is at most \(|E|/(4|E|)=1/4\). Applying the same argument to the negated weights (maximizing weight is minimizing the negation), the probability that the maximum-weight cut is not unique is also at most \(1/4\).</p>
+<p>By the union bound, the probability that at least one of these two bad events happens is at most \(1/4+1/4=1/2\). Therefore, with probability at least \(1/2\), both the minimum-weight cut and the maximum-weight cut are unique.</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> Fine-grained random weights isolate a single extremal set; there is only a quarter chance of a tie at each end, so half the time both ends are unique.</p>

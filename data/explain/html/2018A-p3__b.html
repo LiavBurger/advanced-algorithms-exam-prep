@@ -1,12 +1,6 @@
-<p class="ex-line"><span class="ex-lab">Goal</span> Write the LP relaxation of the matching ILP and drop any redundant constraint.</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> Replace \(x_e\in\{0,1\}\) by \(0\le x_e\le 1\), then notice the upper bounds \(x_e\le 1\) are already forced by the vertex equalities.</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> A single edge value cannot exceed the sum at its endpoint, which equals \(1\), so \(x_e\le 1\) comes for free.</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> "Relax and remove redundant constraints" is the standard LP-relaxation exercise — swap integrality for an interval, then prune what other constraints already imply.</p>
-<ol class="gsteps">
-  <li><b>Relax integrality.</b> Replace \(x_e\in\{0,1\}\) with \(0\le x_e\le 1\), keeping the vertex equalities \(\sum_{uv\in E} x_{uv} = 1\).</li>
-  <li><b>Upper bound is redundant.</b> For edge \(e=uv\), the endpoint equality at \(u\) is \(\sum_{uw\in E} x_{uw} = 1\), and it contains the term \(x_{uv}\). Since every term is nonnegative, \(x_{uv}\le 1\) automatically.</li>
-  <li><b>Prune it.</b> So each \(x_e\le 1\) follows from the vertex equality plus \(x_e\ge 0\) and can be removed.</li>
-</ol>
-<p>The clean relaxation is
-\[\min \sum_{e\in E} w(e)\,x_e \quad\text{s.t.}\quad \forall v\in V:\ \sum_{uv\in E} x_{uv} = 1,\qquad \forall e\in E:\ x_e\ge 0.\]
-Only the vertex equalities and nonnegativity remain.</p>
+<p>The LP relaxation replaces \(x_e\in\{0,1\}\) by \(x_e\ge 0\), and we may drop the constraints \(x_e\le 1\) because the vertex equalities already imply them:
+\[\min \sum_{e\in E} w(e)\,x_e \quad\text{s.t.}\quad \forall v\in V:\ \sum_{uv\in E} x_{uv}=1,\qquad \forall e\in E:\ x_e\ge 0.\]</p>
+<p>To relax, we swap integrality \(x_e\in\{0,1\}\) for the interval \(0\le x_e\le 1\), keeping the vertex equalities \(\sum_{uv\in E} x_{uv}=1\).</p>
+<p>The upper bounds \(x_e\le 1\) are redundant. Take an edge \(e=uv\). The equality at endpoint \(u\) is \(\sum_{uw\in E} x_{uw}=1\), and it contains the term \(x_{uv}\). All the other terms are \(\ge 0\), so \(x_{uv}\le 1\) follows automatically from the equality together with \(x_e\ge 0\).</p>
+<p>Since every \(x_e\le 1\) is already implied, we remove them, leaving only the vertex equalities and \(x_e\ge 0\).</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> An edge value cannot beat the sum at its endpoint, which equals \(1\), so the upper bound comes for free.</p>

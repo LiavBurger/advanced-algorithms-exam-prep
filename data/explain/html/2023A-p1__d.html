@@ -1,10 +1,4 @@
-<p class="ex-line"><span class="ex-lab">Claim</span> True: two \(4\times 4\) matrices can be multiplied with at most \(49\) multiplications.</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> View each \(4\times 4\) matrix as a \(2\times 2\) matrix of \(2\times 2\) blocks and run Strassen once at the block level.</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> Strassen multiplies \(2\times 2\) matrices with \(7\) products instead of \(8\); applying it recursively, the block products themselves each cost \(7\).</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> A \(4\times 4\) is naturally a \(2\times 2\) grid of \(2\times 2\) blocks, so one recursion level of Strassen is the obvious lever once you want to beat the naive \(64\).</p>
-<ol class="gsteps">
-<li><b>Block the matrices.</b> Split each \(4\times 4\) matrix into four \(2\times 2\) blocks, so it looks like a \(2\times 2\) matrix whose entries are \(2\times 2\) matrices.</li>
-<li><b>Outer Strassen.</b> Multiplying these two block matrices with Strassen needs only \(7\) block multiplications rather than \(8\) (the extra additions of blocks cost no scalar multiplications).</li>
-<li><b>Inner cost.</b> Each block multiplication is a genuine \(2\times 2\) product, again done by Strassen with \(7\) scalar multiplications.</li>
-<li><b>Count.</b> Total scalar multiplications are \(7\times 7=49\), which meets the bound \(49\) — one level of recursion is exactly what buys the savings over \(64\).</li>
-</ol>
+<p>True. Strassen's algorithm multiplies two \(2\times 2\) matrices using only \(7\) multiplications (instead of \(8\)). We use it twice, nested.</p>
+<p>Split each \(4\times 4\) matrix into four \(2\times 2\) blocks, so it becomes a \(2\times 2\) matrix whose entries are \(2\times 2\) blocks. Multiply these two block matrices with Strassen at the block level: this uses \(7\) block multiplications (the block additions cost no scalar multiplications). Each of those block multiplications is itself a product of two \(2\times 2\) matrices, which we again do by Strassen with \(7\) scalar multiplications.</p>
+<p>In total the number of scalar multiplications is \(7\times 7=49\), so \(49\) multiplications suffice.</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> Nest Strassen once: \(7\) block products, each an inner \(2\times 2\) product costing \(7\), gives \(49\).</p>

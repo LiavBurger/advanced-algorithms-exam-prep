@@ -1,10 +1,9 @@
-<p class="ex-line"><span class="ex-lab">Goal</span> With the number of bins fixed, give a 2-approximation for the smallest common bin capacity that fits all items.</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> Recognize this as minimizing the maximum load over \(m\) bins, then run the greedy least-loaded scheduler and report its max load.</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> The minimum feasible capacity is exactly the minimum achievable maximum bin load — so a good makespan algorithm solves it.</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> "Minimize the largest bin" is the makespan problem already solved in class, whose greedy list-scheduler is a known 2-approximation.</p>
-<ol class="gsteps">
-<li><b>Reformulate.</b> With capacity \(C\), all items fit iff we can assign them so every bin's load is \(\le C\). The least such \(C\) is exactly \(\min(\text{max bin load})\), so minimizing capacity equals minimizing makespan.</li>
-<li><b>Algorithm.</b> Process items one by one, placing each into the currently least-loaded bin; output the resulting maximum bin load as the capacity.</li>
-<li><b>Why it's within 2.</b> This is the pset-2 scheduling result. Two lower bounds on the optimal capacity: it's at least the average load \(\tfrac1m\sum_i w_i\), and at least the largest item \(\max_i w_i\). When the busiest bin got its last item, that bin was least-loaded, so its load-before was \(\le\) average \(\le \mathrm{OPT}\); one more item (size \(\le \mathrm{OPT}\)) keeps it \(\le 2\,\mathrm{OPT}\).</li>
-<li><b>Conclusion.</b> The reported capacity is at most twice the minimum feasible capacity, a 2-approximation running in polynomial time.</li>
+<p>Here the number of bins \(k\) is fixed and we want the smallest common bin capacity so all items fit. This is exactly the makespan scheduling problem: think of the \(k\) bins as \(k\) machines and each item's weight as a job's processing time; the minimum feasible capacity is the minimum achievable maximum load.</p>
+<p>Algorithm (greedy least-loaded, as proved in pset 2 problem 3):</p>
+<ol>
+<li>Go through the items one by one.</li>
+<li>Place each item into the bin that currently has the smallest total load.</li>
+<li>Output the maximum load over all bins in the resulting packing as the required capacity.</li>
 </ol>
+<p>Correctness / ratio: this greedy assignment was shown in class (pset 2 problem 3) to be a \(2\)-approximation for minimizing the maximum load, i.e. the maximum load it produces is at most twice the optimal minimum capacity. Reporting that maximum load therefore gives a capacity within a factor \(2\) of optimal, and all items fit by construction. So this is a \(2\)-approximation for the minimum-bin-capacity variant.</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> Minimizing the largest bin load is just makespan scheduling, and always feeding the next item to the emptiest bin is known to stay within twice the best possible.</p>

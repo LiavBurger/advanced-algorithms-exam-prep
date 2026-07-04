@@ -1,10 +1,9 @@
-<p class="ex-line"><span class="ex-lab">Goal</span> Give an efficient randomized test deciding whether two branching programs \(A_1\cdots A_m\) and \(B_1\cdots B_m\) compute the same polynomial (their \((1,1)\)-entry), with error below \(0.1\).</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> Bound the degree of each polynomial, then plug random values into both and compare, using Schwartz-Zippel to control the error.</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> Two polynomials are equal iff their difference is identically zero, and a nonzero low-degree polynomial rarely vanishes at a random point.</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> Equality of polynomials given as products is exactly polynomial identity testing, and Schwartz-Zippel is the go-to tool once you know a degree bound.</p>
-<ol class="gsteps">
-  <li><b>Degree bound.</b> Each matrix entry has degree at most \(1\), and each matrix multiplication adds at most \(1\) to the degree, so after \(m\) products the \((1,1)\)-entries \(P_A\) and \(P_B\), and their difference \(Q=P_A-P_B\), have degree at most \(m\).</li>
-  <li><b>The test.</b> Assign each variable \(x_i\) an independent uniform value from \(S=\{1,\dots,100m\}\), compute both matrix products numerically, and answer "equal" iff the two \((1,1)\)-entries match.</li>
-  <li><b>Error analysis.</b> If the programs are equal, \(Q\equiv 0\) and the entries always match, so the test never errs. If they differ, \(Q\neq 0\) has degree \(\le m\), and by Schwartz-Zippel \(\Pr[Q=0]\le \dfrac{m}{100m}=\dfrac{1}{100}<0.1\).</li>
+<p>The two programs are equal iff the polynomials they compute are equal, so we test whether the difference is identically zero using a random evaluation. First bound the degree: each entry of a matrix has degree at most \(1\), and each matrix multiplication adds at most \(1\) to the degree, so after \(m\) products the \((1,1)\)-entries \(P_A\) of \(A_1\cdots A_m\) and \(P_B\) of \(B_1\cdots B_m\), and their difference \(Q=P_A-P_B\), all have degree at most \(m\).</p>
+<p>The algorithm:</p>
+<ol>
+<li>Assign each variable \(x_i\) an independent, uniformly random value from the set \(\{1,2,\dots,100m\}\).</li>
+<li>Compute both matrix products \(A_1\cdots A_m\) and \(B_1\cdots B_m\) numerically at this assignment, and read off their \((1,1)\)-entries.</li>
+<li>Answer "equal" if the two entries are equal, and "different" otherwise.</li>
 </ol>
-<p class="ex-line">Each run is just \(m\) multiplications of \(3\times 3\) matrices, so it is fast, and a random point almost never fools a nonzero polynomial, keeping the error well under \(0.1\).</p>
+<p>Correctness: if the programs compute the same polynomial then \(Q\equiv 0\), the two entries always agree, and the test never errs. If they compute different polynomials then \(Q\neq 0\) has degree at most \(m\), so by the Schwartz-Zippel lemma the chance that our random point is a root is at most \(\dfrac{m}{100m}=\dfrac{1}{100}<0.1\). Thus the error probability is below \(0.1\). Runtime: each run is \(m\) multiplications of \(3\times 3\) matrices, which is efficient.</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> A nonzero low-degree polynomial almost never vanishes at a random point, so plugging in random values and comparing catches any difference with high probability.</p>

@@ -1,10 +1,4 @@
-<p class="ex-line"><span class="ex-lab">Goal</span> write the minimum-weight dominating set problem as an ILP.</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> one binary variable per vertex for membership, a cost objective, and one constraint per vertex saying it is dominated.</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> vertex \(v\) is dominated exactly when at least one vertex of its closed neighborhood \(N(v)\cup\{v\}\) is chosen.</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> "every vertex must have someone chosen nearby" is a covering condition, which turns directly into a \(\sum\ge 1\) constraint per vertex.</p>
-<ol class="gsteps">
-  <li><b>Variables.</b> \(x_v\in\{0,1\}\), with \(x_v=1\) meaning \(v\in S\). A \(0/1\) vector is the same as a subset \(S\subseteq V\).</li>
-  <li><b>Objective.</b> The weight of \(S\) is \(\sum_{v\in V}w_v x_v\) (unchosen vertices drop out), and we minimize it.</li>
-  <li><b>Domination constraint.</b> For every \(v\): \(\sum_{u\in N(v)\cup\{v\}}x_u\ge 1\). With \(0/1\) values this holds exactly when \(v\) itself or one of its neighbors is chosen.</li>
-  <li><b>The ILP.</b> \(\min\sum_{v}w_v x_v\) s.t. \(\sum_{u\in N(v)\cup\{v\}}x_u\ge 1\ \forall v,\ x_v\in\{0,1\}\). Every feasible \(0/1\) vector is a dominating set of that weight and vice versa, so the ILP optimum is the minimum weight dominating set.</li>
-</ol>
+<p>Introduce a variable \(x_v\in\{0,1\}\) for each vertex, where \(x_v=1\) means \(v\) is placed in the set \(S\). The cost of \(S\) is \(\sum_{v\in V}w_v x_v\), which we minimize. Vertex \(v\) is dominated exactly when \(v\in S\) or some neighbor of \(v\) is in \(S\), i.e. when at least one vertex of the closed neighborhood \(N(v)\cup\{v\}\) is chosen; this is the constraint \(\sum_{u\in N(v)\cup\{v\}}x_u\ge 1\). The ILP is</p>
+<p>\[\min\sum_{v\in V}w_v x_v\quad\text{s.t.}\quad \sum_{u\in N(v)\cup\{v\}}x_u\ge 1\ \ \forall v\in V,\qquad x_v\in\{0,1\}\ \ \forall v\in V.\]</p>
+<p>Any \(0/1\) solution picks the set \(S=\{v:x_v=1\}\); the constraints say exactly that every vertex is dominated, and the objective is the total weight of \(S\). So feasible integer solutions correspond exactly to dominating sets and their weights, and the ILP optimum is the minimum-weight dominating set.</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> Each vertex just needs at least one chosen vertex in its closed neighborhood, which is what "dominated" means.</p>

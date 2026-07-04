@@ -1,9 +1,5 @@
-<p class="ex-line"><span class="ex-lab">Claim</span> the BIP version of the dual is the <b>set packing</b> problem: pick the largest collection of pairwise disjoint subsets from \(C\).</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> impose \(y_D\in\{0,1\}\) on the dual and read what each piece means combinatorially.</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> the constraint "each element sits in at most one chosen set" is exactly the statement that the chosen sets don't overlap.</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> turning a \(0/1\) variable back into "chosen / not chosen" and a "\(\le 1\)" constraint into "no sharing" is the standard way to name what an ILP is really asking.</p>
-<ol class="gsteps">
-<li><b>Interpret the variables.</b> With \(y_D\in\{0,1\}\), \(y_D=1\) means "subset \(D\) is chosen"; let \(\mathcal D=\{D:y_D=1\}\) be the chosen collection.</li>
-<li><b>Interpret the objective.</b> \(\sum_D y_D=|\mathcal D|\) counts the chosen subsets, and we maximize it.</li>
-<li><b>Interpret the constraint.</b> \(\sum_{D:\,i\in D}y_D\le1\) says each element \(i\in S\) lies in at most one chosen subset &mdash; so no two chosen subsets share an element. That is: find a maximum-size family of mutually disjoint subsets of \(C\), the set packing problem.</li>
-</ol>
+<p>Take the dual from (b) and make it a binary integer program by requiring \(y_D\in\{0,1\}\) for every \(D\in C\):</p>
+\[\max\ \sum_{D\in C}y_D\quad\text{s.t.}\quad \sum_{D:\,i\in D}y_D\le 1\ \ \text{for all }i\in S,\qquad y_D\in\{0,1\}\ \ \text{for all }D\in C.\]
+<p>Now read off what each piece means. With \(y_D\in\{0,1\}\), setting \(y_D=1\) means we choose the subset \(D\); let the chosen collection be \(\{D:y_D=1\}\). The objective \(\sum_{D\in C}y_D\) counts how many subsets we choose, and we maximize that count. The constraint \(\sum_{D:\,i\in D}y_D\le 1\) says that for every element \(i\in S\), at most one chosen subset contains \(i\); equivalently, no two chosen subsets share an element, so the chosen subsets are pairwise disjoint.</p>
+<p>So the combinatorial problem is: find a maximum-size collection of subsets from \(C\) that are mutually (pairwise) disjoint.</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> Grab as many of the given subsets as possible without ever reusing an element.</p>

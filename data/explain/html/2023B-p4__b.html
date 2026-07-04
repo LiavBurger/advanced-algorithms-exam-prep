@@ -1,10 +1,4 @@
-<p class="ex-line"><span class="ex-lab">Claim</span> The converse fails — a feasible IP solution need not be a Hamiltonian cycle.</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> Exhibit a graph whose edges split into two disjoint cycles, each obeying the degree constraints.</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> The degree constraints only force in-degree and out-degree \(1\); they never force a single connected tour.</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> The hint points at connectivity — the fastest counterexample is a disconnected union of small cycles, which no degree constraint can rule out.</p>
-<ol class="gsteps">
-<li><b>Pick the graph.</b> On six vertices take two vertex-disjoint directed triangles, \(1\to2\to3\to1\) and \(4\to5\to6\to4\); set \(x_{u,v}=1\) on those six edges, \(0\) elsewhere.</li>
-<li><b>Check feasibility.</b> In each triangle every vertex has exactly one chosen incoming and one chosen outgoing edge, so every incoming and outgoing sum is \(1\) and all variables are \(0/1\). Feasible.</li>
-<li><b>Show it isn't Hamiltonian.</b> A Hamiltonian cycle is one cycle through all vertices, but here the vertices split into two separate cycles — the subgraph isn't even connected.</li>
-</ol>
-<p class="ex-line">This is the classic subtour phenomenon: the degree constraints allow any collection of disjoint cycles covering all vertices, which is exactly the gap part (c) fixes.</p>
+<p>The converse fails, because the degree constraints only force in-degree \(1\) and out-degree \(1\) at each vertex; they never force the chosen edges to form a single connected tour. So a union of several disjoint cycles is also feasible.</p>
+<p>Concretely, take six vertices with two vertex-disjoint directed triangles, \(1\to 2\to 3\to 1\) and \(4\to 5\to 6\to 4\). Set \(x_{u,v}=1\) on these six edges and \(0\) on all others. In each triangle every vertex has exactly one chosen incoming edge and one chosen outgoing edge, so every incoming sum and every outgoing sum equals \(1\) and all variables are in \(\{0,1\}\); the solution is feasible.</p>
+<p>But this is not a Hamiltonian cycle: a Hamiltonian cycle is one cycle passing through all vertices, whereas here the vertices split into two separate cycles and the subgraph is not even connected. So a feasible IP solution need not correspond to a Hamiltonian cycle.</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> Counting one edge in and one out at each vertex can't tell a single big loop apart from several small ones.</p>

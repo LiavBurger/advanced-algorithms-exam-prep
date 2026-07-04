@@ -1,9 +1,4 @@
-<p class="ex-line"><span class="ex-lab">Claim</span> False — no nonzero polynomial of degree below \(m\) can vanish on every choice of order-\(m\) roots of unity.</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> Bound the fraction of roots-of-unity inputs on which \(f\) vanishes using Schwartz–Zippel.</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> Over a set of size \(m\), a nonzero polynomial of degree \(<m\) must miss at least one point.</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> "Nonzero polynomial vanishing on a finite set" is exactly what Schwartz–Zippel controls, and here the set \(\Omega_m\) has exactly \(m\) elements, matching the degree bound.</p>
-<ol class="gsteps">
-<li><b>Size the ground set.</b> The order-\(m\) roots of unity form a set \(\Omega_m\subseteq\mathbb{C}\) with \(|\Omega_m|=m\).</li>
-<li><b>Apply Schwartz–Zippel.</b> For a nonzero \(f\) with \(\deg(f)<m\), picking \(a_1,\dots,a_n\) independently and uniformly from \(\Omega_m\) gives \(\Pr[f(a_1,\dots,a_n)=0]\le \tfrac{\deg f}{m}<1\).</li>
-<li><b>Conclude.</b> Since the probability is below \(1\), some choice \(a_1,\dots,a_n\in\Omega_m\) has \(f\ne 0\). So no such polynomial vanishes on all of them, and the statement is false.</li>
-</ol>
+<p>False. Let \(\Omega_m\subseteq\mathbb{C}\) be the roots of unity of order \(m\), so \(|\Omega_m|=m\). Take any nonzero polynomial \(f(x_1,\dots,x_n)\) with \(\deg(f)<m\), and pick each \(a_1,\dots,a_n\) independently and uniformly from \(\Omega_m\). By the Schwartz-Zippel lemma,</p>
+<p>\[\Pr_{a_1,\dots,a_n\in\Omega_m}\big[f(a_1,\dots,a_n)=0\big]\;\le\;\frac{\deg f}{m}\;<\;1.\]</p>
+<p>Since this probability is strictly less than \(1\), there must exist some point \(a_1,\dots,a_n\in\Omega_m\) with \(f(a_1,\dots,a_n)\neq0\). So no nonzero \(f\) of degree \(<m\) can vanish on all of \(\Omega_m^n\), and the statement is false.</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> A low-degree polynomial simply doesn't have enough roots to cover every point of a grid this large.</p>

@@ -1,10 +1,5 @@
-<p class="ex-line"><span class="ex-lab">Goal</span> Prove that after packing all items of weight at least \(1/k\), at most \(k-1\) bins are not full.</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> Induct on \(k\); at each new weight level the items divide \(1\) evenly, so a fresh bin isn't opened until the current one is exactly full.</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> Because every weight is a unit fraction \(1/m\) and \(1/k\) divides \(1\), items of size \(1/k\) can only leave one partly-filled bin behind — the last one opened.</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> A bound that grows by one as \(k\) increases by one is the classic shape for induction on \(k\).</p>
-<ol class="gsteps">
-<li><b>Base case \(k=2\).</b> Items of weight \(\ge1/2\) are the \(1\)'s (each fills a bin) and the \(1/2\)'s (two fill a bin). The only non-full bin can be one holding a single unpaired \(1/2\), so at most \(1=k-1\).</li>
-<li><b>Inductive hypothesis.</b> After packing all items of weight \(\ge1/(k-1)\), assume at most \(k-2\) non-full bins.</li>
-<li><b>Add the \(1/k\) items.</b> Since \(1/k\) divides \(1\), the algorithm keeps dropping \(1/k\) items into a bin until it hits exactly \(1\), never opening a new bin while the current one has room. So every bin opened in this phase, except possibly the last, ends up completely full.</li>
-</ol>
-<p class="ex-line">That's the old \(k-2\) non-full bins plus at most one new one, giving \((k-2)+1=k-1\). The induction closes.</p>
+<p>We prove by induction on \(k\) that after packing all items of weight at least \(1/k\), at most \(k-1\) bins are not full.</p>
+<p>Base case \(k=2\). The items of weight at least \(1/2\) are the \(1\)'s (each fills a bin by itself) and the \(1/2\)'s (which are packed in pairs). The only way to leave a non-full bin is a single unpaired \(1/2\), so there is at most one non-full bin, which is \(k-1=1\).</p>
+<p>Inductive step. Assume that after packing all items of weight at least \(1/(k-1)\) there are at most \(k-2\) non-full bins. Now we pack the items of weight exactly \(1/k\). Since \(1/k\) divides \(1\), the algorithm keeps placing \(1/k\) items into a bin until that bin becomes exactly full, and it never opens a new bin while some bin still has room. So every bin opened during this phase, except possibly the very last one opened, ends up completely full. Therefore this phase adds at most one new non-full bin.</p>
+<p>Combining, the number of non-full bins is at most \((k-2)+1=k-1\), completing the induction.</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> Because each weight \(1/k\) divides \(1\) evenly, a bin fills perfectly before the next one opens, so each new weight level can leave only one partly-filled bin behind.</p>

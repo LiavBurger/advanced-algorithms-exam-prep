@@ -1,10 +1,4 @@
-<p class="ex-line"><span class="ex-lab">Goal</span> Write an integer linear program for Minimum Makespan: assign \(n\) jobs to \(m\) machines minimizing the heaviest machine's load.</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> Use \(0/1\) assignment variables, plus one extra variable \(T\) that upper-bounds every machine's load, and minimize \(T\).</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> "Minimize the maximum" isn't linear directly, but bounding every load by a single variable \(T\) and minimizing \(T\) achieves the same thing.</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> The standard trick for a min-max objective is to introduce an auxiliary ceiling variable and push all the maxima under it.</p>
-<ol class="gsteps">
-<li><b>Assignment variables.</b> For each job \(i\) and machine \(j\) take \(x_{i,j}\in\{0,1\}\), with \(x_{i,j}=1\) meaning job \(i\) runs on machine \(j\).</li>
-<li><b>Makespan variable.</b> Add \(T\), representing the load of the last-finishing machine, which we minimize.</li>
-<li><b>The program.</b> \[ \begin{aligned} \text{minimize}\quad & T\\ \text{s.t.}\quad & \sum_{j=1}^{m} x_{i,j}=1 && 1\le i\le n,\\ & \sum_{i=1}^{n} x_{i,j}\,p_i \le T && 1\le j\le m,\\ & x_{i,j}\in\{0,1\} && \forall i,j. \end{aligned} \]</li>
-</ol>
-<p class="ex-line">The first constraints put each job on exactly one machine; the second say every machine's load is at most \(T\). Minimizing \(T\) drives it down to the true maximum load, so the optimal \(T\) is the minimum makespan.</p>
+<p>For each job \(1\le i\le n\) and machine \(1\le j\le m\), introduce a boolean variable \(x_{i,j}\in\{0,1\}\) where \(x_{i,j}=1\) means job \(i\) is assigned to machine \(j\). Add one more variable \(T\) representing the makespan (the load of the machine that finishes last), which we minimize. The program is
+\[ \begin{aligned} \text{minimize}\quad & T\\ \text{subject to}\quad & \sum_{j=1}^{m} x_{i,j}=1 && \text{for all } 1\le i\le n,\\ & \sum_{i=1}^{n} x_{i,j}\,p_i \le T && \text{for all } 1\le j\le m,\\ & x_{i,j}\in\{0,1\} && \text{for all } 1\le i\le n,\ 1\le j\le m. \end{aligned} \]</p>
+<p>The first set of constraints says each job is assigned to exactly one machine. The second set says the load of every machine, \(\sum_i x_{i,j}p_i\), is at most \(T\). Since we minimize \(T\) subject to it being an upper bound on all machine loads, at the optimum \(T\) equals the maximum machine load, so the optimal \(T\) is exactly the minimum makespan.</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> "Minimize the maximum load" is not linear on its own, so we introduce one ceiling variable \(T\) above every load and just push it down.</p>

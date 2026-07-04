@@ -1,10 +1,30 @@
-<p class="ex-line"><span class="ex-lab">Claim</span> \(\mathrm{MATCH}\le\mathrm{OPT}/2\), where \(\mathrm{MATCH}\) is the min-weight perfect matching and \(\mathrm{OPT}\) the min TSP tour.</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> split an optimal tour's edges into two perfect matchings; the cheaper one is at most half the tour, and \(\mathrm{MATCH}\) is no larger.</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> a cycle on an even number of vertices decomposes into two disjoint perfect matchings by taking alternate edges.</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> to upper-bound the best matching, the natural trick is to exhibit a cheap matching, and a tour hands you two of them for free.</p>
-<ol class="gsteps">
-<li><b>Setup.</b> Assume \(n\) even (needed for a perfect matching). Let \(x_1,\dots,x_n\) be the vertices in the order of a minimum TSP tour, whose \(n\) edges \(x_1x_2,\dots,x_nx_1\) total \(\mathrm{OPT}\).</li>
-<li><b>Two matchings from the tour.</b> Take alternate edges: \(M_1=\{x_1x_2,x_3x_4,\dots,x_{n-1}x_n\}\) and \(M_2=\{x_2x_3,x_4x_5,\dots,x_nx_1\}\). Each touches every vertex once, so both are perfect matchings, and together they use every tour edge exactly once: \(w(M_1)+w(M_2)=\mathrm{OPT}\).</li>
-<li><b>One is cheap.</b> Since the two weights sum to \(\mathrm{OPT}\), the smaller satisfies \(\min\{w(M_1),w(M_2)\}\le\mathrm{OPT}/2\) (the min is at most the average).</li>
-<li><b>Conclude.</b> \(\mathrm{MATCH}\) is the minimum over all perfect matchings, so \(\mathrm{MATCH}\le\min\{w(M_1),w(M_2)\}\le\mathrm{OPT}/2\).</li>
-</ol>
+<p>We prove \(\mathrm{MATCH}\le\mathrm{OPT}/2\). The idea is to take an optimal tour, split its edges into two matchings by taking alternate edges, and observe that the cheaper of the two is a matching of weight at most \(\mathrm{OPT}/2\), while \(\mathrm{MATCH}\) is no larger than any matching.</p>
+
+<p>Assume without loss of generality that \(n\) is even (otherwise a maximum matching cannot cover every vertex, and the two matchings below are still maximum matchings by the same argument). Let \(x_1,x_2,\dots,x_n\) be the vertices of a minimum weight traveling salesperson tour, listed in the order they are visited. The tour uses the \(n\) edges</p>
+\[
+x_1x_2,\; x_2x_3,\; \dots,\; x_{n-1}x_n,\; x_nx_1,
+\]
+<p>and their total weight is \(\mathrm{OPT}\).</p>
+
+<p>Split these edges into two sets by taking alternate edges of the cycle:</p>
+\[
+M_1=\{x_1x_2,\;x_3x_4,\;\dots,\;x_{n-1}x_n\},\qquad
+M_2=\{x_2x_3,\;x_4x_5,\;\dots,\;x_nx_1\}.
+\]
+<p>Each vertex is an endpoint of exactly one edge in \(M_1\) and exactly one edge in \(M_2\), so both \(M_1\) and \(M_2\) are (maximum) matchings in \(G\). Together they use each of the \(n\) tour edges exactly once, so</p>
+\[
+w(M_1)+w(M_2)=\mathrm{OPT}.
+\]
+
+<p>Since the two weights sum to \(\mathrm{OPT}\), the smaller of them is at most the average:</p>
+\[
+\min\{w(M_1),\,w(M_2)\}\le\frac{\mathrm{OPT}}{2}.
+\]
+
+<p>Finally, \(\mathrm{MATCH}\) is the minimum weight over all maximum matchings of \(G\), so it is no larger than either \(M_1\) or \(M_2\). Combining the two facts,</p>
+\[
+\mathrm{MATCH}\le\min\{w(M_1),\,w(M_2)\}\le\frac{\mathrm{OPT}}{2},
+\]
+<p>which is exactly what we wanted to prove.</p>
+
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> A tour is a cycle, and a cycle falls apart into two matchings by taking every other edge, so one of them must cost at most half the tour.</p>

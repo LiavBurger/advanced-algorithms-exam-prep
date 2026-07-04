@@ -1,10 +1,11 @@
-<p class="ex-line"><span class="ex-lab">Goal</span> Build a randomized polynomial-time algorithm estimating a CNF formula's density \(D(\varphi)\) to within \(1/10\), correct with probability at least \(1-2^{-n}\).</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> Sample many random assignments, output the fraction that satisfy \(\varphi\), and use a concentration bound to fix the sample size.</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> \(D(\varphi)\) is exactly the probability a uniformly random assignment satisfies \(\varphi\), so a sample average estimates it.</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> Whenever a quantity is a probability over a huge set you can't scan, Monte-Carlo sampling plus a Chernoff bound is the standard way to estimate it cheaply and reliably.</p>
-<ol class="gsteps">
-<li><b>The algorithm.</b> Draw \(t\) independent uniform assignments \(\alpha_1,\dots,\alpha_t\in\{0,1\}^n\), evaluate \(\varphi(\alpha_i)\) for each (fast, linear in the formula size), and output \(A(\varphi)=\tfrac1t\sum_{i=1}^t X_i\), the fraction that satisfy.</li>
-<li><b>It aims at the right value.</b> Let \(X_i\) be an indicator random variable for the event that \(\alpha_i\) satisfies \(\varphi\). Since \(\alpha_i\) is uniform, \(\mathbb{E}[X_i]=D(\varphi)\), so \(\mathbb{E}[A(\varphi)]=D(\varphi)\) — the estimate is centered correctly.</li>
-<li><b>Concentration.</b> The \(X_i\) are independent and in \([0,1]\), so by the Chernoff bound the chance the estimate is off by more than \(1/10\) shrinks fast as \(t\) grows.</li>
-<li><b>Pick the sample size.</b> Choose \(t=O(n)\) large enough that this error drops below \(2^{-n}\); then the algorithm succeeds with probability at least \(1-2^{-n}\), and with \(O(n)\) fast evaluations it runs in polynomial time.</li>
+<p>The algorithm estimates \(D(\varphi)\) by sampling. On input \(\varphi\):</p>
+<ol>
+<li>Draw \(t\) independent, uniformly random assignments \(\alpha_1,\dots,\alpha_t\in\{0,1\}^n\) (the value of \(t\) is chosen below).</li>
+<li>Evaluate \(\varphi(\alpha_1),\dots,\varphi(\alpha_t)\); each evaluation is fast (linear in the size of \(\varphi\)).</li>
+<li>Output \(A(\varphi)=\dfrac1t\sum_{i=1}^{t}X_i\), the fraction of the sampled assignments that satisfy \(\varphi\).</li>
 </ol>
+<p>To analyze it, let \(X_i\) be an indicator random variable for the event that \(\alpha_i\) satisfies \(\varphi\). The \(X_i\) are mutually independent, and since \(\alpha_i\) is uniform over all \(2^n\) assignments, \(\mathbb{E}[X_i]=D(\varphi)\). Let \(X=\sum_{i=1}^{t}X_i\), so \(\mathbb{E}[X]=t\,D(\varphi)\) and the output is \(A(\varphi)=X/t\), giving \(\mathbb{E}[A(\varphi)]=D(\varphi)\).</p>
+<p>By the Chernoff bound, the probability that the estimate is off by more than \(1/10\),</p>
+<p>\[\Pr\!\left[\,|A(\varphi)-D(\varphi)|>\tfrac{1}{10}\,\right]\;\le\;e^{-O(t)},\]</p>
+<p>shrinks fast as \(t\) grows. Taking \(t=O(n)\) makes this error drop below \(2^{-n}\), so with probability at least \(1-2^{-n}\) the output satisfies \(|A(\varphi)-D(\varphi)|\le \tfrac1{10}\). Since \(t=O(n)\) and each evaluation is fast, the algorithm runs in polynomial time.</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> The density is just the chance a random assignment works, so a fraction over enough random tries lands close to it.</p>

@@ -1,11 +1,11 @@
-<p class="ex-line"><span class="ex-lab">Goal</span> Turn an always-correct Las Vegas algorithm \(A\) (expected time \(\le 10n\)) into a Monte Carlo algorithm \(B\) running in \(O(n)\) time and correct with probability at least \(9/10\).</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> Run \(A\) as a black box but cut it off after a fixed step budget, returning a default answer if it hasn't finished.</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> \(A\) only "fails" \(B\) when it runs unusually long, and a long run is rare because its expected time is small.</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> To bound the probability of a large running time from just its expectation, Markov's inequality is the natural tool, so you set the cutoff as a multiple of the expected time.</p>
-<ol class="gsteps">
-<li><b>Algorithm \(B\).</b> Run \(A(x)\) for at most \(100n\) steps. If it finishes, output its answer; otherwise halt it and output \(0\).</li>
-<li><b>Running time.</b> \(B\) never runs past \(100n\) steps, so it is \(O(n)\) on every execution.</li>
-<li><b>When it errs.</b> If \(A\) finishes, its answer is correct (Las Vegas), so \(B\) is correct. The only error is when \(A\) doesn't finish in \(100n\) steps and \(B\) outputs the default \(0\).</li>
-<li><b>Bound that chance.</b> Since \(T(n)\ge0\), Markov gives \(\Pr[T(n)\ge 100n]\le \tfrac{\mathbb{E}[T(n)]}{100n}\le \tfrac{10n}{100n}=\tfrac1{10}\).</li>
+<p>Algorithm \(B\) uses \(A\) as a black box with a time budget:</p>
+<ol>
+<li>Run \(A(x)\) for at most \(100n\) steps.</li>
+<li>If \(A\) terminates within that budget, return its answer.</li>
+<li>Otherwise, halt \(A\) and return \(0\).</li>
 </ol>
-<p class="ex-line">So \(B\) is wrong with probability at most \(1/10\), i.e. correct at least \(9/10\) of the time. The bound uses only \(\mathbb{E}[T(n)]\le 10n\), so it depends on the algorithm's randomness, not on the input.</p>
+<p>Running time: \(B\) never runs more than \(100n\) steps, so it runs in \(O(n)\) time on every input.</p>
+<p>Correctness: if \(A\) terminates, its answer is correct, since \(A\) is a Las Vegas algorithm that always returns \(f(x)\). So \(B\) can only be wrong when \(A\) fails to finish within \(100n\) steps and \(B\) outputs the default \(0\). Since the running time \(T(n)\ge 0\) and \(\mathbb{E}[T(n)]\le 10n\), Markov's inequality gives</p>
+<p>\[\Pr[T(n)\ge 100n]\;\le\;\frac{\mathbb{E}[T(n)]}{100n}\;\le\;\frac{10n}{100n}=\frac{1}{10}.\]</p>
+<p>So \(B\) errs with probability at most \(1/10\), i.e. it is correct with probability at least \(9/10\). This bound uses only \(\mathbb{E}[T(n)]\le 10n\), so it depends on the algorithm's randomness and not on the particular input \(x\).</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> A run much longer than average is rare, so cutting off at ten times the expected time almost always still lets \(A\) finish and answer correctly.</p>

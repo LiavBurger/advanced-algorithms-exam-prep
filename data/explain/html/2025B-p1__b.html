@@ -1,10 +1,6 @@
-<p class="ex-line"><span class="ex-lab">Claim</span> True — an \(n\times n\) by \(n\times n^2\) product can be done in fewer than \(n^4\) operations.</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> Cut the wide matrix into square blocks and reuse fast square multiplication on each.</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> Multiplying by a wide matrix is just several independent square multiplications placed side by side.</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> The naive count is \(n^4\); to beat it you lean on fast square matrix multiplication (exponent \(\omega<3\)), so you reshape the problem into square pieces where that tool applies.</p>
-<ol class="gsteps">
-<li><b>Split into blocks.</b> Write \(B=[\,B_1\mid B_2\mid\cdots\mid B_n\,]\), where each \(B_i\) is \(n\times n\).</li>
-<li><b>Multiply block by block.</b> Then \(AB=[\,AB_1\mid AB_2\mid\cdots\mid AB_n\,]\), so the whole product is \(n\) square multiplications of \(n\times n\) matrices.</li>
-<li><b>Count the cost.</b> Each square product costs \(n^{\omega}\) with \(\omega<3\), so the total is \(n\cdot n^{\omega}=n^{\omega+1}\).</li>
-<li><b>Compare.</b> Since \(\omega+1<4\), we get \(n^{\omega+1}<n^4\), beating the naive bound.</li>
-</ol>
+<p>True. Let \(A\) be \(n\times n\) and \(B\) be \(n\times n^2\). Split \(B\) into \(n\) blocks of size \(n\times n\), writing \(B=[\,B_1\mid B_2\mid\cdots\mid B_n\,]\). Then</p>
+<p>\[AB=[\,AB_1\mid AB_2\mid\cdots\mid AB_n\,],\]</p>
+<p>so computing \(AB\) reduces to \(n\) separate products of two \(n\times n\) matrices. Each \(n\times n\) product costs \(n^{\omega}\) operations with \(\omega<3\) (using fast matrix multiplication), so the total is</p>
+<p>\[n\cdot n^{\omega}=n^{\omega+1}<n^{4}\]</p>
+<p>arithmetic operations, which is fewer than \(n^4\). So such an algorithm exists.</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> A wide matrix is just several square ones side by side, so fast square multiplication carries straight over.</p>

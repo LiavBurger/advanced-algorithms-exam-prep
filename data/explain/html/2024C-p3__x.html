@@ -1,11 +1,10 @@
-<p class="ex-line"><span class="ex-lab">Goal</span> Give a randomized algorithm that, with probability at least \(0.9\), finds \(u\in\{0,1\}^n\) with \(d(u,v)\ge n/3\) for every \(v\in S\), where \(|S|\le n^{2024}\).</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> Just pick \(u\) uniformly at random; show each fixed \(v\) is close only with tiny probability, then union bound over all of \(S\).</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> A random \(u\) sits at expected distance \(n/2\) from any fixed \(v\), and Chernoff makes a drop to \(n/3\) exponentially unlikely — small enough to survive a polynomial-size union bound.</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> "Avoid every member of a not-too-large set with good probability" is the classic Chernoff-plus-union-bound pattern: bound one bad event sharply, then sum over all of them.</p>
-<ol class="gsteps">
-  <li><b>Algorithm.</b> Set each coordinate \(u_i\) to \(0\) or \(1\) independently with probability \(1/2\).</li>
-  <li><b>Expected distance.</b> Fix \(v\in S\) and let \(X_i\) be an indicator random variable for \(u_i\ne v_i\). Since \(v_i\) is fixed and \(u_i\) is a fair coin, \(\mathbb{E}[X_i]=1/2\), so \(d(u,v)=\sum_i X_i\) has \(\mathbb{E}[d(u,v)]=n/2\).</li>
-  <li><b>One \(v\) is rarely close.</b> The \(X_i\) are independent, so Chernoff applies. Being at distance \(\le n/3\) means dropping \(n/6\) below the mean, so \(\Pr[d(u,v)\le n/3]\le e^{-cn}\) for a constant \(c>0\) — the error shrinks fast.</li>
-  <li><b>Union bound.</b> Failure means some \(v\in S\) is too close, so \(\Pr[\text{fail}]\le |S|\cdot e^{-cn}\le n^{2024}\cdot e^{-cn}\).</li>
-</ol>
-<p>The polynomial \(n^{2024}\) is swamped by the exponentially small \(e^{-cn}\), so for large \(n\) the failure probability is below \(0.1\) and the random \(u\) works with probability at least \(0.9\).</p>
+<p>The algorithm picks \(u\) uniformly at random: set each coordinate \(u_i\) to \(0\) or \(1\) independently with probability \(1/2\). We show it succeeds with probability at least \(0.9\) using a Chernoff bound on one fixed \(v\) followed by a union bound over \(S\).</p>
+<p>Fix a vector \(v\in S\). For each coordinate let \(X_i\) be an indicator random variable for the event \(u_i\ne v_i\). Since \(v_i\) is fixed and \(u_i\) is a fair coin, \(\mathbb{E}[X_i]=\Pr[X_i=1]=1/2\). The Hamming distance is \(d(u,v)=\sum_{i=1}^n X_i\), so by linearity of expectation
+\[\mathbb{E}[d(u,v)]=\sum_{i=1}^n \mathbb{E}[X_i]=\frac{n}{2}.\]</p>
+<p>The \(X_i\) are independent, so Chernoff applies. Having \(d(u,v)\le n/3\) means \(d(u,v)\) falls at least \(n/6\) below its mean \(n/2\), so
+\[\Pr[d(u,v)\le n/3]\le \Pr\big[\,|d(u,v)-\mathbb{E}[d(u,v)]|\ge n/6\,\big]\le e^{-cn}\]
+for some constant \(c>0\); the error shrinks fast.</p>
+<p>The algorithm fails only if some \(v\in S\) is too close. By the union bound,
+\[\Pr[\text{fail}]\le \sum_{v\in S}\Pr[d(u,v)\le n/3]\le |S|\cdot e^{-cn}\le n^{2024}\cdot e^{-cn}.\]
+The polynomial \(n^{2024}\) is swamped by the exponentially small \(e^{-cn}\), so for large enough \(n\) this is at most \(0.1\). Hence the random \(u\) satisfies \(d(u,v)\ge n/3\) for all \(v\in S\) with probability at least \(0.9\).</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> A random \(u\) sits at expected distance \(n/2\) from any \(v\), and getting close is so unlikely that even \(n^{2024}\) vectors can't spoil it.</p>

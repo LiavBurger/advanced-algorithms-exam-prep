@@ -1,15 +1,7 @@
-<p class="ex-line"><span class="ex-lab">Goal</span> write "pick the most students, at most \(c_j\) from each course" as a 0/1 integer program.</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> give each student one yes/no variable, maximize how many are chosen, and add one capacity line per course.</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> "at most \(c_j\) chosen students belong to \(U_j\)" is just the linear inequality that sums the chosen students sitting in that course.</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> the problem is a yes/no decision per student under counting limits — the textbook shape of a binary integer program, so we translate the words straight into math.</p>
-<ol class="gsteps">
-  <li><b>Variables.</b> For each student \(1\le i\le n\) let \(x_i\in\{0,1\}\), with \(x_i=1\) meaning student \(a_i\) is selected. Binary values make each student an all-or-nothing choice.</li>
-  <li><b>Objective.</b> We want the largest selected group, so we maximize the count \(\sum_{i=1}^{n} x_i\) (each chosen student adds \(1\)).</li>
-  <li><b>Constraints.</b> For a course \(j\), the chosen students who take it are those \(a_i\in U_j\) with \(x_i=1\), so "at most \(c_j\) of them" is \(\sum_{i:\,a_i\in U_j} x_i \le c_j\), one line per course.</li>
-  <li><b>Full program.</b>
-  \[
-  \max \sum_{i=1}^{n} x_i \quad\text{s.t.}\quad
-  \sum_{i:\,a_i\in U_j} x_i \le c_j \ (1\le j\le m),\qquad x_i\in\{0,1\}.
-  \]</li>
-</ol>
-<p>A student in several courses appears in several \(U_j\), so choosing them spends one unit of each of those caps at once — exactly the "counts as a representative for each" behavior the problem describes.</p>
+<p>We give each student one yes/no variable, maximize how many students are chosen, and add one capacity line per course. For each student \(1\le i\le n\) let \(x_i\in\{0,1\}\), where \(x_i=1\) means student \(a_i\) is selected. We want the largest selected group, so we maximize the count \(\sum_{i=1}^{n} x_i\). For each course \(j\), the selected students who take it are exactly those \(a_i\in U_j\) with \(x_i=1\), and the rule "at most \(c_j\) of them" is the linear constraint \(\sum_{i:\,a_i\in U_j} x_i \le c_j\). The full program is</p>
+\[
+\max \sum_{i=1}^{n} x_i \quad\text{s.t.}\quad
+\sum_{i:\,a_i\in U_j} x_i \le c_j \ (1\le j\le m),\qquad x_i\in\{0,1\}.
+\]
+<p>A student enrolled in several courses appears in several sets \(U_j\), so selecting them uses one unit of each of those caps at once.</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> One yes/no switch per student, count the switches that are on, and cap how many "on" students each course may hold.</p>

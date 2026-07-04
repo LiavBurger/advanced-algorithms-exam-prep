@@ -1,10 +1,4 @@
-<p class="ex-line"><span class="ex-lab">Claim</span> True: with \(\alpha_k\) the minimum number of multiplications to multiply two \(k\times k\) matrices, \(\alpha_{k^2}\le(\alpha_k)^2\).</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> Build one concrete algorithm for \(k^2\times k^2\) matrices by treating them as \(k\times k\) grids of \(k\times k\) blocks, then count its multiplications.</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> An optimal \(k\times k\) method used at the block level costs \(\alpha_k\) block products, and each block product is itself a \(k\times k\) multiply costing \(\alpha_k\).</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> To bound a minimum from above you just exhibit any valid algorithm, and block-recursion is the natural way to turn a size-\(k\) method into a size-\(k^2\) one.</p>
-<ol class="gsteps">
-<li><b>Block the matrices.</b> Given two \(k^2\times k^2\) matrices \(A,B\), partition each into a \(k\times k\) grid of \(k\times k\) blocks (consistent since \(k\cdot k=k^2\)).</li>
-<li><b>Outer method.</b> The product respects the block layout, so multiplying the two grids uses \(\alpha_k\) block-multiplications (block additions cost no scalar multiplications).</li>
-<li><b>Inner cost.</b> Each block-multiplication is a real \(k\times k\) product, costing \(\alpha_k\) scalar multiplications.</li>
-<li><b>Count and conclude.</b> Total scalar multiplications are \(\alpha_k\cdot\alpha_k=(\alpha_k)^2\). Since this is one valid method and \(\alpha_{k^2}\) is the best over all methods, \(\alpha_{k^2}\le(\alpha_k)^2\).</li>
-</ol>
+<p>True. To bound the minimum \(\alpha_{k^2}\) from above, it is enough to exhibit one method that multiplies \(k^2\times k^2\) matrices using \((\alpha_k)^2\) multiplications.</p>
+<p>Let \(A,B\) be two \(k^2\times k^2\) matrices. Partition each into \(k\times k\) blocks, where every block is itself a \(k\times k\) matrix; so \(A\) and \(B\) become \(k\times k\) matrices whose entries are \(k\times k\) blocks. Multiply these two block matrices using the optimal \(k\times k\) scheme, which uses \(\alpha_k\) block multiplications. Each such block multiplication is a multiplication of two \(k\times k\) matrices, which can be done with \(\alpha_k\) scalar multiplications.</p>
+<p>So the total number of scalar multiplications is \(\alpha_k\cdot\alpha_k=(\alpha_k)^2\). Since \(\alpha_{k^2}\) is the minimum over all methods, \(\alpha_{k^2}\le(\alpha_k)^2\).</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> Treat a \(k^2\times k^2\) product as a \(k\times k\) grid of \(k\times k\) blocks — \(\alpha_k\) outer products, each an \(\alpha_k\)-multiplication, giving \((\alpha_k)^2\).</p>

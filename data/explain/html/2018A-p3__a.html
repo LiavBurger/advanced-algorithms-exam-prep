@@ -1,12 +1,6 @@
-<p class="ex-line"><span class="ex-lab">Goal</span> Write minimum-cost perfect matching as an integer linear program and say what the variables mean.</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> Put one binary variable on each edge for "chosen or not," make the objective the total weight of chosen edges, and force every vertex to be covered exactly once.</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> A perfect matching is precisely a \(0/1\) choice of edges where each vertex touches exactly one chosen edge.</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> "Choose a subset of edges" is the natural cue for one indicator variable per edge, and "perfect matching" becomes a linear count constraint at each vertex.</p>
-<ol class="gsteps">
-  <li><b>Variables.</b> For each edge \(e\in E\) introduce \(x_e\in\{0,1\}\), where \(x_e = 1\) means \(e\) is in the matching and \(x_e = 0\) means it is not.</li>
-  <li><b>Objective.</b> The cost of the chosen set is \(\sum_{e\in E} w(e)\,x_e\), which we minimize.</li>
-  <li><b>Perfect-matching constraint.</b> Each vertex must meet exactly one chosen edge: \(\sum_{uv\in E} x_{uv} = 1\) for every \(v\in V\). Equality (not \(\le 1\)) is what forbids leaving a vertex uncovered.</li>
-</ol>
-<p>The full program is
-\[\min \sum_{e\in E} w(e)\,x_e \quad\text{s.t.}\quad \forall v\in V:\ \sum_{uv\in E} x_{uv} = 1,\qquad \forall e\in E:\ x_e\in\{0,1\}.\]
-Every feasible \(x\) is exactly the indicator of a perfect matching, so an optimum is a minimum-cost one.</p>
+<p>We write minimum-cost perfect matching with one \(0/1\) variable per edge that says whether the edge is chosen, minimize the total weight of chosen edges, and force every vertex to be covered exactly once.</p>
+<p>Variables: for each edge \(e\in E\) introduce \(x_e\in\{0,1\}\), where \(x_e=1\) means \(e\) is in the matching and \(x_e=0\) means it is not.</p>
+<p>The integer linear program is
+\[\min \sum_{e\in E} w(e)\,x_e \quad\text{s.t.}\quad \forall v\in V:\ \sum_{uv\in E} x_{uv}=1,\qquad \forall e\in E:\ x_e\in\{0,1\}.\]</p>
+<p>The objective \(\sum_{e} w(e)\,x_e\) is the total cost of the chosen edges. The constraint \(\sum_{uv\in E} x_{uv}=1\) says exactly one chosen edge touches each vertex \(v\); using equality (not \(\le 1\)) is what forbids leaving a vertex uncovered, so it enforces a perfect matching. Thus every feasible \(x\) is the indicator of a perfect matching, and minimizing the objective gives a minimum-cost one.</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> One yes/no choice per edge, with "exactly one chosen edge at each vertex" pinning down a perfect matching.</p>

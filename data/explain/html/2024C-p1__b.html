@@ -1,11 +1,4 @@
-<p class="ex-line"><span class="ex-lab">Claim</span> True: for a nonzero polynomial \(f(x_1,\dots,x_n)\) of degree \(d\) over \(\mathbb{Q}\), some point in \(\{1,\dots,d+1\}^n\) gives \(f\neq 0\).</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> Bound the chance a random point from that grid is a root, and show it stays below \(1\).</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> If the fraction of roots is strictly less than everything, a non-root must exist.</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> A grid of size \(d+1\) per variable against a degree-\(d\) polynomial is the exact setup Schwartz-Zippel was built for.</p>
-<ol class="gsteps">
-  <li><b>Sample from the grid.</b> Draw each \(\alpha_i\) independently and uniformly from \(S=\{1,\dots,d+1\}\), so \(|S|=d+1\).</li>
-  <li><b>Apply Schwartz-Zippel.</b> The lemma bounds the chance of hitting a root: \(\displaystyle\Pr[f(\alpha_1,\dots,\alpha_n)=0]\le \frac{d}{d+1}\).</li>
-  <li><b>Note it is below one.</b> Since \(\dfrac{d}{d+1}<1\), the event \(f\neq 0\) has strictly positive probability.</li>
-  <li><b>Existence follows.</b> A positive-probability event over a finite grid cannot be empty, so some concrete \((\alpha_1,\dots,\alpha_n)\) with \(f\neq 0\) exists.</li>
-</ol>
-<p class="ex-line">A nonzero polynomial simply cannot vanish everywhere on a grid this wide; some grid point escapes being a root.</p>
+<p>True. Let \(f(x_1,\dots,x_n)\) be a nonzero polynomial over \(\mathbb{Q}\) of degree \(d\). Draw \(\alpha_1,\dots,\alpha_n\) independently and uniformly from the set \(\{1,2,\dots,d+1\}\), which has \(d+1\) elements. By the Schwartz-Zippel lemma,</p>
+<p>\[\Pr_{\alpha_1,\dots,\alpha_n\in\{1,\dots,d+1\}}\big[f(\alpha_1,\dots,\alpha_n)=0\big]\;\le\;\frac{d}{d+1}\;<\;1.\]</p>
+<p>Since the probability of landing on a root is strictly less than \(1\), the probability that \(f(\alpha_1,\dots,\alpha_n)\neq 0\) is strictly positive. A positive-probability event over a finite set of points cannot be empty, so there exist concrete values \(\alpha_1,\dots,\alpha_n\in\{1,\dots,d+1\}\) with \(f(\alpha_1,\dots,\alpha_n)\neq 0\).</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> A degree-\(d\) polynomial has too few roots to vanish on a grid of side \(d+1\).</p>

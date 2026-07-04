@@ -1,13 +1,8 @@
-<p class="ex-line"><span class="ex-lab">Claim</span> The Walsh–Hadamard transform \(H_n x\) can be computed in \(O(N\log N)\) time, where \(N=2^n\).</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> Split \(x\) in half, use the recursive block structure of \(H_n\) so only two half-size transforms are needed, then combine them cheaply.</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> The two block-rows of \(H_n\) reuse the <em>same</em> two subproducts \(H_{n-1}x_0\) and \(H_{n-1}x_1\), so one add and one subtract build the whole answer.</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> A matrix defined by self-similar \(2\times 2\) blocks is the FFT signal: divide and conquer, and shared subproducts collapse four multiplications into two.</p>
-<ol class="gsteps">
-  <li><b>Split.</b> Write \(x=(x_0,x_1)\), each half of length \(N/2=2^{n-1}\).</li>
-  <li><b>Block formula.</b> Using \(H_n=\begin{bmatrix}H_{n-1}&H_{n-1}\\ H_{n-1}&-H_{n-1}\end{bmatrix}\),
-  \[H_n x=\begin{bmatrix}H_{n-1}x_0+H_{n-1}x_1\\ H_{n-1}x_0-H_{n-1}x_1\end{bmatrix}.\]
-  Only the two products \(H_{n-1}x_0\) and \(H_{n-1}x_1\) appear.</li>
-  <li><b>Recurse and combine.</b> Recursively compute those two half-size transforms, then form the top half by adding and the bottom half by subtracting — \(O(N)\) work.</li>
-  <li><b>Base case.</b> At \(n=1\), \(H_1=\begin{bmatrix}1&1\\1&-1\end{bmatrix}\) is applied directly in \(O(1)\).</li>
-</ol>
-<p>The cost satisfies \(T(N)=2\,T(N/2)+O(N)\), the same recurrence as merge sort and FFT, so \(T(N)=O(N\log N)\).</p>
+<p>We compute \(H_n x\) by a recursive divide-and-conquer, just like FFT: split \(x\) in half, make two half-size transforms, and combine them with one addition and one subtraction. The running time is \(O(N\log N)\), where \(N=2^n\).</p>
+<p>Write \(x=(x_0,x_1)\), where \(x_0,x_1\) are the two halves, each of length \(N/2=2^{n-1}\). Using the recursive block structure of the matrix,
+\[H_n x=\begin{bmatrix}H_{n-1}&H_{n-1}\\ H_{n-1}&-H_{n-1}\end{bmatrix}\begin{bmatrix}x_0\\ x_1\end{bmatrix}=\begin{bmatrix}H_{n-1}x_0+H_{n-1}x_1\\ H_{n-1}x_0-H_{n-1}x_1\end{bmatrix}.\]</p>
+<p>Only the two products \(H_{n-1}x_0\) and \(H_{n-1}x_1\) appear, and each is a Walsh–Hadamard transform of order \(N/2\). So we recursively compute those two half-size transforms, then form the top half by adding them and the bottom half by subtracting them, which is \(O(N)\) extra work. The base case \(n=1\) applies \(H_1=\begin{bmatrix}1&1\\1&-1\end{bmatrix}\) directly in \(O(1)\).</p>
+<p>Let \(T(N)\) be the running time. We make two recursive calls of size \(N/2\) plus \(O(N)\) to combine, so
+\[T(N)=2\,T(N/2)+O(N),\]
+which is the same recurrence as merge sort and FFT, giving \(T(N)=O(N\log N)\).</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> Both halves of the answer reuse the same two half-size transforms, so one add and one subtract finish the job.</p>

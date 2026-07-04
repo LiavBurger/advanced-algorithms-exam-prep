@@ -1,10 +1,3 @@
-<p class="ex-line"><span class="ex-lab">Claim</span> True: a polynomial-time algorithm for integer linear programs would imply \(\mathrm{P}=\mathrm{NP}\).</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> Encode an NP-complete problem (maximum independent set) as an ILP; a fast ILP solver would then solve it fast, forcing the collapse.</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> ILP is NP-hard because \(0/1\) variables plus linear constraints can express NP-complete problems, and it is itself in NP.</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> "Would a fast algorithm imply \(\mathrm{P}=\mathrm{NP}\)" is answered by exhibiting a reduction from a known NP-complete problem into the problem in question.</p>
-<ol class="gsteps">
-<li><b>Set up variables.</b> Given a graph \(G=(V,E)\), introduce a \(0/1\) variable \(x_v\) for each vertex, meaning "\(v\) is chosen".</li>
-<li><b>Encode independence.</b> For each edge \((u,v)\) add \(x_u+x_v\le 1\), so no two adjacent vertices are both chosen; the chosen set is independent.</li>
-<li><b>Objective.</b> Maximize \(\sum_v x_v\); the optimum equals the maximum independent set size, and this ILP is built in polynomial time.</li>
-<li><b>Collapse.</b> Since maximum independent set is NP-complete and ILP is in NP, a polynomial-time ILP solver would decide an NP-hard problem in polynomial time, giving \(\mathrm{P}=\mathrm{NP}\).</li>
-</ol>
+<p>True. Integer linear programming is NP-hard, because many NP-complete problems can be encoded as integer linear programs. For example, we saw in class a polynomial-time reduction from the maximum independent set problem to solving integer linear programs: given a graph \(G=(V,E)\), introduce a variable \(x_v\in\{0,1\}\) for each vertex, add the constraint \(x_u+x_v\le 1\) for every edge \((u,v)\), and maximize \(\sum_v x_v\); the optimum equals the size of the maximum independent set.</p>
+<p>So a polynomial-time algorithm for integer linear programs would solve maximum independent set — an NP-complete problem — in polynomial time. Since an NP-complete problem would then be solvable in polynomial time, this would imply P=NP.</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> ILP is NP-hard (independent set reduces to it), so a fast ILP solver would collapse P and NP.</p>

@@ -1,11 +1,5 @@
-<p class="ex-line"><span class="ex-lab">Claim</span> True: if every reduced cost in \(\tilde c_N\) is strictly positive at a basic feasible solution \(z\), then \(z\) is the unique optimum.</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> Write any feasible point's cost in terms of the reduced costs, then read off both optimality and uniqueness.</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> Moving away from \(z\) means turning on some nonbasic coordinate, and every such move strictly raises the cost because its reduced cost is positive.</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> Reduced costs are precisely the per-unit cost change of entering a nonbasic variable, so a positivity assumption on them is a direct handle on optimality.</p>
-<ol class="gsteps">
-  <li><b>Value at \(z\).</b> Since \(z_N=0\), the objective is \(c^\top z=c_B^\top A_B^{-1}b\).</li>
-  <li><b>Value at any feasible \(y\).</b> Expressing \(y\) through the basis gives \(c^\top y=c^\top z+\tilde c_N^\top y_N\), where \(\tilde c_N\) is the reduced-cost vector.</li>
-  <li><b>Optimality.</b> Feasibility forces \(y_N\ge 0\), and \(\tilde c_N>0\), so \(\tilde c_N^\top y_N\ge 0\) and \(c^\top y\ge c^\top z\).</li>
-  <li><b>Uniqueness.</b> If any coordinate of \(y_N\) were positive, then \(\tilde c_N^\top y_N>0\) and \(c^\top y>c^\top z\); so an optimum needs \(y_N=0\), and then \(Ay=b\) forces \(y_B=A_B^{-1}b=z_B\), i.e. \(y=z\).</li>
-</ol>
-<p class="ex-line">Any step off \(z\) has to switch on a nonbasic variable, and each of those only makes the cost worse, so \(z\) stands alone at the bottom.</p>
+<p>True. Let \(z\) be the basic feasible solution with basis \(B\), so \(z_N=0\) and its objective value is \(c^\top z=c_B^\top A_B^{-1}b\). Let \(y\) be any feasible solution, i.e. \(Ay=b\) and \(y\ge 0\). Writing \(y\) in terms of the basis, its cost is</p>
+<p>\[c^\top y=c_B^\top A_B^{-1}b+\tilde c_N^\top y_N=c^\top z+\tilde c_N^\top y_N,\]</p>
+<p>where \(\tilde c_N\) is the reduced-cost vector on the nonbasic variables.</p>
+<p>Since \(y\) is feasible, \(y_N\ge 0\), and by assumption every entry of \(\tilde c_N\) is strictly positive, so \(\tilde c_N^\top y_N\ge 0\) and therefore \(c^\top y\ge c^\top z\); hence \(z\) is optimal. For uniqueness: if some coordinate of \(y_N\) were strictly positive, then \(\tilde c_N^\top y_N>0\) and \(c^\top y>c^\top z\), so \(y\) would not be optimal. Thus any optimal \(y\) has \(y_N=0\), and then \(Ay=b\) forces \(y_B=A_B^{-1}b=z_B\), so \(y=z\). Therefore \(z\) is the unique optimal solution.</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> Any move off \(z\) has to switch on a nonbasic variable, and with positive reduced costs each such move only makes the cost worse.</p>

@@ -1,10 +1,9 @@
-<p class="ex-line"><span class="ex-lab">Goal</span> Give a \(2\)-approximation for the minimum-cost subgraph in which every receiver \(r\in R\) has a path to <em>some</em> sender in \(S\) (senders may differ across receivers).</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> Merge all senders into one artificial terminal so the task becomes an ordinary Steiner tree, then apply the known \(2\)-approximation for Steiner tree.</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> A zero-cost hub attached to every sender makes "reach some sender" the same as "reach the hub", collapsing many targets into a single required terminal.</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> "Connect each receiver to any one of a group" is exactly a Steiner-tree shape once the group is contracted to a point, and we already have a \(2\)-approximation there — so reduce rather than build from scratch.</p>
-<ol class="gsteps">
-<li><b>Reduction.</b> Add one new vertex \(v\) to \(G\) and connect it to every sender \(s\in S\) with a cost-\(0\) edge; call this graph \(G'\).</li>
-<li><b>Why it matches.</b> In \(G'\), a receiver reaches \(v\) iff it reaches some sender: any \(r\)-to-\(v\) path must use a zero-cost edge \((s,v)\), so it passes through a sender, and conversely any \(r\)-to-\(s\) path extends to \(v\) for free.</li>
-<li><b>Steiner formulation.</b> A minimum-cost subgraph of \(G'\) connecting all of \(R\) to \(v\) is a minimum Steiner tree with terminals \(R\cup\{v\}\); since the added edges cost \(0\), its optimal cost equals the optimum of the original problem.</li>
-<li><b>Apply and finish.</b> Run the known \(2\)-approximation for Steiner tree on \(G'\) with terminals \(R\cup\{v\}\). It returns cost at most twice optimal; dropping the free artificial edges gives a subgraph of the original graph that is a \(2\)-approximation.</li>
+<p>We reduce the problem to Steiner tree by merging all senders into a single terminal.</p>
+<ol>
+<li>Add one artificial vertex \(v\) to \(G\), and connect \(v\) to every sender \(s\in S\) with an edge of cost \(0\); call the resulting graph \(G'\).</li>
+<li>On \(G'\), run the \(2\)-approximation algorithm for Steiner tree (seen in the problem sets) with required terminals \(R\cup\{v\}\).</li>
+<li>Output the returned subgraph, dropping the artificial vertex \(v\) and its zero-cost edges.</li>
 </ol>
+<p>In \(G'\), a subgraph connects all of \(R\cup\{v\}\) if and only if every receiver has a path to \(v\); and since \(v\) is attached only to senders, any path from a receiver to \(v\) must use a zero-cost edge \((s,v)\), so it is exactly a path from that receiver to some sender (and conversely any receiver-to-sender path extends to \(v\) for free). Hence minimum-cost subgraphs connecting every receiver to some sender correspond exactly to minimum-cost Steiner trees for \(R\cup\{v\}\), and because the added edges cost \(0\), the optimal Steiner-tree cost equals the optimal cost of the original problem.</p>
+<p>The Steiner-tree algorithm returns a solution of cost at most twice the optimal Steiner tree, i.e. at most twice the optimum of our problem; removing the free artificial edges leaves a subgraph of the original graph of the same cost. So this is a \(2\)-approximation, and it runs in polynomial time as it is a single call to the polynomial Steiner-tree approximation.</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> Gluing all senders to one free hub turns "reach some sender" into "reach the hub," which is exactly a Steiner tree we already know how to 2-approximate.</p>

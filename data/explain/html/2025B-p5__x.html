@@ -1,10 +1,11 @@
-<p class="ex-line"><span class="ex-lab">Goal</span> Estimate the versatility \(R(G)\) (the fraction of legal \(3\)-colorings) to within \(1/n\) with probability at least \(1-2^{-n}\), in polynomial time.</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> Sample many random colorings, report the fraction that are legal, and use Chernoff to show the estimate concentrates.</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> A uniformly random coloring is legal with probability exactly \(R(G)\), so the empirical legal-fraction is an unbiased estimate that sharpens as the sample grows.</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> "Estimate an unknown fraction closely with high confidence" is the textbook Monte-Carlo-plus-Chernoff setup, so sampling is the natural reach.</p>
-<ol class="gsteps">
-<li><b>The algorithm.</b> Draw \(t\) independent uniform colorings \(c_1,\dots,c_t\) (each vertex colored uniformly in \(\{1,2,3\}\)). Check each for legality by scanning all edges (linear time). Output \(A(G)=\tfrac1t\sum_i X_i\), the fraction that are legal.</li>
-<li><b>Expectation.</b> Let \(X_i\) be an indicator random variable for the event that \(c_i\) is legal. Then \(\mathbb E[X_i]=R(G)\), so with \(X=\sum_i X_i\) the output \(X/t\) has mean \(R(G)\) — unbiased.</li>
-<li><b>Concentration.</b> The \(X_i\) are independent in \([0,1]\), so Chernoff gives \(\Pr[\,|A(G)-R(G)|\ge\tfrac1n\,]\le e^{-O(t/n^2)}\); the deviation \(1/n\) enters squared, hence the \(t/n^2\).</li>
+<p>The algorithm samples many random colorings and reports the fraction that are legal:</p>
+<ol>
+<li>Draw \(t\) independent, uniformly random \(3\)-colorings \(c_1,\dots,c_t:V\to\{1,2,3\}\) (each vertex colored uniformly and independently), where \(t\) is chosen below.</li>
+<li>Check each \(c_i\) for legality by scanning all edges (linear time).</li>
+<li>Output \(A(G)=\tfrac1t\sum_{i=1}^t X_i\), the fraction of the sampled colorings that are legal, where \(X_i\) is defined below.</li>
 </ol>
-<p class="ex-line">Take \(t=O(n^3)\): then \(t/n^2=O(n)\) and the failure probability drops below \(2^{-n}\). Sampling \(O(n^3)\) colorings and checking each in linear time is polynomial, so we get an estimate within \(1/n\) with probability at least \(1-2^{-n}\).</p>
+<p>Correctness. Let \(X_i\) be an indicator random variable for the event that \(c_i\) is a legal coloring. Since \(c_i\) is a uniform \(3\)-coloring, \(\mathbb E[X_i]=R(G)\). The \(X_i\) are mutually independent. Let \(X=\sum_{i=1}^t X_i\); then \(\mathbb E[X]=t\,R(G)\) and the output is \(X/t\), so \(\mathbb E[A(G)]=R(G)\). By the Chernoff bound,
+\[ \Pr\!\left[\,|A(G)-R(G)|\ge \tfrac1n\,\right] = \Pr\!\left[\,\Big|\tfrac{X}{t}-\tfrac{\mathbb E[X]}{t}\Big|\ge \tfrac1n\,\right] \le e^{-O(t/n^2)}, \]
+because the deviation \(1/n\) enters the exponent squared.</p>
+<p>Choosing \(t=O(n^3)\) makes \(t/n^2=O(n)\), so the failure probability drops below \(2^{-n}\). Thus with probability at least \(1-2^{-n}\) the output is within \(1/n\) of \(R(G)\). Sampling \(O(n^3)\) colorings and checking each in linear time is polynomial, so the algorithm is efficient.</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> A random coloring is legal with probability exactly \(R(G)\), so the observed legal-fraction estimates \(R(G)\), and enough samples make that estimate sharp with overwhelming probability.</p>

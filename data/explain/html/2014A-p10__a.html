@@ -1,13 +1,4 @@
-<p class="ex-line"><span class="ex-lab">Goal</span> rewrite the LP with equality constraints so simplex can run on it.</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> turn each inequality into an equation by adding one non-negative variable that absorbs the gap between the two sides.</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> a "\(\le\)" leaves room below the bound, so we <em>add</em> slack; a "\(\ge\)" overshoots the bound, so we <em>subtract</em> surplus.</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> simplex only knows how to walk between vertices of a system of equalities in non-negative variables, so the first thing you always do is manufacture that form.</p>
-<ol class="gsteps">
-  <li><b>The \(\le\) constraint.</b> \(x_1+2x_2\le 10\) may fall short of \(10\), so add slack \(s_1\ge 0\): \(x_1+2x_2+s_1=10\). Then \(s_1=10-(x_1+2x_2)\ge 0\) exactly when the original held.</li>
-  <li><b>The \(\ge\) constraint.</b> \(2x_1+x_2-x_3\ge 14\) may exceed \(14\), so subtract surplus \(s_2\ge 0\): \(2x_1+x_2-x_3-s_2=14\).</li>
-  <li><b>Leave the objective alone.</b> The new variables get coefficient \(0\), so \(\max\,2x_1+5x_2+2x_3\) is unchanged, and every variable stays \(\ge 0\).</li>
-</ol>
-<p>Putting it together:</p>
+<p>We turn each inequality into an equation by adding one non-negative variable that soaks up the gap between the two sides. The "\(\le\)" constraint may fall short of its bound, so we add a slack \(s_1\ge 0\); the "\(\ge\)" constraint may overshoot, so we subtract a surplus \(s_2\ge 0\). The objective is unchanged (the new variables get coefficient \(0\)). The standard form is:</p>
 \[
 \max\; 2x_1+5x_2+2x_3 \quad\text{s.t.}\quad
 \begin{aligned}
@@ -16,4 +7,5 @@
 &x_i,\,s_i\ge 0 .
 \end{aligned}
 \]
-<p>Two equations in five non-negative variables — the shape simplex wants, with a basis (here \(s_1,s_2\)) and the rest set to \(0\).</p>
+<p>This is two equations in five non-negative variables, exactly the form simplex needs.</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> A slack fills the room left under a "\(\le\)" and a surplus removes the excess over a "\(\ge\)", so both become equalities.</p>

@@ -1,9 +1,5 @@
-<p class="ex-line"><span class="ex-lab">Claim</span> False — computing the \(n\) products \(Av_1, \dots, Av_n\) does not require time \(n^3\).</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> Stack the vectors into a matrix so the \(n\) products become a single matrix–matrix product, then apply fast matrix multiplication.</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> \(n\) matrix–vector products are one \(n\times n\) by \(n\times n\) multiplication, which fast algorithms do in \(O(n^\omega)\) with \(\omega < 3\).</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> Seeing many products of one matrix against different vectors is the cue to batch them into a single matrix product and drop below the naive cube.</p>
-<ol class="gsteps">
-  <li><b>Batch the products.</b> Let \(B = [\,v_1 \mid \cdots \mid v_n\,]\) have the vectors as columns. Then \(AB\) has columns \(Av_1, \dots, Av_n\), so all \(n\) products come from one matrix multiplication.</li>
-  <li><b>Use fast multiplication.</b> Fast matrix multiplication computes \(AB\) in \(O(n^\omega)\) time with \(\omega < 3\) (Strassen already gives \(\omega \approx 2.81\)), regardless of any assumption on the \(v_i\) — independence is never used.</li>
-</ol>
-<p>Because the whole batch is a single fast matrix product, \(n^3\) is not needed, so the statement is false.</p>
+<p>False. The \(n\) products \(Av_1,\dots,Av_n\) can be computed in \(O(n^\omega)\) time with \(\omega<3\) using fast matrix multiplication, so \(n^3\) is not required.</p>
+<p>Stack the vectors as the columns of a matrix \(B=[\,v_1\mid\cdots\mid v_n\,]\). Then the product \(AB\) is an \(n\times n\) matrix whose columns are exactly \(Av_1,\dots,Av_n\). So computing all \(n\) products is the same as one matrix–matrix multiplication.</p>
+<p>We saw in class that matrix multiplication can be done in time \(O(n^\omega)\) with \(\omega<3\) (for example Strassen already gives \(\omega\approx 2.81\)). This applies to any matrices and never uses the assumption that \(v_1,\dots,v_n\) are linearly independent.</p>
+<p>Hence the batch of products is computed in \(O(n^\omega)=o(n^3)\) time, so the claim that it requires time \(n^3\) is false.</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> Many matrix–vector products with the same \(A\) are just one matrix–matrix product, which fast multiplication does below \(n^3\).</p>

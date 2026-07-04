@@ -1,8 +1,6 @@
-<p class="ex-line"><span class="ex-lab">Claim</span> <b>True</b> &mdash; \(E[2x-y]=2E[x]-E[y]\) always holds.</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> apply linearity of expectation, and note it needs no independence.</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> expectation is a weighted sum over outcomes, and sums split apart regardless of how the variables relate.</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> the statement is a linear combination of two random variables, which is the exact form linearity of expectation covers.</p>
-<ol class="gsteps">
-<li><b>State the rule.</b> For any random variables \(x,y\) on the same sample space and constants \(a,b\), \(E[ax+by]=aE[x]+bE[y]\). With \(a=2,\ b=-1\) this is precisely \(E[2x-y]=2E[x]-E[y]\).</li>
-<li><b>Note independence is irrelevant.</b> Linearity comes straight from the definition \(E[2x-y]=\sum_{\omega}\Pr[\omega]\bigl(2x(\omega)-y(\omega)\bigr)\), and a sum always splits term by term. Independence is only needed for products like \(E[xy]=E[x]E[y]\), never for a linear combination &mdash; so the identity holds even for dependent \(x,y\).</li>
-</ol>
+<p>True. This is exactly linearity of expectation, which holds for any random variables whether or not they are independent.</p>
+<p>For any two random variables \(x,y\) on the same sample space and any constants \(a,b\), we have \(E[ax+by]=a\,E[x]+b\,E[y]\). This follows directly from the definition of expectation as a sum over outcomes weighted by their probabilities: summation is linear, so constants pull out and the expectation of a sum is the sum of the expectations. Nowhere does this use independence.</p>
+<p>Applying it with \(a=2\) and \(b=-1\) gives</p>
+<p>\[ E[2x-y]=2E[x]-E[y]. \]</p>
+<p>So the statement is always true, even though \(x\) and \(y\) may be dependent. (Independence would only be needed for a product such as \(E[xy]=E[x]E[y]\), never for a linear combination.)</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> Averages add up no matter how the variables are related; dependence would only matter for products or variances, not for a plain sum.</p>

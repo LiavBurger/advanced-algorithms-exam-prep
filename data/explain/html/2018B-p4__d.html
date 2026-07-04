@@ -1,12 +1,11 @@
-<p class="ex-line"><span class="ex-lab">Goal</span> Use part (c)'s recurrence to prove by induction that \(\mathbb{E}[T(n)]=O(n)\).</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> Guess \(\mathbb{E}[T(n)]\le cn\), plug the guess into the recurrence, sum the arithmetic series, and pick \(c\) so the algebra closes.</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> The recurred sum only touches the top half of sizes, so its average is about \(\tfrac34 cn\); leaving room \(\tfrac{c}{4}n\) to absorb the \(\Theta(n)\) partition cost.</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> A linear target with a recurrence over smaller sizes is the textbook setup for induction with an unknown constant chosen at the end.</p>
-<ol class="gsteps">
-<li><b>Guess and hypothesis.</b> Claim \(\mathbb{E}[T(n)]\le cn\) for a constant \(c\) fixed later; assume \(\mathbb{E}[T(n')]\le cn'\) for all \(n'<n\). Let \(b\) be the constant with partition cost \(\le bn\).</li>
-<li><b>Base case.</b> Pick \(d\) with \(T(1)\le d\). Choosing \(c\ge d\) gives \(\mathbb{E}[T(1)]\le d\le c\), so \(n=1\) holds.</li>
-<li><b>Apply recurrence + hypothesis.</b> \[\mathbb{E}[T(n)] \le \frac{2}{n}\sum_{k=n/2}^{n-1}\mathbb{E}[T(k)] + bn \le \frac{2}{n}\sum_{k=n/2}^{n-1}ck + bn.\]</li>
-<li><b>Sum the series.</b> Using (first + last) times half the count: first term \(\tfrac{cn}{2}\), last \(\approx cn\), about \(n/2\) terms, so \[\sum_{k=n/2}^{n-1}ck \approx \frac{\left(\tfrac{cn}{2}+cn\right)\tfrac{n}{2}}{2}.\]</li>
-<li><b>Simplify.</b> Then \(\mathbb{E}[T(n)] \le \frac{2}{n}\cdot\frac{\tfrac{3cn}{2}\cdot\tfrac{n}{2}}{2}+bn = \frac{3cn}{4}+bn = n\big(\tfrac{3c}{4}+b\big).\)</li>
-<li><b>Close it.</b> We need \(\tfrac{3c}{4}+b\le c\), i.e. \(c\ge 4b\). Take \(c=\max(d,4b)\); both requirements hold, so \(\mathbb{E}[T(n)]\le cn\) for all \(n\), giving \(O(n)\). In words: each level's work is a shrinking fraction of the last, so the total stays linear.</li>
-</ol>
+<p>We prove by induction on \(n\) that \(E[T(n)]\le cn\) for a constant \(c\) chosen below; this gives \(E[T(n)]=O(n)\).</p>
+<p>Let \(b\) be the constant hidden in the \(\Theta(n)\) partition cost, so that term is at most \(bn\).</p>
+<p>Base case: let \(d\) be a constant with \(T(1)\le d\). If we choose \(c\ge d\), then \(E[T(1)]\le d\le c\cdot 1\), so the base case holds.</p>
+<p>Inductive assumption: assume \(E[T(n')]\le cn'\) for every \(n'<n\).</p>
+<p>Inductive step: using the recurrence from part (c) and then the assumption on each \(E[T(k)]\le ck\),
+\[E[T(n)]\le \frac{2}{n}\sum_{k=n/2}^{n-1}E[T(k)]+bn\le \frac{2}{n}\sum_{k=n/2}^{n-1}ck+bn.\]
+The sum \(\sum_{k=n/2}^{n-1}ck\) is an arithmetic series; by the given fact it equals its first plus last term times half the number of terms, which is at most \(\dfrac{\left(\frac{cn}{2}+cn\right)\cdot\frac{n}{2}}{2}\). Therefore
+\[E[T(n)]\le \frac{2}{n}\cdot\frac{\left(\frac{cn}{2}+cn\right)\frac{n}{2}}{2}+bn = n\left(\frac{3c}{4}+b\right)\le cn,\]
+where the last inequality holds as long as \(\frac{3c}{4}+b\le c\), i.e. \(c\ge 4b\).</p>
+<p>So choosing \(c=\max(d,4b)\) makes every step go through, and \(E[T(n)]\le cn\) for all \(n\). Hence \(E[T(n)]=O(n)\).</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> Recursing on halves of size at least \(n/2\) only pulls in about \(\tfrac34\) of the work, leaving room for the linear partition cost, so the total stays linear.</p>

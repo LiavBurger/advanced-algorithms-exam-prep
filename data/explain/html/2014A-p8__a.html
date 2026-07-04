@@ -1,11 +1,6 @@
-<p class="ex-line"><span class="ex-lab">Goal</span> Give a randomized MAX-3SAT algorithm that is a \(7/8\)-approximation in expectation, and prove it.</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> Assign each variable a fair coin, compute the per-clause success probability, and sum with linearity of expectation.</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> A random assignment satisfies each clause with probability \(7/8\), and expectations of the per-clause indicators add up regardless of dependence.</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> Linearity of expectation lets us total per-clause probabilities without worrying about clauses sharing variables — no independence required.</p>
-<ol class="gsteps">
-<li><b>Algorithm.</b> Set each variable to \(0\) or \(1\) independently and uniformly at random.</li>
-<li><b>One clause.</b> A 3-literal clause fails only if all three literals are false. The literals are from distinct variables, so independent, each false with probability \(1/2\): \(\Pr[\text{unsatisfied}]=(1/2)^3=1/8\), hence \(\Pr[\text{satisfied}]=7/8\).</li>
-<li><b>Indicators.</b> Let \(X_i\) be an indicator random variable for the event that clause \(i\) is satisfied, so \(\mathbb{E}[X_i]=7/8\), and let \(X=\sum_{i=1}^m X_i\) count the satisfied clauses.</li>
-<li><b>Linearity.</b> Even though clauses may share variables, \[\mathbb{E}[X]=\sum_{i=1}^m \mathbb{E}[X_i]=\frac{7m}{8}.\]</li>
-<li><b>Ratio.</b> Since \(\mathrm{OPT}\le m\), we get \(\mathbb{E}[X]=\tfrac{7}{8}m\ge\tfrac{7}{8}\mathrm{OPT}\), so the algorithm is a \(7/8\)-approximation in expectation.</li>
-</ol>
+<p>Algorithm: set each variable to \(0\) or \(1\) independently and uniformly at random. We show its expected number of satisfied clauses is at least \(\tfrac78\mathrm{OPT}\).</p>
+<p>Fix a clause. It has \(3\) literals from distinct variables (no two literals in a clause share a variable), so their truth values are independent, each false with probability \(1/2\). The clause is unsatisfied only when all three literals are false, which happens with probability \((1/2)^3=1/8\); hence it is satisfied with probability \(1-1/8=7/8\).</p>
+<p>For clause \(i\), let \(X_i\) be an indicator random variable for the event that clause \(i\) is satisfied, so \(\mathbb{E}[X_i]=7/8\), and let \(X=\sum_{i=1}^m X_i\) count the satisfied clauses. Even though clauses may share variables, by linearity of expectation
+\[\mathbb{E}[X]=\sum_{i=1}^m \mathbb{E}[X_i]=\frac{7m}{8}.\]
+Since no assignment can satisfy more than all \(m\) clauses, \(\mathrm{OPT}\le m\), and therefore \(\mathbb{E}[X]=\tfrac{7}{8}m\ge\tfrac{7}{8}\mathrm{OPT}\). So the algorithm is a \(7/8\)-approximation in expectation.</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> A random clause fails only if all three coin flips go wrong (\(1/8\)), so on average \(7/8\) of the clauses are satisfied, and expectations add up even when clauses overlap.</p>

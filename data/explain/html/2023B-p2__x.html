@@ -1,10 +1,5 @@
-<p class="ex-line"><span class="ex-lab">Claim</span> Weak duality: for \((P)=\min c^\top x\) s.t. \(Ax=b,\ x\ge0\) and its dual \((D)=\max b^\top y\) s.t. \(A^\top y\le c\), any feasible \(x,y\) satisfy \(c^\top x\ge b^\top y\).</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> Chain the dual constraint through \(x\), then substitute the primal equality.</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> Multiplying the dual inequality \(A^\top y\le c\) by the nonnegative \(x\) keeps the inequality, and \(Ax=b\) collapses the left side to \(b^\top y\).</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> The primal objective involves \(c^\top x\) and the dual involves \(b^\top y\); the only bridge between them is the constraint pair, so we combine them directly.</p>
-<ol class="gsteps">
-  <li><b>Use dual feasibility with \(x\ge 0\).</b> Since \(A^\top y\le c\) coordinatewise and \(x\ge 0\), multiplying by \(x^\top\) preserves the direction: \(x^\top A^\top y\le x^\top c\), i.e. \(y^\top A x\le c^\top x\).</li>
-  <li><b>Use primal feasibility.</b> Substitute \(Ax=b\) into the left side: \(y^\top A x=y^\top b\), so \(y^\top b\le c^\top x\).</li>
-  <li><b>Read off the result.</b> These are scalars and \(y^\top b=b^\top y\), giving \(b^\top y\le c^\top x\), the claim.</li>
-</ol>
-<p class="ex-line">The one place nonnegativity of \(x\) matters is step 1: that is exactly what lets the dual inequality survive being multiplied through, so every dual value sits below every primal value.</p>
+<p><b>Weak duality theorem.</b> Let \((P)\) be an LP in standard form, \(\min c^\top x\) s.t. \(Ax=b,\ x\ge 0\), and let \((D)\) be its dual, \(\max b^\top y\) s.t. \(A^\top y\le c\). Then for every feasible \(x\) of \((P)\) and every feasible \(y\) of \((D)\) we have \(c^\top x\ge b^\top y\).</p>
+<p><b>Proof.</b> Let \(x\) and \(y\) be feasible for \((P)\) and \((D)\) respectively. Since \(A^\top y\le c\) coordinatewise and \(x\ge 0\), multiplying the inequality on the left by \(x^\top\) preserves its direction, giving</p>
+<p>\[x^\top A^\top y\le x^\top c,\qquad\text{i.e.}\qquad y^\top A x\le c^\top x.\]</p>
+<p>Now use primal feasibility \(Ax=b\) on the left side: \(y^\top A x=y^\top b\), so \(y^\top b\le c^\top x\). Since these are scalars, \(y^\top b=b^\top y\), and therefore \(b^\top y\le c^\top x\), which is the claim. \(\qquad\square\)</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> Nonnegativity of \(x\) lets the dual inequality survive being multiplied through, and the primal equality collapses the left side to \(b^\top y\), so every dual value sits below every primal value.</p>

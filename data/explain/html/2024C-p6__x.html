@@ -1,10 +1,21 @@
-<p class="ex-line"><span class="ex-lab">Claim</span> if \((P)\) is infeasible and \((D)\) is feasible, then \((D)\) is unbounded.</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> use Farkas to extract an infeasibility direction, add multiples of it to the given dual point, and show the objective runs to \(+\infty\) while staying feasible.</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> Farkas turns "\(Ax=b,\ x\ge0\) has no solution" into a concrete vector \(y'\) that is a feasible direction pointing straight uphill for the dual.</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> infeasibility of a linear system is exactly what Farkas' Lemma converts into a usable certificate, which is the natural bridge from "no primal" to "unbounded dual".</p>
-<ol class="gsteps">
-<li><b>Get the certificate.</b> Since \(Ax=b,\ x\ge0\) is infeasible, Farkas gives \(y'\) with \((y')^\top A\ge0\) and \((y')^\top b<0\).</li>
-<li><b>Move along it.</b> Let \(y\) be the given feasible dual point and set \(y_\lambda=y-\lambda y'\) for \(\lambda>0\).</li>
-<li><b>Stay feasible.</b> \(A^\top y_\lambda=A^\top y-\lambda A^\top y'\). Here \(A^\top y\le c\) (feasibility of \(y\)) and \(A^\top y'\ge0\) with \(\lambda>0\), so \(-\lambda A^\top y'\le0\); adding gives \(A^\top y_\lambda\le c\) for all \(\lambda>0\).</li>
-<li><b>Objective blows up.</b> \(b^\top y_\lambda=b^\top y-\lambda\,b^\top y'\), and since \(b^\top y'=(y')^\top b<0\), the term \(-\lambda\,b^\top y'\) is positive and grows without bound as \(\lambda\to\infty\). So \(b^\top y_\lambda\to+\infty\) over feasible points, meaning \((D)\) is unbounded.</li>
-</ol>
+<p>We show that if \((P)\) is infeasible and \((D)\) is feasible then \((D)\) is unbounded. The idea is to use Farkas' Lemma to turn the infeasibility of \((P)\) into a concrete direction, and then walk from the given feasible dual point along that direction: feasibility is preserved while the dual objective runs off to \(+\infty\).</p>
+
+<p>Let \(y\) be a feasible solution for \((D)\), so \(A^\top y\le c\). Since \(Ax=b,\ x\ge0\) is infeasible, Farkas' Lemma gives a vector \(y'\) such that</p>
+\[
+(y')^\top A\ge 0 \qquad\text{and}\qquad (y')^\top b<0.
+\]
+
+<p>For every \(\lambda>0\), consider the point \(y_\lambda=y-\lambda y'\). We claim \(y_\lambda\) is feasible for \((D)\). Indeed,</p>
+\[
+A^\top y_\lambda = A^\top\!\left(y-\lambda y'\right)=A^\top y-\lambda A^\top y'\le c,
+\]
+<p>where the inequality holds because \(A^\top y\le c\) by feasibility of \(y\), and because \(A^\top y'\ge 0\) (this is \((y')^\top A\ge0\) transposed) together with \(\lambda>0\) gives \(-\lambda A^\top y'\le 0\). So \(y_\lambda\) satisfies \(A^\top y_\lambda\le c\) for every \(\lambda>0\).</p>
+
+<p>Now look at the objective value at \(y_\lambda\):</p>
+\[
+b^\top y_\lambda = b^\top\!\left(y-\lambda y'\right)=b^\top y-\lambda\, b^\top y'.
+\]
+
+<p>Since \(b^\top y'=(y')^\top b<0\), the term \(-\lambda\,b^\top y'\) is positive and grows without bound as \(\lambda\to\infty\). Hence \(b^\top y_\lambda\to+\infty\) while every \(y_\lambda\) stays feasible for \((D)\). Therefore \((D)\) is unbounded, as claimed.</p>
+
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> Farkas hands you a feasible direction that points straight uphill for the dual, so you can keep sliding along it forever and the objective never stops climbing.</p>

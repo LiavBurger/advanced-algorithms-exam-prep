@@ -1,12 +1,11 @@
-<p class="ex-line"><span class="ex-lab">Claim</span> with weights drawn uniformly from \(\{1,\dots,p(n)\}\) for \(p(n)=10n^5\), with probability at least \(0.9\) every pair \(u,v\) has a unique minimum-weight path.</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> handle one pair at a time: bound the chance a single pair has a tie using the isolation lemma, then union-bound over all pairs.</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> the isolation lemma says that if you give items random weights from a large enough range, the minimum-weight subset out of any family of subsets (here, the lightest path among all \(u\)-\(v\) paths) comes out unique with high probability — and the failure chance shrinks as the range grows.</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> "unique minimum" over a possibly huge family of objects (there can be exponentially many paths) is exactly what the isolation lemma is built for: its bound depends only on the number of edges, not on how many paths there are.</p>
-<ol class="gsteps">
-<li><b>Set the range.</b> Pick \(p(n)=10n^5\), and give every edge an independent uniform weight from \(\{1,\dots,p(n)\}\).</li>
-<li><b>Fix one pair.</b> For vertices \(u,v\), let \(\mathcal{F}_{u,v}\) be the family of all \(u\)-\(v\) paths, each viewed as its set of edges. The number of edges is \(m\le\binom{n}{2}\le n^2\).</li>
-<li><b>Apply the isolation lemma.</b> With random weights from a range of size \(p(n)\) on \(m\) elements, the minimum-weight member of \(\mathcal{F}_{u,v}\) is unique except with probability at most \(\dfrac{m}{p(n)}\le\dfrac{n^2}{10n^5}=\dfrac{1}{10n^3}\). Call the pair <b>bad</b> if its lightest path is not unique.</li>
-<li><b>Union bound over pairs.</b> There are \(\binom{n}{2}\le n^2\) pairs, so the chance that <em>some</em> pair is bad is at most \(\binom{n}{2}\cdot\dfrac{1}{10n^3}\le\dfrac{1}{10n}\le\dfrac{1}{10}\).</li>
-<li><b>Read off the guarantee.</b> Hence with probability at least \(1-\dfrac{1}{10}=0.9\) no pair is bad — every pair has a single lightest path, as required.</li>
-</ol>
-<p>The whole trick is that one random weighting quietly breaks all the ties at once: each pair is safe with room to spare, and even after adding up the tiny failure chances over every pair we stay comfortably above \(0.9\).</p>
+<p>Take \(p(n)=10n^5\) and give every edge an independent uniform weight from \(\{1,\dots,p(n)\}\). We bound the failure chance for one pair and then union-bound over all pairs.</p>
+<p>Fix vertices \(u,v\) and let \(\mathcal{F}_{u,v}\) be the family of all \(u\)-\(v\) paths, each viewed as its set of edges. The number of edges is \(m\le\binom{n}{2}\le n^2\). By the isolation lemma, when \(m\) elements get independent uniform weights from a range of size \(p(n)\), the minimum-weight member of \(\mathcal{F}_{u,v}\) is unique except with probability at most</p>
+\[
+\frac{m}{p(n)}\ \le\ \frac{n^2}{10n^5}\ =\ \frac{1}{10n^3}.
+\]
+<p>Call the pair \(u,v\) bad if its lightest path is not unique; then each pair is bad with probability at most \(1/(10n^3)\). There are \(\binom{n}{2}\le n^2\) pairs, so by the union bound the probability that some pair is bad is at most</p>
+\[
+\binom{n}{2}\cdot\frac{1}{10n^3}\ \le\ \frac{1}{10n}\ \le\ \frac{1}{10}.
+\]
+<p>Hence with probability at least \(1-\tfrac{1}{10}=0.9\) no pair is bad, so every pair \(u,v\) has a unique minimum-weight path, as required.</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> One random weighting quietly breaks all the ties at once, and the isolation bound depends only on the number of edges, not on how many paths there are.</p>

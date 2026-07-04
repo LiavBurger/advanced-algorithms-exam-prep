@@ -1,10 +1,13 @@
-<p class="ex-line"><span class="ex-lab">Goal</span> a polynomial-time algorithm that finds a minimum edge cover, plus a short correctness argument.</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> take a maximum matching, then add one cheap edge for each still-uncovered vertex; argue no cover can do better.</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> a matching covers two new vertices per edge — the most efficient covering possible — so building around a maximum matching minimizes the edge count.</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> "cover every vertex with few edges" begs for matching: each matching edge kills two birds at once, and matching is a poly-time tool from class.</p>
-<ol class="gsteps">
-  <li><b>Algorithm.</b> Compute a maximum matching \(M\) (poly time, e.g. the matching algorithm from class). It has \(|M|\) edges covering \(2|M|\) distinct vertices. For each of the \(|V|-2|M|\) still-uncovered vertices, add one arbitrary incident edge. (An edge cover exists since \(G\) is connected, so no vertex is isolated.)</li>
-  <li><b>Size of the output.</b> \(\text{ALG}=|M|+(|V|-2|M|)=|V|-|M|\), where \(|M|=\text{MAX-MATCHING}\).</li>
-  <li><b>Lower bound on any cover.</b> Take any optimal cover \(\mathrm{OPT}\) and assign each vertex to one \(\mathrm{OPT}\)-edge covering it. Each edge is assigned at most \(2\) vertices, and the edges assigned two vertices are vertex-disjoint — a matching — so there are at most \(\text{MAX-MATCHING}\) of them.</li>
-  <li><b>Conclude.</b> Counting shows \(\mathrm{OPT}\) uses at least \(|V|-\text{MAX-MATCHING}=\text{ALG}\) edges, so no cover beats ours. Intuitively: you can't cover the vertices with fewer edges than "one per vertex, minus a bonus for every pair a matching lets you share," and a maximum matching grabs every available bonus.</li>
+<p>Algorithm:</p>
+<ol>
+  <li>Compute a maximum matching \(M\) in \(G\), using the polynomial-time matching algorithm from class.</li>
+  <li>For every vertex not covered by \(M\), add one arbitrary edge incident to it (such an edge exists because \(G\) is connected, so there are no isolated vertices). Output the resulting edge set \(F\).</li>
 </ol>
+<p>Correctness. \(F\) is an edge cover: a vertex matched by \(M\) is covered by its matching edge, and every unmatched vertex is covered by the edge we added for it. Its size is</p>
+<p>\[|F|=|M|+\big(|V|-2|M|\big)=|V|-|M|,\]</p>
+<p>because \(M\) covers \(2|M|\) vertices and we add exactly one edge for each of the remaining \(|V|-2|M|\) vertices.</p>
+<p>Now we show \(F\) is optimal. Let \(\mathrm{OPT}\) be a minimum edge cover. Assign each vertex to one edge of \(\mathrm{OPT}\) that covers it. Let \(p\) be the number of edges assigned two vertices and \(q\) the number assigned exactly one; every vertex is assigned to some edge, so \(|V|=2p+q\). All \(p+q\) edges that received a vertex are in \(\mathrm{OPT}\), so \(|\mathrm{OPT}|\ge p+q\). The \(p\) doubly-assigned edges have disjoint endpoints, so they form a matching, giving \(p\le|M|\). Therefore</p>
+<p>\[|\mathrm{OPT}|\ge p+q=(2p+q)-p=|V|-p\ge |V|-|M|=|F|.\]</p>
+<p>Since \(F\) is itself a valid edge cover we also have \(|F|\ge|\mathrm{OPT}|\), so \(|F|=|\mathrm{OPT}|\) and the algorithm returns a minimum edge cover.</p>
+<p>Runtime. The cost is dominated by the maximum matching computation, which is polynomial; adding one edge per unmatched vertex takes linear time. So the whole algorithm runs in polynomial time.</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> A matching covers two vertices with one edge, the best an edge can do, so build on a biggest matching and patch up the leftovers one edge each.</p>

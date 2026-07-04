@@ -1,10 +1,23 @@
-<p class="ex-line"><span class="ex-lab">Claim</span> the sets whose dual constraint is tight, \(\mathcal F=\{S_i:\sum_{j\in S_i}y^{*}_j=c_i\}\), form a set cover.</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> suppose some element is uncovered and show you could then improve the dual, contradicting optimality of \(y^{*}\).</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> an uncovered element sits only in slack (non-tight) constraints, so its dual variable has room to grow &mdash; and growing it raises the objective.</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> "an optimal solution can't be improved" is the lever, so we look for slack that would let us push a variable up.</p>
-<ol class="gsteps">
-<li><b>Assume not a cover.</b> Suppose element \(j_0\) is in no set of \(\mathcal F\). Then every set \(S_i\) containing \(j_0\) is outside \(\mathcal F\), so its constraint is slack: \(\sum_{j\in S_i}y^{*}_j<c_i\).</li>
-<li><b>Its variable has room.</b> The dual variable \(y_{j_0}\) appears only in constraints of sets that contain \(j_0\), and all of those are strict inequalities. Constraints of sets avoiding \(j_0\) don't involve \(y_{j_0}\) at all.</li>
-<li><b>Push it up.</b> Pick \(\varepsilon>0\) smaller than every one of those positive slacks and set \(y_{j_0}\gets y^{*}_{j_0}+\varepsilon\). All constraints \((2)\) still hold and \(y\ge0\), so the new point is feasible.</li>
-<li><b>Contradiction.</b> The objective \(\sum_j y_j\) went up by \(\varepsilon>0\), beating \(y^{*}\) &mdash; impossible for an optimum. So no element is uncovered, and \(\mathcal F\) is a set cover.</li>
-</ol>
+<p>Let \(y^{*}\) be an optimal solution of (D), and let the chosen family be all sets \(S_i\) whose constraint (2) is tight, i.e. \(\sum_{j:\,j \in S_i} y^{*}_j = c_i\). We show this family covers every element. Suppose not, and derive a contradiction with the optimality of \(y^{*}\).</p>
+
+<p>Assume the chosen family is not a set cover, so some element \(j_0\) lies in no chosen set. Every set \(S_i\) that contains \(j_0\) is therefore not chosen, which means its constraint is not tight: it is strict,</p>
+
+\[
+\sum_{j:\,j \in S_i} y^{*}_j < c_i \qquad \text{for every } i \text{ with } j_0 \in S_i.
+\]
+
+<p>(If any such \(S_i\) had a tight constraint it would be in the family, and then \(j_0\) would be covered.)</p>
+
+<p>Now nudge \(y^{*}\) by raising only the coordinate of \(j_0\): set \(y'_{j_0} = y^{*}_{j_0} + \varepsilon\) and \(y'_j = y^{*}_j\) for all \(j \ne j_0\), for a small \(\varepsilon > 0\). Check feasibility for (D). The variable \(y_{j_0}\) appears only in the constraints of sets that contain \(j_0\), and every one of those constraints was strict. So we can pick \(\varepsilon\) small enough that all of them still hold; concretely, take any</p>
+
+\[
+0 < \varepsilon \le \min_{i:\,j_0 \in S_i}\Big(c_i - \sum_{j:\,j \in S_i} y^{*}_j\Big),
+\]
+
+<p>which is positive because each of those slacks is positive. Every constraint not involving \(j_0\) is unchanged, and \(y'_{j_0} = y^{*}_{j_0} + \varepsilon \ge 0\), so \(y'\) is feasible.</p>
+
+<p>But the objective strictly increases: \(\sum_{j=1}^{n} y'_j = \sum_{j=1}^{n} y^{*}_j + \varepsilon > \sum_{j=1}^{n} y^{*}_j\). This contradicts \(y^{*}\) being optimal for the maximization (D).</p>
+
+<p>Therefore no such uncovered \(j_0\) exists: every element is contained in some tight set, so the family of tight sets is a set cover.</p>
+
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> If an element were uncovered, all sets touching it have slack, so we could raise that element's dual value and beat the optimum.</p>

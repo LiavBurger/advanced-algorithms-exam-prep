@@ -1,10 +1,9 @@
-<p class="ex-line"><span class="ex-lab">Goal</span> Design a \(2/3\)-approximation for MAX-3-COL: color \(V\) with \(\{a,b,c\}\) to maximize the total weight of legally colored edges (endpoints differently colored).</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> Think of the coloring as a partition of \(V\) into three classes \(A,B,C\), and place vertices one at a time, each into the class that adds the least illegal weight.</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> Putting \(v\) in a class makes exactly its edges to already-placed vertices of that class illegal, so greedily choosing the lightest of the three classes controls the damage.</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> This is the three-color version of the two-color greedy max-cut from Homework 2; whenever "maximize agreeing/differing edges" appears, sequential greedy placement is the natural reach.</p>
-<ol class="gsteps">
-<li><b>Initialize.</b> Start with three empty color classes \(A=B=C=\varnothing\).</li>
-<li><b>Process in order.</b> Go through the vertices in an arbitrary fixed order. For the current vertex \(v\) and each class \(X\in\{A,B,C\}\), let \(w(v,X)\) be the total weight of edges from \(v\) to vertices already in \(X\).</li>
-<li><b>Greedy placement.</b> Add \(v\) to a class \(X\) minimizing \(w(v,X)\) — this makes only the edges from \(v\) into \(X\) illegal, so we add as little illegal weight as possible.</li>
-<li><b>Output the coloring.</b> Once all vertices are placed, set \(c(v)=a\) for \(v\in A\), \(c(v)=b\) for \(v\in B\), \(c(v)=c\) for \(v\in C\). Coloring greedily by the lightest class is the whole algorithm.</li>
+<p>We build a partition of \(V\) into three sets \(A,B,C\) (to be colored \(a,b,c\)), placing the vertices one at a time so that each vertex adds as little illegal weight as possible.</p>
+<ol>
+<li>Initialize \(A=B=C=\varnothing\).</li>
+<li>Go over the vertices in an arbitrary order. For the current vertex \(v\) and each set \(X\in\{A,B,C\}\), let \(w(v,X)\) be the total weight of edges connecting \(v\) to vertices already placed in \(X\).</li>
+<li>Add \(v\) to a set \(X\in\{A,B,C\}\) for which \(w(v,X)\) is minimal.</li>
+<li>After all vertices are placed, output the coloring \(c(v)=a\) for \(v\in A\), \(c(v)=b\) for \(v\in B\), and \(c(v)=c\) for \(v\in C\).</li>
 </ol>
+<p>An edge is colored legally exactly when its endpoints are in different sets. When we place \(v\), the only edges it colors illegally are those to already-placed vertices of the same set, whose weight is \(w(v,X)\); by choosing the set of minimal \(w(v,X)\) we add the least possible illegal weight at each step. The algorithm runs in polynomial time, since each vertex is handled once and we only sum edge weights from \(v\) to the three groups.</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> Color the vertices one by one, each time joining the color group it shares the least edge weight with.</p>

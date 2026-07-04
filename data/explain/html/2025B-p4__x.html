@@ -1,10 +1,9 @@
-<p class="ex-line"><span class="ex-lab">Goal</span> Given \(f,g\) with \(f=g\cdot h\), recover the coefficients of \(h\) in time \(O(n\log n)\).</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> Move to point-value form at the \(n\)-th roots of unity: evaluate \(f\) and \(g\), divide pointwise, interpolate back.</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> Division of polynomials is trivial in point-value form — it's just \(f(\omega^i)/g(\omega^i)\) at each point — and the assumption \(g(\omega^i)\neq0\) makes every division safe.</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> Evaluating and interpolating at roots of unity is what the FFT does in \(O(n\log n)\), so pushing the hard operation into that domain is the natural reach.</p>
-<ol class="gsteps">
-<li><b>Evaluate.</b> Compute \(f\) and \(g\) at \(1,\omega,\dots,\omega^{n-1}\). This is a DFT, done by the FFT in \(O(n\log n)\).</li>
-<li><b>Divide pointwise.</b> For each \(i\) form \(f(\omega^i)/g(\omega^i)\) — \(n\) divisions, \(O(n)\) total, all well-defined since \(g(\omega^i)\neq0\).</li>
-<li><b>Interpolate.</b> Because \(f=g\cdot h\), we have \(f(\omega^i)/g(\omega^i)=h(\omega^i)\). These are the values of \(h\) at the roots of unity, and interpolating them is an inverse DFT, again \(O(n\log n)\).</li>
+<p>The idea is to move to point-value form at the \(n\)-th roots of unity, where dividing polynomials is trivial. The algorithm is:</p>
+<ol>
+<li>Evaluate \(f\) and \(g\) at the \(n\)-th roots of unity \(1,\omega,\omega^2,\dots,\omega^{n-1}\).</li>
+<li>For each \(i=0,\dots,n-1\), compute \(f(\omega^i)/g(\omega^i)\).</li>
+<li>Interpolate the unique polynomial \(h\) of degree \(\deg f-\deg g\) whose value at \(\omega^i\) equals \(f(\omega^i)/g(\omega^i)\).</li>
 </ol>
-<p class="ex-line">Since \(\deg h<n\), its values at \(n\) distinct points pin it down uniquely, so the interpolated polynomial is exactly \(h\). Total time \(O(n\log n)\).</p>
+<p>Correctness. By assumption \(g(\omega^i)\neq 0\) for every \(i\), so every division in step 2 is well-defined. Since \(f=g\cdot h\), we have \(f(\omega^i)=g(\omega^i)\,h(\omega^i)\), hence \(f(\omega^i)/g(\omega^i)=h(\omega^i)\). So step 2 produces exactly the \(n\) values of \(h\) at the roots of unity. Because \(\deg h<n\), a polynomial of degree less than \(n\) is uniquely determined by its values at \(n\) distinct points, so the interpolated polynomial in step 3 is exactly \(h\).</p>
+<p>Runtime. Steps 1 and 3 are a DFT and an inverse DFT, each computed by the FFT in time \(O(n\log n)\). Step 2 is \(n\) divisions, i.e. \(O(n)\) time. The total is \(O(n\log n)\).</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> Polynomial division is painful with coefficients but effortless at sample points, and the FFT lets us hop to and from those sample points cheaply.</p>

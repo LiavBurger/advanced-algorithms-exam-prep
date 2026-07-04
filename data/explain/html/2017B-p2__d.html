@@ -1,10 +1,3 @@
-<p class="ex-line"><span class="ex-lab">Goal</span> Write the LP dual of the knapsack relaxation from part (c).</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> Apply the mechanical dual recipe: each primal constraint becomes a dual variable, each primal variable becomes a dual constraint, and max flips to min.</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> The one capacity row gives a variable \(z\), the \(n\) bounds \(x_i\le1\) give variables \(y_i\), and the objective is built from the primal right-hand sides.</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> Dualizing is a fixed procedure — reading off constraint-vs-variable roles is all that's needed, no cleverness.</p>
-<ol class="gsteps">
-<li><b>Assign dual variables.</b> The primal \(\max\sum_i b_i x_i\) has the capacity row \(\sum_i w_i x_i\le W\) (variable \(z\ge0\)) and the bounds \(x_i\le1\) (variables \(y_i\ge0\)). Both are \(\ge0\) since these are \(\le\) rows in a maximization.</li>
-<li><b>Build the dual objective.</b> Combine the primal right-hand sides: capacity RHS \(W\) and each bound RHS \(1\), so minimize \(Wz+\sum_i y_i\).</li>
-<li><b>One constraint per \(x_i\).</b> Collect \(x_i\)'s coefficients across primal rows — \(w_i\) in the capacity row and \(1\) in its own bound — and require their weighted sum to be at least the objective coefficient \(b_i\): \[w_i z + y_i \ge b_i \quad \forall i.\]</li>
-<li><b>Write it out.</b> \[\min\ Wz + \sum_i y_i \quad\text{s.t.}\quad w_i z + y_i \ge b_i\ \forall i,\qquad y_i\ge 0,\ z\ge 0.\] The \(\ge\) direction comes from the primal variables being \(\ge0\).</li>
-</ol>
+<p>The primal is a maximization LP with constraints \(\sum_i w_i x_i\le W\) and \(x_i\le 1\) for each \(i\), and \(x_i\ge 0\). We assign a dual variable to each primal constraint: \(z\ge 0\) for the capacity constraint and \(y_i\ge 0\) for each constraint \(x_i\le 1\). The dual minimizes over the constraint right-hand sides, and for each primal variable \(x_i\) it has one constraint collecting the coefficients of \(x_i\) (namely \(w_i\) in the capacity row and \(1\) in the \(i\)-th row), which must be at least the objective coefficient \(b_i\):
+\[\min\ Wz+\sum_i y_i \quad\text{s.t.}\quad w_i z + y_i \ge b_i\ \ \forall i,\qquad y_i\ge 0\ \ \forall i,\qquad z\ge 0.\]</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> One price \(z\) per unit of capacity plus a price \(y_i\) per item, set just high enough that every item's value is covered.</p>

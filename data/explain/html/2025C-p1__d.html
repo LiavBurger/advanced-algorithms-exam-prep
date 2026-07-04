@@ -1,10 +1,3 @@
-<p class="ex-line"><span class="ex-lab">Claim</span> False: it is not the case that \(x\) is optimal for an LP if and only if \(x\) is a vertex.</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> Give one tiny counterexample that breaks the equivalence in both directions.</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> Optima can lie at non-vertex points, and vertices can be far from optimal; "there exists an optimal vertex" is the correct, weaker fact.</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> A claimed iff is fastest to kill with a single small LP that violates each direction, rather than arguing in general.</p>
-<ol class="gsteps">
-<li><b>Optimal need not be a vertex.</b> Minimize \(0\) subject to \(0\le x\le 1\). Every feasible point is optimal, including all interior points of \((0,1)\), which are not vertices.</li>
-<li><b>Vertex need not be optimal.</b> In the same box, minimize \(x\): the vertex \(x=1\) is feasible with value \(1\), while the optimum is \(0\) at \(x=0\). So a vertex can be strictly worse than optimal.</li>
-<li><b>What is actually true.</b> For a feasible bounded LP there exists an optimal solution that is a vertex — an existence statement, not an equivalence.</li>
-<li><b>Conclude.</b> Both directions of the iff fail, so the statement is false.</li>
-</ol>
+<p>False. Being a vertex is neither necessary nor sufficient for optimality. Consider the program "minimize \(0\) subject to \(0\le x\le 1\)": the objective is constant, so every feasible point is optimal, including the interior points of \((0,1)\), which are not vertices. This breaks the "only if" direction — an optimal solution need not be a vertex.</p>
+<p>Conversely, take "minimize \(x\) subject to \(0\le x\le 1\)": the vertex \(x=1\) is feasible but has value \(1\), while the optimum is \(0\) at \(x=0\). So a vertex need not be optimal, breaking the "if" direction. Both directions of the "iff" fail, so the statement is false. (What is actually true is the weaker fact that a feasible bounded LP always has an optimal solution that is a vertex.)</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> With a flat or tilted objective, optima can fill a whole face or sit at the opposite vertex, so "optimal" and "vertex" are not the same thing.</p>

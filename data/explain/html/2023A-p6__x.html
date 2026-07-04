@@ -1,10 +1,6 @@
-<p class="ex-line"><span class="ex-lab">Goal</span> In \(O(n\log n)\) time compute the sumset \(A+B\) and, for each \(c\), how many pairs \((a,b)\) sum to it.</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> Encode each set as an indicator polynomial, multiply the two, and read off the coefficients.</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> The coefficient of \(x^k\) in the product counts exactly the pairs \(i\in A,\ j\in B\) with \(i+j=k\).</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> "How many ways does each value arise as a sum" is a convolution, and convolution is polynomial multiplication — which FFT does in \(O(n\log n)\).</p>
-<ol class="gsteps">
-<li><b>Encode as polynomials.</b> Let \(f_A(x)=\sum_{i\in A}x^i\) and \(f_B(x)=\sum_{j\in B}x^j\); the coefficient of \(x^i\) is \(1\) exactly when \(i\) is in the set.</li>
-<li><b>Multiply.</b> In \(g=f_A\cdot f_B\), the coefficient of \(x^k\) is \(\sum_{i+j=k}a_i b_j\), where each \(a_i b_j\) is \(1\) precisely when \(i\in A\) and \(j\in B\).</li>
-<li><b>Interpret.</b> So that coefficient counts the ways to write \(k=i+j\) with \(i\in A,\ j\in B\): \(k\in A+B\) exactly when it is positive, and the value is the number of representations.</li>
-<li><b>Cost.</b> Both polynomials have degree at most \(n\), so FFT multiplies them in \(O(n\log n)\); building them and scanning the coefficients is \(O(n)\).</li>
-</ol>
+<p>Associate with \(A\) the polynomial \(f_A(x)=\sum_{i\in A}x^i\) and with \(B\) the polynomial \(f_B(x)=\sum_{j\in B}x^j\); the coefficient of \(x^i\) is \(1\) exactly when \(i\) is in the set, and \(0\) otherwise. Consider the product \(g=f_A\cdot f_B\). Writing \(a_i,b_j\) for the coefficients of \(f_A,f_B\), the coefficient of \(x^k\) in \(g\) is</p>
+<p>\[\sum_{i+j=k} a_i\,b_j.\]</p>
+<p>Each term \(a_i b_j\) is \(0\) or \(1\), and it is \(1\) if and only if \(i\in A\) and \(j\in B\). So the coefficient of \(x^k\) in \(g\) counts exactly the number of ways to write \(k=i+j\) with \(i\in A\) and \(j\in B\). Therefore \(k\in A+B\) precisely when this coefficient is positive, and its value is the number of representations of \(k\) as such a sum.</p>
+<p>The algorithm computes \(g=f_A\cdot f_B\) and reads off its coefficients: the positive-coefficient exponents give \(A+B\), and each coefficient gives the corresponding count.</p>
+<p>Runtime: both \(f_A,f_B\) have degree at most \(n\), so their product can be computed in \(O(n\log n)\) using the FFT-based multiplication seen in class; building the polynomials and scanning the coefficients is \(O(n)\), for \(O(n\log n)\) total.</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> Multiplying the two indicator polynomials adds every exponent of one to every exponent of the other, so it counts sums for free.</p>

@@ -1,9 +1,5 @@
-<p class="ex-line"><span class="ex-lab">Goal</span> write and solve the recurrence for Strassen's matrix multiplication.</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> read the recursive structure off the algorithm, then apply the Master Theorem.</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> Strassen makes \(7\) half-size multiplications (not \(8\)); the extra additions are only \(\Theta(n^2)\) work per level.</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> a divide-and-conquer cost with equal-size subproblems is the exact shape the Master Theorem is built for.</p>
-<ol class="gsteps">
-  <li><b>Recurrence.</b> The \(7\) recursive products of \(\tfrac n2\times\tfrac n2\) matrices give \(7T(n/2)\); the \(10\) matrix additions plus split/combine cost \(\Theta(n^2)\). So \(T(n)=7\,T(n/2)+\Theta(n^2)\).</li>
-  <li><b>Master Theorem form.</b> With \(a=7,\ b=2,\ k=2\), compare \(a\) to \(b^k=4\). Here \(a=7>4\), the leaf-heavy case, so \(T(n)=\Theta\!\big(n^{\log_b a}\big)\).</li>
-  <li><b>Evaluate.</b> \(\log_2 7\approx 2.807\), giving \(T(n)=\Theta\!\big(n^{\log_2 7}\big)\) — below the \(n^3\) of naive multiplication. Intuitively the many leaves at the bottom of the tree dominate the total.</li>
-</ol>
+<p>Strassen makes \(7\) recursive multiplications of \(n/2\times n/2\) matrices, plus a constant number of additions of \(n/2\times n/2\) matrices, each addition costing \(\Theta(n^2)\). So the running time satisfies</p>
+<p>\[T(n)=7\,T(n/2)+\Theta(n^2).\]</p>
+<p>Apply the Master theorem with \(a=7\), \(b=2\), and combine cost \(\Theta(n^2)=\Theta(n^{k})\) with \(k=2\). Compare \(a=7\) with \(b^k=2^2=4\): since \(7>4\), i.e. \(\log_b a=\log_2 7\approx 2.807>2=k\), the recursion (the leaves) dominates, and</p>
+<p>\[T(n)=\Theta\!\big(n^{\log_2 7}\big).\]</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> Seven subproblems that only halve in size grow faster than the quadratic merge, so the bottom of the recursion tree sets the cost.</p>

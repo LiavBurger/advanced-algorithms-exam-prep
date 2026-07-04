@@ -1,9 +1,6 @@
-<p class="ex-line"><span class="ex-lab">Claim</span> <b>True</b> &mdash; \(A\) is a PTAS for \(Q\).</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> check the two things a PTAS asks for: a \((1+\varepsilon)\) guarantee, and running time polynomial in \(n\) for each fixed \(\varepsilon\).</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> a PTAS is allowed to let the exponent grow as \(\varepsilon\) shrinks &mdash; it only needs to be polynomial in \(n\) once \(\varepsilon\) is a fixed constant.</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> the running time \(O(n^{3+1/\varepsilon})\) has \(\varepsilon\) sitting in the exponent, which is the tell-tale sign to check the PTAS definition rather than the stricter FPTAS one.</p>
-<ol class="gsteps">
-<li><b>Quality is fine.</b> By assumption, for every \(0<\varepsilon<1\) the output has cost at most \((1+\varepsilon)\) times optimal &mdash; exactly the approximation a PTAS requires.</li>
-<li><b>Runtime is fine for fixed \(\varepsilon\).</b> Fix \(\varepsilon\) as a constant; then \(3+\tfrac1\varepsilon\) is a constant \(k\), so \(O(n^{3+1/\varepsilon})=O(n^{k})\) is polynomial in \(n\). The definition permits this, since it only demands polynomiality in \(n\) per fixed \(\varepsilon\).</li>
-<li><b>Wrap up.</b> Both conditions hold, so \(A\) is a PTAS. (It is not an FPTAS, which would also need polynomial dependence on \(1/\varepsilon\) &mdash; but that was not asked.)</li>
-</ol>
+<p>True. The algorithm meets both requirements in the definition of a PTAS.</p>
+<p>A PTAS for a minimization problem \(Q\) is a family of algorithms such that, for every fixed \(\epsilon>0\), there is an algorithm that returns a solution of quality at most \((1+\epsilon)\) times the optimum, and runs in time that is polynomial in the input size \(n\) when \(\epsilon\) is treated as a constant. The running time is allowed to depend badly on \(\epsilon\); only its dependence on \(n\) must be polynomial.</p>
+<p>Here \(A\) already produces, for every \(0<\epsilon<1\), a solution whose quality is at most \((1+\epsilon)\) times optimal, so the approximation guarantee is exactly what a PTAS asks for.</p>
+<p>For the running time, fix any constant \(\epsilon\). Then \(1/\epsilon\) is a constant, so the exponent \(3+1/\epsilon\) is a constant, and \(O\!\left(n^{3+1/\epsilon}\right)\) is a fixed polynomial in \(n\). For example \(\epsilon=1/2\) gives \(O(n^5)\) and \(\epsilon=1/10\) gives \(O(n^{13})\); the exponent grows as \(\epsilon\) shrinks, but for each fixed \(\epsilon\) it stays constant. This is precisely the behavior a PTAS permits.</p>
+<p>Both conditions hold, so \(A\) is a PTAS for \(Q\). (It is not an FPTAS, which would additionally require the running time to be polynomial in \(1/\epsilon\) as well, but that was not asked.)</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> A PTAS only needs the running time to be polynomial in \(n\) once \(\epsilon\) is fixed, and a constant exponent like \(3+1/\epsilon\) is exactly that.</p>

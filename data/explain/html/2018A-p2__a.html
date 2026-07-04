@@ -1,10 +1,9 @@
-<p class="ex-line"><span class="ex-lab">Goal</span> Describe a polynomial 3-approximation for minimum hitting set when every subset has size at most \(3\).</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> Sweep the subsets in any order; whenever one is not yet hit, throw all of its (at most \(3\)) elements into \(X\).</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> Grabbing an entire unhit subset both guarantees coverage and keeps the grabbed subsets disjoint, which is what caps the cost.</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> This mirrors the maximal-matching idea behind the vertex-cover 2-approximation: hit greedily, and the "size at most 3" bound turns factor 2 into factor 3.</p>
-<ol class="gsteps">
-  <li><b>Algorithm.</b> Start with \(X=\emptyset\). Process the subsets \(D\in C\) in arbitrary order. When you reach \(D\), if \(X\cap D=\emptyset\), add all of \(D\): \(X\leftarrow X\cup D\); otherwise do nothing.</li>
-  <li><b>It hits everything.</b> When we finish a subset \(D\) it satisfies \(X\cap D\ne\emptyset\) — either it was already hit, or we just added all of it.</li>
-  <li><b>Cheap and disjoint.</b> Each add inserts at most \(|D|\le 3\) elements, and we add \(D\) only when it currently shares nothing with \(X\), so the added subsets are pairwise disjoint — the fact that drives the ratio in part (b).</li>
+<p>The algorithm sweeps the subsets in any order, and whenever it meets a subset not yet hit by \(X\), it adds all of that subset's (at most \(3\)) elements to \(X\).</p>
+<ol>
+  <li>Initialize \(X=\emptyset\).</li>
+  <li>For each subset \(D\in C\), in arbitrary order: if \(X\cap D=\emptyset\), set \(X\leftarrow X\cup D\); otherwise do nothing.</li>
+  <li>Return \(X\).</li>
 </ol>
-<p>So a simple one-pass greedy runs in polynomial time and returns a valid hitting set.</p>
+<p>This returns a hitting set: after we process a subset \(D\), we always have \(X\cap D\ne\emptyset\), because either it was already hit before we reached it, or we just added all of its elements to \(X\).</p>
+<p>It runs in polynomial time: there are \(|C|\) subsets, and for each we test \(X\cap D=\emptyset\) and possibly add at most \(3\) elements, which is cheap. (A key property for the analysis in part (b): we add \(D\) only when it currently shares nothing with \(X\), so the fully-added subsets are pairwise disjoint.)</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> Grab an entire unhit subset at once; that both guarantees coverage and keeps the grabbed subsets disjoint.</p>

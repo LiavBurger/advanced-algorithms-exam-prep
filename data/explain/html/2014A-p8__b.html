@@ -1,10 +1,8 @@
-<p class="ex-line"><span class="ex-lab">Goal</span> Bound, in closed form, the probability the random assignment satisfies fewer than \(3/4\) of the clauses.</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> Flip to counting <em>unsatisfied</em> clauses (a nonnegative quantity), then apply Markov's inequality.</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> "Few satisfied" is the same event as "many unsatisfied," and the unsatisfied count has small expectation \(m/8\), which Markov turns into a tail bound.</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> The clauses can share variables, so the satisfied indicators aren't independent; Markov needs only the mean, so it's the safe tool.</p>
-<ol class="gsteps">
-<li><b>Rewrite the event.</b> With \(X=\sum_i X_i\) the number of satisfied clauses, "fewer than \(\tfrac34 m\) satisfied" is \(X<\tfrac{3m}{4}\), equivalently \(m-X>\tfrac{m}{4}\) for the unsatisfied count.</li>
-<li><b>Its expectation.</b> From part (a), \(\mathbb{E}[X]=\tfrac{7m}{8}\), so by linearity \(\mathbb{E}[m-X]=m-\tfrac{7m}{8}=\tfrac{m}{8}\).</li>
-<li><b>Markov.</b> Since \(m-X\ge0\), \[\Pr\!\Big[m-X > \tfrac{m}{4}\Big] \le \frac{\mathbb{E}[m-X]}{m/4} = \frac{m/8}{m/4} = \frac{1}{2}.\] So \(\Pr[X<\tfrac34 m]\le\tfrac12\).</li>
-<li><b>Why not Chernoff.</b> Chernoff would need the \(X_i\) independent, but shared variables make them dependent. If one wrongly assumed independence it would give a much smaller bound like \(2e^{-m/168}\) — sharper but not justified here, so the honest closed-form answer is the Markov \(\tfrac12\).</li>
-</ol>
+<p>Let \(X=\sum_i X_i\) be the number of satisfied clauses, so from part (a) \(\mathbb{E}[X]=\tfrac{7m}{8}\). We want to bound \(\Pr[X<\tfrac34 m]\).</p>
+<p>Write the event in terms of the number of unsatisfied clauses \(m-X\), which is a non-negative random variable with \(\mathbb{E}[m-X]=m-\tfrac{7m}{8}=\tfrac{m}{8}\):
+\[\Pr\!\left[X<\tfrac34 m\right]=\Pr\!\left[m-X>\tfrac{m}{4}\right].\]
+By Markov's inequality applied to the non-negative variable \(m-X\),
+\[\Pr\!\left[m-X>\tfrac{m}{4}\right]\le \frac{\mathbb{E}[m-X]}{m/4}=\frac{m/8}{m/4}=\frac12.\]
+So the probability that fewer than \(3/4\) of the clauses are satisfied is at most \(1/2\), a closed-form bound.</p>
+<p>(We cannot use a Chernoff bound here because the clauses are not independent, since they can share variables. If one nonetheless assumed independence, Chernoff would give the much smaller bound \(2e^{-m/168}\), but that assumption is not valid.)</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> On average only \(m/8\) clauses fail, so by Markov the chance of more than \(m/4\) failing (which is what "below \(3/4\)" means) is at most one half.</p>

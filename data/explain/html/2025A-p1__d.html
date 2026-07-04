@@ -1,10 +1,5 @@
-<p class="ex-line"><span class="ex-lab">Claim</span> True — for a connected regular graph, the space \(\{v : Av = v\}\) has dimension exactly \(1\).</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> Identify that space as the eigenspace of the top eigenvalue \(1\) (in the normalized setting) and use connectivity to pin its multiplicity to one.</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> For a connected regular graph the largest eigenvalue is simple — the all-ones vector spans it and nothing else does.</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> "Dimension of an eigenspace" points straight to eigenvalue multiplicity, and connectivity is exactly the property that controls the gap below the top eigenvalue.</p>
-<ol class="gsteps">
-  <li><b>What the space is.</b> \(\{v : Av = v\}\) is the eigenspace for eigenvalue \(1\), so its dimension is the multiplicity of \(1\). (Here \(A\) is the normalized adjacency matrix, whose top eigenvalue is \(1\).)</li>
-  <li><b>The top eigenvalue is attained.</b> Each row sums to \(1\), so the all-ones vector satisfies \(A\mathbf{1} = \mathbf{1}\); thus \(1\) is an eigenvalue and the dimension is at least \(1\).</li>
-  <li><b>Connectivity makes it simple.</b> It was shown in the homework that for a connected graph the second eigenvalue is strictly below \(1\), so \(1\) has multiplicity exactly \(1\).</li>
-</ol>
-<p>The eigenspace is just the line through the all-ones vector, so its dimension is one.</p>
+<p>True. The set \(\{v\in\mathbb{R}^n : Av=v\}\) is exactly the eigenspace of eigenvalue \(1\), and for a connected regular graph this eigenvalue has multiplicity exactly \(1\), so the space has dimension \(1\).</p>
+<p>The dimension is at least \(1\): the eigenvalue \(1\) really occurs. The all-ones vector \(\mathbf{1}\) satisfies \(A\mathbf{1}=\mathbf{1}\), because in the (normalized) adjacency matrix of a regular graph every row sums to \(1\). So \(\mathbf{1}\) lies in the space and the space is nonzero.</p>
+<p>The dimension is at most \(1\): we proved in class that \(1\) is the largest eigenvalue, and it was shown in the homework that when \(G\) is connected the second-largest eigenvalue is strictly less than \(1\). Hence \(1\) has multiplicity exactly \(1\), so no eigenvector for eigenvalue \(1\) is independent of \(\mathbf{1}\).</p>
+<p>Therefore the eigenspace of \(1\) is the single line spanned by \(\mathbf{1}\), and \(\{v:Av=v\}\) has dimension exactly \(1\). The statement is true.</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> Connectivity is exactly what prevents a second independent direction fixed by \(A\); only the all-ones direction survives.</p>

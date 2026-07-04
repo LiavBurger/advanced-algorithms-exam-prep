@@ -1,11 +1,7 @@
-<p class="ex-line"><span class="ex-lab">Claim</span> the algorithm from part (1) returns a valid tour of cost at most \(\tfrac43\,\text{OPT}\).</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> bound the extra cost of merging by counting the cycles, then compare the cycle cover and the edge count against OPT.</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> each patch swaps an edge of cost \(\ge 1\) for one of cost \(\le 2\), so it adds at most \(1\), and there are at most \(n/3\) patches.</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> two clean lower bounds on OPT are available — the cover is no costlier than the optimal tour, and any tour has \(n\) unit-or-more edges — so both \(\text{cost}(C)\) and \(n/3\) fold into OPT.</p>
-<ol class="gsteps">
-<li><b>It is a tour.</b> Merging as in (1) yields one cycle visiting every vertex exactly once, so the output is a legal TSP tour.</li>
-<li><b>Few cycles.</b> Each cycle has at least \(3\) vertices and they are disjoint over \(n\) vertices, so their count is \(k\le n/3\).</li>
-<li><b>Cheap patching.</b> Each merge replaces an edge of cost \(\ge 1\) by one of cost \(\le 2\), an increase of at most \(1\); over \(\le n/3\) merges, \(\text{ALG}\le\text{cost}(C)+n/3\).</li>
-<li><b>Bound by OPT.</b> The optimal tour is itself a cycle cover, so \(\text{cost}(C)\le\text{OPT}\); and any tour has \(n\) edges each costing \(\ge 1\), so \(\text{OPT}\ge n\), i.e. \(n/3\le\text{OPT}/3\).</li>
-</ol>
-<p class="ex-line">Chaining these: \(\text{ALG}\le\text{cost}(C)+\tfrac{n}{3}\le\text{OPT}+\tfrac13\text{OPT}=\tfrac43\text{OPT}\). So the algorithm never exceeds \(\tfrac43\) times the best tour.</p>
+<p>We show the output is a valid tour of cost at most \(\tfrac43\,\text{OPT}\).</p>
+<p>First, it is a tour: merging the cycles as in part (1) produces one cycle that visits every vertex exactly once, so the output is a legal TSP tour.</p>
+<p>Next, there are few cycles. Every cycle has at least \(3\) vertices and the cycles are disjoint over the \(n\) vertices, so their number is \(k\le n/3\).</p>
+<p>Each merge is cheap. It replaces an edge of weight \(\ge 1\) (weights are \(1\) or \(2\)) by an edge of weight \(\le 2\), an increase of at most \(1\), and we do this once per cycle, at most \(k\le n/3\) times. So \(\text{ALG}\le\text{cost}(C)+n/3\).</p>
+<p>Two lower bounds on OPT finish it. An optimal TSP tour is itself a cycle cover (a single cycle through all vertices), so the minimum cover is no heavier: \(\text{cost}(C)\le\text{OPT}\). Also a tour has \(n\) edges each of weight \(\ge 1\), so \(\text{OPT}\ge n\), giving \(n/3\le\text{OPT}/3\). Combining,</p>
+<p>\[\text{ALG}\le\text{cost}(C)+\frac{n}{3}\le\text{OPT}+\frac13\text{OPT}=\frac43\,\text{OPT}.\]</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> The cycle cover is a lower bound on OPT, and merging adds only \(n/3\), which is itself at most \(\text{OPT}/3\).</p>

@@ -1,11 +1,5 @@
-<p class="ex-line"><span class="ex-lab">Claim</span> False — no nonzero 5-variable polynomial vanishes at every integer point.</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> Use Schwartz–Zippel on a small integer grid to produce a point where the polynomial is nonzero.</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> A nonzero degree-\(d\) polynomial has very few roots on a grid, so a non-root must exist among finitely many integer points.</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> "Does a nonzero polynomial have a non-root?" is precisely what Schwartz–Zippel answers, so it is the natural tool.</p>
-<ol class="gsteps">
-<li><b>Set up.</b> Let \(f(x_1,\dots,x_5)\) be nonzero of total degree \(d\); we want an integer point where it doesn't vanish.</li>
-<li><b>Choose a grid.</b> Take \(S=\{1,2,\dots,d+1\}\), so \(|S|=d+1\), and consider assignments in \(S^5\).</li>
-<li><b>Apply Schwartz–Zippel.</b> For a uniform point of \(S^5\), \(\Pr[f=0]\le \dfrac{d}{|S|}=\dfrac{d}{d+1}<1\).</li>
-<li><b>Conclude.</b> Since the chance of hitting a root is below \(1\), some \((\alpha_1,\dots,\alpha_5)\in S^5\) has \(f(\alpha_1,\dots,\alpha_5)\neq 0\).</li>
-</ol>
-<p class="ex-line">Those \(\alpha\)'s are integers, so we found an integer assignment where \(f\) is nonzero — a nonzero polynomial cannot vanish everywhere, hence the statement is false.</p>
+<p>False. No nonzero polynomial can vanish on every integer assignment, by the Schwartz–Zippel lemma.</p>
+<p>Suppose \(f\) is a nonzero polynomial in the five variables \(x_1,\dots,x_5\), and let \(d\) be its total degree. Consider the finite set of integers \(S=\{1,2,\dots,d+1\}\), which has \(|S|=d+1\) values, and choose each \(\alpha_i\) uniformly and independently from \(S\). By the Schwartz–Zippel lemma,
+\[ \Pr[f(\alpha_1,\dots,\alpha_5)=0] \le \frac{d}{|S|} = \frac{d}{d+1} < 1. \]
+Since this probability is strictly less than \(1\), there must exist some choice \(\alpha_1,\dots,\alpha_5 \in \{1,\dots,d+1\}\) with \(f(\alpha_1,\dots,\alpha_5)\neq 0\). These are integer values, so \(f\) does not vanish on every integer assignment. Hence no such nonzero polynomial exists and the statement is false.</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> A nonzero low-degree polynomial has only "few" roots, so a large enough grid of integers always contains a point where it is nonzero.</p>

@@ -1,10 +1,4 @@
-<p class="ex-line"><span class="ex-lab">Claim</span> False: a symmetric matrix \(A\) with \(\det(A)\ge 0\) need not be PSD.</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> Give one symmetric matrix with nonnegative determinant that is clearly not PSD.</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> The determinant is the product of eigenvalues, so an even number of negative eigenvalues keeps it positive while the matrix is far from PSD.</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> A claimed implication is fastest to kill with a counterexample, and "determinant vs. eigenvalues" points straight at a matrix with two negative eigenvalues.</p>
-<ol class="gsteps">
-  <li><b>Pick the matrix.</b> Let \(A=\begin{bmatrix}-1&0\\ 0&-1\end{bmatrix}=-I\), which is symmetric.</li>
-  <li><b>Check the hypothesis.</b> \(\det(A)=(-1)(-1)-0=1\ge 0\), so the assumption holds.</li>
-  <li><b>Fail PSD.</b> Its eigenvalues are both \(-1\), and \(x^\top(-I)x=-\lVert x\rVert^2<0\) for any \(x\neq 0\), so \(A\) is not PSD (in fact negative definite).</li>
-</ol>
-<p class="ex-line">The determinant only sees the product of eigenvalues, so two negatives cancel in the sign and hide a matrix that is the opposite of PSD.</p>
+<p>False. Consider the symmetric matrix</p>
+<p>\[A=\begin{bmatrix}-1&0\\ 0&-1\end{bmatrix}=-I.\]</p>
+<p>Its determinant is \(\det(A)=(-1)(-1)-0=1\ge 0\), so the hypothesis holds. But its eigenvalues are both \(-1\), and for any \(x\neq 0\) we have \(x^\top A x=-\lVert x\rVert^2<0\), so \(A\) is not PSD (it is in fact negative definite). This gives a symmetric matrix with nonnegative determinant that fails to be PSD, so the statement is false.</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> The determinant only sees the product of eigenvalues, so two negative eigenvalues cancel in sign and hide a matrix that is the opposite of PSD.</p>

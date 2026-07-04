@@ -1,10 +1,6 @@
-<p class="ex-line"><span class="ex-lab">Goal</span> Show a random walk from \(s\) reaches a target \(t\) within \(8mn\) steps with probability \(\ge 3/4\), given cover time \(\le 2mn\).</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> Bound the expected time to hit \(t\) by the cover time, then apply Markov at four times that mean.</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> Reaching a single vertex \(t\) is easier than covering all of them, so \(\mathbb{E}[\text{hit }t]\le 2mn\); Markov converts that mean into a tail bound.</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> We only have a bound on an expectation and want a "within so many steps" probability — Markov is exactly the mean-to-tail conversion.</p>
-<ol class="gsteps">
-<li><b>Define the variable.</b> Let \(X\) be the number of steps until the walk first reaches \(t\).</li>
-<li><b>Bound its mean.</b> The cover time is the expected time to visit all vertices, which in particular visits \(t\), so \(\mathbb{E}[X]\le 2mn\).</li>
-<li><b>Apply Markov.</b> Since \(X\ge0\), \[\Pr[X>8mn]\le \frac{\mathbb{E}[X]}{8mn}\le \frac{2mn}{8mn}=\frac14.\]</li>
-<li><b>Complement.</b> Hence \(\Pr[X\le 8mn]\ge 1-\tfrac14=\tfrac34\). The factor \(8mn=4\cdot 2mn\) is chosen precisely so Markov lands on the clean \(1/4\) failure probability.</li>
-</ol>
+<p>Let \(X\) be the random variable counting the number of steps a random walk started at \(s\) takes to first reach \(t\). Since a walk that has visited all vertices has in particular visited \(t\), the time to reach \(t\) is at most the cover time, so by the class bound of \(2mn\) on the cover time we have \(\mathbb{E}[X]\le 2mn\).</p>
+<p>Because \(X\ge 0\), Markov's inequality gives
+\[\Pr[X>8mn]\le \frac{\mathbb{E}[X]}{8mn}\le \frac{2mn}{8mn}=\frac14.\]
+Therefore the walk reaches \(t\) within \(8mn\) steps with probability at least
+\[1-\Pr[X>8mn]\ge 1-\frac14=\frac34.\]</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> The walk expects to hit \(t\) within \(2mn\) steps, so giving it four times that budget makes overshooting unlikely (at most \(1/4\)) by Markov.</p>

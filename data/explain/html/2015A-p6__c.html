@@ -1,10 +1,5 @@
-<p class="ex-line"><span class="ex-lab">Goal</span> Prove the algorithm uses at most one bin more than the optimum (an additive \(1\)-approximation).</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> Bound the total item weight from below using parts (a) and (b), then compare with how many bins OPT needs.</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> If the total weight is more than \(x+y-2\), then even a perfect packing needs at least \(x+y-1\) bins, while the algorithm uses \(x+y\).</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> Total weight is the universal lower bound on bins (each holds at most \(1\)), so counting weight is how you compare against OPT.</p>
-<ol class="gsteps">
-<li><b>Bound the weight.</b> Let \(x\) be the full bins and \(y\) the non-full bins; \(1/k\) opened the last bin. Full bins give \(x\); by part (b) each of the other \(y-1\) non-full bins gives at least \(1-\tfrac1k\). Total weight \(\ge x+(1-\tfrac1k)(y-1)=x+y-1-\tfrac{y}{k}+\tfrac1k\).</li>
-<li><b>Use part (a).</b> Part (a) gives \(y\le k-1\), so \(\tfrac{y}{k}<1\). Hence total weight \(> x+y-2\).</li>
-<li><b>Compare with OPT.</b> Every bin holds at most weight \(1\), so \(\mathrm{OPT}\ge\text{total weight}>x+y-2\). Being an integer, \(\mathrm{OPT}\ge x+y-1\).</li>
-</ol>
-<p class="ex-line">The algorithm uses \(x+y\) bins and \(\mathrm{OPT}\ge x+y-1\), so it uses at most one extra bin — an additive \(1\)-approximation.</p>
+<p>Let \(x\) be the number of full bins and \(y\) the number of non-full bins the algorithm produces, and let \(1/k\) be the weight of the item that caused the last bin to be opened. We bound the total weight of all items from below. The \(x\) full bins contribute weight \(x\). By part (b), each of the other \(y-1\) non-full bins (all except the last-opened one) contributes at least \(1-\tfrac1k\). So
+\[ \text{total weight} \ge x + (1-\tfrac1k)(y-1) = x + y - 1 - \tfrac{y}{k} + \tfrac1k. \]
+By part (a) we have \(y\le k-1\), so \(\tfrac{y}{k}<1\), and therefore the total weight is greater than \(x+y-2\).</p>
+<p>Every bin can hold total weight at most \(1\), so the optimal number of bins satisfies \(\mathrm{OPT}\ge \text{total weight} > x+y-2\). Since \(\mathrm{OPT}\) is an integer, \(\mathrm{OPT}\ge x+y-1\). The algorithm uses \(x+y\) bins, so it uses at most one bin more than the optimum. Hence the algorithm is an additive \(1\)-approximation.</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> The items weigh nearly \(x+y-1\) in total, and since each bin holds at most \(1\), even a perfect packing needs almost that many bins, leaving the algorithm only one bin behind.</p>

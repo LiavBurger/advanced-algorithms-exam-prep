@@ -1,10 +1,4 @@
-<p class="ex-line"><span class="ex-lab">Claim</span> True: the isolation lemma still holds when the weight of a set is the <b>product</b> of its element weights instead of the sum.</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> Take a logarithm to turn products into sums, apply the ordinary isolation lemma there, then translate the unique minimum back.</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> The original proof never used that weights come from \(\{1,\dots,N\}\) — it only needed \(N\) distinct values and an additive weight. A log map supplies exactly that.</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> Products and "unique minimum" scream logarithm: \(\log\) is order-preserving, so it moves the multiplicative world to the additive world where we already have the lemma.</p>
-<ol class="gsteps">
-<li><b>Define the transform.</b> Given a multiplicative weight function \(w\), set \(w_\ell(x)=\log w(x)\). This map is one-to-one, onto, and order-preserving from the original weights onto \(\{\log 1,\dots,\log N\}\), still \(N\) distinct values.</li>
-<li><b>Products become sums.</b> If \(w(A)=\prod_{i\in A}w(i)\), then \(w_\ell(A)=\sum_{i\in A}\log w(i)\), so the multiplicative weight of a set matches its additive weight under \(w_\ell\).</li>
-<li><b>Apply the known lemma.</b> The standard isolation lemma only needs distinct additive weights, which \(w_\ell\) provides. So with high probability there is a unique minimum-weight set under \(w_\ell\).</li>
-<li><b>Translate back.</b> Because \(\log\) preserves order, that same set is the unique minimum under the product weight. So the lemma carries over — nothing special about sums was ever being used.</li>
-</ol>
+<p>True. The isolation lemma does not really use that the weights come from \(\{1,\dots,N\}\); it only uses that we draw \(N\) distinct weights and that the weight of a set is the sum of its elements' weights. So we reduce the product version back to the usual sum version by taking logarithms.</p>
+<p>Given a multiplicative weight function \(w\), define \(w_\ell(x)=\log w(x)\). The map \(w\mapsto w_\ell\) is a bijection, order-preserving, from weight functions into \(\{1,\dots,N\}\) onto weight functions into \(\{\log 1,\dots,\log N\}\), so it still gives \(N\) distinct weights. Moreover it turns products into sums: if \(w(A)=\prod_{i\in A}w(i)\) then \(w_\ell(A)=\sum_{i\in A}w_\ell(i)\).</p>
+<p>Now apply the original (additive) isolation lemma to the weights \(w_\ell\): with high probability there is a unique set of minimum \(w_\ell\)-weight. Since \(\log\) is monotone, that same set is also the unique set of minimum \(w\)-weight under the product definition. Hence the isolation lemma still holds for product weights.</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> Taking logs turns the product weight into an ordinary sum, so the usual isolation lemma applies unchanged.</p>

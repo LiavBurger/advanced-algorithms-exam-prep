@@ -1,9 +1,2 @@
-<p class="ex-line"><span class="ex-lab">Claim</span> True — if \(\det(A+I)=0\) for the normalized adjacency matrix, then \(G\) is bipartite.</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> Turn the zero determinant into an eigenvalue statement, then use the class fact linking \(-1\) to bipartiteness.</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> \(\det(A+I)=0\) says exactly that \(-1\) is an eigenvalue of \(A\).</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> A vanishing determinant means the matrix is singular, and \(\det(A+I)=0\) is the standard signature of the eigenvalue \(-1\) — the one theorem tying the spectrum to bipartiteness.</p>
-<ol class="gsteps">
-<li><b>Singular matrix gives a vector.</b> Since \(\det(A+I)=0\), the matrix is singular, so there is a nonzero \(v\) with \((A+I)v=0\), i.e. \(Av=-v\).</li>
-<li><b>Identify the eigenvalue.</b> So \(v\) is an eigenvector of \(A\) with eigenvalue \(-1\).</li>
-<li><b>Use the class fact.</b> For a connected regular graph, \(-1\) is an eigenvalue of the normalized adjacency matrix if and only if \(G\) is bipartite, so \(G\) is bipartite.</li>
-</ol>
+<p>True. Suppose \(\det(A+I)=0\). Then \(A+I\) is singular, so there is a nonzero vector \(v\) with \((A+I)v=0\), that is \(Av=-v\). Hence \(-1\) is an eigenvalue of \(A\) (with eigenvector \(v\)). We saw in class that for a connected regular graph the normalized adjacency matrix \(A\) has \(-1\) as an eigenvalue if and only if \(G\) is bipartite. Therefore \(G\) is bipartite.</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> The most negative eigenvalue reaching \(-1\) is the algebraic signature of a graph with no odd cycles, i.e. a bipartite graph.</p>

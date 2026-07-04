@@ -1,11 +1,6 @@
-<p class="ex-line"><span class="ex-lab">Goal</span> Write an integer program for Minimum Dominating Set and justify the variables and constraints.</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> Use one \(0/1\) variable per vertex for "selected", minimize the total selected, and add one coverage constraint per vertex.</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> "\(v\) is dominated" means \(v\) or one of its neighbors is chosen, which is a single \(\ge 1\) inequality.</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> Selection problems map naturally to \(0/1\) indicator variables, and each "must be covered" requirement becomes a linear lower-bound constraint.</p>
-<ol class="gsteps">
-<li><b>Variables.</b> For each vertex \(v\in V\) let \(x_v\in\{0,1\}\), where \(x_v=1\) means \(v\) is in the dominating set. An assignment encodes the set \(D=\{v:x_v=1\}\).</li>
-<li><b>Objective.</b> The size of \(D\) is \(\sum_{v\in V}x_v\), so minimize \(\sum_{v\in V}x_v\).</li>
-<li><b>Coverage constraints.</b> Each vertex must be chosen or have a chosen neighbor:
-\[x_v+\sum_{u:(u,v)\in E}x_u\ge 1\qquad\text{for all }v\in V.\]</li>
-<li><b>Why it corresponds.</b> A feasible \(0/1\) solution gives \(D=\{v:x_v=1\}\); each constraint guarantees \(v\in D\) or a neighbor is in \(D\), so \(D\) dominates. Conversely any dominating set is feasible, so minimizing the objective finds a minimum dominating set.</li>
-</ol>
+<p>Use one variable \(x_v\in\{0,1\}\) for each vertex \(v\in V\), where \(x_v=1\) means \(v\) is chosen into the dominating set \(D=\{v:x_v=1\}\), and \(x_v=0\) means it is not. The size of \(D\) is \(\sum_{v\in V}x_v\), which we minimize. For a dominating set, every vertex \(v\) must be in \(D\) or have a neighbor in \(D\); this is captured by requiring \(x_v+\sum_{u:(u,v)\in E}x_u\ge 1\). The IP is:</p>
+<p>\[\text{minimize}\quad \sum_{v\in V} x_v\]
+\[\text{subject to}\quad x_v+\sum_{u:(u,v)\in E} x_u \ge 1 \quad\text{for all } v\in V,\]
+\[x_v\in\{0,1\}\quad\text{for all } v\in V.\]</p>
+<p>Every feasible solution corresponds to a solution of the original problem: given a feasible \(0/1\) assignment, let \(D=\{v:x_v=1\}\). For each \(v\), the constraint forces \(x_v=1\) or \(x_u=1\) for some neighbor \(u\), so \(v\) is in \(D\) or has a neighbor in \(D\); hence \(D\) is a dominating set. Conversely, any dominating set gives a feasible assignment with the same value. So minimizing the objective yields a minimum dominating set.</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> One yes/no choice per vertex, and each vertex demands that it or a neighbor said yes.</p>

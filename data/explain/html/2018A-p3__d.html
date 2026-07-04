@@ -1,12 +1,6 @@
-<p class="ex-line"><span class="ex-lab">Goal</span> Rewrite \(\min |2x-10|\) subject to \(4x-5\ge 0\) as a linear program.</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> Introduce an auxiliary variable \(z\) that upper-bounds the absolute value with two linear inequalities, then minimize \(z\).</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> \(|t|\) is the smallest \(z\) with \(z\ge t\) and \(z\ge -t\), so minimizing that \(z\) reproduces the absolute value.</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> An absolute value in the objective is the textbook trigger for the "\(z\) above both branches" trick — it is the standard way to linearize \(|\cdot|\) inside a minimization.</p>
-<ol class="gsteps">
-  <li><b>Bracket the value.</b> With \(t=2x-10\), add \(z\) and impose \(z\ge 2x-10\) and \(z\ge -2x+10\). Together they say \(z\ge |2x-10|\).</li>
-  <li><b>Minimize \(z\).</b> Setting the objective to \(\min z\) drives \(z\) down until one inequality is tight, forcing \(z = |2x-10|\). No sign constraint on \(z\) is needed — the two inequalities already give \(z\ge 0\).</li>
-  <li><b>Keep the feasibility constraint.</b> \(4x-5\ge 0\) is already linear, so it stays as is.</li>
-</ol>
-<p>The LP is
-\[\min z \quad\text{s.t.}\quad 4x-5\ge 0,\qquad z\ge 2x-10,\qquad z\ge -2x+10.\]
-Everything is linear in \(x\) and \(z\), and the optimal \(z\) equals \(\min|2x-10|\) under the constraint.</p>
+<p>We add an auxiliary variable \(z\) that bounds the absolute value from above by two linear inequalities, and minimize \(z\):
+\[\min z \quad\text{s.t.}\quad 4x-5\ge 0,\qquad z\ge 2x-10,\qquad z\ge -(2x-10).\]</p>
+<p>The idea is that for any number \(t\), the value \(|t|\) is the smallest \(z\) satisfying both \(z\ge t\) and \(z\ge -t\). Taking \(t=2x-10\), the constraints \(z\ge 2x-10\) and \(z\ge -2x+10\) together say \(z\ge |2x-10|\).</p>
+<p>Minimizing \(z\) then drives it down until one of the two inequalities is tight, so at the optimum \(z=|2x-10|\). No separate sign constraint on \(z\) is needed, since the two inequalities already force \(z\ge 0\).</p>
+<p>The original constraint \(4x-5\ge 0\) is already linear, so it stays unchanged. Everything is now linear in \(x\) and \(z\), and the optimal \(z\) equals \(\min|2x-10|\) subject to \(4x-5\ge 0\).</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> An absolute value in a minimization becomes a new variable squeezed above both branches, \(z\ge t\) and \(z\ge -t\).</p>

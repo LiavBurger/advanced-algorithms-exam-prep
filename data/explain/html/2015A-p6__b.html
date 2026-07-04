@@ -1,10 +1,3 @@
-<p class="ex-line"><span class="ex-lab">Goal</span> If the last item to open a new bin had weight \(1/k\), lower-bound the load of every bin except that last one by \(1-\tfrac1k\).</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> Use why a new bin gets opened at all: the item didn't fit anywhere else.</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> A \(1/k\) item is opened into a new bin only when every existing bin has less than \(1/k\) free — meaning each was already more than \(1-\tfrac1k\) full.</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> The algorithm opens a bin only as a last resort, so the opening event itself certifies that all other bins are nearly full.</p>
-<ol class="gsteps">
-<li><b>Read the opening event.</b> When this \(1/k\) item was placed in a new bin, it fit in no existing bin, so every existing bin had free space below \(1/k\).</li>
-<li><b>Turn free space into load.</b> Free space under \(1/k\) means each such bin was filled to more than \(1-\tfrac1k\).</li>
-<li><b>Loads never drop.</b> This was the last opening event, so later items only add to existing bins; no bin's load decreases afterward.</li>
-</ol>
-<p class="ex-line">So in the final packing, every bin other than the last-opened holds items of total weight at least \(1-\tfrac1k\).</p>
+<p>Every bin other than the last one opened holds items of total weight at least \(1-\tfrac1k\).</p>
+<p>The reason a new bin was opened for the item of weight \(1/k\) is that this item did not fit into any existing bin. That means every existing bin had less than \(1/k\) of free space at that moment, so each of them was already filled to more than \(1-\tfrac1k\). Since this was the last time a new bin was opened, all later items are only added to existing bins, and no bin's load ever decreases. Therefore, in the final packing, every bin except the last-opened one contains items of total weight at least \(1-\tfrac1k\).</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> The algorithm opens a new bin only as a last resort, so the moment it does, every other bin must have been almost completely full.</p>

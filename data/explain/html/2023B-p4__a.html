@@ -1,10 +1,7 @@
-<p class="ex-line"><span class="ex-lab">Claim</span> Every Hamiltonian cycle gives a feasible solution to the degree-constrained TSP integer program.</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> Encode the cycle by setting each variable to whether its edge is used, then check both degree constraints.</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> A Hamiltonian cycle enters and leaves each vertex exactly once, which is precisely what the constraints ask.</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> The IP variables are edge indicators, so the natural candidate solution is just the indicator vector of the cycle's edges.</p>
-<ol class="gsteps">
-<li><b>Build the solution.</b> Given a Hamiltonian cycle \(H\), set \(x_{u,v}=1\) if edge \((u,v)\) is in \(H\), else \(x_{u,v}=0\). These are in \(\{0,1\}\), meeting the integrality constraint.</li>
-<li><b>Recall the degree constraints.</b> For every vertex \(v\), the incoming edges must sum to \(1\) and the outgoing edges must sum to \(1\).</li>
-<li><b>Use the cycle structure.</b> \(H\) visits each vertex exactly once as a single closed tour, so at each \(v\) it enters through one edge and leaves through one edge.</li>
-<li><b>Conclude feasibility.</b> Thus each incoming sum and each outgoing sum equals exactly \(1\), so all constraints hold and the indicator vector is feasible. (Its objective value is exactly the cycle's weight, which is why the IP models TSP.)</li>
-</ol>
+<p>Let \(H\) be a Hamiltonian cycle. Define a solution by setting \(x_{u,v}=1\) if the edge \((u,v)\) belongs to \(H\) and \(x_{u,v}=0\) otherwise. These values are in \(\{0,1\}\), so the integrality constraint holds.</p>
+<p>Now check the degree constraints. A Hamiltonian cycle is a single closed tour that visits each vertex exactly once, so at every vertex \(v\) it enters through exactly one edge and leaves through exactly one edge. Hence for each \(v\) the chosen incoming edges sum to \(1\),</p>
+<p>\[\sum_{u:(u,v)\in E} x_{u,v}=1,\]</p>
+<p>and the chosen outgoing edges sum to \(1\),</p>
+<p>\[\sum_{w:(v,w)\in E} x_{v,w}=1.\]</p>
+<p>All constraints are satisfied, so this indicator vector is a feasible solution (and its objective value equals the total weight of the cycle, which is why the IP models TSP).</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> Marking the cycle's edges automatically gives every vertex one edge in and one out, exactly what the constraints demand.</p>

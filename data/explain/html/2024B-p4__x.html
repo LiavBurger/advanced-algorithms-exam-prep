@@ -1,11 +1,9 @@
-<p class="ex-line"><span class="ex-lab">Goal</span> compute the diameter of a strongly connected digraph in time asymptotically below \(n^3\).</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> turn "reachable within \(k\) steps" into positivity of a matrix power, then binary-search the smallest \(k\) that connects all pairs, using fast matrix multiplication.</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> with \(B=A+I\), the entry \((B^k)_{i,j}>0\) exactly when \(d(i,j)\le k\), so the diameter is the smallest \(k\) making \(B^k\) all-positive.</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> distances become an all-or-nothing positivity test that is monotone in \(k\), which invites binary search, and matrix powers cost \(O(n^\omega)\) with \(\omega<3\) — beating the naive \(n^3\).</p>
-<ol class="gsteps">
-<li><b>Reachability via powers.</b> \((A^k)_{i,j}\) counts length-\(k\) walks; adding \(I\) lets walks "wait", so with \(B=A+I\), \((B^k)_{i,j}>0\) iff there is a walk of length at most \(k\), i.e. \(d(i,j)\le k\).</li>
-<li><b>Bounded diameter.</b> Strong connectivity makes every distance finite, and a shortest path repeats no vertex, so \(d(i,j)\le n-1\); the diameter is at most \(n\).</li>
-<li><b>Binary search.</b> The diameter is the smallest \(m\) with all entries of \(B^m\) positive. Test \(m\): if \(B^m\) is all-positive the diameter is \(\le m\), else \(>m\); recurse on the right half of \([1,n]\). That is \(O(\log n)\) tests.</li>
-<li><b>Cost.</b> Each power comes from repeated squaring in \(O(n^\omega\log n)\), and scanning for positivity is \(O(n^2)\); precomputing \(B^{2^i}\) for all \(i\le\log n\) once lets each search step reuse a stored power, giving \(O(n^\omega\log n)\) overall.</li>
+<p>Let \(A\) be the adjacency matrix of \(G\) and set \(B=A+I\). Then \((A^k)_{i,j}\) counts walks of length exactly \(k\) from \(i\) to \(j\); adding the identity lets a walk "wait", so \((B^k)_{i,j}>0\) exactly when there is a walk of length at most \(k\), that is, when \(d(i,j)\le k\). Since \(G\) is strongly connected every distance is finite, and a shortest path repeats no vertex, so the diameter is at most \(n\). Hence the diameter is the smallest \(m\) for which every entry of \(B^m\) is positive.</p>
+<p>The algorithm:</p>
+<ol>
+<li>Precompute \(B^{2^i}\) for every \(0\le i\le\log n\) by repeated squaring, storing them.</li>
+<li>Binary-search the smallest \(m\in[1,n]\) with \(B^m\) all-positive: to test a value \(m\), multiply the stored powers to form \(B^m\) and check whether all entries are positive; if so the diameter is \(\le m\), otherwise it is \(>m\), and recurse on the appropriate half.</li>
+<li>Return that smallest \(m\), which is the diameter.</li>
 </ol>
-<p class="ex-line">Since \(\omega<3\), \(O(n^\omega\log n)\) is comfortably below \(n^3\), so the diameter is found faster than the naive all-pairs approach.</p>
+<p>Runtime: precomputing the powers is \(O(\log n)\) matrix multiplications, each \(O(n^\omega)\) with fast matrix multiplication, so \(O(n^\omega\log n)\). The binary search has \(O(\log n)\) steps, each reusing stored powers, and each positivity check costs \(O(n^2)\), which is negligible. The total is \(O(n^\omega\log n)\), and since \(\omega<3\) this is asymptotically below \(n^3\).</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> Powers of \(A+I\) detect "reachable within \(k\) steps", so binary-search the smallest \(k\) that connects every pair.</p>

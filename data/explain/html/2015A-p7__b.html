@@ -1,11 +1,8 @@
-<p class="ex-line"><span class="ex-lab">Goal</span> Write the dual of the maximization LP from part (a).</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> Apply the standard recipe: for \(\max\;c^\top x\) with \(Ax\le b,\ x\ge0\), the dual is \(\min\;b^\top y\) with \(A^\top y\ge c,\ y\ge0\).</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> Each primal constraint becomes a dual variable, and each primal variable becomes a dual constraint.</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> The problem is already in canonical \(\max,\le,\ge0\) form, so the dual is just the mechanical transpose of that recipe.</p>
-<ol class="gsteps">
-<li><b>Dual variables and objective.</b> Three constraints give \(y_1,y_2,y_3\ge0\); their right-hand sides \(12,7,10\) form the objective \(\min\;12y_1+7y_2+10y_3\).</li>
-<li><b>One dual constraint per primal variable.</b> Read each column of \(A\) and set it \(\ge\) that variable's objective coefficient:
-\[3y_1+y_2+2y_3\ge2,\quad y_1-3y_2+y_3\ge4,\]
-\[y_1+2y_2+3y_3\ge3,\quad 4y_1+3y_2-y_3\ge1.\]</li>
-<li><b>Assemble.</b> The dual is \(\min\;12y_1+7y_2+10y_3\) subject to those four "\(\ge\)" constraints and \(y_1,y_2,y_3\ge0\).</li>
-</ol>
+<p>The primal is \(\max\;c^\top x\) with \(Ax\le b,\ x\ge0\), so its dual is \(\min\;b^\top y\) with \(A^\top y\ge c,\ y\ge0\). The three primal constraints give dual variables \(y_1,y_2,y_3\ge0\), and their right-hand sides \(12,7,10\) form the dual objective. Each primal variable gives one dual constraint (read down its column of \(A\), set \(\ge\) its objective coefficient):</p>
+<p>\[\min\; 12y_1+7y_2+10y_3 \quad\text{s.t.}\]
+\[3y_1+y_2+2y_3\ge 2,\]
+\[y_1-3y_2+y_3\ge 4,\]
+\[y_1+2y_2+3y_3\ge 3,\]
+\[4y_1+3y_2-y_3\ge 1,\]
+\[y_1,y_2,y_3\ge 0.\]</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> Taking the dual just transposes the roles: each constraint becomes a variable and each variable becomes a constraint.</p>

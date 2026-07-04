@@ -1,12 +1,9 @@
-<p class="ex-line"><span class="ex-lab">Goal</span> compute the transitive closure \(G^{*}\) (which pairs \((i,j)\) are joined by some directed path) in total time asymptotically below \(n^3\).</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> turn reachability into a single matrix power \((A+I)^n\), then compute that power fast using fast matrix multiplication together with repeated squaring.</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> powers of the adjacency matrix count walks — \((A^k)_{ij}\) is the number of length-\(k\) walks from \(i\) to \(j\) — and adding a self-loop at every vertex turns "length exactly \(k\)" into "length at most \(k\)".</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> plain reachability (BFS from every vertex) already costs about \(n^3\); to beat that we lean on fast matrix multiplication, which runs in \(O(n^{\omega})\) with \(\omega<3\), so we reshape the problem into matrix multiplications.</p>
-<ol class="gsteps">
-<li><b>Walks from powers.</b> Let \(A\) be the adjacency matrix of \(G\). A fact from class: \((A^k)_{ij}\) counts the walks of length <em>exactly</em> \(k\) from \(i\) to \(j\), so \((A^k)_{ij}>0\) iff such a walk exists.</li>
-<li><b>Self-loops relax "exactly" to "at most".</b> Let \(A'=A+I\), the adjacency matrix of \(G'\) obtained by adding a self-loop at every vertex. Then \((A')^k_{ij}>0\) iff \(G\) has a path from \(i\) to \(j\) of length <em>at most</em> \(k\): a self-loop lets us pad any shorter walk out to length exactly \(k\).</li>
-<li><b>Pick the exponent \(n\).</b> If \(i\) can reach \(j\) at all, it can along a simple path, which visits at most \(n\) vertices and so has length at most \(n\). Hence reachability is captured exactly by \((A')^n\): put \((i,j)\in E^{*}\) iff \((A')^n_{ij}>0\).</li>
-<li><b>The algorithm.</b> Compute \(A'=A+I\); compute \((A')^n\) by repeated squaring — about \(\lceil\log_2 n\rceil\) squarings, each one a fast matrix multiplication; then read \(G^{*}\) off the positive entries.</li>
-<li><b>Running time.</b> Forming \(A'\) and reading off \(G^{*}\) cost \(O(n^2)\) each. The power needs \(O(\log n)\) matrix multiplications at \(O(n^{\omega})\) apiece, for \(O(n^{\omega}\log n)\) total. Since \(\omega<3\), this is below \(n^3\).</li>
+<p>Let \(A\) be the adjacency matrix of \(G\). We turn reachability into a single matrix power and compute it fast. From class, \((A^k)_{ij}\) counts the walks of length exactly \(k\) from \(i\) to \(j\), so \((A^k)_{ij}>0\) iff such a walk exists. Let \(A'=A+I\), the adjacency matrix of the graph \(G'\) obtained by adding a self-loop at every vertex. Then \((A')^k_{ij}>0\) iff \(G\) has a path from \(i\) to \(j\) of length at most \(k\): a self-loop lets us pad any shorter walk out to length exactly \(k\). If \(i\) can reach \(j\) at all, it can along a simple path of length at most \(n\), so reachability is captured exactly by \((A')^n\).</p>
+<p>The algorithm:</p>
+<ol>
+<li>Compute \(A'=A+I\).</li>
+<li>Compute \((A')^n\) by repeated squaring: about \(\lceil\log_2 n\rceil\) squarings, each one a fast matrix multiplication.</li>
+<li>Return \(G^*\) with \((i,j)\in E^*\) iff \((A')^n_{ij}>0\).</li>
 </ol>
-<p>Repeated squaring is what keeps us cheap: instead of multiplying by \(A'\) some \(n\) times, we square \(O(\log n)\) times to reach \((A')^n\), and each square rides on fast matrix multiplication to stay under the \(n^3\) barrier.</p>
+<p>Correctness holds because \((A')^n_{ij}>0\) exactly when \(i\) reaches \(j\) in \(G\). Running time: forming \(A'\) and reading off \(G^*\) each cost \(O(n^2)\); the power needs \(O(\log n)\) matrix multiplications at \(O(n^{\omega})\) each, for \(O(n^{\omega}\log n)\) total. Since \(\omega<3\), this is asymptotically below \(n^3\).</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> Reachability is just "is any power entry positive", and repeated squaring plus fast matrix multiplication computes \((A+I)^n\) under the \(n^3\) barrier.</p>

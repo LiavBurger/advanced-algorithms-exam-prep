@@ -1,11 +1,6 @@
-<p class="ex-line"><span class="ex-lab">Claim</span> The \(|D|\le 3\) greedy is a polynomial-time 3-approximation for minimum hitting set.</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> Show it runs in polynomial time, always outputs a hitting set, then sandwich its size between \(3k\) above and \(\mathrm{OPT}\ge k\) below.</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> The subsets we fully grab are disjoint, so no single element hits two of them — forcing any hitting set, including OPT, to spend at least one element per grabbed subset.</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> Disjointness is a built-in lower bound on OPT — the same trick as vertex cover's disjoint matched edges, adapted to sets of size at most \(3\).</p>
-<ol class="gsteps">
-  <li><b>Polynomial time.</b> Store \(X\) as a linked list; testing \(X\cap D=\emptyset\) costs \(O(|X|)\). Since \(X\subseteq\bigcup_{D\in C} D\), \(|X|\) is bounded by the input size, so each of the \(|C|\) iterations is polynomial.</li>
-  <li><b>It is a hitting set.</b> After processing any \(D\) we have \(X\cap D\ne\emptyset\), so every subset is hit.</li>
-  <li><b>Upper bound.</b> Let \(k\) be the number of subsets that triggered an add. Each adds at most \(3\) elements, so \(|X|\le 3k\).</li>
-  <li><b>Lower bound.</b> Those \(k\) added subsets are pairwise disjoint, so one element hits at most one of them; any hitting set needs at least one element per subset, giving \(\mathrm{OPT}\ge k\).</li>
-</ol>
-<p>Combining, \(|X|\le 3k\le 3\,\mathrm{OPT}\) — the greedy stays within a factor of three of the best possible.</p>
+<p>We show the greedy runs in polynomial time, always outputs a hitting set, and returns a set of size at most \(3\,\mathrm{OPT}\). The proof is like the \(2\)-approximation for vertex cover from class.</p>
+<p>Polynomial time: represent \(X\) as a linked list. Testing \(X\cap D=\emptyset\) takes \(O(|X|)\) time, and \(X\subseteq\bigcup_{D\in C}D\), so \(|X|\) is bounded by the input size. Since there are \(|C|\) iterations, the total time is polynomial in the input size.</p>
+<p>It is a hitting set: by the rule in the loop, right after processing any subset \(D\) we have \(X\cap D\ne\emptyset\), so every subset is hit at the end.</p>
+<p>Approximation ratio: let \(k\) be the number of subsets that triggered an add (those with \(X\cap D=\emptyset\) when reached). Each add inserts at most \(|D|\le 3\) elements, so \(|X|\le 3k\). On the other hand, these \(k\) added subsets are pairwise disjoint (we add \(D\) only when it meets nothing already in \(X\)), so no single element belongs to two of them. Any hitting set, and in particular OPT, must contain at least one element from each of these \(k\) disjoint subsets, so \(\mathrm{OPT}\ge k\).</p>
+<p>Combining, \(|X|\le 3k\le 3\,\mathrm{OPT}\), which proves the \(3\)-approximation.</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> The disjoint grabbed subsets force OPT to spend at least one element on each, and we spent at most three.</p>

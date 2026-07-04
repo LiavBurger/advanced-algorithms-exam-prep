@@ -1,11 +1,10 @@
-<p class="ex-line"><span class="ex-lab">Claim</span> two \(n\)-bit integers can be multiplied in \(O(n^{\log_2 3})\) time (Karatsuba).</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> split each number into high/low halves, expand the product, and compute it with only three half-size multiplications instead of four.</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> the middle term \(bc+ad\) is recovered from the single product \((a+b)(c+d)\) by subtracting off \(ac\) and \(bd\), which we compute anyway.</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> the naive expansion needs four half-products, giving \(T(n)=4T(n/2)+O(n)=O(n^2)\); killing one multiplication drops the branching factor to \(3\) and beats \(n^2\).</p>
-<ol class="gsteps">
-  <li><b>Split.</b> Write \(A=a\,2^{n/2}+b\) and \(C=c\,2^{n/2}+d\), where \(a,b,c,d\) are \(n/2\)-bit numbers (high and low halves; the \(2^{n/2}\) is a shift).</li>
-  <li><b>Expand.</b> \(A\cdot C=ac\,2^n+(bc+ad)\,2^{n/2}+bd\). Naively this is the four products \(ac,bc,ad,bd\).</li>
-  <li><b>The trick.</b> Since \((a+b)(c+d)=ac+ad+bc+bd\), we get \(bc+ad=(a+b)(c+d)-ac-bd\). So we only need three half-size products: \(ac,\ bd,\ (a+b)(c+d)\).</li>
-  <li><b>Cost of the glue.</b> The remaining additions and shifts (by \(2^n,2^{n/2}\)) are each \(O(n)\) by the allowed basic operations, so the non-recursive work is \(O(n)\): \(T(n)=3T(n/2)+O(n)\).</li>
-  <li><b>Solve.</b> Master Theorem with \(a=3,b=2,k=1\): since \(3>2^1\), \(T(n)=\Theta\!\big(n^{\log_2 3}\big)\approx O(n^{1.585})\). Intuitively, saving one of every four multiplications compounds across all the recursion levels into a genuinely smaller exponent.</li>
-</ol>
+<p>Split each \(n\)-bit number into a high and low half of \(n/2\) bits: write \(A=a\,2^{n/2}+b\) and \(C=c\,2^{n/2}+d\). Then</p>
+<p>\[A\cdot C=ac\,2^{n}+(ad+bc)\,2^{n/2}+bd.\]</p>
+<p>The middle coefficient can be obtained from just one extra product using the identity</p>
+<p>\[ad+bc=(a+b)(c+d)-ac-bd,\]</p>
+<p>so</p>
+<p>\[A\cdot C=ac\,2^{n}+\big((a+b)(c+d)-ac-bd\big)2^{n/2}+bd.\]</p>
+<p>Hence to multiply two \(n\)-bit numbers we only need three products of (about) \(n/2\)-bit numbers — \(ac\), \(bd\), and \((a+b)(c+d)\) — together with a constant number of additions and shifts of \(O(n)\)-bit numbers, each costing \(O(n)\) by the allowed basic operations. Computing the three half-size products recursively, the running time satisfies</p>
+<p>\[T(n)=3\,T(n/2)+O(n).\]</p>
+<p>By the Master theorem with \(a=3\), \(b=2\), and \(O(n)=O(n^k)\) with \(k=1\): since \(a=3>2=b^k\), i.e. \(\log_2 3>1\), the recursion dominates and \(T(n)=O\!\big(n^{\log_2 3}\big)\).</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> The schoolbook method needs four half-products; one clever combination replaces the two middle ones, cutting four recursive calls down to three.</p>

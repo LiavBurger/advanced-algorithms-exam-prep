@@ -1,10 +1,3 @@
-<p class="ex-line"><span class="ex-lab">Claim</span> True: there is an efficient algorithm that, given a standard-form LP and a point \(y\), decides whether \(y\) is a vertex.</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> Check feasibility, then apply the class characterization of a vertex via linear independence of the support columns, which reduces to a rank computation.</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> Being a vertex is a purely algebraic condition — the columns of \(A\) on the positive coordinates of \(y\) must be linearly independent — and rank is polynomial to compute.</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> "Is this point a vertex" invites the standard-form vertex test from class, turning a geometric question into a rank check you can actually run.</p>
-<ol class="gsteps">
-<li><b>Feasibility check.</b> For the polytope \(\{x:Ax=b,\ x\ge 0\}\), verify \(Ay=b\) and \(y\ge 0\); both are trivially polynomial, and if either fails \(y\) is not a vertex.</li>
-<li><b>Vertex characterization.</b> Let \(A_y\) be the submatrix of \(A\) with the columns where \(y_i>0\). From class, a feasible \(y\) is a vertex iff \(A_y\) has full column rank (those columns are independent).</li>
-<li><b>Compute the rank.</b> Run Gaussian elimination on \(A_y\) and compare its rank to the number of positive coordinates; equality means full column rank.</li>
-<li><b>Conclude.</b> So \(y\) is a vertex exactly when it is feasible and \(A_y\) has full column rank — each step polynomial, so the test is efficient.</li>
-</ol>
+<p>True. Suppose the polytope is \(\{x:Ax=b,\ x\ge 0\}\). Given the point \(y\), first check feasibility, which is easy: verify \(Ay=b\) and \(y\ge 0\). If either fails, \(y\) is not a vertex.</p>
+<p>We saw in class that a feasible \(y\) is a vertex if and only if the columns of \(A\) indexed by the coordinates where \(y\) is strictly positive are linearly independent — that is, the submatrix \(A_y\) of \(A\), whose columns are exactly those coordinates, has full column rank. We can check this in polynomial time by computing the rank of \(A_y\) (for example by Gaussian elimination) and comparing it to the number of positive coordinates of \(y\). All steps are polynomial, so the test is efficient.</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> A feasible point is a vertex exactly when the columns for its positive entries are independent, and checking rank is a fast linear-algebra computation.</p>

@@ -1,10 +1,7 @@
-<p class="ex-line"><span class="ex-lab">Goal</span> find which basic variable leaves as \(x_3\) enters.</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> raise \(x_3\) from \(0\) (others still \(0\)) and see which basic variable hits \(0\) first.</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> the entering variable can only grow until some basic variable would go negative; that variable is the one that leaves.</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> feasibility needs every variable \(\ge 0\), so the min-ratio test just asks "which \(\ge 0\) wall do we hit first?"</p>
-<ol class="gsteps">
-  <li><b>Write basics in terms of \(x_3\).</b> With \(x_2=s_1=0\): \(x_1=10\) and \(s_2=6-x_3\).</li>
-  <li><b>\(x_1\) sets no limit.</b> It has no \(x_3\) term, so it stays at \(10\) no matter how large \(x_3\) grows.</li>
-  <li><b>\(s_2\) sets the limit.</b> \(s_2=6-x_3\) reaches \(0\) at \(x_3=6\), so \(s_2\ge 0\) caps \(x_3\) at \(6\) (ratio \(6/1=6\)).</li>
-</ol>
-<p>So \(s_2\) leaves the basis and \(x_3\) enters at value \(6\); the new basis is \(\{x_1,x_3\}\).</p>
+<p>The variable \(s_2\) leaves the basis.</p>
+<p>We raise the entering variable \(x_3\) from \(0\), keeping the other non-basics \(x_2=s_1=0\), and see which basic variable reaches \(0\) first. The basic variables are</p>
+\[
+x_1=10-2x_2-s_1=10,\qquad s_2=6-3x_2-x_3-2s_1=6-x_3 .
+\]
+<p>Since \(x_1\) has no \(x_3\) term it stays at \(10\) and imposes no limit. But \(s_2=6-x_3\) reaches \(0\) when \(x_3=6\), so the requirement \(s_2\ge 0\) caps \(x_3\) at \(6\) (min ratio \(6/1=6\)). Hence \(s_2\) leaves, and after the pivot \(x_3=6\) with new basis \(\{x_1,x_3\}\).</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> The entering variable grows only until the first basic variable would go negative, and that one leaves.</p>

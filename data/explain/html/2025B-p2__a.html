@@ -1,11 +1,4 @@
-<p class="ex-line"><span class="ex-lab">Goal</span> write the integer program for weighted set cover.</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> one binary variable per set saying whether we take it, minimize the total cost of taken sets, and demand every element be covered by at least one.</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> "covering element \(j\)" means at least one chosen set contains \(j\), which is a linear "\(\ge 1\)" constraint over the sets holding \(j\).</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> the pick/don't-pick decision on each set is naturally binary, and the coverage requirement is one inequality per element — the standard ILP shape.</p>
-<ol class="gsteps">
-<li><b>Choose variables.</b> For each set \(S_i\), \(x_i\in\{0,1\}\), with \(1\) meaning \(S_i\) is in the cover.</li>
-<li><b>Objective.</b> Cheapest family: \(\min\sum_{i=1}^m c_i x_i\).</li>
-<li><b>Coverage constraints.</b> For each element \(j\), the chosen sets containing it must number at least one: \(\sum_{i:\,S_i\ni j}x_i\ge 1\).</li>
-<li><b>Integrality.</b> \(x_i\in\{0,1\}\) for all \(i\).</li>
-</ol>
-<p class="ex-line">Each element constraint guarantees some chosen set covers it, so a feasible \(0/1\) vector is a valid cover and its objective is that cover's cost — the optimum is a minimum-weight set cover.</p>
+<p>We use one binary variable per set. For each subset \(S_i\) let \(x_i\in\{0,1\}\), where \(x_i=1\) means \(S_i\) is included in the cover. We minimize the total weight of chosen sets, and for each element \(j\) we require that at least one chosen set contains it, which is a linear "\(\ge 1\)" constraint over the sets holding \(j\). The program is</p>
+<p>\[\min\ \sum_{i=1}^m c_i x_i\quad\text{s.t.}\quad \sum_{i:\,S_i\ni j}x_i\ge 1\ \ \text{for every }1\le j\le n,\qquad x_i\in\{0,1\}\ \ \text{for every }1\le i\le m.\]</p>
+<p>Each element constraint guarantees that some chosen set covers element \(j\), so a feasible \(0/1\) vector is a valid cover and its objective is that cover's weight; an optimal solution is a minimum-weight set cover.</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> Switch on sets at cheapest total weight so that every element is hit at least once.</p>

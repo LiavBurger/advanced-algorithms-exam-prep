@@ -1,10 +1,4 @@
-<p class="ex-line"><span class="ex-lab">Goal</span> write the LP relaxation of the maximum-independent-set ILP.</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> keep the objective and constraints, and just drop the integrality requirement.</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> "relaxation" means we let each \(x_v\) be any real number \(\ge 0\) instead of only \(0\) or \(1\), which makes the program solvable in polynomial time.</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> replacing \(x_v\in\{0,1\}\) by \(x_v\ge 0\) is the standard recipe for turning any ILP into its LP relaxation.</p>
-<ol class="gsteps">
-  <li><b>Copy the rest unchanged.</b> Objective \(\max\sum_{v\in V}x_v\) and edge constraints \(x_u+x_v\le 1\) for every \((u,v)\in E\) stay exactly as they were.</li>
-  <li><b>Swap integrality for nonnegativity.</b> \(x_v\in\{0,1\}\) becomes \(x_v\ge 0\). No explicit \(x_v\le 1\) is needed: for any edge, \(x_u+x_v\le 1\) with \(x_u\ge 0\) already forces \(x_v\le 1\) (and \(G\) is connected, so every vertex lies on an edge).</li>
-  <li><b>The LP.</b>
-  \[\max\sum_{v\in V}x_v\quad\text{s.t.}\quad x_u+x_v\le 1\ \ \forall (u,v)\in E,\qquad x_v\ge 0\ \ \forall v\in V.\]</li>
-</ol>
+<p>The LP relaxation keeps the same objective and constraints but drops the integrality requirement, replacing \(x_v\in\{0,1\}\) by \(x_v\ge 0\):</p>
+<p>\[\max\sum_{v\in V}x_v\quad\text{s.t.}\quad x_u+x_v\le 1\ \ \forall (u,v)\in E,\qquad x_v\ge 0\ \ \forall v\in V.\]</p>
+<p>Since \(G\) is connected, every vertex lies on some edge, and each such edge constraint together with \(x_u\ge 0\) already forces \(x_v\le 1\); so no separate upper bound is needed and the fractional values stay in \([0,1]\).</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> Relaxing just lets a vertex be picked "fractionally" instead of all-or-nothing.</p>

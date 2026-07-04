@@ -1,11 +1,5 @@
-<p class="ex-line"><span class="ex-lab">Claim</span> any \(x^*\) with \(Ax^*=c\) and \(x^*\ge 0\) is an optimal solution of \((P)\).</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> show this one point is feasible for both \((P)\) and its dual \((D)\), and gives them the same objective value; duality then forces it to be optimal.</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> an equality \(Ax^*=c\) satisfies both \(\ge c\) (primal) and \(\le c\) (dual) at once, so the same point lives in both problems.</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> matching primal and dual objective values is the textbook certificate of optimality — no need to search over all solutions, just exhibit the pair.</p>
-<ol class="gsteps">
-  <li><b>Feasible for \((P)\).</b> \((P)\) needs \(Ax\ge c,\ x\ge 0\). Since \(Ax^*=c\), certainly \(Ax^*\ge c\); and \(x^*\ge 0\) is given. Both hold.</li>
-  <li><b>Feasible for \((D)\).</b> Recall \((D):\ \max c^Tz\) s.t. \(Az\le c,\ z\ge 0\). Take \(z=x^*\): from \(Ax^*=c\) we get \(Ax^*\le c\), and \(x^*\ge 0\). So \(x^*\) is dual-feasible too.</li>
-  <li><b>Same objective value.</b> The primal value at \(x^*\) is \(c^Tx^*\); the dual value at \(z=x^*\) is also \(c^Tx^*\). One point, identical value in both.</li>
-  <li><b>Conclude optimality.</b> Weak duality says every primal-feasible value is at least every dual-feasible value \((\min\ge\max)\). Here a feasible primal point and a feasible dual point hit the <em>same</em> value \(c^Tx^*\), so neither can improve past it. Thus \(x^*\) attains the primal minimum.</li>
-</ol>
-<p class="ex-line">In short, \(x^*\) plays both roles at once and pins the two objectives together, so it must be optimal for \((P)\) — and by the same token \(z=x^*\) is optimal for \((D)\).</p>
+<p>Suppose \(x^*\) satisfies \(Ax^*=c\) and \(x^*\ge 0\). We show it is feasible for both \((P)\) and its dual \((D)\) with equal objective value, which forces optimality.</p>
+<p>Feasible for \((P)\): the primal needs \(Ax\ge c\) and \(x\ge 0\). Since \(Ax^*=c\) we have \(Ax^*\ge c\), and \(x^*\ge 0\) is given.</p>
+<p>Feasible for \((D)\): recall \((D)\) is \(\max c^Tz\) s.t. \(Az\le c,\ z\ge 0\). Take \(z=x^*\); from \(Ax^*=c\) we get \(Ax^*\le c\), and \(x^*\ge 0\). So \(x^*\) is dual-feasible too.</p>
+<p>Equal objective values: the primal value at \(x^*\) is \(c^Tx^*\), and the dual value at \(z=x^*\) is also \(c^Tx^*\). By weak duality every primal-feasible value is at least every dual-feasible value \((\min\ge\max)\). Here a feasible primal point and a feasible dual point attain the same value \(c^Tx^*\), so neither can be improved past it. Hence \(x^*\) attains the primal minimum and is optimal for \((P)\) (and by the same token \(z=x^*\) is optimal for \((D)\)).</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> The equality \(Ax^*=c\) satisfies both \(\ge c\) and \(\le c\) at once, so \(x^*\) plays both roles and pins the two objectives together.</p>

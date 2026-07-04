@@ -1,9 +1,2 @@
-<p class="ex-line"><span class="ex-lab">Goal</span> describe a \(100\)-vertex graph whose maximum independent set has size exactly \(1\).</p>
-<p class="ex-line"><span class="ex-lab">Strategy</span> take the clique \(K_{100}\) — every pair of vertices joined by an edge.</p>
-<p class="ex-line"><span class="ex-lab">Key idea</span> if every pair is adjacent, no two vertices can sit together in an independent set, so an independent set can hold at most one vertex.</p>
-<p class="ex-line"><span class="ex-lab why">Why this move</span> we want independence forced to be tiny, and the densest possible graph — the clique — makes every pair an obstacle.</p>
-<ol class="gsteps">
-  <li><b>The graph.</b> Let \(G=K_{100}\), the complete graph on \(100\) vertices.</li>
-  <li><b>At most one vertex.</b> Any two distinct \(u,v\) are adjacent, so any set with two vertices contains an edge and fails independence.</li>
-  <li><b>One is achievable.</b> A single vertex is trivially independent, so the maximum is exactly \(1\). (Together with part (c): here the LP optimum is \(\ge 50\) while the ILP optimum is \(1\) — a large integrality gap.)</li>
-</ol>
+<p>Take \(G=K_{100}\), the complete graph on \(100\) vertices, in which every pair of vertices is joined by an edge. Any independent set can contain at most one vertex: if it contained two vertices \(u,v\), the edge \((u,v)\) would make \(x_u+x_v=2>1\), violating the constraint. A single vertex is trivially independent, so the maximum independent set — the optimum of the ILP in (a) — has size exactly \(1\).</p>
+<hr class="ex-div"><p class="ex-intuition"><b>Intuition.</b> In a clique everyone is everyone's neighbor, so you can keep only one vertex.</p>
