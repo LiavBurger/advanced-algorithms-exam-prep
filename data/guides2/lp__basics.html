@@ -1,0 +1,46 @@
+<!-- title: LP Basics & Geometry -->
+<h3>When do I reach for this?</h3>
+<p>Any question that says "linear program", "minimize/maximize a linear objective subject to linear constraints", "put in standard form", "run one simplex pivot", or "is this point a vertex". The whole game is: an LP lives on a polyhedron, and its optimum sits at a corner. So we learn to (a) write the LP cleanly, (b) recognize corners, (c) walk between them.</p>
+<ul>
+<li>"Convert this LP" / "add slack variables" &rarr; rewrite into <b>standard form</b>.</li>
+<li>"Is \(y\) a vertex / basic feasible solution?" &rarr; the <b>independent-columns</b> test.</li>
+<li>"Which variable enters / leaves the basis?" &rarr; one <b>simplex pivot</b> (reduced cost, then min-ratio).</li>
+<li>"Prove LP \(\in\) P" &rarr; cite the <b>ellipsoid</b> algorithm, never simplex.</li>
+</ul>
+
+<h3>Core tools</h3>
+<div class="gtool"><div class="gtool-h">STANDARD FORM</div><div class="gtool-body">\[ \min\; c^\top x \quad\text{s.t.}\quad Ax=b,\; x\ge 0 \] To get here: flip \(\max\) to \(\min\) by negating \(c\); turn \(a^\top x\le b\) into \(a^\top x+s=b,\ s\ge 0\) (a <b>slack</b>); split a free variable \(x=x^{+}-x^{-}\) with \(x^{+},x^{-}\ge 0\). <span class="gtool-use">"put into standard form", "add slack variables"</span></div></div>
+
+<div class="gtool"><div class="gtool-h">VERTEX = BASIC FEASIBLE SOLUTION</div><div class="gtool-body">For feasible \(x\), let \(A_x\) be the columns of \(A\) where \(x_j>0\). \[ x\text{ is a vertex}\iff A_x\text{ has independent columns.} \] Equivalently \(x\) is a vertex iff there is no \(y\ne 0\) with \(x+y,\ x-y\in P\). A standard-form polytope in \(\mathbb{R}^n\) has at most \(\binom{n}{m}\le 2^n\) vertices. <span class="gtool-use">"is \(y\) a vertex / BFS?"</span></div></div>
+
+<div class="gtool"><div class="gtool-h">SIMPLEX (one pivot)</div><div class="gtool-body">With basis \(B\), reduced costs are \(\tilde c_N^\top=c_N^\top-c_B^\top A_B^{-1}A_N\). \[ \tilde c_N\ge 0\ \Rightarrow\ \text{current BFS optimal.} \] Otherwise raise a variable with \(\tilde c_j<0\); the <b>min-ratio test</b> says how far. <span class="gtool-use">"which variable enters/leaves?"</span></div></div>
+
+<div class="gtool"><div class="gtool-h">ELLIPSOID</div><div class="gtool-body">Trap \(P\) in a big ball, repeatedly halve the volume around a separating hyperplane until you hit \(P\) or prove it empty. Runs in <b>polynomial time</b> &mdash; this is the theorem "LP \(\in\) P". Slow in practice; only needs a <b>separation oracle</b>, so it even handles exponentially many constraints. <span class="gtool-use">"prove LP is solvable in poly time"</span></div></div>
+
+<h3>Key facts</h3>
+<div class="gthm"><span class="lab">Theorem</span> If \(\min\{c^\top x: x\in P\}\) is finite over a standard-form polytope, the optimum is attained at a <b>vertex</b>. Intuition: if \(x\) is not a corner, some direction \(y\) has \(x\pm y\in P\); slide along the non-worsening side until a coordinate hits \(0\) &mdash; you gain a zero coordinate each time, so after \(\le n\) steps you reach a corner no worse than \(x\).</div>
+<div class="gdef"><span class="lab">Definition</span> A <b>basis</b> is a set \(B\) of \(m\) column indices with \(A_B\) invertible; its BFS sets \(x_N=0,\ x_B=A_B^{-1}b\) and is feasible when \(x_B\ge 0\). "Degenerate" means some basic \(x_i=0\).</div>
+
+<h3>Worked example &mdash; the thinking</h3>
+<div class="gworked"><p><b>2014A P10.</b> An LP with \(\le\) constraints; find a BFS, then do one pivot.</p>
+<ol class="gsteps">
+<li>Constraints are \(\le\), so I add one nonneg slack per row to reach \(Ax=b,\ x\ge 0\). The slacks hand me a free starting BFS: set the original \(x=0\), each slack \(=\) its \(b_i\).</li>
+<li>Asked for the BFS of basis \(\{x_1,s_2\}\): keep those two basic, force every other variable to \(0\), and solve the square system \(A_B x_B=b\) for the two values.</li>
+<li>Entering variable: compute reduced costs \(\tilde c_j\); pick a nonbasic column with \(\tilde c_j<0\) (most negative is the standard greedy choice). If none is negative, stop &mdash; already optimal.</li>
+<li>Leaving variable: the min-ratio test. Over rows \(i\) where the entering column is positive, take \(b_i/(\text{column entry}_i)\); the smallest ratio names who leaves. This is exactly "raise \(x_j\) until the first basic variable hits \(0\)", keeping \(x\ge 0\).</li>
+<li>Swap them in the basis, recompute the objective at the new vertex.</li>
+</ol></div>
+<p>The theory behind step 3 is <b>2025B P3</b>: prove \(\tilde c_N\ge 0\Rightarrow\) optimal. Reason: any feasible \(y\) has \(c^\top y=c_B^\top A_B^{-1}b+\tilde c_N^\top y_N\ge c_B^\top A_B^{-1}b=c^\top x\), since \(y_N\ge 0\).</p>
+
+<h3>Common traps</h3>
+<div class="box pitfall">A slack must be \(\ge 0\), and you never add a slack to an equality. &mdash; A <b>free</b> variable is NOT just "\(\ge 0\)"; you must split it \(x^{+}-x^{-}\). &mdash; <b>Degeneracy</b> (2023A P1): a pivot can change the basis yet stay at the same physical vertex, so the objective need not strictly improve &mdash; but a move to a genuinely new vertex does strictly improve. &mdash; Never claim simplex is polynomial: a single pivot is poly, the number of pivots is exponential worst-case. The poly-time result is <b>ellipsoid</b>. &mdash; Deciding "is \(y\) a vertex?" is easy (rank check), a recurring T/F (2024B P1).</div>
+
+<h3>Checklist &mdash; one simplex pivot</h3>
+<ol class="gsteps">
+<li>Standard form: \(\max\to\min\), add nonneg slacks, split free vars, enforce \(x\ge 0\).</li>
+<li>Fix the current basis \(B\); set \(x_N=0\); solve \(A_B x_B=b\).</li>
+<li>Compute \(\tilde c_N\); if all \(\ge 0\) &rarr; STOP (optimal).</li>
+<li>Entering \(=\) a \(j\) with \(\tilde c_j<0\).</li>
+<li>Leaving \(=\) min-ratio \(b_i/(A_B^{-1}A_j)_i\) over positive entries.</li>
+<li>Update basis, recompute the objective.</li>
+</ol>

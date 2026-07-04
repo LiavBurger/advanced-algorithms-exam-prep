@@ -1,0 +1,52 @@
+<!-- title: Concentration — Markov, Chebyshev, Chernoff -->
+<h3>When do I reach for this?</h3>
+<p>A random quantity has a known mean, and you want to say it is <em>close</em> to that mean — or that a bad deviation is rare. Pick the tool by how much you know and how sharp a bound you need.</p>
+<ul>
+<li>Only the mean, variable \(\ge 0\) &rarr; <b>Markov</b> (weak, but always available).</li>
+<li>Mean + variance &rarr; <b>Chebyshev</b> (two-sided, polynomial tail).</li>
+<li>A <em>sum of independent</em> 0/1 (or \(\pm1\)) variables &rarr; <b>Chernoff</b> (exponential tail — the workhorse).</li>
+<li>"How many samples to estimate a fraction within \(\varepsilon\)?" &rarr; Chernoff, solve for \(m\).</li>
+<li>"Show a good object exists w.h.p." &rarr; Chernoff on one condition, then union bound over all conditions.</li>
+</ul>
+
+<h3>Core tools</h3>
+<div class="gtool"><div class="gtool-h">MARKOV</div><div class="gtool-body">
+For \(X\ge 0\): \(\displaystyle \Pr[X\ge t]\le \frac{\mathbb{E}[X]}{t}\).
+<span class="gtool-use">only the mean known; also the engine behind Las Vegas &rarr; Monte Carlo</span></div></div>
+
+<div class="gtool"><div class="gtool-h">CHEBYSHEV</div><div class="gtool-body">
+\(\displaystyle \Pr\big[|X-\mathbb{E}[X]|\ge t\big]\le \frac{\mathrm{Var}(X)}{t^2}\).
+<span class="gtool-use">you can compute the variance and want a two-sided bound</span></div></div>
+
+<div class="gtool"><div class="gtool-h">CHERNOFF (0/1 sum)</div><div class="gtool-body">
+For independent \(X_i\in\{0,1\}\), \(X=\sum X_i\), \(\mu=\mathbb{E}[X]\), \(0<\varepsilon\le1\):
+\[ \Pr\big[|X-\mu|\ge \varepsilon\mu\big]\le 2\,e^{-\varepsilon^2\mu/3}. \]
+<span class="gtool-use">a sum of many independent indicators concentrates sharply</span></div></div>
+
+<div class="gtool"><div class="gtool-h">CHERNOFF (symmetric \(\pm1\))</div><div class="gtool-body">
+For independent uniform \(Y_i\in\{-1,1\}\), \(Y=\sum_{i=1}^m Y_i\): \(\displaystyle \Pr[|Y|\ge \varepsilon m]\le 2\,e^{-\varepsilon^2 m/2}\).
+<span class="gtool-use">random signs / colorings: discrepancy and balancing arguments</span></div></div>
+
+<h3>Worked example — the thinking</h3>
+<div class="gworked">
+<p><b>2024A P2.</b> Estimate a CNF formula's satisfying-assignment density to within \(1/10\) with probability \(1-2^{-n}\).</p>
+<ol class="gsteps">
+<li><b>Turn "estimate" into a sample mean.</b> Draw \(m\) uniform assignments; let \(X_i\) indicate "sample \(i\) satisfies". The estimator is \(\bar X=\tfrac1m\sum X_i\), with \(\mathbb{E}[\bar X]=p\) (the true density).</li>
+<li><b>Pick Chernoff.</b> The \(X_i\) are independent indicators — exactly its setting. We want \(|\bar X-p|\le 1/10\).</li>
+<li><b>Solve for \(m\).</b> Set the bound \(2e^{-\varepsilon^2\mu/3}\le 2^{-n}\) and solve: \(m=\Theta(n)\) samples suffice. The failure probability shrinks <em>exponentially</em> in \(m\), which is why a poly number of samples buys \(1-2^{-n}\).</li>
+<li><b>State independence.</b> The bound is only valid because the samples are drawn independently — say it explicitly.</li>
+</ol>
+</div>
+
+<div class="gthm"><span class="lab">Theorem</span> <b>Chernoff + union bound pattern.</b> To show a random object is good with high probability: (1) fix <em>one</em> condition (a set, a pair), bound its failure by Chernoff \(\le \delta\); (2) union-bound over all \(N\) conditions; (3) if \(N\cdot\delta<1\), a good object <em>must exist</em>. Multipliers: all \(k\)-subsets \(\le n^k\); all subsets/colorings \(\le 2^n\) or \(3^n\).</div>
+
+<div class="box pitfall"><b>Traps.</b> Chernoff needs <em>independence</em> — check it. Match the variable type to the right bound (\(\{0,1\}\) vs \(\{-1,1\}\), one- vs two-sided). Markov alone is far too weak for sampling — it will not give \(2^{-n}\). When union-bounding, count the conditions correctly (subsets? pairs of subsets? \(n^{2k}\)).</div>
+
+<h3>Checklist</h3>
+<ol class="gsteps">
+<li>Identify the random sum and its mean \(\mu\).</li>
+<li>Choose the tool by what you know: mean (Markov), + variance (Chebyshev), independent sum (Chernoff).</li>
+<li>For sample counts: set the tail \(\le\) target failure, solve for \(m\).</li>
+<li>For existence: Chernoff on one condition, then union bound; show total failure \(<1\).</li>
+<li>Confirm and state independence.</li>
+</ol>

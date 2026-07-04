@@ -1,0 +1,42 @@
+<!-- title: Integer Programming & TUM -->
+<h3>When do I reach for this?</h3>
+<p>Every exam has a "write an integer program for \(X\)" question, then follow-ups: relax it, and ask whether the relaxation is integral. The mental model: an IP is an LP plus "\(x\) integer", which is NP-hard; the LP relaxation is a poly-time <b>lower bound</b> (for min) that is sometimes exactly right &mdash; and TUM is the property that tells you when.</p>
+<ul>
+<li>"Model \(X\) as an IP / BIP" &rarr; binary \(x_i\in\{0,1\}\) plus coverage / capacity / conflict constraints.</li>
+<li>"Write the LP relaxation" &rarr; replace \(x\in\{0,1\}\) with \(0\le x\le 1\) (drop integrality).</li>
+<li>"Is the relaxation integral / what is the integrality gap?" &rarr; ask whether the matrix is <b>TUM</b>; if not, find a fractional optimum.</li>
+<li>"Why not just solve the IP directly?" &rarr; ILP is NP-hard; a poly-time solver \(\Rightarrow\) P \(=\) NP.</li>
+</ul>
+
+<h3>Core tools</h3>
+<div class="gtool"><div class="gtool-h">IP BUILDING BLOCKS</div><div class="gtool-body">"cover \(u\)" \(\to\ \sum_{i\in S(u)}x_i\ge 1\); "not both \(u,v\)" (conflict) \(\to\ x_u+x_v\le 1\); "exactly one bin" \(\to\ \sum_j x_{ij}=1\); "capacity" \(\to\ \sum_i w_i x_{ij}\le B\). \[ \text{ILP}=\text{LP}+\{x\in\mathbb{Z}^n\},\quad\text{NP-hard.} \] <span class="gtool-use">"model X as an IP/BIP"</span></div></div>
+
+<div class="gtool"><div class="gtool-h">LP RELAXATION &amp; INTEGRALITY GAP</div><div class="gtool-body">Relax \(x\in\{0,1\}\) to \(0\le x\le 1\). For a minimization, \[ \text{LP-OPT}\ \le\ \text{IP-OPT},\qquad \text{gap}=\frac{\text{IP-OPT}}{\text{LP-OPT}}. \] The relaxation is a poly-time bound; the gap measures how much you lose. <span class="gtool-use">"write the relaxation", "give the integrality gap"</span></div></div>
+
+<div class="gtool"><div class="gtool-h">TOTAL UNIMODULARITY (TUM)</div><div class="gtool-body">Integer \(A\) is TUM if every square submatrix has \(\det\in\{0,+1,-1\}\). \[ A\text{ TUM},\ b\text{ integral}\ \Rightarrow\ \text{every vertex of }\{Ax=b,x\ge0\}\text{ is integral.} \] Then the LP relaxation already returns an integer optimum, so it solves the IP in poly time. <span class="gtool-use">"is the relaxation exact?"</span></div></div>
+
+<h3>Why TUM works, and the classic cases</h3>
+<div class="gthm"><span class="lab">Theorem</span> A vertex has a basis \(B\) with \(x_B=A_B^{-1}b,\ x_N=0\). By Cramer's rule each \(x_j\) is a ratio of determinants; if \(A\) is TUM then \(\det A_B=\pm1\) and \(b\) is integral, so \(x_B\) is an integer vector. Hence all vertices are integral.</div>
+<div class="gdef"><span class="lab">Definition</span> Bipartite-matching and \(s\)-\(t\) flow constraint matrices are TUM. Consequences you should recognize on sight: fractional bipartite matching \(=\) integral matching; Max-Flow \(=\) Min-Cut; Max Bipartite Matching \(=\) Min Vertex Cover (K&ouml;nig). General vertex cover, dominating set, set cover, independent set are <b>not</b> TUM.</div>
+
+<h3>Worked example &mdash; the thinking</h3>
+<div class="gworked"><p><b>2014A P4.</b> "Write minimum-weight dominating set as an ILP, then give an instance where the LP relaxation is fractional."</p>
+<ol class="gsteps">
+<li>Variables: one binary \(x_v\) per vertex (\(1=\) in the set). Objective \(\min\sum_v w_v x_v\).</li>
+<li>Domination constraint: every vertex \(u\) must be covered by itself or a neighbor, i.e. \(x_u+\sum_{v\in N(u)}x_v\ge 1\). Add \(x_v\in\{0,1\}\).</li>
+<li>Relax: \(x_v\in\{0,1\}\to 0\le x_v\le 1\).</li>
+<li>Fractional witness: on a symmetric graph (a triangle / small clique) the LP can set every \(x_v=\tfrac12\); each covering constraint sums to \(\ge 1\), and the LP pays less than any integral solution. That difference is the <b>integrality gap</b>, and it exists precisely because this matrix is NOT TUM.</li>
+</ol></div>
+<p>Same covering shape recurs in <b>2025B P2</b> (weighted set cover): "formulate \(\to\) relax \(\to\) round" gives an \(f\)-approximation by threshold-rounding at \(1/f\) (take every \(x_j\ge 1/f\)); each element of frequency \(\le f\) is still covered, and cost grows by at most \(f\). <b>2024A P4</b> (Max-SAT), <b>2024C P4</b> (bin packing), <b>2023A P2</b> (dominating set) are pure modeling. <b>2024B P1</b> is the complexity T/F: a poly-time ILP solver would settle independent set, so P \(=\) NP.</p>
+
+<h3>Common traps</h3>
+<div class="box pitfall">Do not assume the relaxation is always integral &mdash; it is guaranteed only when the matrix is <b>TUM</b> (bipartite matching yes; dominating set / general vertex cover / set cover no). &mdash; "All entries are \(0/1\)" does NOT imply TUM; you need every square-submatrix determinant in \(\{0,\pm1\}\). &mdash; Rounding a fractional LP solution can break feasibility; naive thresholds do not always give a feasible integral point (2021A/2021B) &mdash; justify why your rounding stays feasible. &mdash; Do not drop the objective sense or forget that IP variables are integers, not merely bounded.</div>
+
+<h3>Checklist &mdash; IP + relaxation</h3>
+<ol class="gsteps">
+<li>Pick variables (usually binary \(x_i\), or \(x_{ij}\) for assignments).</li>
+<li>Write objective and constraints from the building blocks (cover / capacity / conflict); justify each.</li>
+<li>Relax: \(x\in\{0,1\}\to 0\le x\le 1\).</li>
+<li>Is the matrix TUM with integral \(b\)? If yes &rarr; relaxation is exact, poly-time.</li>
+<li>If not TUM, expect an integrality gap: find a symmetric all-halves fractional witness, or round for an approximation and prove it stays feasible.</li>
+</ol>

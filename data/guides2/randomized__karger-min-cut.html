@@ -1,0 +1,48 @@
+<!-- title: Karger's Contraction — Surviving the Min-Cut -->
+<h3>When do I reach for this?</h3>
+<p>Any question about the <em>global</em> minimum cut of an undirected graph, or that asks you to <em>count</em> min-cuts. The whole method is one idea: if you keep merging random edges, a <em>fixed</em> min-cut has a decent chance of never being merged — and "decent chance × many repetitions = high probability".</p>
+<ul>
+<li>"Find / approximate the min-cut" &rarr; run contraction, repeat, take the best.</li>
+<li>"Prove a graph has at most \(\binom{n}{2}\) min-cuts" &rarr; use the survival lower bound as a <em>counting</em> argument.</li>
+<li>Anything where a random merge might destroy a special structure &rarr; bound the per-step survival, multiply.</li>
+</ul>
+
+<h3>The algorithm</h3>
+<div class="gdef"><span class="lab">Definition</span> <b>Karger contraction:</b> while \(|V|>2\), pick a uniformly random edge \(e=(u,v)\), merge \(u,v\) into one vertex, and delete self-loops (keep parallel edges). Output the cut given by the two surviving super-vertices.</div>
+
+<h3>Core tools</h3>
+<div class="gtool"><div class="gtool-h">DEGREE / EDGE-COUNT BOUND</div><div class="gtool-body">
+If the min-cut has size \(k\), then \(\deg(v)\ge k\) for all \(v\), so
+\[ |E|=\tfrac12\sum_{v}\deg(v)\ge \tfrac{k|V|}{2}. \]
+<span class="gtool-use">to lower-bound how many edges are still around, hence upper-bound the chance of hitting a cut edge</span></div></div>
+
+<div class="gtool"><div class="gtool-h">PER-STEP SURVIVAL</div><div class="gtool-body">
+Fix one min-cut \((A,B)\). In iteration \(i\) (with \(|V|-i+1\) vertices left),
+\[ \Pr[e\text{ crosses }(A,B)]=\frac{k}{|E_i|}\le \frac{2}{|V|-i+1}. \]
+<span class="gtool-use">the event you must AVOID at every single step</span></div></div>
+
+<div class="gthm"><span class="lab">Theorem</span> A fixed min-cut survives all contractions with probability
+\[ \Pr[\text{survives}]\ge \prod_{i=1}^{n-2}\Big(1-\tfrac{2}{n-i+1}\Big)=\frac{2}{n(n-1)}=\binom{n}{2}^{-1}. \]
+Running \(O(n^2\log n)\) independent trials and keeping the best cut makes the failure probability tiny.</div>
+
+<h3>Worked example — the thinking</h3>
+<div class="gworked">
+<p><b>2024B P3.</b> Prove a graph has at most \(\binom{n}{2}\) minimum cuts.</p>
+<ol class="gsteps">
+<li><b>Reframe counting as probability.</b> Label the distinct min-cuts \(C_1,\dots,C_t\). One run outputs <em>exactly one</em> cut, so the events "run outputs \(C_j\)" are disjoint.</li>
+<li><b>Lower-bound each.</b> Outputting \(C_j\) requires \(C_j\) to survive, so \(\Pr[\text{output }C_j]\ge \tfrac{2}{n(n-1)}\) — the same bound for every min-cut.</li>
+<li><b>Sum \(\le 1\).</b> Disjoint events: \(1\ge \sum_{j=1}^t \Pr[\text{output }C_j]\ge t\cdot \tfrac{2}{n(n-1)}\).</li>
+<li><b>Solve.</b> Rearranging gives \(t\le \tfrac{n(n-1)}{2}=\binom{n}{2}\). The probability bound became a <em>counting</em> bound — no algorithm needs to run.</li>
+</ol>
+</div>
+
+<div class="box pitfall"><b>Traps.</b> Delete self-loops but <em>keep parallel edges</em> — they carry the multiplicity that makes edge sampling correct. The survival bound is for <em>one fixed</em> cut chosen before the run, not "some cut". Never assume the min-cut is unique. The \(2/(|V|-i+1)\) bound uses \(|E_i|\ge k(|V|-i+1)/2\), which needs the min-cut of the <em>contracted</em> graph to still be \(\ge k\).</div>
+
+<h3>Checklist</h3>
+<ol class="gsteps">
+<li>Fix one target min-cut \((A,B)\) up front.</li>
+<li>Per step: \(\Pr[\text{hit a cut edge}]\le \tfrac{2}{\#\text{vertices left}}\).</li>
+<li>Multiply the survival factors &rarr; \(\ge 1/\binom{n}{2}\).</li>
+<li>To count cuts: disjoint outputs, sum probabilities \(\le 1\), solve for \(t\).</li>
+<li>To find the cut: repeat \(O(n^2\log n)\) times, keep the smallest.</li>
+</ol>

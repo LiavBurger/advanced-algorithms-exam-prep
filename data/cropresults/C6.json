@@ -1,0 +1,37 @@
+{
+  "batch": "C6",
+  "parts": [
+    {"sid": "2014A-p6", "part": null, "q_ok": true, "sol_ok": true, "qdims": "1166x219", "soldims": "1093x214", "note": "Karatsuba; solution spans pages 2-3, second slice emitted as ...__sol2.png (1051x55)."},
+    {"sid": "2014A-p4", "part": "a", "q_ok": true, "sol_ok": true, "qdims": "932x88", "soldims": "1008x193", "note": ""},
+    {"sid": "2014A-p4", "part": "b", "q_ok": true, "sol_ok": true, "qdims": "1008x88", "soldims": "930x365", "note": "solution crop includes the small square graph diagram."},
+    {"sid": "2014A-p5", "part": null, "q_ok": true, "sol_ok": true, "qdims": "1132x211", "soldims": "1166x254", "note": ""},
+    {"sid": "2014A-p8", "part": "a", "q_ok": true, "sol_ok": true, "qdims": "1004x85", "soldims": "1066x200", "note": ""},
+    {"sid": "2014A-p8", "part": "b", "q_ok": true, "sol_ok": true, "qdims": "1004x79", "soldims": "1002x259", "note": ""},
+    {"sid": "2014A-p9", "part": "a", "q_ok": true, "sol_ok": true, "qdims": "1163x202", "soldims": "1113x130", "note": "only part a in task; question crop includes the problem-9 shared definition stem (maximal/maximum matching)."},
+    {"sid": "2014A-p10", "part": "a", "q_ok": true, "sol_ok": true, "qdims": "1014x88", "soldims": "336x174", "note": ""},
+    {"sid": "2014A-p10", "part": "b", "q_ok": true, "sol_ok": true, "qdims": "824x49", "soldims": "765x172", "note": ""},
+    {"sid": "2014A-p10", "part": "c", "q_ok": true, "sol_ok": true, "qdims": "982x89", "soldims": "970x171", "note": ""},
+    {"sid": "2014A-p10", "part": "d", "q_ok": true, "sol_ok": true, "qdims": "808x48", "soldims": "966x171", "note": ""},
+    {"sid": "2014A-p10", "part": "e", "q_ok": true, "sol_ok": true, "qdims": "964x48", "soldims": "904x130", "note": ""},
+    {"sid": "2014B-p7", "part": "a", "q_ok": true, "sol_ok": true, "qdims": "994x85", "soldims": "928x426", "note": ""},
+    {"sid": "2014B-p7", "part": "b", "q_ok": true, "sol_ok": true, "qdims": "1002x162", "soldims": "949x162", "note": ""},
+    {"sid": "2014B-p8", "part": "a", "q_ok": true, "sol_ok": true, "qdims": "821x203", "soldims": "453x46", "note": "question crop includes the IP1 definition block; solutions are on page 4 (questions on page 3)."},
+    {"sid": "2014B-p8", "part": "b", "q_ok": true, "sol_ok": true, "qdims": "524x45", "soldims": "485x173", "note": ""},
+    {"sid": "2014B-p8", "part": "c", "q_ok": true, "sol_ok": true, "qdims": "413x45", "soldims": "958x169", "note": ""},
+    {"sid": "2014B-p8", "part": "d", "q_ok": true, "sol_ok": true, "qdims": "1043x85", "soldims": "997x123", "note": ""}
+  ],
+  "stems": [
+    {"sid": "2014A-p4", "stemImage": "images/lp-ilp-tum__2014A-p4__stem.png"},
+    {"sid": "2014A-p8", "stemImage": "images/approx-approximation__2014A-p8__stem.png"},
+    {"sid": "2014A-p10", "stemImage": "images/lp-basics__2014A-p10__stem.png"},
+    {"sid": "2014B-p7", "stemImage": "images/lp-ilp-tum__2014B-p7__stem.png"},
+    {"sid": "2014B-p8", "stemImage": "images/lp-duality-farkas__2014B-p8__stem.png"}
+  ],
+  "issues": [
+    "Created 5 shared stems (croptask had stemImage:null for all): p4/p8/p10 in 2014A and p7/p8 in 2014B each have a preamble shared by their sub-parts; per SPEC these were cropped to images/<topicflat>__<sid>__stem.png. The site merge step should attach these as stemImage.",
+    "2014A-p6 solution spans pages 2-3; emitted algebraic-matrix-mult__2014A-p6-x__sol.png (page 2) plus ...__sol2.png (page 3 line 'The recurrence is ... master theorem').",
+    "2014A-p9: only part a was requested (exam also has parts b,c on online bipartite matching). The problem-9 matching definitions are a shared stem but, since only one part is used, they were folded into the p9-a question crop rather than a separate stem file.",
+    "2014B-p8: exam has part e (linear kernel for VC) which is not in the croptask; it was intentionally not cropped.",
+    "region --col full has a +/-2pt band tolerance that pulls in adjacent subscript rows; a couple of solution crops (e.g. 2014A-p8-b sol, 2014B-p8-c sol) retain a 2-3px cosmetic fragment of a neighboring line at an edge. No question/solution content is clipped."
+  ]
+}

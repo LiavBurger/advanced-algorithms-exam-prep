@@ -1,0 +1,37 @@
+{
+ "batch": "C7",
+ "parts": [
+  {"sid": "2015A-p5", "part": null, "q_ok": true, "sol_ok": true, "qdims": "1366x274", "soldims": "1277x487", "note": ""},
+  {"sid": "2015A-p6", "part": "a", "q_ok": true, "sol_ok": true, "qdims": "1361x265", "soldims": "1222x264", "note": "q includes shared p6 stem (bin-packing setup); stemImage null in manifest"},
+  {"sid": "2015A-p6", "part": "b", "q_ok": true, "sol_ok": true, "qdims": "1225x138", "soldims": "1206x88", "note": ""},
+  {"sid": "2015A-p6", "part": "c", "q_ok": true, "sol_ok": true, "qdims": "1238x138", "soldims": "1204x271", "note": ""},
+  {"sid": "2015A-p7", "part": "a", "q_ok": true, "sol_ok": true, "qdims": "1362x451", "soldims": "1169x410", "note": "q includes shared p7 LP block (stem); stemImage null in manifest"},
+  {"sid": "2015A-p7", "part": "b", "q_ok": true, "sol_ok": true, "qdims": "896x50", "soldims": "420x275", "note": ""},
+  {"sid": "2015A-p7", "part": "c", "q_ok": true, "sol_ok": true, "qdims": "1255x182", "soldims": "1204x132", "note": ""},
+  {"sid": "2015A-p7", "part": "d", "q_ok": true, "sol_ok": true, "qdims": "1247x95", "soldims": "275x272", "note": ""},
+
+  {"sid": "2015B-p3", "part": null, "q_ok": true, "sol_ok": true, "qdims": "1346x139", "soldims": "1272x140", "note": ""},
+  {"sid": "2015B-p5", "part": null, "q_ok": true, "sol_ok": true, "qdims": "1354x492", "soldims": "1295x182", "note": "q includes the Hint line (part of statement); sol starts at 'Algorithm B runs...'"},
+  {"sid": "2015B-p7", "part": "a", "q_ok": true, "sol_ok": true, "qdims": "1097x280", "soldims": "1219x138", "note": "q includes shared p7 stem 'Let G=(V,E)...' + ILP; stemImage null in manifest"},
+  {"sid": "2015B-p7", "part": "b", "q_ok": true, "sol_ok": true, "qdims": "841x50", "soldims": "422x179", "note": ""},
+  {"sid": "2015B-p7", "part": "c", "q_ok": true, "sol_ok": true, "qdims": "1177x125", "soldims": "1137x72", "note": ""},
+  {"sid": "2015B-p7", "part": "d", "q_ok": true, "sol_ok": true, "qdims": "1248x94", "soldims": "818x50", "note": ""},
+  {"sid": "2015B-p7", "part": "e", "q_ok": true, "sol_ok": true, "qdims": "699x50", "soldims": "368x152", "note": ""},
+  {"sid": "2015B-p7", "part": "f", "q_ok": true, "sol_ok": true, "qdims": "1241x94", "soldims": "1121x94", "note": ""},
+  {"sid": "2015B-p7", "part": "g", "q_ok": true, "sol_ok": true, "qdims": "1268x138", "soldims": "1164x403", "note": ""},
+
+  {"sid": "2016A-p5", "part": null, "q_ok": true, "sol_ok": true, "qdims": "1367x623", "soldims": "1166x94", "note": "q includes greedy-algorithm pseudocode"},
+  {"sid": "2016A-p6", "part": "a", "q_ok": true, "sol_ok": true, "qdims": "1369x183", "soldims": "389x179", "note": "q includes shared p6 stem '6. (25 points)'; stemImage null in manifest"},
+  {"sid": "2016A-p6", "part": "b", "q_ok": true, "sol_ok": true, "qdims": "1182x50", "soldims": "450x133", "note": ""},
+  {"sid": "2016A-p6", "part": "c", "q_ok": true, "sol_ok": true, "qdims": "1057x50", "soldims": "1266x94", "note": ""},
+  {"sid": "2016A-p6", "part": "d", "q_ok": true, "sol_ok": true, "qdims": "1235x300", "soldims": "882x550", "note": "d statement embeds its own LP; sol has both simplex-form blocks"},
+  {"sid": "2016A-p6", "part": "e", "q_ok": true, "sol_ok": true, "qdims": "882x96", "soldims": "815x101", "note": "solution spans pages 6-7; sol2 at images/lp-duality-farkas__2016A-p6-e__sol2.png (768x92)"}
+ ],
+ "stems": [],
+ "issues": [
+  "All exams are old single-column English (solutions PDFs); Hebrew is on a separate trailing page and was not used. Used --col full with --margin 50 (problem-number markers sit at x0=54, left of the default 67pt margin).",
+  "crop.py region has a +2pt band tolerance that grabs the adjacent marker line; every crop was re-cut with y1 set ~3-4pt short of the next anchor to eliminate bleed, then re-verified.",
+  "No stems emitted: all three parents with shared preambles (2015A-p6, 2015A-p7, 2015B-p7, 2016A-p6) have stemImage:null in the manifest, so each shared stem/LP block was folded into its part-a question crop.",
+  "2016A-p6-e solution spans the page 6/7 break; emitted __sol (p6 portion) and __sol2 (p7 continuation '3x1=9 so the vertex is...')."
+ ]
+}

@@ -1,0 +1,42 @@
+<!-- title: The Probabilistic Method — Existence by Averaging -->
+<h3>When do I reach for this?</h3>
+<p>You must prove that <em>some</em> object with a desired property <em>exists</em>, but you have no idea how to construct it. The trick: build a <em>random</em> object, compute the <em>expected</em> quality, and note that something must be at least as good as the average.</p>
+<ul>
+<li>"Prove there exists an assignment satisfying \(\ge\) (fraction) of the clauses" &rarr; random assignment + linearity.</li>
+<li>"Show a coloring / partition / vector with property P exists" &rarr; make it random, bound \(\mathbb{E}[\text{quality}]\), conclude.</li>
+<li>Want it <em>with high probability</em>, not just existence &rarr; add Chernoff + union bound.</li>
+</ul>
+
+<h3>Core idea</h3>
+<div class="gthm"><span class="lab">Theorem</span> <b>Averaging (first moment).</b> A random variable always attains a value at least its mean and one at most its mean:
+\[ \Pr\big[X\ge \mathbb{E}[X]\big]>0 \quad\text{and}\quad \Pr\big[X\le \mathbb{E}[X]\big]>0. \]
+So if \(\mathbb{E}[X]=\mu\), there <em>exists</em> an outcome with \(X\ge \mu\) (and one with \(X\le\mu\)). No construction needed.</div>
+
+<div class="gtool"><div class="gtool-h">EXPECTED QUALITY VIA LINEARITY</div><div class="gtool-body">
+Write the quality as a sum of indicators (one per clause / edge / constraint):
+\[ \mathbb{E}[\#\text{satisfied}]=\sum_j \Pr[\text{clause }j\text{ satisfied}]. \]
+<span class="gtool-use">compute the average score of a random object piece by piece</span></div></div>
+
+<div class="gdef"><span class="lab">Definition</span> <b>De-randomization (method of conditional expectations).</b> Once \(\mathbb{E}[X]\ge\mu\), fix the variables one at a time, each time keeping the conditional expectation \(\ge\mu\): since \(\mathbb{E}[X]=p\,\mathbb{E}[X\mid x_1{=}1]+(1-p)\,\mathbb{E}[X\mid x_1{=}0]\), at least one branch is \(\ge\mathbb{E}[X]\). This turns the existence proof into a deterministic algorithm.</div>
+
+<h3>Worked example — the thinking</h3>
+<div class="gworked">
+<p><b>2017B P4.</b> Prove every 3-SAT formula with \(m\) clauses has an assignment satisfying at least \(m/2\) clauses.</p>
+<ol class="gsteps">
+<li><b>Randomize.</b> Set each variable to \(0/1\) independently with probability \(1/2\). Now the number satisfied, \(X\), is a random variable.</li>
+<li><b>Score one clause.</b> A clause of \(k\) literals fails only if all its literals are false: \(\Pr[\text{clause satisfied}]=1-2^{-k}\ge 1-2^{-1}=\tfrac12\) (here \(k\ge1\); for 3-literal clauses it is \(7/8\)).</li>
+<li><b>Sum by linearity.</b> \(\mathbb{E}[X]=\sum_{j=1}^m \Pr[\text{clause }j\text{ sat}]\ge m/2\). Dependence between clauses is irrelevant — linearity does not care.</li>
+<li><b>Invoke averaging.</b> Some assignment satisfies \(X\ge \mathbb{E}[X]\ge m/2\). Done — and conditional expectations make it constructive.</li>
+</ol>
+</div>
+
+<div class="box pitfall"><b>Traps.</b> Averaging gives <em>existence of one</em> good outcome, not that a random object is good with high probability — for "w.h.p." you need Chernoff + union bound. \(\mathbb{E}[X]\ge\mu\) only yields an object with \(X\ge\mu\); to get \(X\le\mu\) use the other side. Beware the true/false framing: "at most \(7m/8\) clauses" is <em>false</em> because the average already guarantees \(7m/8\), so a better-than-average assignment beats it.</div>
+
+<h3>Checklist</h3>
+<ol class="gsteps">
+<li>Define a natural random object (uniform assignment / coloring / vector).</li>
+<li>Write the quality \(X\) as a sum of indicators.</li>
+<li>Compute each \(\Pr[\text{piece good}]\) and add by linearity to get \(\mathbb{E}[X]\).</li>
+<li>Conclude an outcome with \(X\ge\mathbb{E}[X]\) (or \(\le\)) exists.</li>
+<li>Optional: de-randomize by conditional expectations, or upgrade to w.h.p. with Chernoff.</li>
+</ol>

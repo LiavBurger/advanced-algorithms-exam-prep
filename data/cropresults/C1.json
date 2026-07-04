@@ -1,0 +1,46 @@
+{
+  "batch": "C1",
+  "parts": [
+    { "sid": "2023A-p1-a", "part": "a", "q_ok": true, "sol_ok": true, "qdims": "634x212", "soldims": "1290x584", "note": null },
+    { "sid": "2023A-p1-b", "part": "b", "q_ok": true, "sol_ok": true, "qdims": "634x170", "soldims": "1279x644", "note": null },
+    { "sid": "2023A-p1-c", "part": "c", "q_ok": true, "sol_ok": true, "qdims": "460x96", "soldims": "1280x251", "note": null },
+    { "sid": "2023A-p1-d", "part": "d", "q_ok": true, "sol_ok": true, "qdims": "634x132", "soldims": "1280x126", "note": null },
+    { "sid": "2023A-p2-x", "part": null, "q_ok": true, "sol_ok": true, "qdims": "634x533", "soldims": "1281x326", "note": null },
+    { "sid": "2023A-p3-x", "part": null, "q_ok": true, "sol_ok": true, "qdims": "634x413", "soldims": "1281x373", "note": null },
+    { "sid": "2023A-p4-a", "part": "a", "q_ok": true, "sol_ok": true, "qdims": "633x212", "soldims": "1280x693", "note": null },
+    { "sid": "2023A-p4-b", "part": "b", "q_ok": true, "sol_ok": true, "qdims": "631x132", "soldims": "1280x484", "note": null },
+    { "sid": "2023A-p4-c", "part": "c", "q_ok": true, "sol_ok": true, "qdims": "634x213", "soldims": "1280x415", "note": null },
+    { "sid": "2023A-p5-x", "part": null, "q_ok": true, "sol_ok": true, "qdims": "824x840", "soldims": "1281x1062", "note": "Question widened past left column to keep centered example matrices A1,A2; minor Hebrew slivers on right edge of some lines (unavoidable). Solution on page 9." },
+    { "sid": "2023A-p6-x", "part": null, "q_ok": true, "sol_ok": true, "qdims": "866x457", "soldims": "1279x551", "note": "Question widened past left column to keep the centered A+B set-builder display; minor Hebrew slivers on right." },
+
+    { "sid": "2024A-p1-a", "part": "a", "q_ok": true, "sol_ok": true, "qdims": "634x212", "soldims": "1278x92", "note": null },
+    { "sid": "2024A-p1-b", "part": "b", "q_ok": true, "sol_ok": true, "qdims": "631x90", "soldims": "1279x138", "note": null },
+    { "sid": "2024A-p1-c", "part": "c", "q_ok": true, "sol_ok": true, "qdims": "633x172", "soldims": "1278x240", "note": null },
+    { "sid": "2024A-p1-d", "part": "d", "q_ok": true, "sol_ok": true, "qdims": "634x253", "soldims": "1280x215", "note": null },
+    { "sid": "2024A-p2-x", "part": null, "q_ok": true, "sol_ok": true, "qdims": "909x801", "soldims": "1280x518", "note": "Question widened past left column to keep centered display equations (D(phi) definition reaches x~393); minor Hebrew slivers on right of text lines." },
+    { "sid": "2024A-p3-x", "part": null, "q_ok": true, "sol_ok": true, "qdims": "634x567", "soldims": "1280x303", "note": null },
+    { "sid": "2024A-p4-x", "part": null, "q_ok": true, "sol_ok": true, "qdims": "634x493", "soldims": "1280x508", "note": null },
+    { "sid": "2024A-p6-x", "part": null, "q_ok": true, "sol_ok": true, "qdims": "634x377", "soldims": "1280x540", "note": null },
+
+    { "sid": "2025A-p1-a", "part": "a", "q_ok": true, "sol_ok": true, "qdims": "634x131", "soldims": "1279x126", "note": null },
+    { "sid": "2025A-p1-b", "part": "b", "q_ok": true, "sol_ok": true, "qdims": "633x213", "soldims": "1280x470", "note": null },
+    { "sid": "2025A-p1-c", "part": "c", "q_ok": true, "sol_ok": true, "qdims": "633x132", "soldims": "1280x92", "note": null },
+    { "sid": "2025A-p1-d", "part": "d", "q_ok": true, "sol_ok": true, "qdims": "633x172", "soldims": "1280x173", "note": null },
+    { "sid": "2025A-p2-a", "part": "a", "q_ok": true, "sol_ok": true, "qdims": "602x130", "soldims": "1281x634", "note": null },
+    { "sid": "2025A-p2-b", "part": "b", "q_ok": true, "sol_ok": true, "qdims": "624x92", "soldims": "1277x132", "note": null },
+    { "sid": "2025A-p3-x", "part": null, "q_ok": true, "sol_ok": true, "qdims": "634x573", "soldims": "1281x503", "note": null },
+    { "sid": "2025A-p4-x", "part": null, "q_ok": true, "sol_ok": true, "qdims": "634x538", "soldims": "1281x505", "note": null },
+    { "sid": "2025A-p5-x", "part": null, "q_ok": true, "sol_ok": true, "qdims": "893x650", "soldims": "1282x453", "note": "Question widened past left column to keep the centered A_ij piecewise definition; minor Hebrew slivers on right. Solution fully on page 8 (page 9 is blank extra space)." }
+  ],
+  "stems": [
+    { "sid": "2023A-p1", "stemImage": "images/lp-basics__2023A-p1__stem.png" },
+    { "sid": "2023A-p4", "stemImage": "images/lp-duality-farkas__2023A-p4__stem.png" },
+    { "sid": "2024A-p1", "stemImage": "images/randomized-random-walks__2024A-p1__stem.png" },
+    { "sid": "2025A-p1", "stemImage": "images/randomized-probabilistic-method__2025A-p1__stem.png" },
+    { "sid": "2025A-p2", "stemImage": "images/lp-duality-farkas__2025A-p2__stem.png" }
+  ],
+  "issues": [
+    "Croptask JSON listed stemImage:null for 2023A-p1, 2023A-p4, 2024A-p1, 2025A-p1, 2025A-p2, but each of these parent problems has a genuine shared preamble (T/F instructions, the Max-Matching IP, or the (P) LP definition). Cropped stems anyway per SPEC and recorded them in 'stems'. Merge step should attach these stemImages.",
+    "Several single-part questions contain centered display math that straddles the bilingual column split (2023A-p5/p6, 2024A-p2, 2025A-p2 stem, 2025A-p5). These were cropped wider than the English column to preserve the math (SPEC: fidelity beats losing math), which leaves faint Hebrew slivers at the right edge. English text and all equations are fully intact."
+  ]
+}

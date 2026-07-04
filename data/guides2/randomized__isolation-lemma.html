@@ -1,0 +1,43 @@
+<!-- title: The Isolation Lemma — Making the Optimum Unique -->
+<h3>When do I reach for this?</h3>
+<p>You have a huge family of combinatorial objects (paths, matchings, sets) and an algebraic tool that only works when the <em>best</em> one is <em>unique</em> — ties would cancel or confuse it. Random weights break all ties at once: with good probability exactly one object has minimum weight.</p>
+<ul>
+<li>"Make the min-weight path / matching unique" &rarr; assign random weights, apply the lemma.</li>
+<li>Symbolic-determinant / matrix methods that fail on ties &rarr; isolate first, then evaluate.</li>
+<li>"Unique min-weight object <em>for every</em> pair simultaneously" &rarr; lemma per pair + union bound.</li>
+</ul>
+
+<h3>Core tool</h3>
+<div class="gthm"><span class="lab">Theorem</span> <b>Isolation Lemma.</b> Let \(\mathcal{F}\) be any family of subsets of \(\{1,\dots,n\}\). Give each element an independent uniform weight in \(\{1,\dots,N\}\). Then
+\[ \Pr[\text{a unique set in }\mathcal{F}\text{ has minimum weight}]\ge 1-\frac{n}{N}. \]
+The bound depends only on \(n\) and \(N\) — <em>not</em> on how many sets \(\mathcal{F}\) contains (which may be exponential).</div>
+
+<div class="gtool"><div class="gtool-h">TIE-BREAK BY RANDOM WEIGHTS</div><div class="gtool-body">
+Take \(N=\mathrm{poly}(n)\) (e.g. \(N=2n\) gives failure \(\le \tfrac12\); \(N=10n\) gives \(\ge 0.9\)). Weights stay small, so the algebra stays polynomial-size.
+<span class="gtool-use">whenever an algebraic method needs a unique optimum</span></div></div>
+
+<div class="gdef"><span class="lab">Definition</span> <b>Why an element is "singular".</b> Element \(x\) is undecided if the best set containing \(x\) and the best set avoiding \(x\) tie. Fixing all other weights, exactly one weight value for \(x\) causes a tie, so \(\Pr[x\text{ singular}]\le 1/N\). Union bound over \(n\) elements: \(\Pr[\text{any tie}]\le n/N\). No tie \(\Rightarrow\) unique minimum.</div>
+
+<h3>Worked example — the thinking</h3>
+<div class="gworked">
+<p><b>2024A P3.</b> Show random edge weights in \(\{1,\dots,p(n)\}\) give a unique minimum-weight path for <em>every</em> vertex pair with probability \(\ge 0.9\).</p>
+<ol class="gsteps">
+<li><b>One pair first.</b> Fix vertices \((u,v)\). The family \(\mathcal{F}_{uv}\) is all \(u\)-\(v\) paths (viewed as edge subsets). The lemma gives a unique min-weight path with probability \(\ge 1-\tfrac{m}{N}\).</li>
+<li><b>Choose \(N\).</b> There are \(\le \binom{n}{2}\) pairs. Pick \(N=p(n)\) large enough that each failure is \(\le \tfrac{0.1}{\binom n2}\) — polynomial weights suffice.</li>
+<li><b>Union bound over pairs.</b> \(\Pr[\text{some pair fails}]\le \binom n2\cdot \tfrac{0.1}{\binom n2}=0.1\), so all pairs are isolated with probability \(\ge 0.9\).</li>
+<li><b>Payoff.</b> With every optimum unique, downstream algebra (determinant / matrix powers) reads off the answer without ties cancelling.</li>
+</ol>
+</div>
+
+<div class="gthm"><span class="lab">Theorem</span> <b>Weights into a determinant.</b> To find a min-weight object via a symbolic determinant, encode weight \(w\) as \(2^{w}\): a unique minimum makes the lowest power of \(2\) survive without cancellation, so the determinant's low-order behaviour reveals the optimum (e.g. min-weight perfect matching with exactly \(k\) red edges, hw2025s2 P3).</div>
+
+<div class="box pitfall"><b>Traps.</b> The lemma isolates <em>one</em> family; for many pairs you must union-bound (which costs a \(\mathrm{poly}(n)\) factor in \(N\)). The bound is \(1-n/N\), independent of \(|\mathcal{F}|\) — do not try to sum over the exponentially many sets. Keep \(N\) polynomial so \(2^{w}\) encodings and determinants stay poly-size.</div>
+
+<h3>Checklist</h3>
+<ol class="gsteps">
+<li>Identify the family \(\mathcal{F}\) of objects (as subsets of a ground set).</li>
+<li>Assign independent uniform weights in \(\{1,\dots,N\}\).</li>
+<li>Apply the lemma: unique minimum with probability \(\ge 1-n/N\).</li>
+<li>Need it for many families? Union bound; size \(N\) accordingly.</li>
+<li>Feed the now-unique optimum into the algebraic method (e.g. \(2^{w}\) in a determinant).</li>
+</ol>

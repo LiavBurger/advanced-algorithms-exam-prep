@@ -1,0 +1,325 @@
+{
+ "batch": "C3",
+ "parts": [
+  {
+   "sid": "2025B-p5",
+   "part": null,
+   "q_ok": true,
+   "sol_ok": true,
+   "qdims": "634x721",
+   "soldims": "1282x565",
+   "note": ""
+  },
+  {
+   "sid": "2025B-p1",
+   "part": "a",
+   "q_ok": true,
+   "sol_ok": true,
+   "qdims": "633x173",
+   "soldims": "1290x317",
+   "note": ""
+  },
+  {
+   "sid": "2025B-p1",
+   "part": "b",
+   "q_ok": true,
+   "sol_ok": true,
+   "qdims": "632x132",
+   "soldims": "1279x168",
+   "note": ""
+  },
+  {
+   "sid": "2025B-p1",
+   "part": "c",
+   "q_ok": true,
+   "sol_ok": true,
+   "qdims": "634x132",
+   "soldims": "1279x195",
+   "note": ""
+  },
+  {
+   "sid": "2025B-p1",
+   "part": "d",
+   "q_ok": true,
+   "sol_ok": true,
+   "qdims": "633x172",
+   "soldims": "1280x132",
+   "note": ""
+  },
+  {
+   "sid": "2025B-p4",
+   "part": null,
+   "q_ok": true,
+   "sol_ok": true,
+   "qdims": "634x440",
+   "soldims": "1282x524",
+   "note": ""
+  },
+  {
+   "sid": "2025B-p3",
+   "part": null,
+   "q_ok": true,
+   "sol_ok": true,
+   "qdims": "634x279",
+   "soldims": "1279x425",
+   "note": ""
+  },
+  {
+   "sid": "2025B-p2",
+   "part": "a",
+   "q_ok": true,
+   "sol_ok": true,
+   "qdims": "633x132",
+   "soldims": "1280x363",
+   "note": ""
+  },
+  {
+   "sid": "2025B-p2",
+   "part": "b",
+   "q_ok": true,
+   "sol_ok": true,
+   "qdims": "633x292",
+   "soldims": "1281x383",
+   "note": ""
+  },
+  {
+   "sid": "2025C-p3",
+   "part": null,
+   "q_ok": true,
+   "sol_ok": true,
+   "qdims": "635x600",
+   "soldims": "1281x292",
+   "note": ""
+  },
+  {
+   "sid": "2025C-p4",
+   "part": null,
+   "q_ok": true,
+   "sol_ok": true,
+   "qdims": "634x714",
+   "soldims": "1280x213",
+   "note": ""
+  },
+  {
+   "sid": "2025C-p1",
+   "part": "a",
+   "q_ok": true,
+   "sol_ok": true,
+   "qdims": "634x132",
+   "soldims": "1278x92",
+   "note": ""
+  },
+  {
+   "sid": "2025C-p1",
+   "part": "b",
+   "q_ok": true,
+   "sol_ok": true,
+   "qdims": "633x172",
+   "soldims": "1279x174",
+   "note": ""
+  },
+  {
+   "sid": "2025C-p1",
+   "part": "c",
+   "q_ok": true,
+   "sol_ok": true,
+   "qdims": "634x332",
+   "soldims": "1279x173",
+   "note": ""
+  },
+  {
+   "sid": "2025C-p1",
+   "part": "d",
+   "q_ok": true,
+   "sol_ok": true,
+   "qdims": "631x92",
+   "soldims": "1280x132",
+   "note": ""
+  },
+  {
+   "sid": "2025C-p2",
+   "part": "a",
+   "q_ok": true,
+   "sol_ok": true,
+   "qdims": "1290x348",
+   "soldims": "1281x630",
+   "note": ""
+  },
+  {
+   "sid": "2025C-p2",
+   "part": "b",
+   "q_ok": true,
+   "sol_ok": true,
+   "qdims": "633x206",
+   "soldims": "1279x397",
+   "note": ""
+  },
+  {
+   "sid": "2025C-p2",
+   "part": "c",
+   "q_ok": true,
+   "sol_ok": true,
+   "qdims": "634x332",
+   "soldims": "1278x356",
+   "note": ""
+  },
+  {
+   "sid": "2021A-p2",
+   "part": "1",
+   "q_ok": true,
+   "sol_ok": true,
+   "qdims": "1165x90",
+   "soldims": "1100x367",
+   "note": ""
+  },
+  {
+   "sid": "2021A-p2",
+   "part": "2",
+   "q_ok": true,
+   "sol_ok": true,
+   "qdims": "1210x208",
+   "soldims": "1319x475",
+   "note": ""
+  },
+  {
+   "sid": "2021A-p2",
+   "part": "3",
+   "q_ok": true,
+   "sol_ok": true,
+   "qdims": "1177x90",
+   "soldims": "1091x403",
+   "note": ""
+  },
+  {
+   "sid": "2021A-p2",
+   "part": "4",
+   "q_ok": true,
+   "sol_ok": true,
+   "qdims": "1203x340",
+   "soldims": "1137x439",
+   "note": ""
+  },
+  {
+   "sid": "2021A-p3",
+   "part": "1",
+   "q_ok": true,
+   "sol_ok": true,
+   "qdims": "1165x350",
+   "soldims": "1092x306",
+   "note": ""
+  },
+  {
+   "sid": "2021A-p3",
+   "part": "2",
+   "q_ok": true,
+   "sol_ok": true,
+   "qdims": "1155x104",
+   "soldims": "1149x534",
+   "note": ""
+  },
+  {
+   "sid": "2021B-p1",
+   "part": "1",
+   "q_ok": true,
+   "sol_ok": true,
+   "qdims": "1160x122",
+   "soldims": "1106x442",
+   "note": ""
+  },
+  {
+   "sid": "2021B-p1",
+   "part": "2",
+   "q_ok": true,
+   "sol_ok": true,
+   "qdims": "1235x319",
+   "soldims": "484x860",
+   "note": ""
+  },
+  {
+   "sid": "2021B-p1",
+   "part": "3",
+   "q_ok": true,
+   "sol_ok": true,
+   "qdims": "1177x90",
+   "soldims": "1117x442",
+   "note": ""
+  },
+  {
+   "sid": "2021B-p1",
+   "part": "4",
+   "q_ok": true,
+   "sol_ok": true,
+   "qdims": "1174x256",
+   "soldims": "1152x322",
+   "note": ""
+  },
+  {
+   "sid": "2021B-p3",
+   "part": "1",
+   "q_ok": true,
+   "sol_ok": true,
+   "qdims": "1179x319",
+   "soldims": "1205x524",
+   "note": ""
+  },
+  {
+   "sid": "2021B-p3",
+   "part": "2",
+   "q_ok": true,
+   "sol_ok": true,
+   "qdims": "671x52",
+   "soldims": "1194x595",
+   "note": ""
+  }
+ ],
+ "stems": [
+  {
+   "sid": "2025B-p1",
+   "stemImage": "images/algebraic-pit__2025B-p1__stem.png",
+   "dims": "634x198"
+  },
+  {
+   "sid": "2025B-p2",
+   "stemImage": "images/lp-ilp-tum__2025B-p2__stem.png",
+   "dims": "634x399"
+  },
+  {
+   "sid": "2025C-p1",
+   "stemImage": "images/algebraic-fft__2025C-p1__stem.png",
+   "dims": "634x198"
+  },
+  {
+   "sid": "2025C-p2",
+   "stemImage": "images/approx-approximation__2025C-p2__stem.png",
+   "dims": "1291x646"
+  },
+  {
+   "sid": "2021A-p2",
+   "stemImage": "images/lp-duality-farkas__2021A-p2__stem.png",
+   "dims": "1198x293"
+  },
+  {
+   "sid": "2021A-p3",
+   "stemImage": "images/approx-approximation__2021A-p3__stem.png",
+   "dims": "1316x762"
+  },
+  {
+   "sid": "2021B-p1",
+   "stemImage": "images/lp-duality-farkas__2021B-p1__stem.png",
+   "dims": "1208x440"
+  },
+  {
+   "sid": "2021B-p3",
+   "stemImage": "images/approx-approximation__2021B-p3__stem.png",
+   "dims": "1183x323"
+  }
+ ],
+ "issues": [
+  "2021A/2021B finals are bilingual: question statements are Hebrew-only (no English column), so question crops are the Hebrew text at full width; solutions are English at full width.",
+  "2025C p2 stem and p2-a question contain centered LP display equations that overflow the English left column, so they were cropped at full width per spec (Hebrew appears on the right side but all math is captured).",
+  "2021A p2-2 solution (Primal/Dual matrices) starts left of the default margin; recropped with margin=32 to avoid left clipping.",
+  "2021B p1-2 question figure (bipartite graph) is not word-detectable, so it was cropped with explicit-point crop mode to include the full figure (has_figure=true).",
+  "2021A p3 stem includes the illustrative example graph figure (crop mode).",
+  "No solutions spanned a page break within a single part; no __sol2 crops were needed."
+ ]
+}

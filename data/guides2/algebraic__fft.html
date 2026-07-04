@@ -1,0 +1,49 @@
+<!-- title: FFT, Convolution & Karatsuba -->
+<h3>When do I reach for this?</h3>
+<p>Multiplying two degree-\(n\) polynomials the naïve way costs \(O(n^2)\): every coefficient of the product is a <em>convolution</em> \(\sum_{k}a_k b_{i-k}\). The FFT does it in \(O(n\log n)\). The trick: a polynomial has two faces — its list of coefficients, and its list of <em>values</em> at chosen points. Multiplication is slow in coefficients but trivial in values (multiply pointwise). The FFT is the fast bridge between the two faces, using the roots of unity as the evaluation points.</p>
+<ul>
+<li>Any convolution / "for each \(k\), count pairs \((i,j)\) with \(i+j=k\)" (sumsets, string matching) &rarr; FFT.</li>
+<li>Multiply two \(n\)-bit integers or two polynomials &rarr; FFT (or Karatsuba for a simpler \(O(n^{\log_2 3})\)).</li>
+<li>Divide polynomials, evaluate at many points &rarr; built on FFT.</li>
+</ul>
+
+<h3>Core tools</h3>
+<div class="gtool"><div class="gtool-h">EVALUATE → MULTIPLY → INTERPOLATE</div><div class="gtool-body">
+To compute \(f\cdot g\) with \(\deg f+\deg g<n\): (1) evaluate \(f,g\) at the \(n\) roots of unity \(1,\omega,\dots,\omega^{n-1}\); (2) multiply values pointwise (\(n\) mults); (3) interpolate back. A degree-\(<n\) polynomial is determined by its values at \(n\) distinct points, so this is exact.
+<span class="gtool-use">you need a product / convolution and only have coefficients</span></div></div>
+
+<div class="gtool"><div class="gtool-h">FFT (evaluation at roots of unity)</div><div class="gtool-body">
+With \(\omega=e^{2\pi i/n}\) and \(n\) a power of \(2\), split \(f(x)=f_{\text{even}}(x^2)+x\,f_{\text{odd}}(x^2)\). Then \(f(\omega^i)=f_{\text{even}}(\omega^{2i})+\omega^i f_{\text{odd}}(\omega^{2i})\) and \(f(\omega^{i+n/2})=f_{\text{even}}(\omega^{2i})-\omega^i f_{\text{odd}}(\omega^{2i})\). The squares \(\omega^{2i}\) are exactly the \(n/2\) roots of order \(n/2\), so recurse:
+\[ T(n)=2\,T(n/2)+O(n)=O(n\log n). \]
+<span class="gtool-use">converting coefficients ↔ values at the roots of unity</span></div></div>
+
+<div class="gtool"><div class="gtool-h">INVERSE FFT</div><div class="gtool-body">
+The evaluation map is the Vandermonde/DFT matrix \((A_\omega)_{i,j}=\omega^{ij}\). Its inverse is almost itself: \(A_\omega^{-1}=\tfrac1n A_{\omega^{-1}}\), i.e. run the same FFT with \(\omega^{-1}\) and divide by \(n\). So interpolation is also \(O(n\log n)\).
+<span class="gtool-use">going from product values back to coefficients</span></div></div>
+
+<div class="gtool"><div class="gtool-h">KARATSUBA</div><div class="gtool-body">
+Split \(x=x_1 B+x_0\), \(y=y_1B+y_0\). Instead of \(4\) products use \(3\): \(x_1y_1\), \(x_0y_0\), and \((x_1+x_0)(y_1+y_0)\), recovering the cross term as \((x_1+x_0)(y_1+y_0)-x_1y_1-x_0y_0\).
+\[ T(n)=3\,T(n/2)+O(n)=O(n^{\log_2 3})\approx O(n^{1.585}). \]
+<span class="gtool-use">a simpler sub-quadratic multiply, no complex numbers needed</span></div></div>
+
+<h3>Worked example — the thinking</h3>
+<div class="gworked">
+<p><b>2023A P6.</b> Given sets \(A,B\subseteq\{0,\dots,n\}\), compute the sumset \(A+B\) and, for each \(s\), the number of ways to write \(s=a+b\) with \(a\in A,\,b\in B\), in \(O(n\log n)\).</p>
+<ol class="gsteps">
+<li><b>Encode sets as polynomials.</b> Let \(f(x)=\sum_{a\in A}x^a\) and \(g(x)=\sum_{b\in B}x^b\) (indicator coefficients).</li>
+<li><b>Read the answer off the product.</b> In \(f(x)g(x)=\sum_s c_s x^s\), the coefficient \(c_s=\#\{(a,b):a+b=s\}\) — exactly the representation count. \(A+B\) is the set of \(s\) with \(c_s>0\).</li>
+<li><b>Multiply with FFT.</b> Both polynomials have degree \(\le n\), so the product has degree \(<2n\): evaluate at \(2n\) roots of unity, multiply pointwise, inverse-FFT. Total \(O(n\log n)\).</li>
+<li><b>Extract.</b> Scan the \(c_s\): positive entries give \(A+B\); the values are the counts.</li>
+</ol>
+</div>
+
+<div class="box pitfall"><b>Traps.</b> Pad both inputs to a power of two that is \(\ge \deg f+\deg g+1\) — if the transform length is too short the product <em>wraps around</em> (cyclic convolution) and you get wrong coefficients. FFT's \(\omega\) is a root of unity; it has <em>nothing</em> to do with the matrix-multiplication exponent \(\omega\approx2.37\) (same letter, unrelated). Interpolation is <em>not</em> the transpose of evaluation — it needs the \(\tfrac1n\) factor and \(\omega^{-1}\).</div>
+
+<h3>Checklist</h3>
+<ol class="gsteps">
+<li>Phrase the task as a convolution / polynomial product.</li>
+<li>Set the transform length \(N=2^{\lceil\log_2(\deg f+\deg g+1)\rceil}\), pad with zeros.</li>
+<li>FFT both, multiply pointwise, inverse-FFT (divide by \(N\)).</li>
+<li>Read the answer off the product coefficients.</li>
+<li>Total \(O(N\log N)=O(n\log n)\); for integers, split into digit-polynomials first.</li>
+</ol>

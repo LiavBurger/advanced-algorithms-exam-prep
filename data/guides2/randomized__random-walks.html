@@ -1,0 +1,49 @@
+<!-- title: Random Walks, Spectral Gap & Mixing -->
+<h3>When do I reach for this?</h3>
+<p>You are moving randomly on a graph and want to know: will I reach a target? how fast do I forget where I started? The engine is <em>spectral</em> — the second eigenvalue \(\lambda_2\) of the walk matrix controls how quickly the distribution flattens to uniform.</p>
+<ul>
+<li>"Does the walk reach \(t\) within poly steps?" &rarr; cover-time bound + Markov, or the mixing bound.</li>
+<li>"How fast does it mix?" &rarr; bound the spectral gap \(1-\lambda_2\).</li>
+<li>"Is the graph connected / bipartite?" &rarr; read it off the spectrum (\(\lambda_2<1\) iff connected; \(\lambda_n=-1\) iff bipartite).</li>
+<li>Space-\(O(\log n)\) connectivity (USTCON \(\in\) RL) &rarr; a length-\(O(n^3)\) walk.</li>
+</ul>
+
+<h3>Core tools</h3>
+<div class="gtool"><div class="gtool-h">NORMALIZED WALK OPERATOR</div><div class="gtool-body">
+\(A_{ij}=\tfrac1d\) on edges (\(d\)-regular). Symmetric &amp; row-stochastic, so real eigenvalues \(1=\lambda_1\ge\lambda_2\ge\cdots\ge\lambda_n\ge-1\) with \(\mathbf{1}\) the top eigenvector. Lazy walk \(B=\tfrac12 I+\tfrac12 A\) forces all eigenvalues \(\ge 0\).
+<span class="gtool-use">setting up any walk analysis on a regular graph</span></div></div>
+
+<div class="gtool"><div class="gtool-h">MIXING BOUND</div><div class="gtool-body">
+With \(\pi=(\tfrac1n,\dots,\tfrac1n)\) and \(p^{(t)}=B^t p^{(0)}\):
+\[ \big\|p^{(t)}-\pi\big\|_1\le \sqrt{n}\,(\lambda_2)^t. \]
+<span class="gtool-use">bounding distance to uniform after \(t\) steps; a small \(\lambda_2\) means fast mixing</span></div></div>
+
+<div class="gtool"><div class="gtool-h">COVER-TIME + MARKOV</div><div class="gtool-body">
+Cover time \(\le 2m n\); by Markov, from \(s\) the walk visits \(t\) within \(8mn\) steps with probability \(\ge \tfrac34\).
+<span class="gtool-use">"reach the target within poly steps w.h.p." with no spectral computation</span></div></div>
+
+<div class="gthm"><span class="lab">Theorem</span> <b>Spectral gap.</b> If \(G\) is connected then the lazy walk has
+\[ \lambda_2\le 1-\frac{1}{4dn^3}. \]
+So \(1-\lambda_2\) is bounded away from \(0\), which forces mixing (and reachability) in polynomially many steps.</div>
+
+<h3>Worked example — the thinking</h3>
+<div class="gworked">
+<p><b>hw2025s2 P1.</b> Prove the spectral-gap bound by exhibiting a large coordinate gap in the \(\lambda_2\)-eigenvector.</p>
+<ol class="gsteps">
+<li><b>Normalize.</b> Take a unit eigenvector \(x\) for \(\lambda_2\), so \(\sum_k x_k^2=1\). Then some coordinate has \(x_i^2\ge \tfrac1n\), i.e. \(x_i\ge \tfrac{1}{\sqrt n}\).</li>
+<li><b>Use orthogonality.</b> Since \(x\perp\mathbf{1}\), \(\sum_k x_k=0\), so some coordinate \(x_j\le 0\). Now \(x_i-x_j\ge \tfrac{1}{\sqrt n}\).</li>
+<li><b>Walk the path.</b> Connectivity gives a path \(i=i_1,\dots,i_t=j\) of length \(\le n\). By telescoping + Cauchy–Schwarz, some edge \((u,v)\) on it has \(|x_u-x_v|\ge \tfrac{1}{n\sqrt n}\).</li>
+<li><b>Convert to the gap.</b> Relate that edge difference to the Laplacian quadratic form to extract the \(1-\lambda_2\ge \tfrac{1}{4dn^3}\) factor. The <em>one</em> big edge difference is what a connected graph guarantees.</li>
+</ol>
+</div>
+
+<div class="box pitfall"><b>Traps.</b> Use the <em>lazy</em> walk before invoking mixing — a bipartite graph has \(\lambda_n=-1\), so the plain walk oscillates and never converges. Reachability needs \(\lambda_2\) bounded away from \(1\) (connectivity), which is exactly the spectral-gap theorem. Do not confuse \(\ell_1\) distance with per-coordinate deviation; the mixing bound is on \(\|\cdot\|_1\).</div>
+
+<h3>Checklist</h3>
+<ol class="gsteps">
+<li>Write the (lazy) normalized walk operator; note \(\lambda_1=1\), eigenvector \(\mathbf{1}\).</li>
+<li>Reachability fast? &rarr; cover-time \(\le 2mn\) + Markov, or the mixing bound.</li>
+<li>Mixing rate? &rarr; bound \(\lambda_2\) via the spectral-gap argument (big coordinate gap along a path).</li>
+<li>Connectivity/bipartiteness &rarr; inspect \(\lambda_2<1\) and \(\lambda_n=-1\).</li>
+<li>State the number of steps and the resulting success probability.</li>
+</ol>

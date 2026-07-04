@@ -1,0 +1,46 @@
+<!-- title: Approximation Algorithms -->
+<h3>What you are actually being asked to do</h3>
+<p>An approximation algorithm returns a <i>legal</i> solution fast, together with a <i>proof</i> of how far it can be from the optimum. You never know OPT — that is the whole point (the problem is NP-hard). So the entire game is:</p>
+<div class="gthm"><span class="lab">The one definition</span> For a <b>minimization</b> problem, ALG is an \(\alpha\)-approximation (\(\alpha\ge 1\)) if on every input \[ \text{OPT} \le \text{ALG} \le \alpha\cdot\text{OPT}. \] For a <b>maximization</b> problem (\(\alpha\le 1\)) it is \[ \alpha\cdot\text{OPT} \le \text{ALG} \le \text{OPT}. \] You do <i>not</i> need ALG to contain an optimal solution — only to be provably close in value.</div>
+
+<p>Because OPT is unknown, you can never compare to it directly. Instead you sandwich it between two quantities you <i>can</i> compute or reason about. This is the master pattern that every problem below is a special case of.</p>
+
+<div class="gtool"><div class="gtool-h">Pattern 1: Lower-bound OPT, upper-bound ALG</div><div class="gtool-body">Find a <b>quantity \(Q\)</b> (matching size, LP value, sum of weights, an edge count) that you can control on both sides. Show \(Q \le \text{OPT}\) (min) and \(\text{ALG} \le c\cdot Q\). Chaining gives \(\text{ALG}\le c\cdot Q\le c\cdot\text{OPT}\). For maximization, flip: \(\text{ALG}\ge c\cdot Q\ge c\cdot\text{OPT}\).<span class="gtool-use">every approximation proof — pick the right bridge \(Q\)</span></div></div>
+
+<div class="gtool"><div class="gtool-h">Pattern 2: Greedy / maximal</div><div class="gtool-body">Build the solution by a simple rule (pick an uncovered edge, the min-degree vertex, sets in ratio order) until nothing is left. The lower bound almost always comes from a <b>disjointness / packing</b> argument: the objects you greedily grabbed are pairwise "independent," so OPT must pay for each separately.<span class="gtool-use">vertex cover, hitting set \(|D|\le d\), independent set on max-degree-\(\Delta\) graphs</span></div></div>
+
+<div class="gtool"><div class="gtool-h">Pattern 3: LP-rounding (IP &rarr; relax &rarr; round)</div><div class="gtool-body">Three mechanical steps: (i) write the problem as a 0/1 <b>integer program</b>; (ii) <b>relax</b> \(x_i\in\{0,1\}\) to \(0\le x_i\le 1\) and solve the LP in poly-time — this gives \(\text{OPT}_{LP}\le\text{OPT}\); (iii) <b>round</b> the fractional \(x^*\) to a legal integral solution and bound how much rounding costs.<span class="gtool-use">any problem with a natural 0/1 IP: set cover, hitting set, knapsack</span></div></div>
+
+<div class="gtool"><div class="gtool-h">Pattern 4: Local / combinatorial structure</div><div class="gtool-body">Exploit a graph object you can compute exactly: a <b>matching</b>, an <b>MST</b>, a <b>minimum cycle cover</b>, or a <b>primal-dual</b> pair. These give clean lower bounds — e.g. a metric TSP tour contains a Hamiltonian cycle whose two perfect matchings each cost \(\le\text{OPT}/2\).<span class="gtool-use">TSP / Christofides, TSP with weights 1&ndash;2, Steiner tree, primal-dual set cover</span></div></div>
+
+<h3>Worked example — the maximal pattern in full</h3>
+<div class="gworked"><p><b>2014A P9.</b> Prove any <i>maximal</i> matching \(M\) (one you cannot add another edge to) is a 2-approximation for <i>maximum</i> matching \(M^*\).</p>
+<ol class="gsteps">
+<li><b>Trivial upper bound.</b> \(M\) is a matching, so \(|M|\le|M^*|=\text{OPT}\) — never worse than optimal.</li>
+<li><b>Lower bound via disjointness.</b> Every edge of \(M^*\) must touch a vertex saturated by \(M\); otherwise that edge could be added to \(M\), contradicting maximality.</li>
+<li><b>Count.</b> \(M\) saturates \(2|M|\) vertices, and each is an endpoint of at most one \(M^*\)-edge (\(M^*\) is a matching). So \(|M^*|\le 2|M|\).</li>
+<li><b>Chain.</b> \[ \tfrac12\,\text{OPT}=\tfrac12|M^*|\le|M|\le|M^*|=\text{OPT}, \] a \(1/2\)-approximation for the (maximization) matching problem.</li>
+<li><b>Free corollary — Vertex Cover 2-approx.</b> Output \(V(M)\), both endpoints of every matched edge. It is a cover (any uncovered edge would extend \(M\)), the matched edges are disjoint so \(\text{OPT}_{VC}\ge|M|\), and \[ \text{ALG}=2|M|\le 2\cdot\text{OPT}_{VC}. \] Same maximal object, mirrored as a min problem.</li>
+</ol></div>
+
+<h3>The problems, mapped to patterns</h3>
+<ul>
+<li><b>Greedy/maximal:</b> hitting set with \(|D|\le d\) &rarr; \(d\)-approx by disjoint sets (<b>2018A P2</b>, hypergraph VC <b>2023B P3</b>); min-degree greedy independent set &rarr; \((\Delta+1)\)-approx (<b>2018B P2</b>, <b>hw2025 s5 P2</b>).</li>
+<li><b>LP-rounding:</b> hitting set — since \(|T_j|\le d\) and \(\sum_{i\in T_j}x_i^*\ge1\), some \(x_i^*\ge 1/d\); round up those, cost grows \(\le d\times\) &rarr; \(d\)-approx (<b>2024B P5</b>). Knapsack as BIP/LP/dual (<b>2017B P2</b>). Randomized rounding for set cover: each set with prob \(x_i^*\) gives \(\mathbb{E}[|S|]=\text{OPT}_{LP}\le\text{OPT}\), each element covered w.p. \(\ge 1-1/e\), repeat \(T=\ln(n/\epsilon)\) rounds &rarr; \(O(\log n)\)-approx by union bound (<b>hw2026 s4 P3</b>).</li>
+<li><b>Random assignment / probabilistic:</b> MAX-3SAT — for each clause let \(Y_c\) be an indicator r.v. for the event "clause \(c\) is satisfied"; \(\mathbb{E}[Y_c]=7/8\), so by linearity \(\mathbb{E}[\text{ALG}]=\tfrac78 m\ge\tfrac78\text{OPT}\), then derandomize by conditional expectations (<b>2014A P8</b>). Max Triple Cut \(2/3\) (<b>2023A P3</b>).</li>
+<li><b>Combinatorial:</b> TSP min-weight matching \(\le\text{OPT}/2\) (<b>2015B P3</b>); Christofides path-TSP \(1.5\) (<b>2017A P3</b>); weights-1&ndash;2 TSP via min cycle cover &rarr; \(4/3\) (<b>2021A P3</b>); Steiner reduction (<b>2014A P5</b>).</li>
+<li><b>Primal-dual:</b> set cover — solve the dual, pick sets with tight constraints; complementary slackness gives an \(f\)-approx (<b>2025C P2</b>).</li>
+<li><b>Greedy/local, other:</b> bin packing additive-1 for \(1/m\) weights (<b>2015A P6</b>); greedy MAX-3-COL \(2/3\) (<b>2021B P3</b>).</li>
+</ul>
+
+<div class="box pitfall"><b>Traps.</b> (1) A greedy ratio must be <i>proven</i>, not assumed — "sort by ratio" fails on knapsack and max cut, and you are often asked to <b>refute</b> a claimed ratio with a counterexample (<b>2016A P5</b>, <b>2017B P2a</b>, <b>2018B P2a</b>). (2) Rounding <i>up</i> is safe for min-covering constraints but can violate a knapsack <i>capacity</i> — always re-check feasibility after rounding. (3) \(\text{OPT}_{LP}\le\text{OPT}\) only for a <i>minimization</i> IP; the inequality flips for maximization. (4) Metric/triangle-inequality assumptions are what make MST- and matching-based TSP bounds valid — state them.</div>
+
+<h3>Checklist for ANY approximation question</h3>
+<ol class="gsteps">
+<li><b>Min or max?</b> Fix the target direction of the inequality \(\text{OPT}\le\text{ALG}\le\alpha\,\text{OPT}\) (or the flip).</li>
+<li><b>Legality first.</b> Prove ALG always outputs a feasible solution before touching the ratio.</li>
+<li><b>Choose the bridge \(Q\).</b> Matching / LP value / packing count / MST — the thing you can bound against OPT.</li>
+<li><b>Lower-bound OPT.</b> \(Q\le\text{OPT}\) (min) via disjointness or LP relaxation; \(Q\ge\text{OPT}\) for the max side.</li>
+<li><b>Upper-bound ALG.</b> \(\text{ALG}\le c\cdot Q\) — count what the algorithm pays.</li>
+<li><b>Chain and read off \(\alpha=c\).</b> State the ratio and confirm the running time is polynomial.</li>
+</ol>

@@ -1,0 +1,48 @@
+<!-- title: LP Duality & Farkas -->
+<h3>When do I reach for this?</h3>
+<p>Whenever a question says "write the dual", "prove the optimum is at least / at most \(k\)", "show \(x^\ast\) is optimal without solving", or hands you an infeasible/unbounded LP. The one idea underneath everything: the dual is the <b>best certificate</b> for a bound on the primal. Every dual-feasible point is a proof; strong duality says the best proof is tight.</p>
+<ul>
+<li>"Write the dual" &rarr; the mechanical recipe below.</li>
+<li>"Prove OPT \(\ge k\)" (a \(\min\)) &rarr; exhibit ONE feasible <b>dual</b> point of value \(k\); weak duality does the rest.</li>
+<li>"Show \(x^\ast\) is optimal" &rarr; build a matching dual \(y^\ast\) with equal value, or check <b>complementary slackness</b>.</li>
+<li>"(P) infeasible, (D) feasible \(\Rightarrow\) ?" &rarr; (D) is <b>unbounded</b>, via <b>Farkas</b>.</li>
+</ul>
+
+<h3>Core tools</h3>
+<div class="gtool"><div class="gtool-h">PRIMAL / DUAL PAIR</div><div class="gtool-body">\[ \text{(P)}\ \min c^\top x,\ Ax=b,\ x\ge 0 \qquad \text{(D)}\ \max b^\top y,\ A^\top y\le c \] The dual variable \(y\) is free (one per equality constraint). The dual of the dual is the primal. <span class="gtool-use">"write the dual"</span></div></div>
+
+<div class="gtool"><div class="gtool-h">WEAK / STRONG DUALITY</div><div class="gtool-body">Weak: for all feasible \(x,y\), \[ b^\top y\ \le\ c^\top x \quad(\text{since } c^\top x\ge y^\top A x = y^\top b). \] Strong: if BOTH (P) and (D) are feasible then their optima are <b>equal</b>. <span class="gtool-use">"prove a bound", "reduce optimization to feasibility"</span></div></div>
+
+<div class="gtool"><div class="gtool-h">FARKAS' LEMMA</div><div class="gtool-body">Exactly one holds: \[ \exists\,x\ge 0:\ Ax=b \qquad\text{OR}\qquad \exists\,y:\ A^\top y\ge 0,\ b^\top y<0. \] The \(y\) is a certificate of infeasibility. Variant II: \(Cx\le d\) unsolvable \(\Rightarrow\exists\,z\ge 0,\ z^\top C=0,\ z^\top d<0\). This is the engine that proves strong duality. <span class="gtool-use">"prove infeasible", "prove unbounded"</span></div></div>
+
+<div class="gtool"><div class="gtool-h">COMPLEMENTARY SLACKNESS</div><div class="gtool-body">At a joint optimum, for each variable/constraint pair: \[ x_j>0\ \Rightarrow\ (A^\top y)_j=c_j, \qquad (A^\top y)_j<c_j\ \Rightarrow\ x_j=0. \] "Money changes hands only where the constraint is tight." <span class="gtool-use">"verify optimality of a given pair"</span></div></div>
+
+<h3>The dual, mechanically (memorize)</h3>
+<ol class="gsteps">
+<li><b>Count.</b> One dual variable per primal <b>constraint</b>; one dual constraint per primal <b>variable</b>.</li>
+<li><b>Flip the sense.</b> \(\min\leftrightarrow\max\).</li>
+<li><b>Swap data.</b> Primal RHS \(b\) becomes the dual objective; primal cost \(c\) becomes the dual RHS; use \(A^\top\) for the constraint matrix.</li>
+<li><b>Variable signs from primal constraint type</b> (for a \(\min\) primal): primal "\(=\)" \(\to\) dual var free; primal "\(\ge\)" \(\to\) dual var \(\ge 0\); primal "\(\le\)" \(\to\) dual var \(\le 0\).</li>
+<li><b>Constraint sense from primal variable type:</b> primal \(x_j\ge 0\) \(\to\) dual constraint is "\(\le\)"; primal \(x_j\) free \(\to\) dual constraint is "\(=\)".</li>
+<li><b>Sanity check</b> with weak duality: dual value \(\le\) primal value at any feasible pair.</li>
+</ol>
+
+<h3>Worked example &mdash; the thinking</h3>
+<div class="gworked"><p><b>2015A P7.</b> "Write the dual, then prove the dual optimum is at least 40." I never solve the LP.</p>
+<ol class="gsteps">
+<li>Write the dual by the recipe above (transpose, swap \(b\leftrightarrow c\), flip \(\min\)/\(\max\)).</li>
+<li>To bound the optimum, I only need ONE feasible point on the right side and read off its value; weak duality turns that single point into a proof of the bound. Producing a matching value on each side pins OPT exactly (strong duality).</li>
+</ol></div>
+<p>The recurring exam pattern is <b>"write the IP \(\to\) relax to LP \(\to\) dualize \(\to\) interpret"</b>. In <b>2023A P4</b> and <b>2014B P8</b> you relax maximum matching, transpose, and the dual is exactly <b>vertex cover</b> &mdash; K&ouml;nig's theorem falls out. <b>2017A P6</b> does the same for hitting set, whose dual is set packing. <b>2025A P2</b> is a self-dual symmetric \(A\): show \(Ax^\ast=c,\ x^\ast\ge 0\) is optimal by matching primal and dual values. <b>2024C P6</b> is the pure Farkas move: (P) infeasible \(+\) (D) feasible \(\Rightarrow\) (D) unbounded &mdash; Farkas hands a direction \(y\) with \(A^\top y\ge 0,\ b^\top y<0\) along which \(b^\top y\to+\infty\).</p>
+
+<h3>Common traps</h3>
+<div class="box pitfall">The dual of a \(\min\) is a \(\max\) &mdash; getting the direction backwards flips everything. &mdash; Wrong <b>variable sign</b>: equality \(\to\) free variable, inequality \(\to\) signed variable; a mismatch flips \(\le/\ge\) in the dual constraints. &mdash; Strong duality needs BOTH sides feasible; if one is infeasible you get the unbounded/infeasible relation, not equal optima (2023B P1 T/F). &mdash; Don't forget to <b>transpose</b> \(A\) and to swap \(b\) with \(c\). &mdash; Complementary slackness is an "iff at optimum" tool, not something you can assume mid-solve.</div>
+
+<h3>Checklist &mdash; write the dual</h3>
+<ol class="gsteps">
+<li>Count: dual vars \(=\) #primal constraints, dual constraints \(=\) #primal vars.</li>
+<li>Swap \(\min\leftrightarrow\max\); move \(b\) into the objective, \(c\) into the RHS; use \(A^\top\).</li>
+<li>Set each dual <b>variable</b>'s sign from its primal constraint type.</li>
+<li>Set each dual <b>constraint</b>'s sense from its primal variable's sign.</li>
+<li>Verify with weak duality: dual value \(\le\) primal value.</li>
+</ol>

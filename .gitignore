@@ -1,0 +1,11 @@
+# build intermediates — not needed to run the site
+assets/
+text/
+data/reclass/
+data/croptasks/
+data/inventory-*.json
+data/_merged_raw.json
+__pycache__/
+*.pyc
+.playwright-mcp/
+.DS_Store

@@ -1,0 +1,42 @@
+<!-- title: PIT & Schwartz–Zippel -->
+<h3>When do I reach for this?</h3>
+<p>You have a polynomial that is <em>huge</em> to write out (a determinant, a product of many factors, a formula) and you only need to know one thing: <b>is it the zero polynomial or not?</b> You cannot afford to expand it — but you <em>can</em> plug in numbers. That is exactly Polynomial Identity Testing (PIT): test \(p\equiv 0\) by evaluating \(p\) at a random point.</p>
+<ul>
+<li>"Are two expressions/circuits/matrices equal?" &rarr; test their difference \(p=A-B\) is the zero polynomial.</li>
+<li>"Does this graph have a perfect matching / a subspace contain an invertible matrix?" &rarr; a determinant is a nonzero polynomial exactly when the object exists.</li>
+<li>The polynomial has low degree \(d\) but exponentially many monomials &rarr; evaluate, don't expand.</li>
+</ul>
+
+<h3>Core tools</h3>
+<div class="gtool"><div class="gtool-h">SCHWARTZ–ZIPPEL</div><div class="gtool-body">
+Let \(p\neq 0\) be a polynomial in any number of variables of total degree \(\le d\), over a field, and let \(S\) be a finite set. For \(r_1,\dots,r_n\) chosen independently and uniformly from \(S\),
+\[ \Pr\big[\,p(r_1,\dots,r_n)=0\,\big]\le \frac{d}{|S|}. \]
+<span class="gtool-use">a nonzero low-degree polynomial rarely vanishes at a random point</span></div></div>
+
+<div class="gtool"><div class="gtool-h">PIT ALGORITHM</div><div class="gtool-body">
+To decide \(p\equiv 0\): pick \(S\) with \(|S|\ge 2d\), draw a random point \(r\), evaluate \(p(r)\). Output "\(p\equiv0\)" iff \(p(r)=0\). One-sided error: if \(p\equiv0\) always correct; if \(p\neq0\) wrong with prob. \(\le d/|S|\le \tfrac12\). Repeat \(k\) times &rarr; error \(\le 2^{-k}\).
+<span class="gtool-use">the polynomial is expensive to expand but cheap to evaluate at a point</span></div></div>
+
+<div class="gthm"><span class="lab">Theorem</span> <b>Univariate special case.</b> A nonzero single-variable polynomial of degree \(d\) has at most \(d\) roots. So over any set of \(d+1\) distinct points it is nonzero at one of them. Schwartz–Zippel is the multivariate generalization (proved by induction on the number of variables — this is a homework exercise).</div>
+
+<h3>Worked example — the thinking</h3>
+<div class="gworked">
+<p><b>2024A P6.</b> Given matrices \(B_1,\dots,B_k\), decide whether their span contains an <em>invertible</em> matrix.</p>
+<ol class="gsteps">
+<li><b>Build one polynomial that "sees" the whole span.</b> A generic element of the span is \(M(x)=\sum_{i=1}^k x_i B_i\). Its determinant \(p(x_1,\dots,x_k)=\det\!\big(\sum_i x_i B_i\big)\) is a polynomial in the \(x_i\).</li>
+<li><b>Translate the question into "is \(p\) the zero polynomial?"</b> The span contains an invertible matrix \(\iff\) some assignment makes \(\det\neq0\) \(\iff\) \(p\not\equiv0\).</li>
+<li><b>Bound the degree.</b> \(\det\) of an \(n\times n\) matrix is a sum over permutations of products of \(n\) entries, each entry linear in the \(x_i\); so \(\deg p\le n\).</li>
+<li><b>Run PIT.</b> Take \(S=\{1,\dots,2n\}\), plug in random integers, compute \(\det(\sum r_i B_i)\) by Gaussian elimination in \(O(n^3)\). If nonzero, answer YES; error \(\le n/|S|\le\tfrac12\), amplify by repetition.</li>
+</ol>
+</div>
+
+<div class="box pitfall"><b>Traps.</b> Schwartz–Zippel bounds probability by \(d/|S|\), so you must choose \(|S|\ge 2d\) (or larger) — a small \(S\) can make the bound useless or \(>1\). The error is <em>one-sided</em>: "\(p(r)=0\)" is only <em>evidence</em> for \(p\equiv0\), never a proof. \(d\) is the <em>total</em> degree (sum of exponents), not the number of variables. And note: a nonzero degree-\(d\) polynomial can still vanish on a huge set (e.g. all order-\(m\) roots of unity if \(d\ge m\)) — SZ only helps when \(|S|>d\).</div>
+
+<h3>Checklist</h3>
+<ol class="gsteps">
+<li>Identify the polynomial \(p\) whose (non)vanishing answers the question — usually a determinant or a difference \(A-B\).</li>
+<li>Bound its total degree \(d\) (for a determinant, \(d\le n\)).</li>
+<li>Choose \(S\) with \(|S|\ge 2d\); sample a random point.</li>
+<li>Evaluate \(p\) at the point efficiently (never expand it).</li>
+<li>State the one-sided error \(d/|S|\) and amplify by repetition to \(2^{-k}\).</li>
+</ol>

@@ -1,0 +1,47 @@
+{
+ "batch": "C8",
+ "parts": [
+  { "sid": "2017A-p1", "part": "a", "q_ok": true, "sol_ok": true, "qdims": "1343x186", "soldims": "815x51", "note": "" },
+  { "sid": "2017A-p1", "part": "b", "q_ok": true, "sol_ok": true, "qdims": "1304x186", "soldims": "1265x120", "note": "" },
+  { "sid": "2017A-p1", "part": "c", "q_ok": true, "sol_ok": true, "qdims": "1333x97", "soldims": "462x50", "note": "" },
+  { "sid": "2017A-p1", "part": "e", "q_ok": true, "sol_ok": true, "qdims": "1317x232", "soldims": "1261x96", "note": "part d (pathwidth) skipped per manifest" },
+  { "sid": "2017A-p4", "part": null, "q_ok": true, "sol_ok": true, "qdims": "1373x227", "soldims": "1286x324", "note": "" },
+  { "sid": "2017A-p6", "part": "a", "q_ok": true, "sol_ok": true, "qdims": "1337x183", "soldims": "1045x187", "note": "" },
+  { "sid": "2017A-p6", "part": "b", "q_ok": true, "sol_ok": true, "qdims": "1182x50", "soldims": "1258x231", "note": "" },
+  { "sid": "2017A-p6", "part": "c", "q_ok": true, "sol_ok": true, "qdims": "1309x50", "soldims": "981x50", "note": "" },
+  { "sid": "2017A-p6", "part": "d", "q_ok": true, "sol_ok": true, "qdims": "708x346", "soldims": "359x214", "note": "LP standard-form; given LP in q, converted LP in sol" },
+  { "sid": "2017A-p3", "part": null, "q_ok": true, "sol_ok": true, "qdims": "1369x492", "soldims": "1318x456", "note": "" },
+
+  { "sid": "2017B-p4", "part": "a", "q_ok": true, "sol_ok": true, "qdims": "1365x265", "soldims": "1298x135", "note": "q folds problem-4 stem; part-a answer sits after part-b question on the page, sol re-cut tight to exclude b) bleed" },
+  { "sid": "2017B-p3", "part": null, "q_ok": true, "sol_ok": true, "qdims": "1369x183", "soldims": "1320x180", "note": "" },
+  { "sid": "2017B-p2", "part": "a", "q_ok": true, "sol_ok": true, "qdims": "1351x272", "soldims": "1282x139", "note": "q includes '2. (20 points)' header" },
+  { "sid": "2017B-p2", "part": "b", "q_ok": true, "sol_ok": true, "qdims": "1113x50", "soldims": "234x143", "note": "" },
+  { "sid": "2017B-p2", "part": "c", "q_ok": true, "sol_ok": true, "qdims": "779x50", "soldims": "234x188", "note": "" },
+  { "sid": "2017B-p2", "part": "d", "q_ok": true, "sol_ok": true, "qdims": "831x50", "soldims": "299x182", "note": "" },
+
+  { "sid": "2018A-p1", "part": "a", "q_ok": true, "sol_ok": true, "qdims": "1361x226", "soldims": "1047x75", "note": "q includes '1. (5x6 points)' header" },
+  { "sid": "2018A-p1", "part": "b", "q_ok": true, "sol_ok": true, "qdims": "1319x140", "soldims": "1259x164", "note": "" },
+  { "sid": "2018A-p1", "part": "e", "q_ok": true, "sol_ok": true, "qdims": "1271x50", "soldims": "188x44", "note": "" },
+  { "sid": "2018A-p3", "part": "a", "q_ok": true, "sol_ok": true, "qdims": "1366x271", "soldims": "1173x273", "note": "q folds problem-3 stem" },
+  { "sid": "2018A-p3", "part": "b", "q_ok": true, "sol_ok": true, "qdims": "1260x88", "soldims": "1197x273", "note": "" },
+  { "sid": "2018A-p3", "part": "c", "q_ok": true, "sol_ok": true, "qdims": "1268x50", "soldims": "1146x223", "note": "" },
+  { "sid": "2018A-p3", "part": "d", "q_ok": true, "sol_ok": true, "qdims": "987x179", "soldims": "217x179", "note": "given min|2x-10| problem in q; LP form in sol" },
+  { "sid": "2018A-p2", "part": "a", "q_ok": true, "sol_ok": true, "qdims": "1373x360", "soldims": "502x184", "note": "q folds problem-2 stem" },
+  { "sid": "2018A-p2", "part": "b", "q_ok": true, "sol_ok": true, "qdims": "1264x94", "soldims": "1236x451", "note": "" },
+  { "sid": "2018A-p2", "part": "c", "q_ok": true, "sol_ok": true, "qdims": "1304x314", "soldims": "1246x94", "note": "" },
+
+  { "sid": "2018B-p4", "part": "a", "q_ok": true, "sol_ok": true, "qdims": "1370x309", "soldims": "78x44", "note": "q folds problem-4 stem (page 4); answer 'Yes.' is on page 5" },
+  { "sid": "2018B-p4", "part": "b", "q_ok": true, "sol_ok": true, "qdims": "1044x51", "soldims": "1037x54", "note": "q and sol adjacent lines (0.8pt gap); cut with exact crop mode to separate" },
+  { "sid": "2018B-p4", "part": "c", "q_ok": true, "sol_ok": true, "qdims": "1238x278", "soldims": "1238x230", "note": "" },
+  { "sid": "2018B-p4", "part": "d", "q_ok": true, "sol_ok": true, "qdims": "1312x180", "soldims": "1260x468", "note": "" },
+  { "sid": "2018B-p4", "part": "e", "q_ok": true, "sol_ok": true, "qdims": "1264x202", "soldims": "1259x94", "note": "solution spans pages 5-6; second page slice in __sol2.png (1255x498)" },
+  { "sid": "2018B-p2", "part": "a", "q_ok": true, "sol_ok": true, "qdims": "1367x525", "soldims": "1310x191", "note": "q folds problem-2 stem + greedy pseudocode" },
+  { "sid": "2018B-p2", "part": "b", "q_ok": true, "sol_ok": true, "qdims": "1299x136", "soldims": "1310x546", "note": "" }
+ ],
+ "stems": [],
+ "issues": [
+  "All exams are A4 (595x842pt), so crop.py --col full default margin 67 clips text at the right edge (content reaches x~541); used --margin 48 for all crops.",
+  "2018B-p4-e solution spans two pages: images/randomized-prob-basics__2018B-p4-e__sol.png (page 5 tail) + __sol2.png (page 6 head).",
+  "No shared stems emitted: every parent's stem/preamble was folded into its first part's question crop (all manifests had stemImage=null)."
+ ]
+}

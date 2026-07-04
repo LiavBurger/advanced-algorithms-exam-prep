@@ -1,0 +1,46 @@
+{
+ "batch": "C2",
+ "parts": [
+  {"sid": "2023B-p1", "part": "a", "q_ok": true, "sol_ok": true, "qdims": "634x166", "soldims": "1280x172", "note": ""},
+  {"sid": "2023B-p1", "part": "b", "q_ok": true, "sol_ok": true, "qdims": "633x132", "soldims": "1279x708", "note": ""},
+  {"sid": "2023B-p1", "part": "c", "q_ok": true, "sol_ok": true, "qdims": "634x166", "soldims": "1280x94", "note": ""},
+  {"sid": "2023B-p1", "part": "d", "q_ok": true, "sol_ok": true, "qdims": "634x377", "soldims": "1280x724", "note": ""},
+  {"sid": "2023B-p2", "part": null, "q_ok": true, "sol_ok": true, "qdims": "633x158", "soldims": "1281x1641", "note": ""},
+  {"sid": "2023B-p3", "part": null, "q_ok": true, "sol_ok": true, "qdims": "634x600", "soldims": "1282x1201", "note": ""},
+  {"sid": "2023B-p4", "part": "a", "q_ok": true, "sol_ok": true, "qdims": "633x132", "soldims": "1279x906", "note": ""},
+  {"sid": "2023B-p4", "part": "b", "q_ok": true, "sol_ok": true, "qdims": "633x212", "soldims": "1281x173", "note": ""},
+  {"sid": "2023B-p4", "part": "c", "q_ok": true, "sol_ok": true, "qdims": "663x313", "soldims": "1280x700", "note": ""},
+  {"sid": "2023B-p5", "part": null, "q_ok": true, "sol_ok": true, "qdims": "634x439", "soldims": "1281x1364", "note": ""},
+  {"sid": "2023B-p6", "part": null, "q_ok": true, "sol_ok": true, "qdims": "635x760", "soldims": "1281x1041", "note": ""},
+
+  {"sid": "2024B-p1", "part": "a", "q_ok": true, "sol_ok": true, "qdims": "633x125", "soldims": "1280x172", "note": ""},
+  {"sid": "2024B-p1", "part": "b", "q_ok": true, "sol_ok": true, "qdims": "632x172", "soldims": "1280x709", "note": ""},
+  {"sid": "2024B-p1", "part": "d", "q_ok": true, "sol_ok": true, "qdims": "1291x272", "soldims": "1280x801", "note": "question cropped full-width to keep centered display summation (elementary symmetric poly); some Hebrew appears at right of text rows"},
+  {"sid": "2024B-p2", "part": null, "q_ok": true, "sol_ok": true, "qdims": "1290x527", "soldims": "1281x1274", "note": "question cropped full-width to keep Walsh-Hadamard matrix definitions; some Hebrew appears at right"},
+  {"sid": "2024B-p3", "part": null, "q_ok": true, "sol_ok": true, "qdims": "632x279", "soldims": "1280x1520", "note": ""},
+  {"sid": "2024B-p4", "part": null, "q_ok": true, "sol_ok": true, "qdims": "634x519", "soldims": "1281x1284", "note": ""},
+  {"sid": "2024B-p5", "part": null, "q_ok": true, "sol_ok": true, "qdims": "1291x730", "soldims": "1281x1031", "note": "question cropped full-width to keep the hitting-set IP display; some Hebrew appears at right"},
+  {"sid": "2024B-p6", "part": null, "q_ok": true, "sol_ok": true, "qdims": "634x603", "soldims": "1281x1198", "note": ""},
+
+  {"sid": "2024C-p1", "part": "a", "q_ok": true, "sol_ok": true, "qdims": "634x126", "soldims": "1279x126", "note": ""},
+  {"sid": "2024C-p1", "part": "b", "q_ok": true, "sol_ok": true, "qdims": "633x173", "soldims": "1163x730", "note": ""},
+  {"sid": "2024C-p1", "part": "c", "q_ok": true, "sol_ok": true, "qdims": "480x52", "soldims": "1279x212", "note": ""},
+  {"sid": "2024C-p1", "part": "d", "q_ok": true, "sol_ok": true, "qdims": "634x167", "soldims": "1281x983", "note": ""},
+  {"sid": "2024C-p2", "part": null, "q_ok": true, "sol_ok": true, "qdims": "1290x448", "soldims": "1281x1354", "note": "question cropped full-width to keep boolean-product display formula; some Hebrew appears at right"},
+  {"sid": "2024C-p3", "part": null, "q_ok": true, "sol_ok": true, "qdims": "634x438", "soldims": "1281x1362", "note": ""},
+  {"sid": "2024C-p4", "part": null, "q_ok": true, "sol_ok": true, "qdims": "634x640", "soldims": "1281x1161", "note": ""},
+  {"sid": "2024C-p6", "part": null, "q_ok": true, "sol_ok": true, "qdims": "1290x457", "soldims": "1276x1345", "note": "question cropped full-width to keep both (P) and (D) programs (the (D) program sits in the right half); some Hebrew appears at right"}
+ ],
+ "stems": [
+  {"sid": "2023B-p1", "stemImage": "images/lp-duality-farkas__2023B-p1__stem.png"},
+  {"sid": "2023B-p4", "stemImage": "images/lp-ilp-tum__2023B-p4__stem.png"},
+  {"sid": "2024B-p1", "stemImage": "images/lp-ilp-tum__2024B-p1__stem.png"},
+  {"sid": "2024C-p1", "stemImage": "images/lp-basics__2024C-p1__stem.png"}
+ ],
+ "issues": [
+  "2023B-p4 stem cropped full-width (not --col left) because the TSP integer program is a centered display equation that overflows the English column; the stem is therefore bilingual but contains the complete IP.",
+  "Four T/F parent problems (2023B-p1, 2023B-p4, 2024B-p1, 2024C-p1) have a shared preamble cropped as a stem even though the manifest listed stemImage:null.",
+  "Six question crops were widened to full-width to preserve centered display math (2024B-p1d, 2024B-p2, 2024B-p5, 2024C-p2, 2024C-p6, and 2023B-p4 stem); these include some Hebrew at the text rows but keep all math per the 'fidelity beats losing math' rule.",
+  "Cropped exactly the parts the manifests list: 2024B-p1 covers a,b,d (its part c on lattices is not in the manifest and was skipped), and problems p5 (LLL, 2024C) / p2 lattice part are absent from the manifests as expected. No manifest path was left uncropped."
+ ]
+}

@@ -1,0 +1,46 @@
+{
+  "batch": "C4",
+  "parts": [
+    { "sid": "hw2025s5-p2", "part": null, "q_ok": true, "sol_ok": true, "qdims": "1371x94", "soldims": "1373x1258", "note": "Solution-only PDF (2024 set5). No restated statement; question crop = the Corollary 0.3 statement of the 1/(Delta+1)-approximation claim. Full Problem-2 greedy solution on p2." },
+
+    { "sid": "hw2025s1-p1", "part": "a", "q_ok": true, "sol_ok": true, "qdims": "1320x316", "soldims": "1320x1295", "note": "Solution-only. Question crop = Part-a heading + ZPP setup paragraph. Solution spans p1->p2: __sol (p1) + __sol2 (p2 top, the E[T] geometric-distribution derivation)." },
+    { "sid": "hw2025s1-p1", "part": "b", "q_ok": true, "sol_ok": true, "qdims": "1322x196", "soldims": "1322x356", "note": "Solution-only. Question crop = Part-b heading + opening (RP subset BPP setup)." },
+    { "sid": "hw2025s1-p1", "part": "c", "q_ok": true, "sol_ok": true, "qdims": "1322x196", "soldims": "1322x864", "note": "Solution-only. Question crop = Part-c heading + opening (ZPP=RP intersect coRP)." },
+    { "sid": "hw2025s1-p4", "part": null, "q_ok": true, "sol_ok": true, "qdims": "1156x139", "soldims": "1156x139", "note": "Solution-only. Question crop = Problem-4 heading + 'Let a,b in {0,1}^n... inputs of Alice and Bob' (equality-testing setup). Solution spans p3->p4: __sol (p3, heading+setup line only) + __sol2 (p4, the two fingerprinting protocols). q==sol page-1 slice by nature (setup line lives on p3, work on p4)." },
+    { "sid": "hw2025s1-p5", "part": null, "q_ok": true, "sol_ok": true, "qdims": "1319x257", "soldims": "1319x303", "note": "Solution-only. Question crop = Problem-5 heading + random-coloring algorithm/discrepancy setup. Solution spans p4->p5: __sol (p4) + __sol2 (p5, Chernoff + union bound)." },
+
+    { "sid": "hw2026s1-p1", "part": null, "q_ok": true, "sol_ok": true, "qdims": "1319x224", "soldims": "1319x941", "note": "Solution-only (2026 set1). Schwartz-Zippel proof by induction. Question crop = Problem-1 heading + opening 'The proof is by induction on n...' (weak framing; no separate statement in PDF). All on p1." },
+    { "sid": "hw2026s1-p2", "part": null, "q_ok": true, "sol_ok": true, "qdims": "1318x217", "soldims": "1319x503", "note": "Formula degree<=size. PDF mislabels this heading as 'Problem 3' (it is the 2nd problem) -- used the FIRST 'Problem 3' heading. Solution-only. Solution spans p1->p2: __sol (p1, Case 1) + __sol2 (p2 top, Case 2)." },
+    { "sid": "hw2026s1-p3", "part": null, "q_ok": true, "sol_ok": true, "qdims": "1318x218", "soldims": "1318x425", "note": "Karger #-of-min-cuts bound. Uses the SECOND 'Problem 3' heading (the real Problem 3). Solution-only, all on p2." },
+    { "sid": "hw2026s1-p4", "part": null, "q_ok": true, "sol_ok": true, "qdims": "1320x257", "soldims": "1320x750", "note": "Solution-only. Invertible-matrix-in-subspace test via det + Schwartz-Zippel. Question crop = Problem-4 heading + algorithm setup. All on p2." },
+    { "sid": "hw2026s1-p5", "part": null, "q_ok": true, "sol_ok": true, "qdims": "1320x217", "soldims": "1320x217", "note": "Solution-only. Common-basis test via Cauchy-Binet. Solution spans p2->p3: __sol (p2, heading+first lines) + __sol2 (p3, Cauchy-Binet argument). q==sol page-1 slice." },
+    { "sid": "hw2026s1-p6", "part": null, "q_ok": true, "sol_ok": true, "qdims": "1320x221", "soldims": "1320x533", "note": "Solution-only. Epsilon-bias sampling via Chernoff + union bound. All on p3." },
+
+    { "sid": "hw2026s4-p1", "part": "a", "q_ok": true, "sol_ok": true, "qdims": "1204x94", "soldims": "1461x694", "note": "REAL statement present (rendered as image, not in text layer). Question crop = the (a) 'Prove that if Cx<=d infeasible then Cx<=d+2^-L'1 infeasible' statement. Shared stem cropped separately (see stems). Solution spans p1->p2: __sol (p1, shared 'We use two results' preamble + (a) Farkas argument) + __sol2 (p2, vertex/volume bound completion)." },
+    { "sid": "hw2026s4-p1", "part": "b", "q_ok": true, "sol_ok": true, "qdims": "1210x130", "soldims": "1452x569", "note": "REAL statement (image). Question crop = the (b) feasible-ball statement. Solution = (b) Cauchy-Schwarz ball argument on p2." },
+
+    { "sid": "hw2026s4-p2", "part": "a", "q_ok": true, "sol_ok": true, "qdims": "1206x82", "soldims": "1459x445", "note": "REAL statement (image). Question crop = (a) MAX-CLIQUE definition. Shared stem cropped (see stems). Solution = clique IP on p3." },
+    { "sid": "hw2026s4-p2", "part": "b", "q_ok": true, "sol_ok": true, "qdims": "1210x93", "soldims": "1439x479", "note": "REAL statement (image). Question crop = (b) SUBSET-SUM definition. Solution = subset-sum IP on p3." },
+    { "sid": "hw2026s4-p2", "part": "c", "q_ok": true, "sol_ok": true, "qdims": "1206x170", "soldims": "1432x170", "note": "REAL statement (image). Question crop = (c) MIN-COLORING definition. Solution spans p3->p4: __sol (p3, 'take n colors' intro) + __sol2 (p4, coloring IP)." },
+
+    { "sid": "hw2026s4-p3", "part": "a", "q_ok": true, "sol_ok": true, "qdims": "1204x89", "soldims": "1130x248", "note": "REAL statement (image). Question crop = (a) 'Formulate set cover as an IP'. Shared stem cropped (see stems). Solution (set-cover IP) is on p6; the lone '(a)'/'Question 3' heading sits on near-empty p5. Extra rounding-rule context paragraphs between parts (b/c/d) are not in any part crop." },
+    { "sid": "hw2026s4-p3", "part": "b", "q_ok": true, "sol_ok": true, "qdims": "1207x91", "soldims": "1420x372", "note": "REAL statement (image). Question crop = (b) 'E[|S|]=LPOPT<=OPT'. Solution on p6." },
+    { "sid": "hw2026s4-p3", "part": "c", "q_ok": true, "sol_ok": true, "qdims": "1204x89", "soldims": "1418x728", "note": "REAL statement (image). Question crop = (c) 'each element covered w.p. >= 1-1/e'. Solution on p6." },
+    { "sid": "hw2026s4-p3", "part": "d", "q_ok": true, "sol_ok": true, "qdims": "1208x89", "soldims": "1430x413", "note": "REAL statement (image). Question crop = (d) 'T=ln(n/eps) rounds, cover w.p. >=1-eps'. Solution spans p6->p7: __sol (p6) + __sol2 (p7, final union-bound line)." },
+
+    { "sid": "hw2026s4-p4", "part": null, "q_ok": true, "sol_ok": true, "qdims": "1264x382", "soldims": "1466x1980", "note": "REAL statement (image), full Max-2-LIN problem definition = question crop (single part, no stem). Solution spans p8->p9: __sol (p8, IP + SDP relax + GW rounding + analysis) + __sol2 (p9, final 0.878 conclusion)." }
+  ],
+  "stems": [
+    { "sid": "hw2026s4-p1", "stemImage": "images/lp-duality-farkas__hw2026s4-p1__stem.png" },
+    { "sid": "hw2026s4-p2", "stemImage": "images/lp-ilp-tum__hw2026s4-p2__stem.png" },
+    { "sid": "hw2026s4-p3", "stemImage": "images/approx-approximation__hw2026s4-p3__stem.png" }
+  ],
+  "issues": [
+    "All four PDFs are homework SOLUTION files. The 2025/2026 LaTeX solution sets (hw2025-Exc1, hw2025-Exc5, hw2026-sol1) contain NO restated problem statements -- only worked solutions. For those parts the questionImage is the leading framing slice of the solution (heading + setup/claim), not a separate problem statement; flagged per-part above.",
+    "hw2026-ex4_solutions.pdf DOES contain the full problem statements, but they are rendered as vector/image (NOT in the PDF text layer), so pdftotext and region-fit skip them. Statements were cropped by pixel-ink-row detection (crop mode + trim). Shared stems emitted for Q1/Q2/Q3; Q4 is single-part so its whole statement is the question crop.",
+    "Manifest stemImage was null for all ex4 parents; three genuine shared stems were found and emitted anyway (reported in 'stems'). Site/merge may attach them.",
+    "hw2026-sol1 Problem numbering: the PDF prints TWO 'Problem 3' headings. The first (formula-degree bound) is really Problem 2 => hw2026s1-p2; the second (Karger) is the real Problem 3 => hw2026s1-p3. Cropped accordingly.",
+    "Multi-page solutions emitted as __sol + __sol2 (9 of them): hw2025s1-p1-a, hw2025s1-p4-x, hw2025s1-p5-x, hw2026s1-p2-x, hw2026s1-p5-x, hw2026s4-p1-a, hw2026s4-p2-c, hw2026s4-p3-d, hw2026s4-p4-x.",
+    "ex4 Q3 has setup/context paragraphs interleaved between sub-parts (a rounding-rule definition, motivational notes) that belong to no single sub-question; they are not captured in any part crop (they are restated inside the solutions anyway)."
+  ]
+}

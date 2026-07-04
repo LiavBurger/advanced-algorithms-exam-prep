@@ -1,0 +1,46 @@
+<!-- title: Algebraic Bipartite Matching -->
+<h3>When do I reach for this?</h3>
+<p>You want to know whether a bipartite graph has a <em>perfect matching</em> — without running an augmenting-path algorithm. The algebraic idea: build a matrix whose <b>determinant is a polynomial that is nonzero exactly when a matching exists</b>. Each permutation term in the determinant expansion corresponds to a way of pairing the two sides; a surviving term is a perfect matching. Then test "is this polynomial nonzero?" with PIT and Schwartz–Zippel.</p>
+<ul>
+<li>"Does this bipartite graph have a perfect matching?" &rarr; symbolic determinant \(\neq0\).</li>
+<li>Need a fast randomized check (or a parallel one) instead of combinatorial augmenting paths.</li>
+<li>Counting flavor: "parity of the number of perfect matchings" &rarr; \(\det\) over \(\mathbb{F}_2\).</li>
+</ul>
+
+<h3>Core tools</h3>
+<div class="gtool"><div class="gtool-h">SYMBOLIC (TUTTE) MATRIX</div><div class="gtool-body">
+For bipartite \(G=(L\cup R,E)\) with \(|L|=|R|=n\), define \(B\) with a <em>distinct variable</em> on each edge:
+\[ B_{ij}=\begin{cases}x_{ij}&\text{if }(i,j)\in E\\[2pt]0&\text{otherwise.}\end{cases} \]
+<span class="gtool-use">encoding a bipartite graph so that matchings become determinant terms</span></div></div>
+
+<div class="gtool"><div class="gtool-h">DET ↔ MATCHING</div><div class="gtool-body">
+\[ \det B=\sum_{\sigma\in S_n}\operatorname{sgn}(\sigma)\prod_{i=1}^n B_{i,\sigma(i)}. \]
+A term survives \(\iff\) every \(B_{i,\sigma(i)}\neq0\) \(\iff\) \(\sigma\) is a perfect matching. Because each variable is distinct, no two terms cancel, so
+\[ \det B\not\equiv 0\iff G\text{ has a perfect matching.} \]
+<span class="gtool-use">turning "matching exists?" into "polynomial nonzero?"</span></div></div>
+
+<div class="gtool"><div class="gtool-h">TEST BY PIT</div><div class="gtool-body">
+\(\det B\) has degree \(\le n\) but exponentially many monomials — don't expand it. Substitute random values \(x_{ij}\gets r_{ij}\in S\), \(|S|\ge 2n\), and compute the <em>numeric</em> determinant in \(O(n^3)\). Nonzero \(\Rightarrow\) matching exists; error \(\le n/|S|\le\tfrac12\) by Schwartz–Zippel, amplify by repetition.
+<span class="gtool-use">deciding the symbolic determinant is nonzero, efficiently</span></div></div>
+
+<h3>Worked example — the thinking</h3>
+<div class="gworked">
+<p><b>2024C P1d.</b> True/False: the <em>parity</em> of the number of perfect matchings in a bipartite graph is efficiently decidable via \(\det(A)\bmod 2\).</p>
+<ol class="gsteps">
+<li><b>Set all variables to \(1\).</b> Let \(A\) be the \(0/1\) biadjacency matrix (each present edge \(=1\)). Then \(\det A=\sum_{\sigma}\operatorname{sgn}(\sigma)\prod_i A_{i,\sigma(i)}\) sums \(\pm1\) over all perfect matchings.</li>
+<li><b>Reduce mod \(2\).</b> Over \(\mathbb{F}_2\) the signs \(\operatorname{sgn}(\sigma)=\pm1\) collapse to \(1\), so \(\det A\bmod2=(\#\text{perfect matchings})\bmod2\).</li>
+<li><b>It is efficient.</b> A determinant mod \(2\) is computable by Gaussian elimination over \(\mathbb{F}_2\) in \(O(n^3)\) — deterministic, no randomness needed. So the statement is <b>True</b>.</li>
+<li><b>Contrast.</b> This gives only the <em>parity</em>. Counting matchings exactly is #P-hard (permanent), and <em>existence</em> needs the symbolic determinant \(+\) PIT above, not the \(0/1\) determinant.</li>
+</ol>
+</div>
+
+<div class="box pitfall"><b>Traps.</b> The \(0/1\) determinant is <em>not</em> a matching test: signed terms can cancel, so \(\det A=0\) does not mean "no matching" (e.g. the all-ones \(2\times2\) matrix has a matching yet \(\det=0\)). That cancellation is exactly why you need <em>distinct variables</em> — they make the terms unable to cancel. One direction is easy without algebra (a nonzero numeric \(\det\Rightarrow\) matching), but the clean equivalence needs the symbolic matrix. And keep \(|S|\ge 2n\) so the Schwartz–Zippel error stays \(\le\tfrac12\).</div>
+
+<h3>Checklist</h3>
+<ol class="gsteps">
+<li>Check \(|L|=|R|\); otherwise no perfect matching (matrix isn't square).</li>
+<li>Build the symbolic matrix \(B\) with a distinct variable \(x_{ij}\) per edge.</li>
+<li>Argue \(\det B\not\equiv0\iff\) perfect matching exists (surviving permutation \(=\) matching, no cancellation).</li>
+<li>Test \(\det B\not\equiv0\) by PIT: random substitution, numeric \(\det\) in \(O(n^3)\), degree \(\le n\).</li>
+<li>State the one-sided error \(n/|S|\); amplify. (For parity only, use \(\det\bmod2\) — deterministic.)</li>
+</ol>

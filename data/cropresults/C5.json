@@ -1,0 +1,272 @@
+{
+ "batch": "C5",
+ "parts": [
+  {
+   "sid": "hw2025s2-p1",
+   "part": "a",
+   "q_ok": true,
+   "sol_ok": true,
+   "qdims": "1318x128",
+   "soldims": "1319x255",
+   "note": ""
+  },
+  {
+   "sid": "hw2025s2-p1",
+   "part": "b",
+   "q_ok": true,
+   "sol_ok": true,
+   "qdims": "1320x156",
+   "soldims": "1320x286",
+   "note": ""
+  },
+  {
+   "sid": "hw2025s2-p1",
+   "part": "c",
+   "q_ok": true,
+   "sol_ok": true,
+   "qdims": "1320x156",
+   "soldims": "1320x571",
+   "note": ""
+  },
+  {
+   "sid": "hw2025s2-p1",
+   "part": "d",
+   "q_ok": true,
+   "sol_ok": true,
+   "qdims": "1319x155",
+   "soldims": "1320x433",
+   "note": "solution spans 2 pages; also randomized-random-walks__hw2025s2-p1-d__sol2.png"
+  },
+  {
+   "sid": "hw2025s2-p2",
+   "part": "a",
+   "q_ok": true,
+   "sol_ok": true,
+   "qdims": "1318x155",
+   "soldims": "1320x693",
+   "note": ""
+  },
+  {
+   "sid": "hw2025s2-p2",
+   "part": "b",
+   "q_ok": true,
+   "sol_ok": true,
+   "qdims": "1129x116",
+   "soldims": "1320x571",
+   "note": "solution spans 2 pages; also randomized-random-walks__hw2025s2-p2-b__sol2.png"
+  },
+  {
+   "sid": "hw2025s2-p3",
+   "part": null,
+   "q_ok": true,
+   "sol_ok": true,
+   "qdims": "1314x140",
+   "soldims": "1323x1464",
+   "note": ""
+  },
+  {
+   "sid": "hw2025s2-p4",
+   "part": null,
+   "q_ok": true,
+   "sol_ok": true,
+   "qdims": "1321x139",
+   "soldims": "1322x683",
+   "note": ""
+  },
+  {
+   "sid": "hw2025s2-p5",
+   "part": null,
+   "q_ok": true,
+   "sol_ok": true,
+   "qdims": "1321x144",
+   "soldims": "1322x583",
+   "note": ""
+  },
+  {
+   "sid": "hw2025s3-p2",
+   "part": "a",
+   "q_ok": true,
+   "sol_ok": true,
+   "qdims": "1319x156",
+   "soldims": "1319x197",
+   "note": ""
+  },
+  {
+   "sid": "hw2025s3-p2",
+   "part": "b",
+   "q_ok": true,
+   "sol_ok": true,
+   "qdims": "1319x156",
+   "soldims": "1322x419",
+   "note": ""
+  },
+  {
+   "sid": "hw2025s3-p1",
+   "part": null,
+   "q_ok": true,
+   "sol_ok": true,
+   "qdims": "1317x148",
+   "soldims": "1320x1092",
+   "note": ""
+  },
+  {
+   "sid": "hw2025s3-p3",
+   "part": null,
+   "q_ok": true,
+   "sol_ok": true,
+   "qdims": "1317x148",
+   "soldims": "1319x681",
+   "note": ""
+  },
+  {
+   "sid": "hw2025s3-p5",
+   "part": "a",
+   "q_ok": true,
+   "sol_ok": true,
+   "qdims": "1318x161",
+   "soldims": "1318x439",
+   "note": ""
+  },
+  {
+   "sid": "hw2025s3-p5",
+   "part": "b",
+   "q_ok": true,
+   "sol_ok": true,
+   "qdims": "1319x156",
+   "soldims": "1319x324",
+   "note": ""
+  },
+  {
+   "sid": "hw2025s3-p5",
+   "part": "c",
+   "q_ok": true,
+   "sol_ok": true,
+   "qdims": "1320x161",
+   "soldims": "1320x504",
+   "note": ""
+  },
+  {
+   "sid": "hw2025s3-p6",
+   "part": "a",
+   "q_ok": true,
+   "sol_ok": true,
+   "qdims": "1316x121",
+   "soldims": "1316x203",
+   "note": "solution spans 2 pages; also algebraic-matrix-mult__hw2025s3-p6-a__sol2.png"
+  },
+  {
+   "sid": "hw2025s3-p6",
+   "part": "b",
+   "q_ok": true,
+   "sol_ok": true,
+   "qdims": "1318x120",
+   "soldims": "1320x565",
+   "note": ""
+  },
+  {
+   "sid": "hw2025s3-p6",
+   "part": "c",
+   "q_ok": true,
+   "sol_ok": true,
+   "qdims": "872x121",
+   "soldims": "890x197",
+   "note": ""
+  },
+  {
+   "sid": "hw2025s3-p4",
+   "part": null,
+   "q_ok": true,
+   "sol_ok": true,
+   "qdims": "1318x140",
+   "soldims": "1320x736",
+   "note": "solution spans 2 pages; also lp-basics__hw2025s3-p4-x__sol2.png"
+  },
+  {
+   "sid": "hw2025s4-p2",
+   "part": "a",
+   "q_ok": true,
+   "sol_ok": true,
+   "qdims": "1318x124",
+   "soldims": "1319x409",
+   "note": ""
+  },
+  {
+   "sid": "hw2025s4-p2",
+   "part": "b",
+   "q_ok": true,
+   "sol_ok": true,
+   "qdims": "1319x123",
+   "soldims": "1319x744",
+   "note": ""
+  },
+  {
+   "sid": "hw2025s4-p2",
+   "part": "c",
+   "q_ok": true,
+   "sol_ok": true,
+   "qdims": "1295x119",
+   "soldims": "1319x435",
+   "note": ""
+  },
+  {
+   "sid": "hw2025s4-p2",
+   "part": "d",
+   "q_ok": true,
+   "sol_ok": true,
+   "qdims": "209x111",
+   "soldims": "1276x359",
+   "note": "question crop is short leading-portion framing (equation-heavy part)"
+  },
+  {
+   "sid": "hw2025s4-p2",
+   "part": "e",
+   "q_ok": true,
+   "sol_ok": true,
+   "qdims": "1317x155",
+   "soldims": "1319x297",
+   "note": ""
+  },
+  {
+   "sid": "hw2025s4-p2",
+   "part": "f",
+   "q_ok": true,
+   "sol_ok": true,
+   "qdims": "222x110",
+   "soldims": "1320x585",
+   "note": "question crop is short leading-portion framing (equation-heavy part)"
+  },
+  {
+   "sid": "hw2025s4-p1",
+   "part": null,
+   "q_ok": true,
+   "sol_ok": true,
+   "qdims": "1318x138",
+   "soldims": "1320x1048",
+   "note": ""
+  },
+  {
+   "sid": "hw2025s4-p3",
+   "part": "a",
+   "q_ok": true,
+   "sol_ok": true,
+   "qdims": "1319x155",
+   "soldims": "1320x605",
+   "note": ""
+  },
+  {
+   "sid": "hw2025s4-p3",
+   "part": "b",
+   "q_ok": true,
+   "sol_ok": true,
+   "qdims": "1319x156",
+   "soldims": "1319x557",
+   "note": ""
+  }
+ ],
+ "stems": [],
+ "issues": [
+  "All three sources are SOLUTION-ONLY homework PDFs (single-column English): they restate no question, only worked solutions. Per instructions, each questionImage is the leading portion of the solution that frames what is being proved/computed (part/problem header + first line(s)); solutionImage is the full worked solution for that part. For equation-heavy parts (Exc4 p2-d, p2-f) the leading framing is just 'Part X / <short lead-in>'; the manifest summary carries the actual task intent.",
+  "Multi-page solutions emitted with __sol2.png and noted: Exc2 p1-d (p1->p2), Exc2 p2-b (p2->p3), Exc3 p4-x (p2->p3), Exc3 p6-a (p3->p4).",
+  "Exc4 PDF also contains a Problem 4 (ellipsoid rounding) not present in the croptask manifest; it was not cropped, as intended."
+ ]
+}

@@ -1,0 +1,5215 @@
+{
+ "kept": [
+  {
+   "sid": "hw2026s1-p1",
+   "era": "hw2026",
+   "topic": "algebraic/pit",
+   "also_topics": [],
+   "difficulty": "medium",
+   "nparts": 1,
+   "sig": [
+    "sz-lemma-proof"
+   ],
+   "source": {
+    "kind": "homework",
+    "year": 2026,
+    "moed": null,
+    "iteration": 2026,
+    "set": 1,
+    "problem": 1,
+    "part": null
+   },
+   "parts": [
+    {
+     "part": null,
+     "topic": "algebraic/pit",
+     "difficulty": "medium",
+     "summary": "Prove the Schwartz-Zippel lemma by induction on the number of variables",
+     "dup_key": "sz-lemma-proof",
+     "has_figure": false,
+     "note": null
+    }
+   ]
+  },
+  {
+   "sid": "hw2026s1-p2",
+   "era": "hw2026",
+   "topic": "algebraic/pit",
+   "also_topics": [],
+   "difficulty": "medium",
+   "nparts": 1,
+   "sig": [
+    "formula-degree-bound"
+   ],
+   "source": {
+    "kind": "homework",
+    "year": 2026,
+    "moed": null,
+    "iteration": 2026,
+    "set": 1,
+    "problem": 2,
+    "part": null
+   },
+   "parts": [
+    {
+     "part": null,
+     "topic": "algebraic/pit",
+     "difficulty": "medium",
+     "summary": "Prove a polynomial computed by an arithmetic formula of size s has degree at most s (induction on structure)",
+     "dup_key": "formula-degree-bound",
+     "has_figure": false,
+     "note": "text mislabels this as Problem 3; it is the second problem"
+    }
+   ]
+  },
+  {
+   "sid": "hw2026s1-p3",
+   "era": "hw2026",
+   "topic": "randomized/karger-min-cut",
+   "also_topics": [],
+   "difficulty": "medium",
+   "nparts": 1,
+   "sig": [
+    "karger-num-min-cuts"
+   ],
+   "source": {
+    "kind": "homework",
+    "year": 2026,
+    "moed": null,
+    "iteration": 2026,
+    "set": 1,
+    "problem": 3,
+    "part": null
+   },
+   "parts": [
+    {
+     "part": null,
+     "topic": "randomized/karger-min-cut",
+     "difficulty": "medium",
+     "summary": "Use Karger's min-cut success bound to prove a graph has at most n(n-1)/2 minimum cuts",
+     "dup_key": "karger-num-min-cuts",
+     "has_figure": false,
+     "note": null
+    }
+   ]
+  },
+  {
+   "sid": "hw2026s1-p4",
+   "era": "hw2026",
+   "topic": "algebraic/pit",
+   "also_topics": [],
+   "difficulty": "medium",
+   "nparts": 1,
+   "sig": [
+    "invertible-matrix-subspace"
+   ],
+   "source": {
+    "kind": "homework",
+    "year": 2026,
+    "moed": null,
+    "iteration": 2026,
+    "set": 1,
+    "problem": 4,
+    "part": null
+   },
+   "parts": [
+    {
+     "part": null,
+     "topic": "algebraic/pit",
+     "difficulty": "medium",
+     "summary": "Randomized test whether the subspace spanned by matrices B1..Bk contains an invertible matrix via det + Schwartz-Zippel",
+     "dup_key": "invertible-matrix-subspace",
+     "has_figure": false,
+     "note": null
+    }
+   ]
+  },
+  {
+   "sid": "hw2026s1-p5",
+   "era": "hw2026",
+   "topic": "algebraic/pit",
+   "also_topics": [],
+   "difficulty": "hard",
+   "nparts": 1,
+   "sig": [
+    "common-basis-cauchy-binet"
+   ],
+   "source": {
+    "kind": "homework",
+    "year": 2026,
+    "moed": null,
+    "iteration": 2026,
+    "set": 1,
+    "problem": 5,
+    "part": null
+   },
+   "parts": [
+    {
+     "part": null,
+     "topic": "algebraic/pit",
+     "difficulty": "hard",
+     "summary": "Test if two rank-n matrices share a common column basis using Cauchy-Binet and Schwartz-Zippel",
+     "dup_key": "common-basis-cauchy-binet",
+     "has_figure": false,
+     "note": null
+    }
+   ]
+  },
+  {
+   "sid": "hw2026s1-p6",
+   "era": "hw2026",
+   "topic": "randomized/concentration",
+   "also_topics": [],
+   "difficulty": "medium",
+   "nparts": 1,
+   "sig": [
+    "epsilon-bias-chernoff"
+   ],
+   "source": {
+    "kind": "homework",
+    "year": 2026,
+    "moed": null,
+    "iteration": 2026,
+    "set": 1,
+    "problem": 6,
+    "part": null
+   },
+   "parts": [
+    {
+     "part": null,
+     "topic": "randomized/concentration",
+     "difficulty": "medium",
+     "summary": "Sample s random +/-1 vectors so every character e_I has small bias, via Chernoff + union bound",
+     "dup_key": "epsilon-bias-chernoff",
+     "has_figure": false,
+     "note": null
+    }
+   ]
+  },
+  {
+   "sid": "hw2026s4-p1",
+   "era": "hw2026",
+   "topic": "lp/duality-farkas",
+   "also_topics": [
+    "lp/basics"
+   ],
+   "difficulty": "hard",
+   "nparts": 2,
+   "sig": [
+    "lp-perturbation-feasible-ball",
+    "lp-perturbation-infeasible"
+   ],
+   "source": {
+    "kind": "homework",
+    "year": 2026,
+    "moed": null,
+    "iteration": 2026,
+    "set": 4,
+    "problem": 1,
+    "part": "a"
+   },
+   "parts": [
+    {
+     "part": "a",
+     "topic": "lp/duality-farkas",
+     "difficulty": "hard",
+     "summary": "Farkas II: if {Cx<=d} is infeasible then the perturbed {Cx<=d+2^-L' 1} is still infeasible",
+     "dup_key": "lp-perturbation-infeasible",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "b",
+     "topic": "lp/basics",
+     "difficulty": "medium",
+     "summary": "If {Cx<=d} is feasible, a ball of radius 2^-2L' around a feasible point lies inside {Cx<=d+2^-L' 1}",
+     "dup_key": "lp-perturbation-feasible-ball",
+     "has_figure": false,
+     "note": "supports ellipsoid feasibility; geometric Cauchy-Schwarz argument, not Farkas"
+    }
+   ]
+  },
+  {
+   "sid": "hw2026s4-p2",
+   "era": "hw2026",
+   "topic": "lp/ilp-tum",
+   "also_topics": [],
+   "difficulty": "medium",
+   "nparts": 3,
+   "sig": [
+    "ip-graph-coloring",
+    "ip-max-clique",
+    "ip-subset-sum"
+   ],
+   "source": {
+    "kind": "homework",
+    "year": 2026,
+    "moed": null,
+    "iteration": 2026,
+    "set": 4,
+    "problem": 2,
+    "part": "a"
+   },
+   "parts": [
+    {
+     "part": "a",
+     "topic": "lp/ilp-tum",
+     "difficulty": "easy",
+     "summary": "Write an integer program for maximum clique",
+     "dup_key": "ip-max-clique",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "b",
+     "topic": "lp/ilp-tum",
+     "difficulty": "easy",
+     "summary": "Write an integer program for subset-sum feasibility",
+     "dup_key": "ip-subset-sum",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "c",
+     "topic": "lp/ilp-tum",
+     "difficulty": "medium",
+     "summary": "Write an integer program for graph coloring / chromatic number",
+     "dup_key": "ip-graph-coloring",
+     "has_figure": false,
+     "note": null
+    }
+   ]
+  },
+  {
+   "sid": "hw2026s4-p3",
+   "era": "hw2026",
+   "topic": "approx/approximation",
+   "also_topics": [],
+   "difficulty": "medium",
+   "nparts": 4,
+   "sig": [
+    "setcover-cover-prob",
+    "setcover-ip",
+    "setcover-lp-expectation",
+    "setcover-randomized-rounding"
+   ],
+   "source": {
+    "kind": "homework",
+    "year": 2026,
+    "moed": null,
+    "iteration": 2026,
+    "set": 4,
+    "problem": 3,
+    "part": "a"
+   },
+   "parts": [
+    {
+     "part": "a",
+     "topic": "approx/approximation",
+     "difficulty": "easy",
+     "summary": "Give the IP/LP formulation of set cover",
+     "dup_key": "setcover-ip",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "b",
+     "topic": "approx/approximation",
+     "difficulty": "medium",
+     "summary": "Randomized LP rounding for set cover: show E[|S|] = LPOPT <= OPT",
+     "dup_key": "setcover-lp-expectation",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "c",
+     "topic": "approx/approximation",
+     "difficulty": "medium",
+     "summary": "Show each element is covered with probability >= 1-1/e under one round of LP rounding",
+     "dup_key": "setcover-cover-prob",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "d",
+     "topic": "approx/approximation",
+     "difficulty": "medium",
+     "summary": "Repeat rounding T=ln(n/eps) times; union bound gives an O(log n) set-cover approximation",
+     "dup_key": "setcover-randomized-rounding",
+     "has_figure": false,
+     "note": null
+    }
+   ]
+  },
+  {
+   "sid": "hw2026s4-p4",
+   "era": "hw2026",
+   "topic": "approx/approximation",
+   "also_topics": [],
+   "difficulty": "hard",
+   "nparts": 1,
+   "sig": [
+    "max2lin-sdp-gw"
+   ],
+   "source": {
+    "kind": "homework",
+    "year": 2026,
+    "moed": null,
+    "iteration": 2026,
+    "set": 4,
+    "problem": 4,
+    "part": null
+   },
+   "parts": [
+    {
+     "part": null,
+     "topic": "approx/approximation",
+     "difficulty": "hard",
+     "summary": "SDP relaxation + Goemans-Williamson random-hyperplane rounding gives a 0.878 approx for Max-2-LIN",
+     "dup_key": "max2lin-sdp-gw",
+     "has_figure": false,
+     "note": null
+    }
+   ]
+  },
+  {
+   "sid": "hw2025s1-p1",
+   "era": "hw2025",
+   "topic": "randomized/prob-basics",
+   "also_topics": [
+    "randomized/concentration"
+   ],
+   "difficulty": "medium",
+   "nparts": 3,
+   "sig": [
+    "rp-corp-in-bpp",
+    "zpp-dontknow-equivalence",
+    "zpp-rp-corp"
+   ],
+   "source": {
+    "kind": "homework",
+    "year": 2025,
+    "moed": null,
+    "iteration": 2025,
+    "set": 1,
+    "problem": 1,
+    "part": "a"
+   },
+   "parts": [
+    {
+     "part": "a",
+     "topic": "randomized/concentration",
+     "difficulty": "medium",
+     "summary": "Show ZPP equals the class with a poly-time 'I don't know' algorithm, using Markov + geometric-distribution expectation",
+     "dup_key": "zpp-dontknow-equivalence",
+     "has_figure": false,
+     "note": "randomized complexity classes; core technique is Markov's inequality"
+    },
+    {
+     "part": "b",
+     "topic": "randomized/prob-basics",
+     "difficulty": "easy",
+     "summary": "Show RP subset of BPP and coRP subset of BPP by probability amplification",
+     "dup_key": "rp-corp-in-bpp",
+     "has_figure": false,
+     "note": "randomized complexity classes"
+    },
+    {
+     "part": "c",
+     "topic": "randomized/prob-basics",
+     "difficulty": "medium",
+     "summary": "Prove ZPP = RP intersect coRP",
+     "dup_key": "zpp-rp-corp",
+     "has_figure": false,
+     "note": "randomized complexity classes"
+    }
+   ]
+  },
+  {
+   "sid": "hw2025s1-p4",
+   "era": "hw2025",
+   "topic": "algebraic/pit",
+   "also_topics": [],
+   "difficulty": "medium",
+   "nparts": 1,
+   "sig": [
+    "equality-fingerprinting"
+   ],
+   "source": {
+    "kind": "homework",
+    "year": 2025,
+    "moed": null,
+    "iteration": 2025,
+    "set": 1,
+    "problem": 4,
+    "part": null
+   },
+   "parts": [
+    {
+     "part": null,
+     "topic": "algebraic/pit",
+     "difficulty": "medium",
+     "summary": "Randomized equality-testing protocol with O(log n) communication via random prime modulus or polynomial fingerprint",
+     "dup_key": "equality-fingerprinting",
+     "has_figure": false,
+     "note": "communication-complexity setting; primary technique is polynomial/prime fingerprinting"
+    }
+   ]
+  },
+  {
+   "sid": "hw2025s1-p5",
+   "era": "hw2025",
+   "topic": "randomized/concentration",
+   "also_topics": [],
+   "difficulty": "medium",
+   "nparts": 1,
+   "sig": [
+    "set-discrepancy-chernoff"
+   ],
+   "source": {
+    "kind": "homework",
+    "year": 2025,
+    "moed": null,
+    "iteration": 2025,
+    "set": 1,
+    "problem": 5,
+    "part": null
+   },
+   "parts": [
+    {
+     "part": null,
+     "topic": "randomized/concentration",
+     "difficulty": "medium",
+     "summary": "Random +/-1 coloring keeps every set's discrepancy O(sqrt(n log m)) via Chernoff + union bound",
+     "dup_key": "set-discrepancy-chernoff",
+     "has_figure": false,
+     "note": null
+    }
+   ]
+  },
+  {
+   "sid": "hw2025s2-p1",
+   "era": "hw2025",
+   "topic": "randomized/random-walks",
+   "also_topics": [],
+   "difficulty": "medium",
+   "nparts": 4,
+   "sig": [
+    "spectral-gap-lambda2-bound",
+    "spectral-gap-lambda2-bound",
+    "spectral-gap-lambda2-bound",
+    "spectral-gap-lambda2-bound"
+   ],
+   "source": {
+    "kind": "homework",
+    "year": 2025,
+    "moed": null,
+    "iteration": 2025,
+    "set": 2,
+    "problem": 1,
+    "part": "a"
+   },
+   "parts": [
+    {
+     "part": "a",
+     "topic": "randomized/random-walks",
+     "difficulty": "easy",
+     "summary": "A unit eigenvector x of lambda2 has some coordinate with x_i^2 >= 1/n",
+     "dup_key": "spectral-gap-lambda2-bound",
+     "has_figure": false,
+     "note": "step of the spectral-gap lower-bound proof"
+    },
+    {
+     "part": "b",
+     "topic": "randomized/random-walks",
+     "difficulty": "easy",
+     "summary": "Since x is orthogonal to the all-ones vector, some coordinate x_j <= 0",
+     "dup_key": "spectral-gap-lambda2-bound",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "c",
+     "topic": "randomized/random-walks",
+     "difficulty": "medium",
+     "summary": "Along a path in a connected graph there is an edge (u,v) with |x_u - x_v| >= 1/(n sqrt n)",
+     "dup_key": "spectral-gap-lambda2-bound",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "d",
+     "topic": "randomized/random-walks",
+     "difficulty": "medium",
+     "summary": "Conclude an upper bound on lambda2 (spectral gap) from the large edge difference",
+     "dup_key": "spectral-gap-lambda2-bound",
+     "has_figure": false,
+     "note": null
+    }
+   ]
+  },
+  {
+   "sid": "hw2025s2-p2",
+   "era": "hw2025",
+   "topic": "randomized/random-walks",
+   "also_topics": [],
+   "difficulty": "medium",
+   "nparts": 2,
+   "sig": [
+    "bipartite-lambda-n-minus-one",
+    "disconnected-lambda2-one"
+   ],
+   "source": {
+    "kind": "homework",
+    "year": 2025,
+    "moed": null,
+    "iteration": 2025,
+    "set": 2,
+    "problem": 2,
+    "part": "a"
+   },
+   "parts": [
+    {
+     "part": "a",
+     "topic": "randomized/random-walks",
+     "difficulty": "medium",
+     "summary": "Show a disconnected d-regular graph has lambda2 = 1 via multiplicity of eigenvalue 1",
+     "dup_key": "disconnected-lambda2-one",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "b",
+     "topic": "randomized/random-walks",
+     "difficulty": "medium",
+     "summary": "Show a bipartite d-regular graph has smallest eigenvalue lambda_n = -1",
+     "dup_key": "bipartite-lambda-n-minus-one",
+     "has_figure": false,
+     "note": null
+    }
+   ]
+  },
+  {
+   "sid": "hw2025s2-p3",
+   "era": "hw2025",
+   "topic": "randomized/isolation-lemma",
+   "also_topics": [],
+   "difficulty": "hard",
+   "nparts": 1,
+   "sig": [
+    "matching-k-red-isolation"
+   ],
+   "source": {
+    "kind": "homework",
+    "year": 2025,
+    "moed": null,
+    "iteration": 2025,
+    "set": 2,
+    "problem": 3,
+    "part": null
+   },
+   "parts": [
+    {
+     "part": null,
+     "topic": "randomized/isolation-lemma",
+     "difficulty": "hard",
+     "summary": "Find a min-weight perfect matching with exactly k red edges via the isolation lemma and symbolic determinant with weights 2^w",
+     "dup_key": "matching-k-red-isolation",
+     "has_figure": false,
+     "note": "combines isolation lemma with algebraic bipartite matching / determinant"
+    }
+   ]
+  },
+  {
+   "sid": "hw2025s2-p4",
+   "era": "hw2025",
+   "topic": "algebraic/matrix-mult",
+   "also_topics": [],
+   "difficulty": "medium",
+   "nparts": 1,
+   "sig": [
+    "triangle-count-matrix"
+   ],
+   "source": {
+    "kind": "homework",
+    "year": 2025,
+    "moed": null,
+    "iteration": 2025,
+    "set": 2,
+    "problem": 4,
+    "part": null
+   },
+   "parts": [
+    {
+     "part": null,
+     "topic": "algebraic/matrix-mult",
+     "difficulty": "medium",
+     "summary": "Count triangles in a graph via the trace of A^3 using fast matrix multiplication",
+     "dup_key": "triangle-count-matrix",
+     "has_figure": false,
+     "note": null
+    }
+   ]
+  },
+  {
+   "sid": "hw2025s2-p5",
+   "era": "hw2025",
+   "topic": "algebraic/matrix-mult",
+   "also_topics": [],
+   "difficulty": "medium",
+   "nparts": 1,
+   "sig": [
+    "transitive-closure-matrix"
+   ],
+   "source": {
+    "kind": "homework",
+    "year": 2025,
+    "moed": null,
+    "iteration": 2025,
+    "set": 2,
+    "problem": 5,
+    "part": null
+   },
+   "parts": [
+    {
+     "part": null,
+     "topic": "algebraic/matrix-mult",
+     "difficulty": "medium",
+     "summary": "Compute transitive closure via (A+I)^n using fast matrix multiplication and repeated squaring",
+     "dup_key": "transitive-closure-matrix",
+     "has_figure": false,
+     "note": null
+    }
+   ]
+  },
+  {
+   "sid": "hw2025s3-p1",
+   "era": "hw2025",
+   "topic": "algebraic/fft",
+   "also_topics": [],
+   "difficulty": "medium",
+   "nparts": 1,
+   "sig": [
+    "bivariate-poly-mult-fft"
+   ],
+   "source": {
+    "kind": "homework",
+    "year": 2025,
+    "moed": null,
+    "iteration": 2025,
+    "set": 3,
+    "problem": 1,
+    "part": null
+   },
+   "parts": [
+    {
+     "part": null,
+     "topic": "algebraic/fft",
+     "difficulty": "medium",
+     "summary": "Multiply two bivariate polynomials by Kronecker substitution y=x^(2n+1), reducing to one univariate FFT product",
+     "dup_key": "bivariate-poly-mult-fft",
+     "has_figure": false,
+     "note": null
+    }
+   ]
+  },
+  {
+   "sid": "hw2025s3-p2",
+   "era": "hw2025",
+   "topic": "algebraic/fft",
+   "also_topics": [],
+   "difficulty": "easy",
+   "nparts": 2,
+   "sig": [
+    "karatsuba-integer-mult",
+    "karatsuba-integer-mult"
+   ],
+   "source": {
+    "kind": "homework",
+    "year": 2025,
+    "moed": null,
+    "iteration": 2025,
+    "set": 3,
+    "problem": 2,
+    "part": "a"
+   },
+   "parts": [
+    {
+     "part": "a",
+     "topic": "algebraic/fft",
+     "difficulty": "easy",
+     "summary": "Karatsuba: compute the cross term x0y1+x1y0 with a single extra multiplication",
+     "dup_key": "karatsuba-integer-mult",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "b",
+     "topic": "algebraic/fft",
+     "difficulty": "easy",
+     "summary": "Solve the Karatsuba recurrence T(n)=3T(n/2)+O(n) = O(n^log2(3))",
+     "dup_key": "karatsuba-integer-mult",
+     "has_figure": false,
+     "note": "recurrence solving"
+    }
+   ]
+  },
+  {
+   "sid": "hw2025s3-p3",
+   "era": "hw2025",
+   "topic": "algebraic/fft",
+   "also_topics": [],
+   "difficulty": "medium",
+   "nparts": 1,
+   "sig": [
+    "sumset-fft"
+   ],
+   "source": {
+    "kind": "homework",
+    "year": 2025,
+    "moed": null,
+    "iteration": 2025,
+    "set": 3,
+    "problem": 3,
+    "part": null
+   },
+   "parts": [
+    {
+     "part": null,
+     "topic": "algebraic/fft",
+     "difficulty": "medium",
+     "summary": "Count the ways to write k=i+j with i in A, j in B (sumset) via polynomial multiplication with FFT",
+     "dup_key": "sumset-fft",
+     "has_figure": false,
+     "note": null
+    }
+   ]
+  },
+  {
+   "sid": "hw2025s3-p4",
+   "era": "hw2025",
+   "topic": "lp/basics",
+   "also_topics": [],
+   "difficulty": "easy",
+   "nparts": 1,
+   "sig": [
+    "transportation-lp"
+   ],
+   "source": {
+    "kind": "homework",
+    "year": 2025,
+    "moed": null,
+    "iteration": 2025,
+    "set": 3,
+    "problem": 4,
+    "part": null
+   },
+   "parts": [
+    {
+     "part": null,
+     "topic": "lp/basics",
+     "difficulty": "easy",
+     "summary": "Formulate a transportation / shipping-cost minimization problem as a linear program and solve it",
+     "dup_key": "transportation-lp",
+     "has_figure": false,
+     "note": null
+    }
+   ]
+  },
+  {
+   "sid": "hw2025s3-p5",
+   "era": "hw2025",
+   "topic": "algebraic/matrix-mult",
+   "also_topics": [],
+   "difficulty": "medium",
+   "nparts": 3,
+   "sig": [
+    "rank-via-ata-charpoly",
+    "rank-via-ata-charpoly",
+    "rank-via-ata-charpoly"
+   ],
+   "source": {
+    "kind": "homework",
+    "year": 2025,
+    "moed": null,
+    "iteration": 2025,
+    "set": 3,
+    "problem": 5,
+    "part": "a"
+   },
+   "parts": [
+    {
+     "part": "a",
+     "topic": "algebraic/matrix-mult",
+     "difficulty": "medium",
+     "summary": "Show rank(A) = rank(A^T A) by proving the two matrices have equal kernels",
+     "dup_key": "rank-via-ata-charpoly",
+     "has_figure": false,
+     "note": "parallel rank-computation via matrix algebra / characteristic polynomial"
+    },
+    {
+     "part": "b",
+     "topic": "algebraic/matrix-mult",
+     "difficulty": "medium",
+     "summary": "Show rank(B) = m minus the number of zero eigenvalues for symmetric B",
+     "dup_key": "rank-via-ata-charpoly",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "c",
+     "topic": "algebraic/matrix-mult",
+     "difficulty": "medium",
+     "summary": "Parallel algorithm computing rank(A) via the characteristic polynomial of A^T A (smallest nonzero coefficient)",
+     "dup_key": "rank-via-ata-charpoly",
+     "has_figure": false,
+     "note": null
+    }
+   ]
+  },
+  {
+   "sid": "hw2025s3-p6",
+   "era": "hw2025",
+   "topic": "algebraic/matrix-mult",
+   "also_topics": [],
+   "difficulty": "medium",
+   "nparts": 3,
+   "sig": [
+    "psd-characterization",
+    "psd-characterization",
+    "psd-characterization"
+   ],
+   "source": {
+    "kind": "homework",
+    "year": 2025,
+    "moed": null,
+    "iteration": 2025,
+    "set": 3,
+    "problem": 6,
+    "part": "a"
+   },
+   "parts": [
+    {
+     "part": "a",
+     "topic": "algebraic/matrix-mult",
+     "difficulty": "easy",
+     "summary": "Show a PSD matrix (v^T A v >= 0) has all eigenvalues >= 0",
+     "dup_key": "psd-characterization",
+     "has_figure": false,
+     "note": "linear-algebra foundation for SDP; borderline topic fit"
+    },
+    {
+     "part": "b",
+     "topic": "algebraic/matrix-mult",
+     "difficulty": "medium",
+     "summary": "Show a PSD matrix A can be written as A = B^T B via diagonalization",
+     "dup_key": "psd-characterization",
+     "has_figure": false,
+     "note": "linear-algebra foundation for SDP; borderline topic fit"
+    },
+    {
+     "part": "c",
+     "topic": "algebraic/matrix-mult",
+     "difficulty": "easy",
+     "summary": "Show A = B^T B implies A is positive semidefinite",
+     "dup_key": "psd-characterization",
+     "has_figure": false,
+     "note": "linear-algebra foundation for SDP; borderline topic fit"
+    }
+   ]
+  },
+  {
+   "sid": "hw2025s4-p1",
+   "era": "hw2025",
+   "topic": "lp/duality-farkas",
+   "also_topics": [],
+   "difficulty": "medium",
+   "nparts": 1,
+   "sig": [
+    "farkas-standard-form-variant"
+   ],
+   "source": {
+    "kind": "homework",
+    "year": 2025,
+    "moed": null,
+    "iteration": 2025,
+    "set": 4,
+    "problem": 1,
+    "part": null
+   },
+   "parts": [
+    {
+     "part": null,
+     "topic": "lp/duality-farkas",
+     "difficulty": "medium",
+     "summary": "Derive a standard-form variant of Farkas' lemma (exists y>=0, y^T A>=0, y^T b<0) from the class version",
+     "dup_key": "farkas-standard-form-variant",
+     "has_figure": false,
+     "note": null
+    }
+   ]
+  },
+  {
+   "sid": "hw2025s4-p2",
+   "era": "hw2025",
+   "topic": "lp/basics",
+   "also_topics": [],
+   "difficulty": "hard",
+   "nparts": 6,
+   "sig": [
+    "bland-rule-termination",
+    "bland-rule-termination",
+    "bland-rule-termination",
+    "bland-rule-termination",
+    "bland-rule-termination",
+    "bland-rule-termination"
+   ],
+   "source": {
+    "kind": "homework",
+    "year": 2025,
+    "moed": null,
+    "iteration": 2025,
+    "set": 4,
+    "problem": 2,
+    "part": "a"
+   },
+   "parts": [
+    {
+     "part": "a",
+     "topic": "lp/basics",
+     "difficulty": "medium",
+     "summary": "Bland's-rule termination: establish sign facts about the pivot column (A_ts>0, s<t, reduced costs)",
+     "dup_key": "bland-rule-termination",
+     "has_figure": false,
+     "note": "part of the simplex anti-cycling proof"
+    },
+    {
+     "part": "b",
+     "topic": "lp/basics",
+     "difficulty": "medium",
+     "summary": "Bland's-rule termination: construct direction d and prove its properties (d_j>=0, Ad=0)",
+     "dup_key": "bland-rule-termination",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "c",
+     "topic": "lp/basics",
+     "difficulty": "medium",
+     "summary": "Bland's-rule termination: reduced-cost sign facts at the new basis B'",
+     "dup_key": "bland-rule-termination",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "d",
+     "topic": "lp/basics",
+     "difficulty": "medium",
+     "summary": "Bland's-rule termination: show cost difference f = v^T A so that f dot d = 0",
+     "dup_key": "bland-rule-termination",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "e",
+     "topic": "lp/basics",
+     "difficulty": "medium",
+     "summary": "Bland's-rule termination: sign analysis of the coordinates of f",
+     "dup_key": "bland-rule-termination",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "f",
+     "topic": "lp/basics",
+     "difficulty": "hard",
+     "summary": "Bland's-rule termination: derive the contradiction f dot d > 0, proving the simplex cannot cycle",
+     "dup_key": "bland-rule-termination",
+     "has_figure": false,
+     "note": null
+    }
+   ]
+  },
+  {
+   "sid": "hw2025s4-p3",
+   "era": "hw2025",
+   "topic": "lp/duality-farkas",
+   "also_topics": [],
+   "difficulty": "medium",
+   "nparts": 2,
+   "sig": [
+    "lp-infeasible-implies-unbounded",
+    "lp-infeasible-implies-unbounded"
+   ],
+   "source": {
+    "kind": "homework",
+    "year": 2025,
+    "moed": null,
+    "iteration": 2025,
+    "set": 4,
+    "problem": 3,
+    "part": "a"
+   },
+   "parts": [
+    {
+     "part": "a",
+     "topic": "lp/duality-farkas",
+     "difficulty": "medium",
+     "summary": "Primal infeasible plus dual feasible implies the dual is unbounded (via Farkas)",
+     "dup_key": "lp-infeasible-implies-unbounded",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "b",
+     "topic": "lp/duality-farkas",
+     "difficulty": "medium",
+     "summary": "Dual infeasible plus primal feasible implies the primal is unbounded (via Farkas)",
+     "dup_key": "lp-infeasible-implies-unbounded",
+     "has_figure": false,
+     "note": null
+    }
+   ]
+  },
+  {
+   "sid": "hw2025s5-p2",
+   "era": "hw2025",
+   "topic": "approx/approximation",
+   "also_topics": [],
+   "difficulty": "medium",
+   "nparts": 1,
+   "sig": [
+    "greedy-max-indep-set"
+   ],
+   "source": {
+    "kind": "homework",
+    "year": 2025,
+    "moed": null,
+    "iteration": 2025,
+    "set": 5,
+    "problem": 2,
+    "part": null
+   },
+   "parts": [
+    {
+     "part": null,
+     "topic": "approx/approximation",
+     "difficulty": "medium",
+     "summary": "Greedy 1/(Delta+1)-approximation for maximum independent set on graphs of max degree Delta",
+     "dup_key": "greedy-max-indep-set",
+     "has_figure": false,
+     "note": null
+    }
+   ]
+  },
+  {
+   "sid": "2023A-p1",
+   "era": "modern",
+   "topic": "lp/basics",
+   "also_topics": [
+    "algebraic/matrix-mult",
+    "randomized/concentration",
+    "randomized/isolation-lemma"
+   ],
+   "difficulty": "medium",
+   "nparts": 4,
+   "sig": [
+    "bpp-amplification-chernoff",
+    "isolation-lemma-product-weights",
+    "simplex-degenerate-vertex-move",
+    "strassen-4x4-49-mults"
+   ],
+   "source": {
+    "kind": "exam",
+    "year": 2023,
+    "moed": "A",
+    "iteration": null,
+    "set": null,
+    "problem": 1,
+    "part": "a"
+   },
+   "parts": [
+    {
+     "part": "a",
+     "topic": "lp/basics",
+     "difficulty": "easy",
+     "summary": "T/F: simplex can move to a different vertex whose objective value equals the previous vertex's (degeneracy).",
+     "dup_key": "simplex-degenerate-vertex-move",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "b",
+     "topic": "randomized/isolation-lemma",
+     "difficulty": "medium",
+     "summary": "T/F: isolation lemma still holds if set weight is the product (not sum) of element weights.",
+     "dup_key": "isolation-lemma-product-weights",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "c",
+     "topic": "randomized/concentration",
+     "difficulty": "medium",
+     "summary": "T/F: BPP(1/8,1/4)=BPP(2^-n,1-2^-n); error amplification via Chernoff bound.",
+     "dup_key": "bpp-amplification-chernoff",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "d",
+     "topic": "algebraic/matrix-mult",
+     "difficulty": "easy",
+     "summary": "T/F: two 4x4 matrices can be multiplied with at most 49 multiplications (Strassen, one recursion level).",
+     "dup_key": "strassen-4x4-49-mults",
+     "has_figure": false,
+     "note": null
+    }
+   ]
+  },
+  {
+   "sid": "2023A-p2",
+   "era": "modern",
+   "topic": "lp/ilp-tum",
+   "also_topics": [],
+   "difficulty": "easy",
+   "nparts": 1,
+   "sig": [
+    "ilp-dominating-set"
+   ],
+   "source": {
+    "kind": "exam",
+    "year": 2023,
+    "moed": "A",
+    "iteration": null,
+    "set": null,
+    "problem": 2,
+    "part": null
+   },
+   "parts": [
+    {
+     "part": null,
+     "topic": "lp/ilp-tum",
+     "difficulty": "easy",
+     "summary": "Write an integer program for Minimum Dominating Set and justify variables and constraints.",
+     "dup_key": "ilp-dominating-set",
+     "has_figure": false,
+     "note": null
+    }
+   ]
+  },
+  {
+   "sid": "2023A-p3",
+   "era": "modern",
+   "topic": "approx/approximation",
+   "also_topics": [],
+   "difficulty": "medium",
+   "nparts": 1,
+   "sig": [
+    "max-triple-cut-2-3-approx"
+   ],
+   "source": {
+    "kind": "exam",
+    "year": 2023,
+    "moed": "A",
+    "iteration": null,
+    "set": null,
+    "problem": 3,
+    "part": null
+   },
+   "parts": [
+    {
+     "part": null,
+     "topic": "approx/approximation",
+     "difficulty": "medium",
+     "summary": "Give a 2/3-approximation for Maximum Triple Cut (random 3-partition, derandomized via conditional expectations).",
+     "dup_key": "max-triple-cut-2-3-approx",
+     "has_figure": false,
+     "note": null
+    }
+   ]
+  },
+  {
+   "sid": "2023A-p4",
+   "era": "modern",
+   "topic": "lp/duality-farkas",
+   "also_topics": [
+    "lp/basics"
+   ],
+   "difficulty": "medium",
+   "nparts": 3,
+   "sig": [
+    "matching-dual-vertex-cover-konig",
+    "matching-lp-dual",
+    "matching-lp-standard-form"
+   ],
+   "source": {
+    "kind": "exam",
+    "year": 2023,
+    "moed": "A",
+    "iteration": null,
+    "set": null,
+    "problem": 4,
+    "part": "a"
+   },
+   "parts": [
+    {
+     "part": "a",
+     "topic": "lp/basics",
+     "difficulty": "medium",
+     "summary": "Relax the maximum-matching IP to an LP and write it in standard form (with slack variables).",
+     "dup_key": "matching-lp-standard-form",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "b",
+     "topic": "lp/duality-farkas",
+     "difficulty": "medium",
+     "summary": "Write and simplify the dual LP of the fractional-matching LP from part (a).",
+     "dup_key": "matching-lp-dual",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "c",
+     "topic": "lp/duality-farkas",
+     "difficulty": "medium",
+     "summary": "Identify that adding integrality to the dual LP gives Vertex Cover (dual of matching; Konig's theorem).",
+     "dup_key": "matching-dual-vertex-cover-konig",
+     "has_figure": false,
+     "note": null
+    }
+   ]
+  },
+  {
+   "sid": "2023A-p5",
+   "era": "modern",
+   "topic": "algebraic/pit",
+   "also_topics": [],
+   "difficulty": "hard",
+   "nparts": 1,
+   "sig": [
+    "sz-matrix-completion-rank"
+   ],
+   "source": {
+    "kind": "exam",
+    "year": 2023,
+    "moed": "A",
+    "iteration": null,
+    "set": null,
+    "problem": 5,
+    "part": null
+   },
+   "parts": [
+    {
+     "part": null,
+     "topic": "algebraic/pit",
+     "difficulty": "hard",
+     "summary": "Randomized algorithm for Matrix Completion max rank via random substitution; prove correctness, runtime, error (Schwartz-Zippel on a submatrix determinant).",
+     "dup_key": "sz-matrix-completion-rank",
+     "has_figure": false,
+     "note": null
+    }
+   ]
+  },
+  {
+   "sid": "2023A-p6",
+   "era": "modern",
+   "topic": "algebraic/fft",
+   "also_topics": [],
+   "difficulty": "medium",
+   "nparts": 1,
+   "sig": [
+    "fft-convolution-poly-mult"
+   ],
+   "source": {
+    "kind": "exam",
+    "year": 2023,
+    "moed": "A",
+    "iteration": null,
+    "set": null,
+    "problem": 6,
+    "part": null
+   },
+   "parts": [
+    {
+     "part": null,
+     "topic": "algebraic/fft",
+     "difficulty": "medium",
+     "summary": "O(n log n) algorithm computing the sumset A+B and counts of representations via FFT polynomial multiplication.",
+     "dup_key": "fft-convolution-poly-mult",
+     "has_figure": false,
+     "note": null
+    }
+   ]
+  },
+  {
+   "sid": "2024A-p1",
+   "era": "modern",
+   "topic": "randomized/random-walks",
+   "also_topics": [
+    "lp/basics",
+    "lp/duality-farkas"
+   ],
+   "difficulty": "medium",
+   "nparts": 4,
+   "sig": [
+    "gram-schmidt-orthonormal-basis",
+    "psd-det-nonneg",
+    "reduced-cost-positive-unique-opt",
+    "strong-duality-equal-optima"
+   ],
+   "source": {
+    "kind": "exam",
+    "year": 2024,
+    "moed": "A",
+    "iteration": null,
+    "set": null,
+    "problem": 1,
+    "part": "a"
+   },
+   "parts": [
+    {
+     "part": "a",
+     "topic": "lp/duality-farkas",
+     "difficulty": "easy",
+     "summary": "T/F: if primal and dual are both feasible, the primal optimum can be strictly greater than the dual optimum (strong duality).",
+     "dup_key": "strong-duality-equal-optima",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "b",
+     "topic": "randomized/random-walks",
+     "difficulty": "easy",
+     "summary": "T/F: a symmetric matrix with det>=0 is PSD (false; counterexample -I).",
+     "dup_key": "psd-det-nonneg",
+     "has_figure": false,
+     "note": "borderline: pure linear-algebra/PSD fact; filed under spectral (random-walks) bucket"
+    },
+    {
+     "part": "c",
+     "topic": "randomized/random-walks",
+     "difficulty": "easy",
+     "summary": "T/F: poly-time algorithm exists to find an orthonormal basis of a span (Gram-Schmidt).",
+     "dup_key": "gram-schmidt-orthonormal-basis",
+     "has_figure": false,
+     "note": "borderline: linear-algebra tool for spectral methods; filed under random-walks"
+    },
+    {
+     "part": "d",
+     "topic": "lp/basics",
+     "difficulty": "medium",
+     "summary": "T/F: if the reduced-cost vector is strictly positive at a BFS, that BFS is the unique optimum.",
+     "dup_key": "reduced-cost-positive-unique-opt",
+     "has_figure": false,
+     "note": null
+    }
+   ]
+  },
+  {
+   "sid": "2024A-p2",
+   "era": "modern",
+   "topic": "randomized/concentration",
+   "also_topics": [],
+   "difficulty": "medium",
+   "nparts": 1,
+   "sig": [
+    "estimate-density-sampling-chernoff"
+   ],
+   "source": {
+    "kind": "exam",
+    "year": 2024,
+    "moed": "A",
+    "iteration": null,
+    "set": null,
+    "problem": 2,
+    "part": null
+   },
+   "parts": [
+    {
+     "part": null,
+     "topic": "randomized/concentration",
+     "difficulty": "medium",
+     "summary": "Randomized algorithm estimating a CNF formula's satisfying-assignment density within 1/10 w.p. 1-2^-n via sampling + Chernoff.",
+     "dup_key": "estimate-density-sampling-chernoff",
+     "has_figure": false,
+     "note": null
+    }
+   ]
+  },
+  {
+   "sid": "2024A-p3",
+   "era": "modern",
+   "topic": "randomized/isolation-lemma",
+   "also_topics": [],
+   "difficulty": "medium",
+   "nparts": 1,
+   "sig": [
+    "isolation-unique-min-path"
+   ],
+   "source": {
+    "kind": "exam",
+    "year": 2024,
+    "moed": "A",
+    "iteration": null,
+    "set": null,
+    "problem": 3,
+    "part": null
+   },
+   "parts": [
+    {
+     "part": null,
+     "topic": "randomized/isolation-lemma",
+     "difficulty": "medium",
+     "summary": "Prove random edge weights in {1..p(n)} yield a unique min-weight path for every vertex pair w.p. >=0.9 (isolation lemma + union bound).",
+     "dup_key": "isolation-unique-min-path",
+     "has_figure": false,
+     "note": null
+    }
+   ]
+  },
+  {
+   "sid": "2024A-p4",
+   "era": "modern",
+   "topic": "lp/ilp-tum",
+   "also_topics": [],
+   "difficulty": "easy",
+   "nparts": 1,
+   "sig": [
+    "ilp-weighted-max-sat"
+   ],
+   "source": {
+    "kind": "exam",
+    "year": 2024,
+    "moed": "A",
+    "iteration": null,
+    "set": null,
+    "problem": 4,
+    "part": null
+   },
+   "parts": [
+    {
+     "part": null,
+     "topic": "lp/ilp-tum",
+     "difficulty": "easy",
+     "summary": "Write an integer linear program for weighted Max-SAT and justify variables and constraints.",
+     "dup_key": "ilp-weighted-max-sat",
+     "has_figure": false,
+     "note": null
+    }
+   ]
+  },
+  {
+   "sid": "2024A-p6",
+   "era": "modern",
+   "topic": "algebraic/pit",
+   "also_topics": [],
+   "difficulty": "medium",
+   "nparts": 1,
+   "sig": [
+    "sz-invertible-in-subspace"
+   ],
+   "source": {
+    "kind": "exam",
+    "year": 2024,
+    "moed": "A",
+    "iteration": null,
+    "set": null,
+    "problem": 6,
+    "part": null
+   },
+   "parts": [
+    {
+     "part": null,
+     "topic": "algebraic/pit",
+     "difficulty": "medium",
+     "summary": "Randomized algorithm deciding whether the span of matrices B1..Bk contains an invertible matrix (Schwartz-Zippel on det(sum xi Bi)).",
+     "dup_key": "sz-invertible-in-subspace",
+     "has_figure": false,
+     "note": null
+    }
+   ]
+  },
+  {
+   "sid": "2025A-p1",
+   "era": "modern",
+   "topic": "randomized/probabilistic-method",
+   "also_topics": [
+    "algebraic/fft",
+    "algebraic/matrix-mult",
+    "randomized/random-walks"
+   ],
+   "difficulty": "medium",
+   "nparts": 4,
+   "sig": [
+    "3cnf-7m8-averaging",
+    "fast-mm-multiple-mat-vec",
+    "poly-power-repeated-squaring-fft",
+    "regular-graph-eigenvalue-1-multiplicity"
+   ],
+   "source": {
+    "kind": "exam",
+    "year": 2025,
+    "moed": "A",
+    "iteration": null,
+    "set": null,
+    "problem": 1,
+    "part": "a"
+   },
+   "parts": [
+    {
+     "part": "a",
+     "topic": "randomized/probabilistic-method",
+     "difficulty": "easy",
+     "summary": "T/F: every 3-CNF with m clauses has an assignment satisfying at most 7m/8 clauses (averaging argument).",
+     "dup_key": "3cnf-7m8-averaging",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "b",
+     "topic": "algebraic/fft",
+     "difficulty": "medium",
+     "summary": "T/F: coefficients of f(x)^n computable in O(n^2 log n) ops via repeated squaring + FFT multiplication.",
+     "dup_key": "poly-power-repeated-squaring-fft",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "c",
+     "topic": "algebraic/matrix-mult",
+     "difficulty": "easy",
+     "summary": "T/F: computing n products Av1..Avn requires time n^3 (false; fast matrix multiplication gives O(n^omega)).",
+     "dup_key": "fast-mm-multiple-mat-vec",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "d",
+     "topic": "randomized/random-walks",
+     "difficulty": "medium",
+     "summary": "T/F: for a connected regular graph, the eigenspace {v: Av=v} has dimension exactly 1 (spectral gap / connectivity).",
+     "dup_key": "regular-graph-eigenvalue-1-multiplicity",
+     "has_figure": false,
+     "note": null
+    }
+   ]
+  },
+  {
+   "sid": "2025A-p2",
+   "era": "modern",
+   "topic": "lp/duality-farkas",
+   "also_topics": [],
+   "difficulty": "medium",
+   "nparts": 2,
+   "sig": [
+    "dual-symmetric-matrix-lp",
+    "primal-feasible-equal-dual-optimal"
+   ],
+   "source": {
+    "kind": "exam",
+    "year": 2025,
+    "moed": "A",
+    "iteration": null,
+    "set": null,
+    "problem": 2,
+    "part": "a"
+   },
+   "parts": [
+    {
+     "part": "a",
+     "topic": "lp/duality-farkas",
+     "difficulty": "medium",
+     "summary": "Compute the dual of an LP with symmetric matrix A (min c^T x s.t. Ax>=c, x>=0).",
+     "dup_key": "dual-symmetric-matrix-lp",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "b",
+     "topic": "lp/duality-farkas",
+     "difficulty": "medium",
+     "summary": "Show that x* with Ax*=c and x*>=0 is optimal for the LP (strong duality / self-dual argument).",
+     "dup_key": "primal-feasible-equal-dual-optimal",
+     "has_figure": false,
+     "note": null
+    }
+   ]
+  },
+  {
+   "sid": "2025A-p3",
+   "era": "modern",
+   "topic": "lp/ilp-tum",
+   "also_topics": [],
+   "difficulty": "easy",
+   "nparts": 1,
+   "sig": [
+    "ilp-min-makespan"
+   ],
+   "source": {
+    "kind": "exam",
+    "year": 2025,
+    "moed": "A",
+    "iteration": null,
+    "set": null,
+    "problem": 3,
+    "part": null
+   },
+   "parts": [
+    {
+     "part": null,
+     "topic": "lp/ilp-tum",
+     "difficulty": "easy",
+     "summary": "Write an integer linear program for Minimum Makespan (assign n jobs to m machines minimizing max load).",
+     "dup_key": "ilp-min-makespan",
+     "has_figure": false,
+     "note": null
+    }
+   ]
+  },
+  {
+   "sid": "2025A-p4",
+   "era": "modern",
+   "topic": "randomized/concentration",
+   "also_topics": [],
+   "difficulty": "hard",
+   "nparts": 1,
+   "sig": [
+    "unbiased-set-construction-chernoff"
+   ],
+   "source": {
+    "kind": "exam",
+    "year": 2025,
+    "moed": "A",
+    "iteration": null,
+    "set": null,
+    "problem": 4,
+    "part": null
+   },
+   "parts": [
+    {
+     "part": null,
+     "topic": "randomized/concentration",
+     "difficulty": "hard",
+     "summary": "Randomized poly-time algorithm outputting an epsilon-unbiased set of size O(n/eps^2) w.p. 0.99 via random sampling + Chernoff + union bound.",
+     "dup_key": "unbiased-set-construction-chernoff",
+     "has_figure": false,
+     "note": "borderline concentration vs probabilistic-method; core work is the Chernoff bound"
+    }
+   ]
+  },
+  {
+   "sid": "2025A-p5",
+   "era": "modern",
+   "topic": "algebraic/pit",
+   "also_topics": [],
+   "difficulty": "medium",
+   "nparts": 1,
+   "sig": [
+    "sz-determinantal-equivalence"
+   ],
+   "source": {
+    "kind": "exam",
+    "year": 2025,
+    "moed": "A",
+    "iteration": null,
+    "set": null,
+    "problem": 5,
+    "part": null
+   },
+   "parts": [
+    {
+     "part": null,
+     "topic": "algebraic/pit",
+     "difficulty": "medium",
+     "summary": "Randomized algorithm deciding determinantal equivalence of two directed graphs' symbolic adjacency matrices (Schwartz-Zippel on det difference).",
+     "dup_key": "sz-determinantal-equivalence",
+     "has_figure": false,
+     "note": null
+    }
+   ]
+  },
+  {
+   "sid": "2021A-p2",
+   "era": "y2021",
+   "topic": "lp/duality-farkas",
+   "also_topics": [
+    "approx/approximation",
+    "lp/ilp-tum"
+   ],
+   "difficulty": "medium",
+   "nparts": 4,
+   "sig": [
+    "bip-student-selection-dual-general",
+    "bip-student-selection-dual-instance",
+    "bip-student-selection-quota",
+    "lp-rounding-quota-feasibility"
+   ],
+   "source": {
+    "kind": "exam",
+    "year": 2021,
+    "moed": "A",
+    "iteration": null,
+    "set": null,
+    "problem": 2,
+    "part": "1"
+   },
+   "parts": [
+    {
+     "part": "1",
+     "topic": "lp/ilp-tum",
+     "difficulty": "easy",
+     "summary": "Write a 0/1 BIP to select maximum students subject to at most c_j selected per course; explain objective and constraints.",
+     "dup_key": "bip-student-selection-quota",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "2",
+     "topic": "lp/duality-farkas",
+     "difficulty": "medium",
+     "summary": "For a given instance, write the primal in matrix/vector form and its dual BIP with variables y1..y4.",
+     "dup_key": "bip-student-selection-dual-instance",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "3",
+     "topic": "lp/duality-farkas",
+     "difficulty": "medium",
+     "summary": "Describe the general dual BIP (course-selection / covering problem) and interpret its variables, constraints, and objective.",
+     "dup_key": "bip-student-selection-dual-general",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "4",
+     "topic": "approx/approximation",
+     "difficulty": "medium",
+     "summary": "Prove/disprove: LP-relaxation rounding (x_i>=1/u ->1) of the student-selection LP always yields a feasible integral solution (false).",
+     "dup_key": "lp-rounding-quota-feasibility",
+     "has_figure": false,
+     "note": null
+    }
+   ]
+  },
+  {
+   "sid": "2021A-p3",
+   "era": "y2021",
+   "topic": "approx/approximation",
+   "also_topics": [],
+   "difficulty": "medium",
+   "nparts": 2,
+   "sig": [
+    "tsp-4-3-approx-cycle-cover",
+    "tsp-4-3-approx-cycle-cover-proof"
+   ],
+   "source": {
+    "kind": "exam",
+    "year": 2021,
+    "moed": "A",
+    "iteration": null,
+    "set": null,
+    "problem": 3,
+    "part": "1"
+   },
+   "parts": [
+    {
+     "part": "1",
+     "topic": "approx/approximation",
+     "difficulty": "medium",
+     "summary": "Design a 4/3-approximation for TSP on a complete graph with edge weights 1 or 2, using a minimum cycle cover (first step given).",
+     "dup_key": "tsp-4-3-approx-cycle-cover",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "2",
+     "topic": "approx/approximation",
+     "difficulty": "medium",
+     "summary": "Prove the cycle-cover-based algorithm returns a TSP tour of cost at most (4/3)OPT.",
+     "dup_key": "tsp-4-3-approx-cycle-cover-proof",
+     "has_figure": false,
+     "note": null
+    }
+   ]
+  },
+  {
+   "sid": "2021A-p5",
+   "era": "y2021",
+   "topic": "randomized/prob-basics",
+   "also_topics": [],
+   "difficulty": "easy",
+   "nparts": 1,
+   "sig": [
+    "master-theorem-6-3-2"
+   ],
+   "source": {
+    "kind": "exam",
+    "year": 2021,
+    "moed": "A",
+    "iteration": null,
+    "set": null,
+    "problem": 5,
+    "part": "1"
+   },
+   "parts": [
+    {
+     "part": "1",
+     "topic": "randomized/prob-basics",
+     "difficulty": "easy",
+     "summary": "Solve the recurrence T(n)=6T(n/3)+Theta(n^2) via the master theorem (a<b^k gives Theta(n^2)).",
+     "dup_key": "master-theorem-6-3-2",
+     "has_figure": false,
+     "note": "borderline warm-up (pure master-theorem recurrence)"
+    }
+   ]
+  },
+  {
+   "sid": "2023B-p1",
+   "era": "modern",
+   "topic": "lp/duality-farkas",
+   "also_topics": [
+    "algebraic/pit",
+    "lp/basics",
+    "randomized/random-walks"
+   ],
+   "difficulty": "medium",
+   "nparts": 4,
+   "sig": [
+    "expander-walk-hitting-tf",
+    "simplex-pivot-poly-time-tf",
+    "strong-duality-bounded-primal-tf",
+    "sz-poly-nonzero-point-tf"
+   ],
+   "source": {
+    "kind": "exam",
+    "year": 2023,
+    "moed": "B",
+    "iteration": null,
+    "set": null,
+    "problem": 1,
+    "part": "a"
+   },
+   "parts": [
+    {
+     "part": "a",
+     "topic": "lp/duality-farkas",
+     "difficulty": "easy",
+     "summary": "T/F: if primal polyhedron is bounded and non-empty, primal and dual optima coincide (strong duality).",
+     "dup_key": "strong-duality-bounded-primal-tf",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "b",
+     "topic": "lp/basics",
+     "difficulty": "easy",
+     "summary": "T/F: each pivoting step of the simplex algorithm runs in polynomial time in the input length.",
+     "dup_key": "simplex-pivot-poly-time-tf",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "c",
+     "topic": "algebraic/pit",
+     "difficulty": "easy",
+     "summary": "T/F: there is a nonzero 5-variable polynomial vanishing on every integer assignment (false by Schwartz-Zippel).",
+     "dup_key": "sz-poly-nonzero-point-tf",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "d",
+     "topic": "randomized/random-walks",
+     "difficulty": "medium",
+     "summary": "T/F: in a regular graph with second eigenvalue <=1/2, a random walk reaches t within C log n steps w.p. >=1/2n.",
+     "dup_key": "expander-walk-hitting-tf",
+     "has_figure": false,
+     "note": null
+    }
+   ]
+  },
+  {
+   "sid": "2023B-p2",
+   "era": "modern",
+   "topic": "lp/duality-farkas",
+   "also_topics": [],
+   "difficulty": "medium",
+   "nparts": 1,
+   "sig": [
+    "weak-duality-proof"
+   ],
+   "source": {
+    "kind": "exam",
+    "year": 2023,
+    "moed": "B",
+    "iteration": null,
+    "set": null,
+    "problem": 2,
+    "part": null
+   },
+   "parts": [
+    {
+     "part": null,
+     "topic": "lp/duality-farkas",
+     "difficulty": "medium",
+     "summary": "State and prove the weak duality theorem for LPs in standard form.",
+     "dup_key": "weak-duality-proof",
+     "has_figure": false,
+     "note": null
+    }
+   ]
+  },
+  {
+   "sid": "2023B-p3",
+   "era": "modern",
+   "topic": "approx/approximation",
+   "also_topics": [],
+   "difficulty": "medium",
+   "nparts": 1,
+   "sig": [
+    "hypergraph-vertex-cover-3approx"
+   ],
+   "source": {
+    "kind": "exam",
+    "year": 2023,
+    "moed": "B",
+    "iteration": null,
+    "set": null,
+    "problem": 3,
+    "part": null
+   },
+   "parts": [
+    {
+     "part": null,
+     "topic": "approx/approximation",
+     "difficulty": "medium",
+     "summary": "Give a 3-approximation for vertex cover in a 3-uniform hypergraph (greedy or LP rounding).",
+     "dup_key": "hypergraph-vertex-cover-3approx",
+     "has_figure": false,
+     "note": null
+    }
+   ]
+  },
+  {
+   "sid": "2023B-p4",
+   "era": "modern",
+   "topic": "lp/ilp-tum",
+   "also_topics": [],
+   "difficulty": "medium",
+   "nparts": 3,
+   "sig": [
+    "tsp-ip-ham-to-feasible",
+    "tsp-ip-subtour-counterexample",
+    "tsp-ip-subtour-elimination"
+   ],
+   "source": {
+    "kind": "exam",
+    "year": 2023,
+    "moed": "B",
+    "iteration": null,
+    "set": null,
+    "problem": 4,
+    "part": "a"
+   },
+   "parts": [
+    {
+     "part": "a",
+     "topic": "lp/ilp-tum",
+     "difficulty": "easy",
+     "summary": "Prove every Hamiltonian cycle gives a feasible solution to the degree-constraint TSP integer program.",
+     "dup_key": "tsp-ip-ham-to-feasible",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "b",
+     "topic": "lp/ilp-tum",
+     "difficulty": "medium",
+     "summary": "Show the converse fails: a feasible IP solution (two disjoint cycles) not corresponding to a Hamiltonian cycle.",
+     "dup_key": "tsp-ip-subtour-counterexample",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "c",
+     "topic": "lp/ilp-tum",
+     "difficulty": "medium",
+     "summary": "Prove that adding subtour-elimination constraints makes every feasible IP solution a Hamiltonian cycle.",
+     "dup_key": "tsp-ip-subtour-elimination",
+     "has_figure": false,
+     "note": null
+    }
+   ]
+  },
+  {
+   "sid": "2023B-p5",
+   "era": "modern",
+   "topic": "algebraic/matrix-mult",
+   "also_topics": [],
+   "difficulty": "medium",
+   "nparts": 1,
+   "sig": [
+    "transitive-closure-matmul"
+   ],
+   "source": {
+    "kind": "exam",
+    "year": 2023,
+    "moed": "B",
+    "iteration": null,
+    "set": null,
+    "problem": 5,
+    "part": null
+   },
+   "parts": [
+    {
+     "part": null,
+     "topic": "algebraic/matrix-mult",
+     "difficulty": "medium",
+     "summary": "Compute transitive closure of a digraph in time o(n^3) via (A+I)^n by fast matrix mult and repeated squaring.",
+     "dup_key": "transitive-closure-matmul",
+     "has_figure": false,
+     "note": null
+    }
+   ]
+  },
+  {
+   "sid": "2023B-p6",
+   "era": "modern",
+   "topic": "randomized/concentration",
+   "also_topics": [],
+   "difficulty": "medium",
+   "nparts": 1,
+   "sig": [
+    "discrepancy-random-coloring-chernoff"
+   ],
+   "source": {
+    "kind": "exam",
+    "year": 2023,
+    "moed": "B",
+    "iteration": null,
+    "set": null,
+    "problem": 6,
+    "part": null
+   },
+   "parts": [
+    {
+     "part": null,
+     "topic": "randomized/concentration",
+     "difficulty": "medium",
+     "summary": "Randomized coloring achieving discrepancy <= C*sqrt(n log m) whp, via Chernoff and union bound over m sets.",
+     "dup_key": "discrepancy-random-coloring-chernoff",
+     "has_figure": false,
+     "note": null
+    }
+   ]
+  },
+  {
+   "sid": "2024B-p1",
+   "era": "modern",
+   "topic": "lp/ilp-tum",
+   "also_topics": [
+    "algebraic/matrix-mult",
+    "lp/basics"
+   ],
+   "difficulty": "medium",
+   "nparts": 3,
+   "sig": [
+    "char-poly-symmetric-eigenvalues-tf",
+    "ilp-poly-implies-pnp-tf",
+    "verify-vertex-polytope-tf"
+   ],
+   "source": {
+    "kind": "exam",
+    "year": 2024,
+    "moed": "B",
+    "iteration": null,
+    "set": null,
+    "problem": 1,
+    "part": "a"
+   },
+   "parts": [
+    {
+     "part": "a",
+     "topic": "lp/ilp-tum",
+     "difficulty": "easy",
+     "summary": "T/F: a polynomial-time algorithm for integer linear programs would imply P=NP (reduction from independent set).",
+     "dup_key": "ilp-poly-implies-pnp-tf",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "b",
+     "topic": "lp/basics",
+     "difficulty": "easy",
+     "summary": "T/F: there is an efficient algorithm to decide whether a given point y is a vertex of a standard-form polytope.",
+     "dup_key": "verify-vertex-polytope-tf",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "d",
+     "topic": "algebraic/matrix-mult",
+     "difficulty": "medium",
+     "summary": "T/F: the n-th elementary symmetric polynomial in eigenvalues is efficiently computable via characteristic-poly coefficients.",
+     "dup_key": "char-poly-symmetric-eigenvalues-tf",
+     "has_figure": false,
+     "note": "characteristic-polynomial-coefficients algorithm; borderline algebraic-algorithms."
+    }
+   ]
+  },
+  {
+   "sid": "2024B-p2",
+   "era": "modern",
+   "topic": "algebraic/fft",
+   "also_topics": [],
+   "difficulty": "medium",
+   "nparts": 1,
+   "sig": [
+    "walsh-hadamard-transform-fast"
+   ],
+   "source": {
+    "kind": "exam",
+    "year": 2024,
+    "moed": "B",
+    "iteration": null,
+    "set": null,
+    "problem": 2,
+    "part": null
+   },
+   "parts": [
+    {
+     "part": null,
+     "topic": "algebraic/fft",
+     "difficulty": "medium",
+     "summary": "Prove the Walsh-Hadamard transform Hn*x can be computed in O(N log N) via an FFT-style divide-and-conquer.",
+     "dup_key": "walsh-hadamard-transform-fast",
+     "has_figure": false,
+     "note": null
+    }
+   ]
+  },
+  {
+   "sid": "2024B-p3",
+   "era": "modern",
+   "topic": "randomized/karger-min-cut",
+   "also_topics": [],
+   "difficulty": "medium",
+   "nparts": 1,
+   "sig": [
+    "karger-num-min-cuts-bound"
+   ],
+   "source": {
+    "kind": "exam",
+    "year": 2024,
+    "moed": "B",
+    "iteration": null,
+    "set": null,
+    "problem": 3,
+    "part": null
+   },
+   "parts": [
+    {
+     "part": null,
+     "topic": "randomized/karger-min-cut",
+     "difficulty": "medium",
+     "summary": "Prove a graph has at most n(n-1)/2 minimum cuts using Karger's success-probability analysis.",
+     "dup_key": "karger-num-min-cuts-bound",
+     "has_figure": false,
+     "note": null
+    }
+   ]
+  },
+  {
+   "sid": "2024B-p4",
+   "era": "modern",
+   "topic": "algebraic/matrix-mult",
+   "also_topics": [],
+   "difficulty": "medium",
+   "nparts": 1,
+   "sig": [
+    "diameter-matmul"
+   ],
+   "source": {
+    "kind": "exam",
+    "year": 2024,
+    "moed": "B",
+    "iteration": null,
+    "set": null,
+    "problem": 4,
+    "part": null
+   },
+   "parts": [
+    {
+     "part": null,
+     "topic": "algebraic/matrix-mult",
+     "difficulty": "medium",
+     "summary": "Compute the diameter of a strongly connected digraph in time o(n^3) via matrix powers and binary search.",
+     "dup_key": "diameter-matmul",
+     "has_figure": false,
+     "note": null
+    }
+   ]
+  },
+  {
+   "sid": "2024B-p5",
+   "era": "modern",
+   "topic": "approx/approximation",
+   "also_topics": [],
+   "difficulty": "medium",
+   "nparts": 1,
+   "sig": [
+    "hitting-set-d-approx-rounding"
+   ],
+   "source": {
+    "kind": "exam",
+    "year": 2024,
+    "moed": "B",
+    "iteration": null,
+    "set": null,
+    "problem": 5,
+    "part": null
+   },
+   "parts": [
+    {
+     "part": null,
+     "topic": "approx/approximation",
+     "difficulty": "medium",
+     "summary": "d-approximation for minimum-weight representative set (hitting set with |Tj|<=d) via LP relaxation and rounding.",
+     "dup_key": "hitting-set-d-approx-rounding",
+     "has_figure": false,
+     "note": null
+    }
+   ]
+  },
+  {
+   "sid": "2024B-p6",
+   "era": "modern",
+   "topic": "randomized/concentration",
+   "also_topics": [],
+   "difficulty": "hard",
+   "nparts": 1,
+   "sig": [
+    "random-object-balanced-chernoff"
+   ],
+   "source": {
+    "kind": "exam",
+    "year": 2024,
+    "moed": "B",
+    "iteration": null,
+    "set": null,
+    "problem": 6,
+    "part": null
+   },
+   "parts": [
+    {
+     "part": null,
+     "topic": "randomized/concentration",
+     "difficulty": "hard",
+     "summary": "Construct a (C log n, 1/100)-balanced bipartite graph whp: random edges, Chernoff + union bound over all subsets.",
+     "dup_key": "random-object-balanced-chernoff",
+     "has_figure": false,
+     "note": null
+    }
+   ]
+  },
+  {
+   "sid": "2024C-p1",
+   "era": "modern",
+   "topic": "lp/basics",
+   "also_topics": [
+    "algebraic/bipartite-matching",
+    "algebraic/pit",
+    "randomized/prob-basics"
+   ],
+   "difficulty": "medium",
+   "nparts": 4,
+   "sig": [
+    "bpp-error-classes-tf",
+    "perfect-matchings-parity-det-tf",
+    "polytope-num-vertices-bound-tf",
+    "sz-poly-nonzero-point-tf"
+   ],
+   "source": {
+    "kind": "exam",
+    "year": 2024,
+    "moed": "C",
+    "iteration": null,
+    "set": null,
+    "problem": 1,
+    "part": "a"
+   },
+   "parts": [
+    {
+     "part": "a",
+     "topic": "lp/basics",
+     "difficulty": "easy",
+     "summary": "T/F: a standard-form polytope in R^n has at most 2^n vertices (one per subset of columns with full rank).",
+     "dup_key": "polytope-num-vertices-bound-tf",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "b",
+     "topic": "algebraic/pit",
+     "difficulty": "easy",
+     "summary": "T/F: for a nonzero degree-d polynomial there exist arguments in {1,...,d+1} where it is nonzero (Schwartz-Zippel).",
+     "dup_key": "sz-poly-nonzero-point-tf",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "c",
+     "topic": "randomized/prob-basics",
+     "difficulty": "medium",
+     "summary": "T/F: BPP(1/2,1/2)=BPP(1/3,2/3) (false; the trivial class contains all languages).",
+     "dup_key": "bpp-error-classes-tf",
+     "has_figure": false,
+     "note": "BPP complexity classes / error amplification; borderline randomized-computation concept."
+    },
+    {
+     "part": "d",
+     "topic": "algebraic/bipartite-matching",
+     "difficulty": "medium",
+     "summary": "T/F: parity of the number of perfect matchings in a bipartite graph is efficiently decidable via det(A) mod 2.",
+     "dup_key": "perfect-matchings-parity-det-tf",
+     "has_figure": false,
+     "note": null
+    }
+   ]
+  },
+  {
+   "sid": "2024C-p2",
+   "era": "modern",
+   "topic": "algebraic/matrix-mult",
+   "also_topics": [],
+   "difficulty": "easy",
+   "nparts": 1,
+   "sig": [
+    "boolean-matmul"
+   ],
+   "source": {
+    "kind": "exam",
+    "year": 2024,
+    "moed": "C",
+    "iteration": null,
+    "set": null,
+    "problem": 2,
+    "part": null
+   },
+   "parts": [
+    {
+     "part": null,
+     "topic": "algebraic/matrix-mult",
+     "difficulty": "easy",
+     "summary": "Compute the boolean matrix product A o B in time o(n^3) by casting it to integer matrix multiplication.",
+     "dup_key": "boolean-matmul",
+     "has_figure": false,
+     "note": null
+    }
+   ]
+  },
+  {
+   "sid": "2024C-p3",
+   "era": "modern",
+   "topic": "randomized/concentration",
+   "also_topics": [],
+   "difficulty": "medium",
+   "nparts": 1,
+   "sig": [
+    "hamming-far-vector-chernoff"
+   ],
+   "source": {
+    "kind": "exam",
+    "year": 2024,
+    "moed": "C",
+    "iteration": null,
+    "set": null,
+    "problem": 3,
+    "part": null
+   },
+   "parts": [
+    {
+     "part": null,
+     "topic": "randomized/concentration",
+     "difficulty": "medium",
+     "summary": "Randomized algorithm finding a binary vector at Hamming distance >=n/3 from all of S, via Chernoff + union bound.",
+     "dup_key": "hamming-far-vector-chernoff",
+     "has_figure": false,
+     "note": null
+    }
+   ]
+  },
+  {
+   "sid": "2024C-p4",
+   "era": "modern",
+   "topic": "lp/ilp-tum",
+   "also_topics": [],
+   "difficulty": "medium",
+   "nparts": 1,
+   "sig": [
+    "bin-packing-ip"
+   ],
+   "source": {
+    "kind": "exam",
+    "year": 2024,
+    "moed": "C",
+    "iteration": null,
+    "set": null,
+    "problem": 4,
+    "part": null
+   },
+   "parts": [
+    {
+     "part": null,
+     "topic": "lp/ilp-tum",
+     "difficulty": "medium",
+     "summary": "Write an integer linear program for bin packing (bin-used and item-assignment variables) and justify it.",
+     "dup_key": "bin-packing-ip",
+     "has_figure": false,
+     "note": null
+    }
+   ]
+  },
+  {
+   "sid": "2024C-p6",
+   "era": "modern",
+   "topic": "lp/duality-farkas",
+   "also_topics": [],
+   "difficulty": "medium",
+   "nparts": 1,
+   "sig": [
+    "strong-duality-farkas-case"
+   ],
+   "source": {
+    "kind": "exam",
+    "year": 2024,
+    "moed": "C",
+    "iteration": null,
+    "set": null,
+    "problem": 6,
+    "part": null
+   },
+   "parts": [
+    {
+     "part": null,
+     "topic": "lp/duality-farkas",
+     "difficulty": "medium",
+     "summary": "Prove a case of strong duality via Farkas: if (P) is infeasible and (D) feasible then (D) is unbounded.",
+     "dup_key": "strong-duality-farkas-case",
+     "has_figure": false,
+     "note": null
+    }
+   ]
+  },
+  {
+   "sid": "2025B-p1",
+   "era": "modern",
+   "topic": "algebraic/pit",
+   "also_topics": [
+    "algebraic/matrix-mult",
+    "randomized/concentration",
+    "randomized/random-walks"
+   ],
+   "difficulty": "medium",
+   "nparts": 4,
+   "sig": [
+    "bipartite-eigenvalue-minus1-tf",
+    "markov-twice-average-tf",
+    "rectangular-matmul-block-tf",
+    "sz-poly-nonzero-point-tf"
+   ],
+   "source": {
+    "kind": "exam",
+    "year": 2025,
+    "moed": "B",
+    "iteration": null,
+    "set": null,
+    "problem": 1,
+    "part": "a"
+   },
+   "parts": [
+    {
+     "part": "a",
+     "topic": "algebraic/pit",
+     "difficulty": "easy",
+     "summary": "T/F: some nonzero polynomial of degree < m vanishes on all order-m roots of unity (false by Schwartz-Zippel).",
+     "dup_key": "sz-poly-nonzero-point-tf",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "b",
+     "topic": "algebraic/matrix-mult",
+     "difficulty": "easy",
+     "summary": "T/F: an n x n by n x n^2 matrix product can be done in fewer than n^4 operations (block decomposition, n^{w+1}).",
+     "dup_key": "rectangular-matmul-block-tf",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "c",
+     "topic": "randomized/concentration",
+     "difficulty": "easy",
+     "summary": "T/F: at most half the students score at least twice the average grade (Markov's inequality).",
+     "dup_key": "markov-twice-average-tf",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "d",
+     "topic": "randomized/random-walks",
+     "difficulty": "medium",
+     "summary": "T/F: if det(A+I)=0 for a normalized adjacency matrix then G is bipartite (-1 is an eigenvalue).",
+     "dup_key": "bipartite-eigenvalue-minus1-tf",
+     "has_figure": false,
+     "note": null
+    }
+   ]
+  },
+  {
+   "sid": "2025B-p2",
+   "era": "modern",
+   "topic": "lp/ilp-tum",
+   "also_topics": [
+    "approx/approximation"
+   ],
+   "difficulty": "medium",
+   "nparts": 2,
+   "sig": [
+    "set-cover-f-approx-rounding",
+    "set-cover-ip"
+   ],
+   "source": {
+    "kind": "exam",
+    "year": 2025,
+    "moed": "B",
+    "iteration": null,
+    "set": null,
+    "problem": 2,
+    "part": "a"
+   },
+   "parts": [
+    {
+     "part": "a",
+     "topic": "lp/ilp-tum",
+     "difficulty": "easy",
+     "summary": "Write the integer linear program for weighted set cover and explain variables/constraints.",
+     "dup_key": "set-cover-ip",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "b",
+     "topic": "approx/approximation",
+     "difficulty": "medium",
+     "summary": "Give an f-approximation for set cover of frequency f via LP relaxation and threshold rounding at 1/f.",
+     "dup_key": "set-cover-f-approx-rounding",
+     "has_figure": false,
+     "note": null
+    }
+   ]
+  },
+  {
+   "sid": "2025B-p3",
+   "era": "modern",
+   "topic": "lp/basics",
+   "also_topics": [],
+   "difficulty": "medium",
+   "nparts": 1,
+   "sig": [
+    "reduced-cost-optimality-proof"
+   ],
+   "source": {
+    "kind": "exam",
+    "year": 2025,
+    "moed": "B",
+    "iteration": null,
+    "set": null,
+    "problem": 3,
+    "part": null
+   },
+   "parts": [
+    {
+     "part": null,
+     "topic": "lp/basics",
+     "difficulty": "medium",
+     "summary": "Prove that if the reduced cost vector is nonnegative then the basic feasible solution is optimal.",
+     "dup_key": "reduced-cost-optimality-proof",
+     "has_figure": false,
+     "note": null
+    }
+   ]
+  },
+  {
+   "sid": "2025B-p4",
+   "era": "modern",
+   "topic": "algebraic/fft",
+   "also_topics": [],
+   "difficulty": "medium",
+   "nparts": 1,
+   "sig": [
+    "fft-polynomial-division"
+   ],
+   "source": {
+    "kind": "exam",
+    "year": 2025,
+    "moed": "B",
+    "iteration": null,
+    "set": null,
+    "problem": 4,
+    "part": null
+   },
+   "parts": [
+    {
+     "part": null,
+     "topic": "algebraic/fft",
+     "difficulty": "medium",
+     "summary": "Given f, g with f=g*h, find coefficients of h in O(n log n) via evaluate-at-roots (FFT), divide, interpolate.",
+     "dup_key": "fft-polynomial-division",
+     "has_figure": false,
+     "note": null
+    }
+   ]
+  },
+  {
+   "sid": "2025B-p5",
+   "era": "modern",
+   "topic": "randomized/concentration",
+   "also_topics": [],
+   "difficulty": "medium",
+   "nparts": 1,
+   "sig": [
+    "sampling-estimate-fraction-chernoff"
+   ],
+   "source": {
+    "kind": "exam",
+    "year": 2025,
+    "moed": "B",
+    "iteration": null,
+    "set": null,
+    "problem": 5,
+    "part": null
+   },
+   "parts": [
+    {
+     "part": null,
+     "topic": "randomized/concentration",
+     "difficulty": "medium",
+     "summary": "Randomized estimator of the fraction of legal 3-colorings within 1/n whp, via sampling and Chernoff.",
+     "dup_key": "sampling-estimate-fraction-chernoff",
+     "has_figure": false,
+     "note": null
+    }
+   ]
+  },
+  {
+   "sid": "2025C-p1",
+   "era": "modern",
+   "topic": "algebraic/fft",
+   "also_topics": [
+    "algebraic/matrix-mult",
+    "lp/basics",
+    "randomized/isolation-lemma"
+   ],
+   "difficulty": "medium",
+   "nparts": 4,
+   "sig": [
+    "isolation-unique-cut-tf",
+    "matmul-recursive-multiplications-tf",
+    "optimal-iff-vertex-tf",
+    "root-of-unity-divisibility-tf"
+   ],
+   "source": {
+    "kind": "exam",
+    "year": 2025,
+    "moed": "C",
+    "iteration": null,
+    "set": null,
+    "problem": 1,
+    "part": "a"
+   },
+   "parts": [
+    {
+     "part": "a",
+     "topic": "algebraic/fft",
+     "difficulty": "easy",
+     "summary": "T/F: if k divides n, every order-k root of unity is also an order-n root of unity.",
+     "dup_key": "root-of-unity-divisibility-tf",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "b",
+     "topic": "algebraic/matrix-mult",
+     "difficulty": "medium",
+     "summary": "T/F: the min multiplications for matrix mult satisfy a_{k^2} <= (a_k)^2 (recursive block multiplication).",
+     "dup_key": "matmul-recursive-multiplications-tf",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "c",
+     "topic": "randomized/isolation-lemma",
+     "difficulty": "medium",
+     "summary": "T/F: random edge weights in {1,...,4|E|} give unique min and unique max weight cut w.p. >=1/2 (isolation lemma).",
+     "dup_key": "isolation-unique-cut-tf",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "d",
+     "topic": "lp/basics",
+     "difficulty": "easy",
+     "summary": "T/F: x is optimal for an LP iff x is a vertex (false; interior/edge optima exist).",
+     "dup_key": "optimal-iff-vertex-tf",
+     "has_figure": false,
+     "note": null
+    }
+   ]
+  },
+  {
+   "sid": "2025C-p2",
+   "era": "modern",
+   "topic": "approx/approximation",
+   "also_topics": [
+    "lp/duality-farkas"
+   ],
+   "difficulty": "medium",
+   "nparts": 3,
+   "sig": [
+    "set-cover-dual-derivation",
+    "set-cover-primal-dual-cover",
+    "set-cover-primal-dual-fapprox"
+   ],
+   "source": {
+    "kind": "exam",
+    "year": 2025,
+    "moed": "C",
+    "iteration": null,
+    "set": null,
+    "problem": 2,
+    "part": "a"
+   },
+   "parts": [
+    {
+     "part": "a",
+     "topic": "lp/duality-farkas",
+     "difficulty": "medium",
+     "summary": "Show the stated LP is the dual of the set-cover LP relaxation by reducing to standard form.",
+     "dup_key": "set-cover-dual-derivation",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "b",
+     "topic": "approx/approximation",
+     "difficulty": "medium",
+     "summary": "Prove the sets whose dual constraints are tight form a set cover (complementary-slackness / primal-dual).",
+     "dup_key": "set-cover-primal-dual-cover",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "c",
+     "topic": "approx/approximation",
+     "difficulty": "medium",
+     "summary": "Show an f-approximation for set cover by solving the dual and picking tight sets (primal-dual analysis).",
+     "dup_key": "set-cover-primal-dual-fapprox",
+     "has_figure": false,
+     "note": null
+    }
+   ]
+  },
+  {
+   "sid": "2025C-p3",
+   "era": "modern",
+   "topic": "randomized/random-walks",
+   "also_topics": [],
+   "difficulty": "medium",
+   "nparts": 1,
+   "sig": [
+    "lazy-walk-reach-t-spectral"
+   ],
+   "source": {
+    "kind": "exam",
+    "year": 2025,
+    "moed": "C",
+    "iteration": null,
+    "set": null,
+    "problem": 3,
+    "part": null
+   },
+   "parts": [
+    {
+     "part": null,
+     "topic": "randomized/random-walks",
+     "difficulty": "medium",
+     "summary": "Prove a lazy random walk (stay 1/3, move 2/3) on a regular connected graph reaches t in poly steps w.p. >=1/2n.",
+     "dup_key": "lazy-walk-reach-t-spectral",
+     "has_figure": false,
+     "note": null
+    }
+   ]
+  },
+  {
+   "sid": "2025C-p4",
+   "era": "modern",
+   "topic": "algebraic/pit",
+   "also_topics": [],
+   "difficulty": "medium",
+   "nparts": 1,
+   "sig": [
+    "branching-program-identity-pit"
+   ],
+   "source": {
+    "kind": "exam",
+    "year": 2025,
+    "moed": "C",
+    "iteration": null,
+    "set": null,
+    "problem": 4,
+    "part": null
+   },
+   "parts": [
+    {
+     "part": null,
+     "topic": "algebraic/pit",
+     "difficulty": "medium",
+     "summary": "Randomized test of whether two branching programs (matrix-product polynomials) are equal, via Schwartz-Zippel.",
+     "dup_key": "branching-program-identity-pit",
+     "has_figure": false,
+     "note": null
+    }
+   ]
+  },
+  {
+   "sid": "2021B-p1",
+   "era": "y2021",
+   "topic": "lp/duality-farkas",
+   "also_topics": [
+    "approx/approximation",
+    "lp/ilp-tum"
+   ],
+   "difficulty": "medium",
+   "nparts": 4,
+   "sig": [
+    "semi-matching-bip-formulation",
+    "semi-matching-dual-instance",
+    "semi-matching-dual-vertex-cover",
+    "semi-matching-lp-rounding-feasibility"
+   ],
+   "source": {
+    "kind": "exam",
+    "year": 2021,
+    "moed": "B",
+    "iteration": null,
+    "set": null,
+    "problem": 1,
+    "part": "1"
+   },
+   "parts": [
+    {
+     "part": "1",
+     "topic": "lp/ilp-tum",
+     "difficulty": "easy",
+     "summary": "Formulate maximum semi-matching in a bipartite graph as a 0/1 binary integer program; explain objective/constraints.",
+     "dup_key": "semi-matching-bip-formulation",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "2",
+     "topic": "lp/duality-farkas",
+     "difficulty": "medium",
+     "summary": "Write the semi-matching BIP in matrix/vector form for the given graph and its dual BIP.",
+     "dup_key": "semi-matching-dual-instance",
+     "has_figure": true,
+     "note": null
+    },
+    {
+     "part": "3",
+     "topic": "lp/duality-farkas",
+     "difficulty": "medium",
+     "summary": "Describe the general dual of the semi-matching BIP and identify it as weighted vertex cover.",
+     "dup_key": "semi-matching-dual-vertex-cover",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "4",
+     "topic": "approx/approximation",
+     "difficulty": "medium",
+     "summary": "Prove/disprove that rounding the LP relaxation (x_e>=1/2 -> 1) always yields a feasible integer solution (false).",
+     "dup_key": "semi-matching-lp-rounding-feasibility",
+     "has_figure": false,
+     "note": null
+    }
+   ]
+  },
+  {
+   "sid": "2021B-p3",
+   "era": "y2021",
+   "topic": "approx/approximation",
+   "also_topics": [],
+   "difficulty": "medium",
+   "nparts": 2,
+   "sig": [
+    "max-3-col-greedy-approx",
+    "max-3-col-greedy-approx-proof"
+   ],
+   "source": {
+    "kind": "exam",
+    "year": 2021,
+    "moed": "B",
+    "iteration": null,
+    "set": null,
+    "problem": 3,
+    "part": "1"
+   },
+   "parts": [
+    {
+     "part": "1",
+     "topic": "approx/approximation",
+     "difficulty": "medium",
+     "summary": "Give a 2/3-approximation for MAX-3-COLORING via sequential greedy vertex placement minimizing illegal edges.",
+     "dup_key": "max-3-col-greedy-approx",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "2",
+     "topic": "approx/approximation",
+     "difficulty": "medium",
+     "summary": "Prove the 2/3 approximation ratio for the greedy MAX-3-COLORING algorithm.",
+     "dup_key": "max-3-col-greedy-approx-proof",
+     "has_figure": false,
+     "note": null
+    }
+   ]
+  },
+  {
+   "sid": "2021B-p5",
+   "era": "y2021",
+   "topic": "randomized/prob-basics",
+   "also_topics": [],
+   "difficulty": "easy",
+   "nparts": 1,
+   "sig": [
+    "master-theorem-9-3-1"
+   ],
+   "source": {
+    "kind": "exam",
+    "year": 2021,
+    "moed": "B",
+    "iteration": null,
+    "set": null,
+    "problem": 5,
+    "part": "1"
+   },
+   "parts": [
+    {
+     "part": "1",
+     "topic": "randomized/prob-basics",
+     "difficulty": "easy",
+     "summary": "Solve the recurrence T(n)=9T(n/3)+Theta(n) with the master theorem (Theta(n^2)).",
+     "dup_key": "master-theorem-9-3-1",
+     "has_figure": false,
+     "note": "borderline warm-up (master theorem)."
+    }
+   ]
+  },
+  {
+   "sid": "2014A-p1",
+   "era": "old",
+   "topic": "randomized/prob-basics",
+   "also_topics": [],
+   "difficulty": "easy",
+   "nparts": 2,
+   "sig": [
+    "recurrence-master-theorem",
+    "recurrence-master-theorem"
+   ],
+   "source": {
+    "kind": "exam",
+    "year": 2014,
+    "moed": "A",
+    "iteration": null,
+    "set": null,
+    "problem": 1,
+    "part": "a"
+   },
+   "parts": [
+    {
+     "part": "a",
+     "topic": "randomized/prob-basics",
+     "difficulty": "easy",
+     "summary": "Solve recurrence T(n)=3T(n/3)+O(n log n), giving O(n log^2 n) by summing per-level cost.",
+     "dup_key": "recurrence-master-theorem",
+     "has_figure": false,
+     "note": "borderline warm-up"
+    },
+    {
+     "part": "b",
+     "topic": "randomized/prob-basics",
+     "difficulty": "easy",
+     "summary": "Solve recurrence T(n)=4T(n/4)+O(n^{3/2}), giving O(n^{3/2}) by the master theorem.",
+     "dup_key": "recurrence-master-theorem",
+     "has_figure": false,
+     "note": "borderline warm-up"
+    }
+   ]
+  },
+  {
+   "sid": "2014A-p4",
+   "era": "old",
+   "topic": "lp/ilp-tum",
+   "also_topics": [],
+   "difficulty": "medium",
+   "nparts": 2,
+   "sig": [
+    "dominating-set-ilp",
+    "dominating-set-lp-integrality-gap"
+   ],
+   "source": {
+    "kind": "exam",
+    "year": 2014,
+    "moed": "A",
+    "iteration": null,
+    "set": null,
+    "problem": 4,
+    "part": "a"
+   },
+   "parts": [
+    {
+     "part": "a",
+     "topic": "lp/ilp-tum",
+     "difficulty": "medium",
+     "summary": "Write minimum weight dominating set as an integer linear program.",
+     "dup_key": "dominating-set-ilp",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "b",
+     "topic": "lp/ilp-tum",
+     "difficulty": "medium",
+     "summary": "Give a dominating-set instance where the LP relaxation optimum is fractional (integrality gap).",
+     "dup_key": "dominating-set-lp-integrality-gap",
+     "has_figure": false,
+     "note": "integrality gap / LP relaxation"
+    }
+   ]
+  },
+  {
+   "sid": "2014A-p5",
+   "era": "old",
+   "topic": "approx/approximation",
+   "also_topics": [],
+   "difficulty": "medium",
+   "nparts": 1,
+   "sig": [
+    "steiner-tree-2approx-reduction"
+   ],
+   "source": {
+    "kind": "exam",
+    "year": 2014,
+    "moed": "A",
+    "iteration": null,
+    "set": null,
+    "problem": 5,
+    "part": null
+   },
+   "parts": [
+    {
+     "part": null,
+     "topic": "approx/approximation",
+     "difficulty": "medium",
+     "summary": "2-approx for min-cost subgraph connecting each receiver to some sender, via reduction to Steiner tree.",
+     "dup_key": "steiner-tree-2approx-reduction",
+     "has_figure": false,
+     "note": null
+    }
+   ]
+  },
+  {
+   "sid": "2014A-p6",
+   "era": "old",
+   "topic": "algebraic/matrix-mult",
+   "also_topics": [],
+   "difficulty": "medium",
+   "nparts": 1,
+   "sig": [
+    "karatsuba-integer-mult"
+   ],
+   "source": {
+    "kind": "exam",
+    "year": 2014,
+    "moed": "A",
+    "iteration": null,
+    "set": null,
+    "problem": 6,
+    "part": null
+   },
+   "parts": [
+    {
+     "part": null,
+     "topic": "algebraic/matrix-mult",
+     "difficulty": "medium",
+     "summary": "Prove two n-bit integers can be multiplied in O(n^{log2 3}) (Karatsuba divide-and-conquer).",
+     "dup_key": "karatsuba-integer-mult",
+     "has_figure": false,
+     "note": "ambiguous: Karatsuba integer multiplication, Strassen-like divide-and-conquer; borderline algebraic vs recurrence warm-up"
+    }
+   ]
+  },
+  {
+   "sid": "2014A-p8",
+   "era": "old",
+   "topic": "approx/approximation",
+   "also_topics": [
+    "randomized/concentration"
+   ],
+   "difficulty": "medium",
+   "nparts": 2,
+   "sig": [
+    "max3sat-7-8-approx",
+    "max3sat-concentration-bound"
+   ],
+   "source": {
+    "kind": "exam",
+    "year": 2014,
+    "moed": "A",
+    "iteration": null,
+    "set": null,
+    "problem": 8,
+    "part": "a"
+   },
+   "parts": [
+    {
+     "part": "a",
+     "topic": "approx/approximation",
+     "difficulty": "medium",
+     "summary": "MAX-3SAT: random assignment gives 7/8-approximation in expectation, prove via linearity of expectation.",
+     "dup_key": "max3sat-7-8-approx",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "b",
+     "topic": "randomized/concentration",
+     "difficulty": "medium",
+     "summary": "Closed-form bound (Markov) on probability the random MAX-3SAT assignment satisfies < 3/4 of clauses.",
+     "dup_key": "max3sat-concentration-bound",
+     "has_figure": false,
+     "note": null
+    }
+   ]
+  },
+  {
+   "sid": "2014A-p9",
+   "era": "old",
+   "topic": "approx/approximation",
+   "also_topics": [],
+   "difficulty": "medium",
+   "nparts": 1,
+   "sig": [
+    "maximal-matching-2approx"
+   ],
+   "source": {
+    "kind": "exam",
+    "year": 2014,
+    "moed": "A",
+    "iteration": null,
+    "set": null,
+    "problem": 9,
+    "part": "a"
+   },
+   "parts": [
+    {
+     "part": "a",
+     "topic": "approx/approximation",
+     "difficulty": "medium",
+     "summary": "Prove any maximal matching is a 2-approximation for maximum matching.",
+     "dup_key": "maximal-matching-2approx",
+     "has_figure": false,
+     "note": null
+    }
+   ]
+  },
+  {
+   "sid": "2014A-p10",
+   "era": "old",
+   "topic": "lp/basics",
+   "also_topics": [],
+   "difficulty": "medium",
+   "nparts": 5,
+   "sig": [
+    "simplex-basis-vertex",
+    "simplex-entering-variable",
+    "simplex-leaving-variable",
+    "simplex-objective-after-pivot",
+    "simplex-standard-form"
+   ],
+   "source": {
+    "kind": "exam",
+    "year": 2014,
+    "moed": "A",
+    "iteration": null,
+    "set": null,
+    "problem": 10,
+    "part": "a"
+   },
+   "parts": [
+    {
+     "part": "a",
+     "topic": "lp/basics",
+     "difficulty": "easy",
+     "summary": "Add slack variables and put a given LP into standard form for the simplex algorithm.",
+     "dup_key": "simplex-standard-form",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "b",
+     "topic": "lp/basics",
+     "difficulty": "easy",
+     "summary": "Find the basic-feasible-solution vertex associated with a given basis {x1,s2}.",
+     "dup_key": "simplex-basis-vertex",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "c",
+     "topic": "lp/basics",
+     "difficulty": "medium",
+     "summary": "Determine which non-basic variable first enters the basis in a simplex pivot.",
+     "dup_key": "simplex-entering-variable",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "d",
+     "topic": "lp/basics",
+     "difficulty": "medium",
+     "summary": "Determine which basic variable leaves the basis via the min-ratio rule in a simplex pivot.",
+     "dup_key": "simplex-leaving-variable",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "e",
+     "topic": "lp/basics",
+     "difficulty": "easy",
+     "summary": "Compute the objective value after the first simplex pivot.",
+     "dup_key": "simplex-objective-after-pivot",
+     "has_figure": false,
+     "note": null
+    }
+   ]
+  },
+  {
+   "sid": "2014B-p1",
+   "era": "old",
+   "topic": "randomized/prob-basics",
+   "also_topics": [],
+   "difficulty": "easy",
+   "nparts": 1,
+   "sig": [
+    "recurrence-uneven-thirds"
+   ],
+   "source": {
+    "kind": "exam",
+    "year": 2014,
+    "moed": "B",
+    "iteration": null,
+    "set": null,
+    "problem": 1,
+    "part": null
+   },
+   "parts": [
+    {
+     "part": null,
+     "topic": "randomized/prob-basics",
+     "difficulty": "easy",
+     "summary": "Running time of recurrence with uneven split (n/3 and 2n/3), 2n combine per level, giving O(n log n).",
+     "dup_key": "recurrence-uneven-thirds",
+     "has_figure": false,
+     "note": "borderline warm-up"
+    }
+   ]
+  },
+  {
+   "sid": "2014B-p5",
+   "era": "old",
+   "topic": "randomized/prob-basics",
+   "also_topics": [
+    "randomized/concentration"
+   ],
+   "difficulty": "medium",
+   "nparts": 3,
+   "sig": [
+    "skiplist-expected-insertion",
+    "skiplist-expected-level-count",
+    "skiplist-level-chernoff"
+   ],
+   "source": {
+    "kind": "exam",
+    "year": 2014,
+    "moed": "B",
+    "iteration": null,
+    "set": null,
+    "problem": 5,
+    "part": "a"
+   },
+   "parts": [
+    {
+     "part": "a",
+     "topic": "randomized/prob-basics",
+     "difficulty": "medium",
+     "summary": "Prove expected insertion time into a randomized skip list is O(log n) via a geometric-series expectation.",
+     "dup_key": "skiplist-expected-insertion",
+     "has_figure": false,
+     "note": "skip-list data-structure setting; primary technique is expectation (borderline)"
+    },
+    {
+     "part": "b",
+     "topic": "randomized/prob-basics",
+     "difficulty": "easy",
+     "summary": "Expected number of elements at level k of a skip list is n p^k (linearity of expectation).",
+     "dup_key": "skiplist-expected-level-count",
+     "has_figure": false,
+     "note": "skip-list data-structure setting; linearity of expectation (borderline)"
+    },
+    {
+     "part": "c",
+     "topic": "randomized/concentration",
+     "difficulty": "medium",
+     "summary": "Chernoff bound on the probability the number of elements at skip-list level k exceeds 4n/2^k.",
+     "dup_key": "skiplist-level-chernoff",
+     "has_figure": false,
+     "note": "skip-list data-structure setting; primary technique is Chernoff bound (borderline)"
+    }
+   ]
+  },
+  {
+   "sid": "2014B-p7",
+   "era": "old",
+   "topic": "lp/ilp-tum",
+   "also_topics": [
+    "approx/approximation"
+   ],
+   "difficulty": "medium",
+   "nparts": 2,
+   "sig": [
+    "binpacking-ilp",
+    "binpacking-mincapacity-2approx"
+   ],
+   "source": {
+    "kind": "exam",
+    "year": 2014,
+    "moed": "B",
+    "iteration": null,
+    "set": null,
+    "problem": 7,
+    "part": "a"
+   },
+   "parts": [
+    {
+     "part": "a",
+     "topic": "lp/ilp-tum",
+     "difficulty": "medium",
+     "summary": "Write bin packing as an integer linear program and explain the variables.",
+     "dup_key": "binpacking-ilp",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "b",
+     "topic": "approx/approximation",
+     "difficulty": "medium",
+     "summary": "2-approximation for minimizing bin capacity with fixed number of bins (greedy least-loaded scheduling).",
+     "dup_key": "binpacking-mincapacity-2approx",
+     "has_figure": false,
+     "note": null
+    }
+   ]
+  },
+  {
+   "sid": "2014B-p8",
+   "era": "old",
+   "topic": "lp/duality-farkas",
+   "also_topics": [
+    "lp/basics"
+   ],
+   "difficulty": "medium",
+   "nparts": 4,
+   "sig": [
+    "vc-dual-is-matching",
+    "vc-ilp-identify",
+    "vc-lp-dual",
+    "vc-lp-relaxation"
+   ],
+   "source": {
+    "kind": "exam",
+    "year": 2014,
+    "moed": "B",
+    "iteration": null,
+    "set": null,
+    "problem": 8,
+    "part": "a"
+   },
+   "parts": [
+    {
+     "part": "a",
+     "topic": "lp/duality-farkas",
+     "difficulty": "easy",
+     "summary": "Identify the graph problem of a given covering ILP (vertex cover).",
+     "dup_key": "vc-ilp-identify",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "b",
+     "topic": "lp/basics",
+     "difficulty": "easy",
+     "summary": "Write the LP relaxation of the vertex-cover ILP.",
+     "dup_key": "vc-lp-relaxation",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "c",
+     "topic": "lp/duality-farkas",
+     "difficulty": "medium",
+     "summary": "Write the dual of the vertex-cover LP relaxation.",
+     "dup_key": "vc-lp-dual",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "d",
+     "topic": "lp/duality-farkas",
+     "difficulty": "medium",
+     "summary": "Interpret the dual ILP of vertex cover as the maximum matching problem.",
+     "dup_key": "vc-dual-is-matching",
+     "has_figure": false,
+     "note": null
+    }
+   ]
+  },
+  {
+   "sid": "2015A-p5",
+   "era": "old",
+   "topic": "randomized/concentration",
+   "also_topics": [],
+   "difficulty": "medium",
+   "nparts": 1,
+   "sig": [
+    "montecarlo-pi-chernoff-samples"
+   ],
+   "source": {
+    "kind": "exam",
+    "year": 2015,
+    "moed": "A",
+    "iteration": null,
+    "set": null,
+    "problem": 5,
+    "part": null
+   },
+   "parts": [
+    {
+     "part": null,
+     "topic": "randomized/concentration",
+     "difficulty": "medium",
+     "summary": "Number of samples (closed form, Chernoff) to estimate pi within 10% w.p. 3/4 via unit-cube/ball sampling.",
+     "dup_key": "montecarlo-pi-chernoff-samples",
+     "has_figure": false,
+     "note": null
+    }
+   ]
+  },
+  {
+   "sid": "2015A-p6",
+   "era": "old",
+   "topic": "approx/approximation",
+   "also_topics": [],
+   "difficulty": "hard",
+   "nparts": 3,
+   "sig": [
+    "binpacking-harmonic-additive1",
+    "binpacking-harmonic-lastbin-bound",
+    "binpacking-harmonic-nonfull-bins"
+   ],
+   "source": {
+    "kind": "exam",
+    "year": 2015,
+    "moed": "A",
+    "iteration": null,
+    "set": null,
+    "problem": 6,
+    "part": "a"
+   },
+   "parts": [
+    {
+     "part": "a",
+     "topic": "approx/approximation",
+     "difficulty": "medium",
+     "summary": "Bin packing with 1/m weights: prove at most k-1 non-full bins after packing all items of weight >= 1/k.",
+     "dup_key": "binpacking-harmonic-nonfull-bins",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "b",
+     "topic": "approx/approximation",
+     "difficulty": "easy",
+     "summary": "Bin packing with 1/m weights: lower bound (1-1/k) on the total weight in each non-last bin.",
+     "dup_key": "binpacking-harmonic-lastbin-bound",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "c",
+     "topic": "approx/approximation",
+     "difficulty": "hard",
+     "summary": "Prove the decreasing-weight bin-packing algorithm is an additive 1-approximation.",
+     "dup_key": "binpacking-harmonic-additive1",
+     "has_figure": false,
+     "note": null
+    }
+   ]
+  },
+  {
+   "sid": "2015A-p7",
+   "era": "old",
+   "topic": "lp/basics",
+   "also_topics": [
+    "lp/duality-farkas"
+   ],
+   "difficulty": "medium",
+   "nparts": 4,
+   "sig": [
+    "abs-value-as-lp",
+    "duality-bound-primal-feasible",
+    "lp-write-dual",
+    "simplex-first-pivot"
+   ],
+   "source": {
+    "kind": "exam",
+    "year": 2015,
+    "moed": "A",
+    "iteration": null,
+    "set": null,
+    "problem": 7,
+    "part": "a"
+   },
+   "parts": [
+    {
+     "part": "a",
+     "topic": "lp/basics",
+     "difficulty": "medium",
+     "summary": "Add slack variables and perform the first simplex pivot, writing objective and basics as non-basic functions.",
+     "dup_key": "simplex-first-pivot",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "b",
+     "topic": "lp/duality-farkas",
+     "difficulty": "medium",
+     "summary": "Write the dual linear program of a given maximization LP.",
+     "dup_key": "lp-write-dual",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "c",
+     "topic": "lp/duality-farkas",
+     "difficulty": "medium",
+     "summary": "Prove the dual optimum is at least 40 using a feasible primal solution and weak/strong duality.",
+     "dup_key": "duality-bound-primal-feasible",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "d",
+     "topic": "lp/basics",
+     "difficulty": "medium",
+     "summary": "Model min |2x+y-3| + |10x+y+5| as a linear program using auxiliary variables.",
+     "dup_key": "abs-value-as-lp",
+     "has_figure": false,
+     "note": null
+    }
+   ]
+  },
+  {
+   "sid": "2015B-p1",
+   "era": "old",
+   "topic": "randomized/prob-basics",
+   "also_topics": [],
+   "difficulty": "easy",
+   "nparts": 2,
+   "sig": [
+    "recurrence-line-count",
+    "recurrence-tn-minus-1-poly"
+   ],
+   "source": {
+    "kind": "exam",
+    "year": 2015,
+    "moed": "B",
+    "iteration": null,
+    "set": null,
+    "problem": 1,
+    "part": "a"
+   },
+   "parts": [
+    {
+     "part": "a",
+     "topic": "randomized/prob-basics",
+     "difficulty": "easy",
+     "summary": "Count lines printed by a recursive program: T(n)=1+2T(n/2)=O(n) by the master theorem.",
+     "dup_key": "recurrence-line-count",
+     "has_figure": false,
+     "note": "borderline warm-up"
+    },
+    {
+     "part": "b",
+     "topic": "randomized/prob-basics",
+     "difficulty": "easy",
+     "summary": "Solve recurrence T(n)=T(n-1)+n^5, giving Theta(n^6).",
+     "dup_key": "recurrence-tn-minus-1-poly",
+     "has_figure": false,
+     "note": "borderline warm-up"
+    }
+   ]
+  },
+  {
+   "sid": "2015B-p3",
+   "era": "old",
+   "topic": "approx/approximation",
+   "also_topics": [],
+   "difficulty": "medium",
+   "nparts": 1,
+   "sig": [
+    "matching-half-tsp"
+   ],
+   "source": {
+    "kind": "exam",
+    "year": 2015,
+    "moed": "B",
+    "iteration": null,
+    "set": null,
+    "problem": 3,
+    "part": null
+   },
+   "parts": [
+    {
+     "part": null,
+     "topic": "approx/approximation",
+     "difficulty": "medium",
+     "summary": "Prove min-weight maximum matching MATCH <= OPT/2 for the TSP tour in a complete weighted graph.",
+     "dup_key": "matching-half-tsp",
+     "has_figure": false,
+     "note": null
+    }
+   ]
+  },
+  {
+   "sid": "2015B-p5",
+   "era": "old",
+   "topic": "randomized/concentration",
+   "also_topics": [],
+   "difficulty": "medium",
+   "nparts": 1,
+   "sig": [
+    "lasvegas-to-montecarlo-markov"
+   ],
+   "source": {
+    "kind": "exam",
+    "year": 2015,
+    "moed": "B",
+    "iteration": null,
+    "set": null,
+    "problem": 5,
+    "part": null
+   },
+   "parts": [
+    {
+     "part": null,
+     "topic": "randomized/concentration",
+     "difficulty": "medium",
+     "summary": "Convert a Las Vegas algorithm to an O(n) Monte Carlo algorithm w.p. 9/10 correct via Markov's inequality.",
+     "dup_key": "lasvegas-to-montecarlo-markov",
+     "has_figure": false,
+     "note": null
+    }
+   ]
+  },
+  {
+   "sid": "2015B-p7",
+   "era": "old",
+   "topic": "lp/basics",
+   "also_topics": [
+    "lp/duality-farkas"
+   ],
+   "difficulty": "medium",
+   "nparts": 7,
+   "sig": [
+    "dual-is-edge-cover",
+    "edge-cover-via-matching",
+    "identify-ilp-independent-set",
+    "is-ilp-optimum-one-clique",
+    "is-lp-dual",
+    "is-lp-half-lowerbound",
+    "is-lp-relaxation"
+   ],
+   "source": {
+    "kind": "exam",
+    "year": 2015,
+    "moed": "B",
+    "iteration": null,
+    "set": null,
+    "problem": 7,
+    "part": "a"
+   },
+   "parts": [
+    {
+     "part": "a",
+     "topic": "lp/basics",
+     "difficulty": "easy",
+     "summary": "Identify the graph problem of a given ILP (maximum independent set).",
+     "dup_key": "identify-ilp-independent-set",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "b",
+     "topic": "lp/basics",
+     "difficulty": "easy",
+     "summary": "Write the LP relaxation of the maximum-independent-set ILP.",
+     "dup_key": "is-lp-relaxation",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "c",
+     "topic": "lp/basics",
+     "difficulty": "medium",
+     "summary": "Prove the independent-set LP optimum is at least n/2 via the all-halves feasible solution.",
+     "dup_key": "is-lp-half-lowerbound",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "d",
+     "topic": "lp/basics",
+     "difficulty": "easy",
+     "summary": "Describe a 100-vertex graph whose independent-set ILP optimum is 1 (a clique).",
+     "dup_key": "is-ilp-optimum-one-clique",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "e",
+     "topic": "lp/duality-farkas",
+     "difficulty": "medium",
+     "summary": "Write the dual of the independent-set LP relaxation.",
+     "dup_key": "is-lp-dual",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "f",
+     "topic": "lp/duality-farkas",
+     "difficulty": "medium",
+     "summary": "Interpret the dual ILP as a graph problem (minimum edge cover).",
+     "dup_key": "dual-is-edge-cover",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "g",
+     "topic": "lp/duality-farkas",
+     "difficulty": "medium",
+     "summary": "Poly-time algorithm for minimum edge cover via maximum matching, with a correctness argument.",
+     "dup_key": "edge-cover-via-matching",
+     "has_figure": false,
+     "note": "matching-based exact algorithm realizing the dual; borderline vs out-of-syllabus graph algorithm"
+    }
+   ]
+  },
+  {
+   "sid": "2016A-p1",
+   "era": "old",
+   "topic": "randomized/prob-basics",
+   "also_topics": [],
+   "difficulty": "easy",
+   "nparts": 1,
+   "sig": [
+    "recurrence-master-theorem"
+   ],
+   "source": {
+    "kind": "exam",
+    "year": 2016,
+    "moed": "A",
+    "iteration": null,
+    "set": null,
+    "problem": 1,
+    "part": "a"
+   },
+   "parts": [
+    {
+     "part": "a",
+     "topic": "randomized/prob-basics",
+     "difficulty": "easy",
+     "summary": "Running time of T(n)=3T(n/3)+O(n log n), giving O(n log^2 n).",
+     "dup_key": "recurrence-master-theorem",
+     "has_figure": false,
+     "note": "borderline warm-up"
+    }
+   ]
+  },
+  {
+   "sid": "2016A-p4",
+   "era": "old",
+   "topic": "randomized/prob-basics",
+   "also_topics": [
+    "randomized/concentration"
+   ],
+   "difficulty": "medium",
+   "nparts": 3,
+   "sig": [
+    "skiplist-expected-search-time",
+    "skiplist-reverse-expected-steps",
+    "skiplist-reverse-markov"
+   ],
+   "source": {
+    "kind": "exam",
+    "year": 2016,
+    "moed": "A",
+    "iteration": null,
+    "set": null,
+    "problem": 4,
+    "part": "a"
+   },
+   "parts": [
+    {
+     "part": "a",
+     "topic": "randomized/prob-basics",
+     "difficulty": "easy",
+     "summary": "Prove expected number of left steps of the reverse skip-list search path at a fixed level is at most 1.",
+     "dup_key": "skiplist-reverse-expected-steps",
+     "has_figure": false,
+     "note": "skip-list data-structure setting; expectation via geometric series (borderline)"
+    },
+    {
+     "part": "b",
+     "topic": "randomized/concentration",
+     "difficulty": "easy",
+     "summary": "Prove the reverse skip-list path makes more than k left steps at a level w.p. at most 1/k (Markov).",
+     "dup_key": "skiplist-reverse-markov",
+     "has_figure": false,
+     "note": "skip-list data-structure setting; primary technique is Markov's inequality (borderline)"
+    },
+    {
+     "part": "c",
+     "topic": "randomized/prob-basics",
+     "difficulty": "medium",
+     "summary": "Prove expected skip-list search time is O(log n) via linearity of expectation over levels.",
+     "dup_key": "skiplist-expected-search-time",
+     "has_figure": false,
+     "note": "skip-list data-structure setting; linearity of expectation (borderline)"
+    }
+   ]
+  },
+  {
+   "sid": "2016A-p5",
+   "era": "old",
+   "topic": "approx/approximation",
+   "also_topics": [],
+   "difficulty": "medium",
+   "nparts": 1,
+   "sig": [
+    "maxcut-greedy-refute"
+   ],
+   "source": {
+    "kind": "exam",
+    "year": 2016,
+    "moed": "A",
+    "iteration": null,
+    "set": null,
+    "problem": 5,
+    "part": null
+   },
+   "parts": [
+    {
+     "part": null,
+     "topic": "approx/approximation",
+     "difficulty": "medium",
+     "summary": "Prove or refute that a given greedy algorithm is a 2-approximation for maximum cut (refute).",
+     "dup_key": "maxcut-greedy-refute",
+     "has_figure": false,
+     "note": null
+    }
+   ]
+  },
+  {
+   "sid": "2016A-p6",
+   "era": "old",
+   "topic": "lp/duality-farkas",
+   "also_topics": [
+    "lp/basics",
+    "lp/ilp-tum"
+   ],
+   "difficulty": "medium",
+   "nparts": 5,
+   "sig": [
+    "dual-is-weighted-vc",
+    "matching-ilp",
+    "matching-lp-dual",
+    "simplex-basis-vertex",
+    "simplex-standard-form"
+   ],
+   "source": {
+    "kind": "exam",
+    "year": 2016,
+    "moed": "A",
+    "iteration": null,
+    "set": null,
+    "problem": 6,
+    "part": "a"
+   },
+   "parts": [
+    {
+     "part": "a",
+     "topic": "lp/ilp-tum",
+     "difficulty": "medium",
+     "summary": "Write maximum-weight matching as a binary integer linear program.",
+     "dup_key": "matching-ilp",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "b",
+     "topic": "lp/duality-farkas",
+     "difficulty": "medium",
+     "summary": "Write the dual of the LP relaxation of the maximum-weight matching program.",
+     "dup_key": "matching-lp-dual",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "c",
+     "topic": "lp/duality-farkas",
+     "difficulty": "easy",
+     "summary": "Describe the problem expressed by the matching dual LP (weighted vertex cover).",
+     "dup_key": "dual-is-weighted-vc",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "d",
+     "topic": "lp/basics",
+     "difficulty": "easy",
+     "summary": "Add slack variables and write a given LP in the standard form for the simplex algorithm.",
+     "dup_key": "simplex-standard-form",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "e",
+     "topic": "lp/basics",
+     "difficulty": "medium",
+     "summary": "Find the vertex associated with a given simplex basis {x1,s1}.",
+     "dup_key": "simplex-basis-vertex",
+     "has_figure": false,
+     "note": null
+    }
+   ]
+  },
+  {
+   "sid": "2017A-p1",
+   "era": "old",
+   "topic": "randomized/prob-basics",
+   "also_topics": [
+    "approx/approximation"
+   ],
+   "difficulty": "easy",
+   "nparts": 4,
+   "sig": [
+    "linearity-expectation-tf",
+    "ptas-definition-tf",
+    "recurrence-3t-n4-master",
+    "recurrence-matrix-mn-geometric"
+   ],
+   "source": {
+    "kind": "exam",
+    "year": 2017,
+    "moed": "A",
+    "iteration": null,
+    "set": null,
+    "problem": 1,
+    "part": "a"
+   },
+   "parts": [
+    {
+     "part": "a",
+     "topic": "randomized/prob-basics",
+     "difficulty": "easy",
+     "summary": "Solve recurrence T(n)=3T(n/4)+Theta(n) for a divide-and-conquer running time (master theorem).",
+     "dup_key": "recurrence-3t-n4-master",
+     "has_figure": false,
+     "note": "borderline warm-up"
+    },
+    {
+     "part": "b",
+     "topic": "randomized/prob-basics",
+     "difficulty": "easy",
+     "summary": "Solve two-variable recurrence T(m/2,n/2)+c(m+n) via geometric sum, giving Theta(m+n).",
+     "dup_key": "recurrence-matrix-mn-geometric",
+     "has_figure": false,
+     "note": "borderline warm-up"
+    },
+    {
+     "part": "c",
+     "topic": "randomized/prob-basics",
+     "difficulty": "easy",
+     "summary": "True/False: E[2x-y]=2E[x]-E[y] for dependent random variables (linearity of expectation).",
+     "dup_key": "linearity-expectation-tf",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "e",
+     "topic": "approx/approximation",
+     "difficulty": "easy",
+     "summary": "True/False: an algorithm with (1+eps)-quality and runtime O(n^(3+1/eps)) is a PTAS.",
+     "dup_key": "ptas-definition-tf",
+     "has_figure": false,
+     "note": null
+    }
+   ]
+  },
+  {
+   "sid": "2017A-p3",
+   "era": "old",
+   "topic": "approx/approximation",
+   "also_topics": [],
+   "difficulty": "hard",
+   "nparts": 1,
+   "sig": [
+    "path-tsp-christofides-1.5"
+   ],
+   "source": {
+    "kind": "exam",
+    "year": 2017,
+    "moed": "A",
+    "iteration": null,
+    "set": null,
+    "problem": 3,
+    "part": null
+   },
+   "parts": [
+    {
+     "part": null,
+     "topic": "approx/approximation",
+     "difficulty": "hard",
+     "summary": "Prove a Christofides variant (match all-but-two odd vertices) is a 1.5-approx for metric Path-TSP.",
+     "dup_key": "path-tsp-christofides-1.5",
+     "has_figure": false,
+     "note": null
+    }
+   ]
+  },
+  {
+   "sid": "2017A-p4",
+   "era": "old",
+   "topic": "randomized/concentration",
+   "also_topics": [],
+   "difficulty": "medium",
+   "nparts": 1,
+   "sig": [
+    "chernoff-sampling-frequency"
+   ],
+   "source": {
+    "kind": "exam",
+    "year": 2017,
+    "moed": "A",
+    "iteration": null,
+    "set": null,
+    "problem": 4,
+    "part": null
+   },
+   "parts": [
+    {
+     "part": null,
+     "topic": "randomized/concentration",
+     "difficulty": "medium",
+     "summary": "How many samples to estimate the fraction of ones within 0.01 with probability 0.9 (Chernoff bound).",
+     "dup_key": "chernoff-sampling-frequency",
+     "has_figure": false,
+     "note": null
+    }
+   ]
+  },
+  {
+   "sid": "2017A-p6",
+   "era": "old",
+   "topic": "lp/duality-farkas",
+   "also_topics": [
+    "lp/basics",
+    "lp/ilp-tum"
+   ],
+   "difficulty": "easy",
+   "nparts": 4,
+   "sig": [
+    "hitting-set-dual-interpretation",
+    "hitting-set-ilp",
+    "hitting-set-lp-dual",
+    "lp-standard-form"
+   ],
+   "source": {
+    "kind": "exam",
+    "year": 2017,
+    "moed": "A",
+    "iteration": null,
+    "set": null,
+    "problem": 6,
+    "part": "a"
+   },
+   "parts": [
+    {
+     "part": "a",
+     "topic": "lp/ilp-tum",
+     "difficulty": "easy",
+     "summary": "Write minimum hitting set as a binary integer linear program.",
+     "dup_key": "hitting-set-ilp",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "b",
+     "topic": "lp/duality-farkas",
+     "difficulty": "easy",
+     "summary": "Write the dual of the LP relaxation of the minimum hitting set program.",
+     "dup_key": "hitting-set-lp-dual",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "c",
+     "topic": "lp/duality-farkas",
+     "difficulty": "easy",
+     "summary": "Describe the combinatorial problem given by the ILP version of the dual (max disjoint sets / set packing).",
+     "dup_key": "hitting-set-dual-interpretation",
+     "has_figure": false,
+     "note": "interpretation of dual as set packing"
+    },
+    {
+     "part": "d",
+     "topic": "lp/basics",
+     "difficulty": "easy",
+     "summary": "Convert a given LP with equalities and sign constraints into standard form.",
+     "dup_key": "lp-standard-form",
+     "has_figure": false,
+     "note": null
+    }
+   ]
+  },
+  {
+   "sid": "2017A-p7",
+   "era": "old",
+   "topic": "approx/approximation",
+   "also_topics": [],
+   "difficulty": "medium",
+   "nparts": 1,
+   "sig": [
+    "online-vertex-cover-delta"
+   ],
+   "source": {
+    "kind": "exam",
+    "year": 2017,
+    "moed": "A",
+    "iteration": null,
+    "set": null,
+    "problem": 7,
+    "part": null
+   },
+   "parts": [
+    {
+     "part": null,
+     "topic": "approx/approximation",
+     "difficulty": "medium",
+     "summary": "Give an online Delta-competitive vertex cover algorithm; prove it yields a minimal (hence Delta) VC.",
+     "dup_key": "online-vertex-cover-delta",
+     "has_figure": false,
+     "note": "online/competitive framing; core technique is minimal-VC approximation"
+    }
+   ]
+  },
+  {
+   "sid": "2017B-p1",
+   "era": "old",
+   "topic": "randomized/prob-basics",
+   "also_topics": [
+    "approx/approximation"
+   ],
+   "difficulty": "easy",
+   "nparts": 3,
+   "sig": [
+    "recurrence-9t-n3-master",
+    "recurrence-uneven-splits-tree",
+    "vc-matching-bounds"
+   ],
+   "source": {
+    "kind": "exam",
+    "year": 2017,
+    "moed": "B",
+    "iteration": null,
+    "set": null,
+    "problem": 1,
+    "part": "a"
+   },
+   "parts": [
+    {
+     "part": "a",
+     "topic": "randomized/prob-basics",
+     "difficulty": "easy",
+     "summary": "Solve recurrence T(n)=9T(n/3)+Theta(n^2) giving Theta(n^2 log n) (master theorem).",
+     "dup_key": "recurrence-9t-n3-master",
+     "has_figure": false,
+     "note": "borderline warm-up"
+    },
+    {
+     "part": "b",
+     "topic": "randomized/prob-basics",
+     "difficulty": "easy",
+     "summary": "Solve uneven-split recurrence T(n/6)+T(n/3)+T(n/2)+Theta(n) via recursion tree, giving Theta(n log n).",
+     "dup_key": "recurrence-uneven-splits-tree",
+     "has_figure": false,
+     "note": "borderline warm-up"
+    },
+    {
+     "part": "e",
+     "topic": "approx/approximation",
+     "difficulty": "easy",
+     "summary": "State the relation between min vertex cover VC(G) and max matching M(G): M <= VC <= 2M.",
+     "dup_key": "vc-matching-bounds",
+     "has_figure": false,
+     "note": null
+    }
+   ]
+  },
+  {
+   "sid": "2017B-p2",
+   "era": "old",
+   "topic": "approx/approximation",
+   "also_topics": [
+    "lp/basics",
+    "lp/duality-farkas",
+    "lp/ilp-tum"
+   ],
+   "difficulty": "medium",
+   "nparts": 4,
+   "sig": [
+    "knapsack-greedy-unbounded",
+    "knapsack-ilp",
+    "knapsack-lp-dual",
+    "knapsack-lp-relaxation"
+   ],
+   "source": {
+    "kind": "exam",
+    "year": 2017,
+    "moed": "B",
+    "iteration": null,
+    "set": null,
+    "problem": 2,
+    "part": "a"
+   },
+   "parts": [
+    {
+     "part": "a",
+     "topic": "approx/approximation",
+     "difficulty": "medium",
+     "summary": "Prove the greedy ratio-sorted knapsack algorithm has unbounded approximation ratio (counterexample).",
+     "dup_key": "knapsack-greedy-unbounded",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "b",
+     "topic": "lp/ilp-tum",
+     "difficulty": "easy",
+     "summary": "Write the knapsack problem as a binary integer linear program.",
+     "dup_key": "knapsack-ilp",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "c",
+     "topic": "lp/basics",
+     "difficulty": "easy",
+     "summary": "Write the LP relaxation of the knapsack BIP.",
+     "dup_key": "knapsack-lp-relaxation",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "d",
+     "topic": "lp/duality-farkas",
+     "difficulty": "medium",
+     "summary": "Write the dual of the knapsack LP relaxation.",
+     "dup_key": "knapsack-lp-dual",
+     "has_figure": false,
+     "note": null
+    }
+   ]
+  },
+  {
+   "sid": "2017B-p3",
+   "era": "old",
+   "topic": "randomized/random-walks",
+   "also_topics": [],
+   "difficulty": "medium",
+   "nparts": 1,
+   "sig": [
+    "cover-time-st-markov"
+   ],
+   "source": {
+    "kind": "exam",
+    "year": 2017,
+    "moed": "B",
+    "iteration": null,
+    "set": null,
+    "problem": 3,
+    "part": null
+   },
+   "parts": [
+    {
+     "part": null,
+     "topic": "randomized/random-walks",
+     "difficulty": "medium",
+     "summary": "Using cover time <= 2mn and Markov, prove a random walk from s visits t within 8mn steps w.p. >= 3/4.",
+     "dup_key": "cover-time-st-markov",
+     "has_figure": false,
+     "note": null
+    }
+   ]
+  },
+  {
+   "sid": "2017B-p4",
+   "era": "old",
+   "topic": "randomized/probabilistic-method",
+   "also_topics": [],
+   "difficulty": "medium",
+   "nparts": 1,
+   "sig": [
+    "max3sat-half-assignment"
+   ],
+   "source": {
+    "kind": "exam",
+    "year": 2017,
+    "moed": "B",
+    "iteration": null,
+    "set": null,
+    "problem": 4,
+    "part": "a"
+   },
+   "parts": [
+    {
+     "part": "a",
+     "topic": "randomized/probabilistic-method",
+     "difficulty": "medium",
+     "summary": "Prove there always exists an assignment satisfying at least m/2 clauses of a 3-SAT formula.",
+     "dup_key": "max3sat-half-assignment",
+     "has_figure": false,
+     "note": "complementary-assignment argument; overlaps approx (MAX-3SAT)"
+    }
+   ]
+  },
+  {
+   "sid": "2018A-p1",
+   "era": "old",
+   "topic": "algebraic/matrix-mult",
+   "also_topics": [
+    "randomized/karger-min-cut",
+    "randomized/prob-basics"
+   ],
+   "difficulty": "easy",
+   "nparts": 3,
+   "sig": [
+    "mincut-monte-carlo-las-vegas",
+    "recurrence-2sub-const-fraction",
+    "strassen-recurrence"
+   ],
+   "source": {
+    "kind": "exam",
+    "year": 2018,
+    "moed": "A",
+    "iteration": null,
+    "set": null,
+    "problem": 1,
+    "part": "a"
+   },
+   "parts": [
+    {
+     "part": "a",
+     "topic": "algebraic/matrix-mult",
+     "difficulty": "easy",
+     "summary": "Write and solve Strassen's recurrence T(n)=7T(n/2)+Theta(n^2) giving Theta(n^log2(7)).",
+     "dup_key": "strassen-recurrence",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "b",
+     "topic": "randomized/prob-basics",
+     "difficulty": "easy",
+     "summary": "Solve recurrence T(5n/6)+T(n/10)+Theta(n^2) (top level dominates), giving Theta(n^2).",
+     "dup_key": "recurrence-2sub-const-fraction",
+     "has_figure": false,
+     "note": "borderline warm-up"
+    },
+    {
+     "part": "e",
+     "topic": "randomized/karger-min-cut",
+     "difficulty": "easy",
+     "summary": "Is the randomized min-cut algorithm Monte Carlo or Las Vegas? (Monte Carlo.)",
+     "dup_key": "mincut-monte-carlo-las-vegas",
+     "has_figure": false,
+     "note": null
+    }
+   ]
+  },
+  {
+   "sid": "2018A-p2",
+   "era": "old",
+   "topic": "approx/approximation",
+   "also_topics": [],
+   "difficulty": "medium",
+   "nparts": 3,
+   "sig": [
+    "hitting-set-3approx-algo",
+    "hitting-set-3approx-proof",
+    "online-hitting-set-3comp"
+   ],
+   "source": {
+    "kind": "exam",
+    "year": 2018,
+    "moed": "A",
+    "iteration": null,
+    "set": null,
+    "problem": 2,
+    "part": "a"
+   },
+   "parts": [
+    {
+     "part": "a",
+     "topic": "approx/approximation",
+     "difficulty": "medium",
+     "summary": "Describe a polynomial 3-approximation for minimum hitting set when every subset has size <= 3.",
+     "dup_key": "hitting-set-3approx-algo",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "b",
+     "topic": "approx/approximation",
+     "difficulty": "medium",
+     "summary": "Prove the |D|<=3 hitting-set greedy is a polynomial 3-approximation (disjoint-sets lower bound).",
+     "dup_key": "hitting-set-3approx-proof",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "c",
+     "topic": "approx/approximation",
+     "difficulty": "easy",
+     "summary": "Give a 3-competitive online algorithm for hitting set with |D|<=3 (same greedy works in arrival order).",
+     "dup_key": "online-hitting-set-3comp",
+     "has_figure": false,
+     "note": "online framing; trivial extension of the offline approximation"
+    }
+   ]
+  },
+  {
+   "sid": "2018A-p3",
+   "era": "old",
+   "topic": "lp/basics",
+   "also_topics": [
+    "lp/duality-farkas",
+    "lp/ilp-tum"
+   ],
+   "difficulty": "medium",
+   "nparts": 4,
+   "sig": [
+    "abs-value-as-lp",
+    "matching-ilp",
+    "matching-lp-dual",
+    "matching-lp-relaxation"
+   ],
+   "source": {
+    "kind": "exam",
+    "year": 2018,
+    "moed": "A",
+    "iteration": null,
+    "set": null,
+    "problem": 3,
+    "part": "a"
+   },
+   "parts": [
+    {
+     "part": "a",
+     "topic": "lp/ilp-tum",
+     "difficulty": "easy",
+     "summary": "Write minimum-cost perfect matching as an integer linear program, defining the variables.",
+     "dup_key": "matching-ilp",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "b",
+     "topic": "lp/basics",
+     "difficulty": "easy",
+     "summary": "Write the LP relaxation of the perfect-matching ILP, removing redundant constraints.",
+     "dup_key": "matching-lp-relaxation",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "c",
+     "topic": "lp/duality-farkas",
+     "difficulty": "medium",
+     "summary": "Write the dual of the matching LP relaxation and state the dual variables.",
+     "dup_key": "matching-lp-dual",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "d",
+     "topic": "lp/basics",
+     "difficulty": "medium",
+     "summary": "Express min |2x-10| subject to 4x-5>=0 as a linear program (auxiliary variable z).",
+     "dup_key": "abs-value-as-lp",
+     "has_figure": false,
+     "note": null
+    }
+   ]
+  },
+  {
+   "sid": "2018A-p4",
+   "era": "old",
+   "topic": "randomized/prob-basics",
+   "also_topics": [
+    "randomized/concentration"
+   ],
+   "difficulty": "medium",
+   "nparts": 2,
+   "sig": [
+    "hashing-collisions-markov",
+    "hashing-expected-collisions"
+   ],
+   "source": {
+    "kind": "exam",
+    "year": 2018,
+    "moed": "A",
+    "iteration": null,
+    "set": null,
+    "problem": 4,
+    "part": "a"
+   },
+   "parts": [
+    {
+     "part": "a",
+     "topic": "randomized/prob-basics",
+     "difficulty": "medium",
+     "summary": "Compute expected number of collisions of k elements under a pairwise-independent hash via indicators and linearity.",
+     "dup_key": "hashing-expected-collisions",
+     "has_figure": false,
+     "note": "hashing context; core technique is indicators + linearity of expectation"
+    },
+    {
+     "part": "b",
+     "topic": "randomized/concentration",
+     "difficulty": "easy",
+     "summary": "Give the strongest bound on Pr[more than 3k collisions] using Markov (Chernoff unavailable, not independent).",
+     "dup_key": "hashing-collisions-markov",
+     "has_figure": false,
+     "note": null
+    }
+   ]
+  },
+  {
+   "sid": "2018B-p1",
+   "era": "old",
+   "topic": "lp/ilp-tum",
+   "also_topics": [],
+   "difficulty": "easy",
+   "nparts": 1,
+   "sig": [
+    "matching-lp-recognize"
+   ],
+   "source": {
+    "kind": "exam",
+    "year": 2018,
+    "moed": "B",
+    "iteration": null,
+    "set": null,
+    "problem": 1,
+    "part": "e"
+   },
+   "parts": [
+    {
+     "part": "e",
+     "topic": "lp/ilp-tum",
+     "difficulty": "easy",
+     "summary": "Recognize a given binary LP as the maximum-matching problem, solvable in polynomial time.",
+     "dup_key": "matching-lp-recognize",
+     "has_figure": false,
+     "note": "recognizing matching ILP; could also read as bipartite-matching"
+    }
+   ]
+  },
+  {
+   "sid": "2018B-p2",
+   "era": "old",
+   "topic": "approx/approximation",
+   "also_topics": [],
+   "difficulty": "medium",
+   "nparts": 2,
+   "sig": [
+    "greedy-is-d1-approx",
+    "greedy-is-ratio1-refute"
+   ],
+   "source": {
+    "kind": "exam",
+    "year": 2018,
+    "moed": "B",
+    "iteration": null,
+    "set": null,
+    "problem": 2,
+    "part": "a"
+   },
+   "parts": [
+    {
+     "part": "a",
+     "topic": "approx/approximation",
+     "difficulty": "medium",
+     "summary": "Refute that min-degree greedy independent set has approximation ratio 1 (counterexample graph).",
+     "dup_key": "greedy-is-ratio1-refute",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "b",
+     "topic": "approx/approximation",
+     "difficulty": "medium",
+     "summary": "Prove the min-degree greedy is a polynomial (D+1)-approximation for independent set on max-degree-D graphs.",
+     "dup_key": "greedy-is-d1-approx",
+     "has_figure": false,
+     "note": null
+    }
+   ]
+  },
+  {
+   "sid": "2018B-p3",
+   "era": "old",
+   "topic": "lp/basics",
+   "also_topics": [],
+   "difficulty": "medium",
+   "nparts": 4,
+   "sig": [
+    "simplex-basis-vertex",
+    "simplex-entering-variable",
+    "simplex-objective-after-pivot",
+    "simplex-slack-form"
+   ],
+   "source": {
+    "kind": "exam",
+    "year": 2018,
+    "moed": "B",
+    "iteration": null,
+    "set": null,
+    "problem": 3,
+    "part": "a"
+   },
+   "parts": [
+    {
+     "part": "a",
+     "topic": "lp/basics",
+     "difficulty": "easy",
+     "summary": "Add non-negative slack variables to put a given LP into the form needed for simplex.",
+     "dup_key": "simplex-slack-form",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "b",
+     "topic": "lp/basics",
+     "difficulty": "medium",
+     "summary": "Compute the vertex associated with a given basis (x1, s2) of the simplex tableau.",
+     "dup_key": "simplex-basis-vertex",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "c",
+     "topic": "lp/basics",
+     "difficulty": "medium",
+     "summary": "Determine which non-basic variable first enters the basis in a simplex execution.",
+     "dup_key": "simplex-entering-variable",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "d",
+     "topic": "lp/basics",
+     "difficulty": "medium",
+     "summary": "Compute the objective value after the first simplex pivot.",
+     "dup_key": "simplex-objective-after-pivot",
+     "has_figure": false,
+     "note": null
+    }
+   ]
+  },
+  {
+   "sid": "2018B-p4",
+   "era": "old",
+   "topic": "randomized/prob-basics",
+   "also_topics": [
+    "randomized/concentration"
+   ],
+   "difficulty": "hard",
+   "nparts": 5,
+   "sig": [
+    "quickselect-expectation-over",
+    "quickselect-linear-induction",
+    "quickselect-mc-to-lv-markov",
+    "quickselect-recurrence",
+    "quickselect-worstcase-applies"
+   ],
+   "source": {
+    "kind": "exam",
+    "year": 2018,
+    "moed": "B",
+    "iteration": null,
+    "set": null,
+    "problem": 4,
+    "part": "a"
+   },
+   "parts": [
+    {
+     "part": "a",
+     "topic": "randomized/prob-basics",
+     "difficulty": "easy",
+     "summary": "Does the expected-runtime analysis of randomized selection apply to the worst-case input? (Yes.)",
+     "dup_key": "quickselect-worstcase-applies",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "b",
+     "topic": "randomized/prob-basics",
+     "difficulty": "easy",
+     "summary": "What is the expectation in the randomized selection analysis over? (The random pivot choices.)",
+     "dup_key": "quickselect-expectation-over",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "c",
+     "topic": "randomized/prob-basics",
+     "difficulty": "medium",
+     "summary": "Prove the recurrence E[T(n)] <= (2/n) sum E[T(k)] + Theta(n) for randomized selection.",
+     "dup_key": "quickselect-recurrence",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "d",
+     "topic": "randomized/prob-basics",
+     "difficulty": "hard",
+     "summary": "Prove by induction that E[T(n)] = O(n) for randomized selection using the given recurrence.",
+     "dup_key": "quickselect-linear-induction",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "e",
+     "topic": "randomized/concentration",
+     "difficulty": "medium",
+     "summary": "Turn Monte Carlo selection into Las Vegas: run <=5 capped trials, bound failure via Markov to 1/2^5.",
+     "dup_key": "quickselect-mc-to-lv-markov",
+     "has_figure": false,
+     "note": null
+    }
+   ]
+  }
+ ],
+ "dropped": [
+  {
+   "sid": "hw2025s1-p2",
+   "era": "hw2025",
+   "topic": "algebraic/pit",
+   "also_topics": [],
+   "difficulty": "medium",
+   "nparts": 1,
+   "sig": [
+    "sz-lemma-proof"
+   ],
+   "source": {
+    "kind": "homework",
+    "year": 2025,
+    "moed": null,
+    "iteration": 2025,
+    "set": 1,
+    "problem": 2,
+    "part": null
+   },
+   "parts": [
+    {
+     "part": null,
+     "topic": "algebraic/pit",
+     "difficulty": "medium",
+     "summary": "Prove the Schwartz-Zippel lemma by induction on the number of variables",
+     "dup_key": "sz-lemma-proof",
+     "has_figure": false,
+     "note": null
+    }
+   ],
+   "dup_of": "hw2026s1-p1"
+  },
+  {
+   "sid": "hw2025s1-p3",
+   "era": "hw2025",
+   "topic": "algebraic/pit",
+   "also_topics": [],
+   "difficulty": "medium",
+   "nparts": 1,
+   "sig": [
+    "formula-degree-bound"
+   ],
+   "source": {
+    "kind": "homework",
+    "year": 2025,
+    "moed": null,
+    "iteration": 2025,
+    "set": 1,
+    "problem": 3,
+    "part": null
+   },
+   "parts": [
+    {
+     "part": null,
+     "topic": "algebraic/pit",
+     "difficulty": "medium",
+     "summary": "Prove a polynomial computed by an arithmetic formula of size s has degree at most s (induction on structure)",
+     "dup_key": "formula-degree-bound",
+     "has_figure": false,
+     "note": null
+    }
+   ],
+   "dup_of": "hw2026s1-p2"
+  },
+  {
+   "sid": "hw2025s4-p4",
+   "era": "hw2025",
+   "topic": "lp/duality-farkas",
+   "also_topics": [
+    "lp/basics"
+   ],
+   "difficulty": "hard",
+   "nparts": 2,
+   "sig": [
+    "lp-perturbation-feasible-ball",
+    "lp-perturbation-infeasible"
+   ],
+   "source": {
+    "kind": "homework",
+    "year": 2025,
+    "moed": null,
+    "iteration": 2025,
+    "set": 4,
+    "problem": 4,
+    "part": "a"
+   },
+   "parts": [
+    {
+     "part": "a",
+     "topic": "lp/duality-farkas",
+     "difficulty": "hard",
+     "summary": "Farkas perturbation: an infeasible {Cx<=d} stays infeasible after a 2^-L' shift of d",
+     "dup_key": "lp-perturbation-infeasible",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "b",
+     "topic": "lp/basics",
+     "difficulty": "medium",
+     "summary": "A ball of radius 2^-2L' around a feasible point stays feasible after a 2^-L' shift of d",
+     "dup_key": "lp-perturbation-feasible-ball",
+     "has_figure": false,
+     "note": "geometric Cauchy-Schwarz argument; supports ellipsoid feasibility"
+    }
+   ],
+   "dup_of": "hw2026s4-p1"
+  },
+  {
+   "sid": "hw2025s5-p1",
+   "era": "hw2025",
+   "topic": "lp/ilp-tum",
+   "also_topics": [],
+   "difficulty": "medium",
+   "nparts": 3,
+   "sig": [
+    "ip-graph-coloring",
+    "ip-max-clique",
+    "ip-subset-sum"
+   ],
+   "source": {
+    "kind": "homework",
+    "year": 2025,
+    "moed": null,
+    "iteration": 2025,
+    "set": 5,
+    "problem": 1,
+    "part": "a"
+   },
+   "parts": [
+    {
+     "part": "a",
+     "topic": "lp/ilp-tum",
+     "difficulty": "easy",
+     "summary": "Write an integer program for maximum clique",
+     "dup_key": "ip-max-clique",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "b",
+     "topic": "lp/ilp-tum",
+     "difficulty": "easy",
+     "summary": "Write an integer program for subset-sum feasibility",
+     "dup_key": "ip-subset-sum",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "c",
+     "topic": "lp/ilp-tum",
+     "difficulty": "medium",
+     "summary": "Write an integer program for graph coloring / chromatic number",
+     "dup_key": "ip-graph-coloring",
+     "has_figure": false,
+     "note": null
+    }
+   ],
+   "dup_of": "hw2026s4-p2"
+  },
+  {
+   "sid": "hw2025s5-p3",
+   "era": "hw2025",
+   "topic": "approx/approximation",
+   "also_topics": [],
+   "difficulty": "medium",
+   "nparts": 4,
+   "sig": [
+    "setcover-cover-prob",
+    "setcover-ip",
+    "setcover-lp-expectation",
+    "setcover-randomized-rounding"
+   ],
+   "source": {
+    "kind": "homework",
+    "year": 2025,
+    "moed": null,
+    "iteration": 2025,
+    "set": 5,
+    "problem": 3,
+    "part": "a"
+   },
+   "parts": [
+    {
+     "part": "a",
+     "topic": "approx/approximation",
+     "difficulty": "easy",
+     "summary": "Give the IP/LP formulation of set cover",
+     "dup_key": "setcover-ip",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "b",
+     "topic": "approx/approximation",
+     "difficulty": "medium",
+     "summary": "Randomized LP rounding for set cover: show E[|S|] = LPOPT <= OPT",
+     "dup_key": "setcover-lp-expectation",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "c",
+     "topic": "approx/approximation",
+     "difficulty": "medium",
+     "summary": "Show each element is covered with probability >= 1-1/e under one round of LP rounding",
+     "dup_key": "setcover-cover-prob",
+     "has_figure": false,
+     "note": null
+    },
+    {
+     "part": "d",
+     "topic": "approx/approximation",
+     "difficulty": "medium",
+     "summary": "Repeat rounding T=ln(n/eps) times; union bound gives an O(log n) set-cover approximation",
+     "dup_key": "setcover-randomized-rounding",
+     "has_figure": false,
+     "note": null
+    }
+   ],
+   "dup_of": "hw2026s4-p3"
+  },
+  {
+   "sid": "hw2025s5-p4",
+   "era": "hw2025",
+   "topic": "approx/approximation",
+   "also_topics": [],
+   "difficulty": "hard",
+   "nparts": 1,
+   "sig": [
+    "max2lin-sdp-gw"
+   ],
+   "source": {
+    "kind": "homework",
+    "year": 2025,
+    "moed": null,
+    "iteration": 2025,
+    "set": 5,
+    "problem": 4,
+    "part": null
+   },
+   "parts": [
+    {
+     "part": null,
+     "topic": "approx/approximation",
+     "difficulty": "hard",
+     "summary": "SDP relaxation + Goemans-Williamson random-hyperplane rounding gives a 0.878 approx for Max-2-LIN",
+     "dup_key": "max2lin-sdp-gw",
+     "has_figure": false,
+     "note": null
+    }
+   ],
+   "dup_of": "hw2026s4-p4"
+  },
+  {
+   "sid": "2024A-p5",
+   "era": "modern",
+   "topic": "algebraic/fft",
+   "also_topics": [],
+   "difficulty": "medium",
+   "nparts": 1,
+   "sig": [
+    "fft-convolution-poly-mult"
+   ],
+   "source": {
+    "kind": "exam",
+    "year": 2024,
+    "moed": "A",
+    "iteration": null,
+    "set": null,
+    "problem": 5,
+    "part": null
+   },
+   "parts": [
+    {
+     "part": null,
+     "topic": "algebraic/fft",
+     "difficulty": "medium",
+     "summary": "O(n log n) algorithm computing the convolution f*g via FFT polynomial multiplication.",
+     "dup_key": "fft-convolution-poly-mult",
+     "has_figure": false,
+     "note": null
+    }
+   ],
+   "dup_of": "2023A-p6"
+  },
+  {
+   "sid": "2025C-p5",
+   "era": "modern",
+   "topic": "randomized/concentration",
+   "also_topics": [],
+   "difficulty": "hard",
+   "nparts": 1,
+   "sig": [
+    "random-object-balanced-chernoff"
+   ],
+   "source": {
+    "kind": "exam",
+    "year": 2025,
+    "moed": "C",
+    "iteration": null,
+    "set": null,
+    "problem": 5,
+    "part": null
+   },
+   "parts": [
+    {
+     "part": null,
+     "topic": "randomized/concentration",
+     "difficulty": "hard",
+     "summary": "Construct a k-tertiary matrix (balanced 0/1/2 entries over all k-submatrices) whp via Chernoff + union bound.",
+     "dup_key": "random-object-balanced-chernoff",
+     "has_figure": false,
+     "note": null
+    }
+   ],
+   "dup_of": "2024B-p6"
+  },
+  {
+   "sid": "2015A-p1",
+   "era": "old",
+   "topic": "randomized/prob-basics",
+   "also_topics": [],
+   "difficulty": "easy",
+   "nparts": 2,
+   "sig": [
+    "recurrence-master-theorem",
+    "recurrence-master-theorem"
+   ],
+   "source": {
+    "kind": "exam",
+    "year": 2015,
+    "moed": "A",
+    "iteration": null,
+    "set": null,
+    "problem": 1,
+    "part": "a"
+   },
+   "parts": [
+    {
+     "part": "a",
+     "topic": "randomized/prob-basics",
+     "difficulty": "easy",
+     "summary": "Running time of T(n)=4T(n/2)+O(n^3), giving O(n^3) by the third case of the master theorem.",
+     "dup_key": "recurrence-master-theorem",
+     "has_figure": false,
+     "note": "borderline warm-up"
+    },
+    {
+     "part": "b",
+     "topic": "randomized/prob-basics",
+     "difficulty": "easy",
+     "summary": "Running time of T(n)=2T(n/2)+n log n, giving O(n log^2 n) by the second case of the master theorem.",
+     "dup_key": "recurrence-master-theorem",
+     "has_figure": false,
+     "note": "borderline warm-up"
+    }
+   ],
+   "dup_of": "2014A-p1"
+  }
+ ]
+}

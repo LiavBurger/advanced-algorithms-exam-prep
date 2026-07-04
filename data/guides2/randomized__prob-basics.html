@@ -1,0 +1,51 @@
+<!-- title: Counting with Expectation & Quicksort -->
+<h3>When do I reach for this?</h3>
+<p>This is the foundation layer. The moment a problem asks "how many <em>on average</em>", "expected running time", or "probability that <em>something</em> goes wrong", you break the big messy quantity into tiny 0/1 pieces and add them up.</p>
+<ul>
+<li><b>"Expected number of X"</b> &rarr; write X as a sum of indicators, one per potential X, then use linearity.</li>
+<li><b>"Probability at least one bad thing happens"</b> &rarr; union bound.</li>
+<li><b>Quicksort / Quickselect runtime</b> &rarr; write a recurrence over the random pivot, say what the expectation is over, solve.</li>
+<li><b>"Convert Monte Carlo &harr; Las Vegas"</b> or "ZPP/RP/BPP" &rarr; cap the runtime, bound failure with Markov, amplify by repeating.</li>
+</ul>
+
+<h3>Core tools</h3>
+<div class="gtool"><div class="gtool-h">LINEARITY OF EXPECTATION</div><div class="gtool-body">
+\[ \mathbb{E}\!\left[\sum_i X_i\right]=\sum_i \mathbb{E}[X_i],\qquad \mathbb{E}[aX+bY]=a\,\mathbb{E}[X]+b\,\mathbb{E}[Y] \]
+<span class="gtool-use">always, even when the \(X_i\) are dependent — you never need independence here</span></div></div>
+
+<div class="gtool"><div class="gtool-h">INDICATOR TRICK</div><div class="gtool-body">
+Let \(Y_i\) be an indicator for the event \(A_i\). Then \(\mathbb{E}[Y_i]=\Pr[A_i]\), so
+\[ \mathbb{E}\!\left[\sum_i Y_i\right]=\sum_i \Pr[A_i]. \]
+<span class="gtool-use">counting problems: turn a count into a sum of yes/no events</span></div></div>
+
+<div class="gtool"><div class="gtool-h">UNION BOUND</div><div class="gtool-body">
+\[ \Pr\!\left[\bigcup_i A_i\right]\le \sum_i \Pr[A_i] \]
+<span class="gtool-use">bounding the chance that ANY of several bad events occurs; no independence needed</span></div></div>
+
+<div class="gtool"><div class="gtool-h">MASTER THEOREM</div><div class="gtool-body">
+For \(T(n)=a\,T(n/b)+\Theta(n^c)\): compare \(c\) with \(\log_b a\). E.g. \(T(n)=3T(n/4)+\Theta(n)\Rightarrow \Theta(n)\) since \(1>\log_4 3\).
+<span class="gtool-use">solving divide-and-conquer recurrences</span></div></div>
+
+<div class="gdef"><span class="lab">Definition</span> <b>ZPP</b> = Las Vegas (always correct, expected poly time). <b>RP</b> = one-sided error (rejects the "no" side sometimes). <b>BPP</b> = two-sided error \(\le 1/3\). Key facts: \(\mathrm{ZPP}=\mathrm{RP}\cap\mathrm{coRP}\), and \(\mathrm{RP}\subseteq\mathrm{BPP}\).</div>
+
+<h3>Worked example — the thinking</h3>
+<div class="gworked">
+<p><b>2018B P4.</b> Randomized selection (find the \(k\)-th smallest) — prove \(\mathbb{E}[T(n)]=O(n)\).</p>
+<ol class="gsteps">
+<li><b>Whose randomness?</b> The analysis is over the <em>pivot coins</em>, not the input. So the \(O(n)\) bound holds for <em>every</em> worst-case input — state this first.</li>
+<li><b>Set up the recurrence.</b> A uniform pivot lands in each rank equally often, and we recurse on one side. Averaging over pivots gives \(\mathbb{E}[T(n)]\le \tfrac{2}{n}\sum_{k} \mathbb{E}[T(k)]+\Theta(n)\).</li>
+<li><b>Guess and verify.</b> Guess \(\mathbb{E}[T(k)]\le ck\), plug into the sum, and check the constant \(c\) survives — that <em>is</em> the induction.</li>
+<li><b>Las Vegas &rarr; Monte Carlo.</b> Cap each run at, say, twice the expected time; by Markov it fails with probability \(\le 1/2\). Run \(5\) capped trials: all fail with probability \(\le 2^{-5}\).</li>
+</ol>
+</div>
+
+<div class="box pitfall"><b>Traps.</b> Do not assume independence to use linearity — you never need it. Conversely do not write \(\Pr[A\cap B]=\Pr[A]\Pr[B]\) unless independence is given. Always name what the expectation is taken over (coins vs. input). For Master Theorem, check <em>which</em> term dominates rather than pattern-matching.</div>
+
+<h3>Checklist</h3>
+<ol class="gsteps">
+<li>Is the target an expected count, a runtime, or a failure probability?</li>
+<li>Count &rarr; one indicator per event, compute each \(\Pr[A_i]\), sum by linearity.</li>
+<li>"At least one" &rarr; union bound over the bad events.</li>
+<li>Runtime &rarr; recurrence over the random choice; state the expectation's source; solve.</li>
+<li>Monte Carlo &harr; Las Vegas &rarr; cap, bound by Markov, amplify.</li>
+</ol>
