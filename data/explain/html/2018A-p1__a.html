@@ -1,7 +1,9 @@
-<p>Set up the recurrence from Strassen's structure, then apply the Master Theorem.</p>
+<p class="ex-line"><span class="ex-lab">Goal</span> write and solve the recurrence for Strassen's matrix multiplication.</p>
+<p class="ex-line"><span class="ex-lab">Strategy</span> read the recursive structure off the algorithm, then apply the Master Theorem.</p>
+<p class="ex-line"><span class="ex-lab">Key idea</span> Strassen makes \(7\) half-size multiplications (not \(8\)); the extra additions are only \(\Theta(n^2)\) work per level.</p>
+<p class="ex-line"><span class="ex-lab why">Why this move</span> a divide-and-conquer cost with equal-size subproblems is the exact shape the Master Theorem is built for.</p>
 <ol class="gsteps">
-<li><strong>Recurrence.</strong> On \(n\times n\) inputs Strassen makes \(7\) recursive multiplications of \(\tfrac n2\times\tfrac n2\) matrices, giving the \(7T(n/2)\) term. The \(10\) additions of \(\tfrac n2\times\tfrac n2\) matrices (plus splitting/combining) each cost \(\Theta(n^2)\) elementwise operations, so the non-recursive work is \(\Theta(n^2)\). Thus \(\;T(n)=7\,T(n/2)+\Theta(n^2).\)</li>
-<li><strong>Master Theorem form</strong> \(T(n)=a\,T(n/b)+\Theta(n^k)\) with \(a=7,\ b=2,\ k=2\). Compare \(a\) with \(b^{k}=2^{2}=4\). Here \(a=7>4=b^k\), the "leaf-heavy" case, so \(T(n)=\Theta\!\big(n^{\log_b a}\big)\).</li>
-<li><strong>Evaluate the exponent:</strong> \(\log_b a=\log_2 7\approx 2.807\). Hence \(T(n)=\Theta\!\big(n^{\log_2 7}\big)\), which is below the \(n^3\) of naive multiplication.</li>
+  <li><b>Recurrence.</b> The \(7\) recursive products of \(\tfrac n2\times\tfrac n2\) matrices give \(7T(n/2)\); the \(10\) matrix additions plus split/combine cost \(\Theta(n^2)\). So \(T(n)=7\,T(n/2)+\Theta(n^2)\).</li>
+  <li><b>Master Theorem form.</b> With \(a=7,\ b=2,\ k=2\), compare \(a\) to \(b^k=4\). Here \(a=7>4\), the leaf-heavy case, so \(T(n)=\Theta\!\big(n^{\log_b a}\big)\).</li>
+  <li><b>Evaluate.</b> \(\log_2 7\approx 2.807\), giving \(T(n)=\Theta\!\big(n^{\log_2 7}\big)\) — below the \(n^3\) of naive multiplication. Intuitively the many leaves at the bottom of the tree dominate the total.</li>
 </ol>
-<p>Intuitively: the number of subproblems grows like \(7^{\text{depth}}\) while each shrinks by \(4\) in size-work, so the bottom level (the \(n^{\log_2 7}\) leaves) dominates the total.</p>

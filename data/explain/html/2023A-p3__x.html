@@ -1,10 +1,11 @@
-<p>Maximum Triple Cut: partition \(V\) into three sets \(V_1,V_2,V_3\) maximizing the number of edges whose endpoints land in different sets. We give a randomized \(2/3\)-approximation and note it derandomizes.</p>
-<div class="box">Key idea: with three parts, a random assignment separates any fixed edge's two endpoints with probability \(2/3\). Linearity of expectation turns this per-edge probability into an expected \(\tfrac23\) of all edges cut.</div>
+<p class="ex-line"><span class="ex-lab">Goal</span> Give a \(2/3\)-approximation for Maximum Triple Cut (partition \(V\) into \(V_1,V_2,V_3\) maximizing edges between parts).</p>
+<p class="ex-line"><span class="ex-lab">Strategy</span> Assign each vertex to one of the three parts uniformly at random, compute the expected cut, then derandomize with conditional expectations.</p>
+<p class="ex-line"><span class="ex-lab">Key idea</span> With three parts, a random assignment separates any fixed edge's endpoints with probability \(2/3\), and linearity turns that into \(\tfrac23\) of all edges in expectation.</p>
+<p class="ex-line"><span class="ex-lab why">Why this move</span> Random partitioning gives an easy per-edge probability, and the method of conditional expectations makes the guarantee deterministic without losing anything.</p>
 <ol class="gsteps">
-<li><strong>Randomized algorithm.</strong> Independently assign each vertex \(v\in V\) to \(V_1\), \(V_2\), or \(V_3\), each with probability \(1/3\).</li>
-<li><strong>Probability an edge is cut.</strong> Fix edge \((u,v)\). Condition on \(u\)'s set; whatever it is, \(v\) lands in that same set with probability exactly \(1/3\) (its assignment is independent). So the endpoints differ — the edge crosses the cut — with probability \(1-\tfrac13=\tfrac23\).</li>
-<li><strong>Expected cut size.</strong> Let \(X_e\) be an indicator random variable for the event that edge \(e\) is cut, so \(\mathbb{E}[X_e]=\tfrac23\). By linearity of expectation, the expected number of cut edges is
-\[\mathbb{E}[\mathrm{ALG}] = \sum_{e\in E}\mathbb{E}[X_e] = \frac{2}{3}|E|.\]</li>
-<li><strong>Approximation ratio.</strong> The optimum cuts at most every edge, \(\mathrm{OPT}\le|E|\), so \(\mathbb{E}[\mathrm{ALG}]=\tfrac23|E|\ge\tfrac23\mathrm{OPT}\).</li>
-<li><strong>Derandomization.</strong> By the method of conditional expectations (as in class), fix the vertices one at a time: for each vertex choose the set among \(V_1,V_2,V_3\) that maximizes the conditional expected cut given the choices so far. This never decreases the conditional expectation below its starting value \(\tfrac23|E|\), yielding a deterministic assignment cutting at least \(\tfrac23|E|\ge\tfrac23\mathrm{OPT}\) edges.</li>
+<li><b>Randomized algorithm.</b> Independently put each vertex \(v\) into \(V_1\), \(V_2\), or \(V_3\), each with probability \(1/3\).</li>
+<li><b>Per-edge probability.</b> Fix edge \((u,v)\). Whatever set \(u\) lands in, \(v\) lands in that same set with probability exactly \(1/3\), so the edge is cut with probability \(1-\tfrac13=\tfrac23\).</li>
+<li><b>Expected cut.</b> Let \(X_e\) be an indicator random variable for the event that edge \(e\) is cut, so \(\mathbb{E}[X_e]=\tfrac23\). By linearity of expectation, \[\mathbb{E}[\mathrm{ALG}]=\sum_{e\in E}\mathbb{E}[X_e]=\tfrac{2}{3}|E|.\]</li>
+<li><b>Ratio.</b> Since \(\mathrm{OPT}\le|E|\), we get \(\mathbb{E}[\mathrm{ALG}]=\tfrac23|E|\ge\tfrac23\mathrm{OPT}\).</li>
+<li><b>Derandomize.</b> By the method of conditional expectations, fix vertices one at a time, each time choosing the set that keeps the conditional expected cut highest. This never drops below the starting \(\tfrac23|E|\), so the final deterministic partition cuts at least \(\tfrac23|E|\ge\tfrac23\mathrm{OPT}\) edges.</li>
 </ol>

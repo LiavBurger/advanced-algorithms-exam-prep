@@ -1,21 +1,12 @@
-<p>To dualize \((P):\ \min c^{\top}x\ \text{s.t.}\ Ax\ge c,\ x\ge0\), the solution first rewrites \((P)\) in the equality "standard form" that the dual recipe applies to, then reads off the dual, and finally cleans it up with a sign change. The one place symmetry is used is \(A^{\top}=A\).</p>
+<p class="ex-line"><span class="ex-lab">Goal</span> compute the dual of \((P)\): \(\min\, c^Tx\) s.t. \(Ax\ge c,\ x\ge 0\), with \(A\) symmetric.</p>
+<p class="ex-line"><span class="ex-lab">Strategy</span> rewrite \((P)\) in the equality "standard form" the dual recipe applies to, read off the dual mechanically, then simplify using \(A^T=A\).</p>
+<p class="ex-line"><span class="ex-lab">Key idea</span> because \(A\) is symmetric, the dual comes back looking almost exactly like the primal — same \(A\), same \(c\).</p>
+<p class="ex-line"><span class="ex-lab why">Why this move</span> dualizing is just "plug into the recipe," but the recipe needs a fixed template (equalities with non-negative variables), so the real work is getting \((P)\) into that template first.</p>
 <ol class="gsteps">
-  <li><strong>Standard form.</strong> Flip each "\(\ge\)" constraint by multiplying by \(-1\): \(Ax\ge c\iff -Ax\le -c\). Then absorb the slack with non-negative variables \(s\ge0\) to make it an equality: \(-Ax+Is=-c\). This gives
-  \[
-  \min\ c^{\top}x\quad\text{s.t.}\quad -Ax+Is=-c,\ \ x,s\ge0 .
-  \]</li>
-  <li><strong>Apply the dual recipe.</strong> For a standard-form primal \(\min\{b^{\top}\xi:\ M\xi=d,\ \xi\ge0\}\) the dual is \(\max\{d^{\top}y:\ M^{\top}y\le b,\ y\ \text{free}\}\). Here \(\xi=(x,s)\), \(b=(c,0)\), \(M=(-A\mid I)\), \(d=-c\). So \(M^{\top}y\le b\) splits into two blocks: \(-A^{\top}y\le c\) and \(Iy\le0\), i.e. \(y\le0\); the objective is \(\max\,(-c)^{\top}y\). Using \(A^{\top}=A\):
-  \[
-  \max\ -c^{\top}y\quad\text{s.t.}\quad -Ay\le c,\ \ y\le0 .
-  \]</li>
-  <li><strong>Tidy up.</strong> Substitute \(z=-y\) (so \(y\le0\) becomes \(z\ge0\), and \(-Ay=Az\), \(-c^{\top}y=c^{\top}z\)):
-  \[
-  (D)\quad \max\ c^{\top}z\quad\text{s.t.}\quad Az\le c,\ \ z\ge0 .
-  \]</li>
+  <li><b>Flip the inequalities.</b> Multiply \(Ax\ge c\) by \(-1\) to get \(-Ax\le -c\), so every constraint faces the same way.</li>
+  <li><b>Add slack to reach equalities.</b> Introduce \(s\ge 0\) with \(-Ax+Is=-c\). Now \((P)\) reads \(\min c^Tx\) s.t. \(-Ax+Is=-c,\ x,s\ge 0\).</li>
+  <li><b>Apply the dual recipe.</b> For \(\min\{b^\top\xi: M\xi=d,\ \xi\ge0\}\) the dual is \(\max\{d^\top y: M^\top y\le b,\ y\text{ free}\}\). With \(\xi=(x,s)\), \(M=(-A\mid I)\), \(d=-c\), this gives \(-A^\top y\le c\) and \(y\le 0\), objective \(\max\,(-c)^\top y\).</li>
+  <li><b>Use symmetry.</b> Since \(A^T=A\), the \(x\)-constraint is \(-Ay\le c\). So the dual is \(\max\,-c^Ty\) s.t. \(-Ay\le c,\ y\le 0\).</li>
+  <li><b>Tidy with a sign flip.</b> Set \(z=-y\ge 0\); then \(-c^Ty=c^Tz\) and \(-Ay=Az\), giving the clean form \[(D)\quad \max\; c^Tz \quad\text{s.t.}\quad Az\le c,\ z\ge 0.\]</li>
 </ol>
-<div class="box">
-\[
-(D)\qquad \max\ c^{\top}z \quad\text{s.t.}\quad Az\le c,\ \ z\ge0 .
-\]
-</div>
-<p>Notice \((D)\) has the same data \((A,c)\) as \((P)\), just with \(\ge/\min\) swapped for \(\le/\max\): thanks to symmetry the problem is essentially self-dual. This is exactly what part (b) exploits.</p>
+<p class="ex-line">Notice \((D)\) is the mirror image of \((P)\): same \(A\), same \(c\), just \(\max\) with \(\le\) instead of \(\min\) with \(\ge\). Thanks to symmetry the problem is essentially self-dual — exactly what part (b) leans on.</p>

@@ -1,11 +1,10 @@
-<p>We are told the cover time of a graph with \(n\) vertices and \(m\) edges is at most \(2mn\), and we must show a walk from \(s\) reaches a specific vertex \(t\) within \(8mn\) steps with probability \(\ge 3/4\). The tool is Markov's inequality applied to the hitting time.</p>
-<div class="box">Key idea: reaching one target \(t\) is easier than covering everything, so the expected time to hit \(t\) is bounded by the cover time \(2mn\). Then Markov turns that expectation into a tail bound at \(4\times\) the mean.</div>
+<p class="ex-line"><span class="ex-lab">Goal</span> Show a random walk from \(s\) reaches a target \(t\) within \(8mn\) steps with probability \(\ge 3/4\), given cover time \(\le 2mn\).</p>
+<p class="ex-line"><span class="ex-lab">Strategy</span> Bound the expected time to hit \(t\) by the cover time, then apply Markov at four times that mean.</p>
+<p class="ex-line"><span class="ex-lab">Key idea</span> Reaching a single vertex \(t\) is easier than covering all of them, so \(\mathbb{E}[\text{hit }t]\le 2mn\); Markov converts that mean into a tail bound.</p>
+<p class="ex-line"><span class="ex-lab why">Why this move</span> We only have a bound on an expectation and want a "within so many steps" probability — Markov is exactly the mean-to-tail conversion.</p>
 <ol class="gsteps">
-<li><strong>Define the random variable.</strong> Let \(X\) be the number of steps until the walk first reaches \(t\) (the hitting time of \(t\) from \(s\)).</li>
-<li><strong>Bound its expectation.</strong> The cover time is the expected time to visit <em>all</em> vertices; visiting all vertices in particular visits \(t\). Hence the expected time to reach \(t\) is at most the cover time: \(\mathbb{E}[X] \le 2mn\).</li>
-<li><strong>Apply Markov.</strong> \(X\ge 0\), so Markov's inequality with threshold \(8mn\) gives
-\[\Pr[X > 8mn] \le \frac{\mathbb{E}[X]}{8mn} \le \frac{2mn}{8mn} = \frac{1}{4}.\]</li>
-<li><strong>Complement.</strong> Therefore the walk reaches \(t\) within \(8mn\) steps with probability
-\[\Pr[X \le 8mn] = 1 - \Pr[X > 8mn] \ge 1 - \frac14 = \frac34.\]</li>
+<li><b>Define the variable.</b> Let \(X\) be the number of steps until the walk first reaches \(t\).</li>
+<li><b>Bound its mean.</b> The cover time is the expected time to visit all vertices, which in particular visits \(t\), so \(\mathbb{E}[X]\le 2mn\).</li>
+<li><b>Apply Markov.</b> Since \(X\ge0\), \[\Pr[X>8mn]\le \frac{\mathbb{E}[X]}{8mn}\le \frac{2mn}{8mn}=\frac14.\]</li>
+<li><b>Complement.</b> Hence \(\Pr[X\le 8mn]\ge 1-\tfrac14=\tfrac34\). The factor \(8mn=4\cdot 2mn\) is chosen precisely so Markov lands on the clean \(1/4\) failure probability.</li>
 </ol>
-<p>The choice \(8mn = 4\cdot 2mn\) is exactly what makes Markov yield the clean \(1/4\) failure bound.</p>

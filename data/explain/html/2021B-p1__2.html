@@ -1,9 +1,11 @@
-<p>We instantiate part (1) for the drawn graph and then write its dual. The graph has \(V_1=\{a,b,c\}\), \(V_2=\{d,e\}\) and edges \(e_1=ad,\ e_2=ae,\ e_3=bd,\ e_4=be,\ e_5=ce\). Order the constraint rows as the vertices \(a,b,c,d,e\).</p>
+<p class="ex-line"><span class="ex-lab">Goal</span> write the semi-matching program for the drawn graph in matrix/vector form and give its dual BIP.</p>
+<p class="ex-line"><span class="ex-lab">Strategy</span> make each vertex a constraint row and each edge a column; the entry is \(1\) when the edge touches the vertex, the right-hand side is the vertex's degree cap, then transpose for the dual.</p>
+<p class="ex-line"><span class="ex-lab">Key idea</span> the constraint matrix is just the vertex-edge incidence matrix, so building it is bookkeeping: mark which edges hit which vertex.</p>
+<p class="ex-line"><span class="ex-lab why">Why this move</span> once the abstract program from part (1) is in hand, plugging in a specific graph is only filling the incidence matrix, and the dual is its transpose by the standard recipe.</p>
 <ol class="gsteps">
-  <li>Each row is a vertex; a row has a \(1\) in the columns of the edges incident to that vertex. Vertex \(a\) touches \(e_1,e_2\Rightarrow(1,1,0,0,0)\); \(b\) touches \(e_3,e_4\Rightarrow(0,0,1,1,0)\); \(c\) touches \(e_5\Rightarrow(0,0,0,0,1)\); \(d\) touches \(e_1,e_3\Rightarrow(1,0,1,0,0)\); \(e\) touches \(e_2,e_4,e_5\Rightarrow(0,1,0,1,1)\).</li>
-  <li>The right-hand side is the degree cap: \(1\) for the \(V_1\)-vertices \(a,b,c\) and \(2\) for the \(V_2\)-vertices \(d,e\), giving \((1,1,1,2,2)^{\mathsf T}\). The objective vector is all-ones (maximize \(\sum_e x_e\)). With \(A\) the matrix above, the primal is
-  \[\max\ (1,1,1,1,1)\,x\quad\text{s.t.}\quad A\,x\le(1,1,1,2,2)^{\mathsf T},\quad x_i\in\{0,1\}.\]</li>
-  <li>The dual BIP swaps roles: a variable \(y_j\) per row/vertex, a constraint per column/edge. The dual objective coefficients are the primal RHS \((1,1,1,2,2)\), the dual RHS is the primal objective \((1,1,1,1,1)^{\mathsf T}\), and the constraint matrix is transposed:
-  \[\min\ (1,1,1,2,2)\,y\quad\text{s.t.}\quad A^{\mathsf T}y\ge(1,1,1,1,1)^{\mathsf T},\quad y_j\in\{0,1\}.\]</li>
+<li><b>Read the graph.</b> \(V_1=\{a,b,c\}\), \(V_2=\{d,e\}\), edges \(e_1=ad,\ e_2=ae,\ e_3=bd,\ e_4=be,\ e_5=ce\).</li>
+<li><b>Fill the rows.</b> One row per vertex: \(a\!:(1,1,0,0,0)\), \(b\!:(0,0,1,1,0)\), \(c\!:(0,0,0,0,1)\), \(d\!:(1,0,1,0,0)\), \(e\!:(0,1,0,1,1)\), collected into matrix \(A\).</li>
+<li><b>Primal.</b> Caps \(1\) for \(a,b,c\) and \(2\) for \(d,e\): \(\max\,(1,1,1,1,1)\,x\) s.t. \(Ax\le(1,1,1,2,2)^{\mathsf T}\), \(x_i\in\{0,1\}\).</li>
+<li><b>Dual.</b> Swap: cost vector becomes the primal right-hand side, matrix transposes, direction flips: \(\min\,(1,1,1,2,2)\,y\) s.t. \(A^{\mathsf T}y\ge(1,1,1,1,1)^{\mathsf T}\), \(y_j\in\{0,1\}\).</li>
 </ol>
-<p>Because the exam asks for the dual <em>as a BIP</em>, the dual variables are also constrained to \(\{0,1\}\); each dual constraint \(A^{\mathsf T}y\ge 1\) corresponds to one edge and forces at least one of its endpoints to be picked.</p>
+<p class="ex-line">Each dual constraint is one edge asking that at least one of its two endpoints be chosen — the vertex-cover flavor made concrete for this graph.</p>

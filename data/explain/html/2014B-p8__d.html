@@ -1,7 +1,10 @@
-<p>We now read the integer version of DLP1 — the dual — as a graph problem. Adding integrality means \(y_{uv}\in\{0,1\}\) for every edge, so an assignment picks a subset of edges \(M=\{uv : y_{uv}=1\}\).</p>
+<p class="ex-line"><span class="ex-lab">Claim</span> The integer version of the dual DLP1 is the maximum matching problem.</p>
+<p class="ex-line"><span class="ex-lab">Strategy</span> Add integrality \(y_{uv}\in\{0,1\}\) and read off what the picked edge set must satisfy.</p>
+<p class="ex-line"><span class="ex-lab">Key idea</span> The per-vertex constraint \(\sum_{u\in N(v)} y_{uv}\le1\) says at most one chosen edge touches each vertex — that is exactly a matching.</p>
+<p class="ex-line"><span class="ex-lab why">Why this move</span> Naming an ILP is translating its ingredients to graph language, so we interpret the constraints on the chosen edges.</p>
 <ol class="gsteps">
-  <li><strong>The variables.</strong> \(y_{uv}\in\{0,1\}\) indicates whether edge \(uv\) is selected. The point is thus a choice of an edge subset \(M\subseteq E\).</li>
-  <li><strong>The constraints.</strong> For each vertex \(v\), \(\sum_{u\in N(v)} y_{uv}\le 1\) says that among the edges incident to \(v\), at most one is selected. Equivalently, no two selected edges share an endpoint — exactly the definition of \(M\) being a <em>matching</em>.</li>
-  <li><strong>The objective.</strong> Maximizing \(\sum_{uv\in E} y_{uv}\) maximizes \(|M|\), the number of selected edges.</li>
+<li><b>Variables = chosen edges.</b> \(y_{uv}\in\{0,1\}\) marks whether edge \(uv\) is picked, so a solution is a set \(M\subseteq E\).</li>
+<li><b>Constraints = matching.</b> For each vertex \(v\), at most one incident edge is picked, i.e. no two chosen edges share an endpoint.</li>
+<li><b>Objective = most edges.</b> Maximizing \(\sum_{uv} y_{uv}\) maximizes \(|M|\).</li>
 </ol>
-<div class="box">So the integer program corresponding to DLP1 asks for the largest set of pairwise non-adjacent edges: this is the <strong>maximum matching</strong> problem. It is the natural dual counterpart to the minimum vertex cover of part (a) — every edge in a matching must be covered by a distinct vertex, so matching size lower-bounds cover size.</div>
+<p class="ex-line">The largest set of pairwise non-adjacent edges is the maximum matching — the natural counterpart to the minimum vertex cover of part (a).</p>

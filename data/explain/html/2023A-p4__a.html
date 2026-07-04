@@ -1,12 +1,10 @@
-<p>We start from the matching integer program \(\max\sum_{(u,v)\in E}x_{u,v}\) subject to \(\sum_{u:(u,v)\in E}x_{u,v}\le 1\) for every vertex \(v\), \(x\ge 0\), and integrality. Dropping the integrality constraint gives an LP; putting it in <em>standard form</em> means: a minimization objective, equality constraints, and all variables nonnegative — the form the simplex algorithm needs.</p>
+<p class="ex-line"><span class="ex-lab">Goal</span> Relax the maximum-matching integer program to an LP and write it in standard form (minimize, equalities, nonnegative variables).</p>
+<p class="ex-line"><span class="ex-lab">Strategy</span> Drop the integrality constraint, flip the objective to a minimization, and add a slack variable to each inequality.</p>
+<p class="ex-line"><span class="ex-lab">Key idea</span> Standard form needs equalities, so every "\(\le 1\)" constraint gets its own nonnegative slack that absorbs the leftover.</p>
+<p class="ex-line"><span class="ex-lab why">Why this move</span> "Form suitable for simplex" is code for standard form, and the only two things not yet in that shape are the max objective and the inequality constraints.</p>
 <ol class="gsteps">
-  <li><strong>Maximize to minimize.</strong> \(\max\sum x_{u,v}\) becomes \(\min\big(-\sum_{(u,v)\in E}x_{u,v}\big)\); negating the objective flips the sense without changing the optimizer.</li>
-  <li><strong>Inequalities to equalities.</strong> Each vertex constraint \(\sum_{u:(u,v)\in E}x_{u,v}\le 1\) has slack, so add one nonnegative slack variable \(s_v\ge 0\) per vertex: \(\sum_{u:(u,v)\in E}x_{u,v}+s_v=1\). Recovering the original: \(s_v=1-\sum_u x_{u,v}\ge 0\) is exactly the "\(\le 1\)" condition, and \(s_v\) measures how far vertex \(v\) is from being saturated.</li>
+  <li><b>Max to min.</b> Turn \(\max\sum_{(u,v)\in E}x_{u,v}\) into \(\min\big(-\sum_{(u,v)\in E}x_{u,v}\big)\); negating the objective keeps the same optimizer.</li>
+  <li><b>Inequalities to equalities.</b> For each vertex \(v\), add a slack \(s_v\ge 0\): \(\sum_{u:(u,v)\in E}x_{u,v}+s_v=1\). Here \(s_v=1-\sum_u x_{u,v}\) just measures how far \(v\) is from being fully matched.</li>
+  <li><b>Write it compactly.</b> With \(A_G\) the \(|V|\times|E|\) incidence matrix (column \((u,v)\) has \(1\) in rows \(u,v\)), the LP is \(\min -\mathbf{1}^\top x\) s.t. \(A_G x + I s=\mathbf{1},\ x,s\ge 0\).</li>
 </ol>
-<div class="box">
-\[
-\min\; -\sum_{(u,v)\in E}x_{u,v}\quad\text{s.t.}\quad
-\sum_{u:(u,v)\in E}x_{u,v}+s_v=1\ \ \forall v\in V,\qquad x_{u,v}\ge 0,\ s_v\ge 0.
-\]
-</div>
-<p>Compactly, let \(A_G\) be the \(|V|\times|E|\) incidence matrix — its column for edge \((u,v)\) has a \(1\) in rows \(u\) and \(v\) and \(0\) elsewhere. Writing \(x\in\mathbb{R}^{|E|}\) and \(s\in\mathbb{R}^{|V|}\), the program is \(\min -\mathbf{1}^\top x\) s.t. \(A_G x+Is=\mathbf{1},\ x,s\ge 0\), which is standard form.</p>
+<p class="ex-line">Negate the objective and let one slack per vertex soak up the slack, and the matching LP is already in the shape simplex wants.</p>

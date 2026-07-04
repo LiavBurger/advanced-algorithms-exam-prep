@@ -1,7 +1,11 @@
-<p>The statement is <strong>true</strong>. It follows from the class characterization of vertices of a standard-form polytope \(P=\{x:Ax=b,\ x\ge 0\}\subseteq\mathbb{R}^n\), where \(A\) has \(n\) columns.</p>
+<p class="ex-line"><span class="ex-lab">Claim</span> True: a standard-form polytope \(P=\{x:Ax=b,\ x\ge 0\}\subseteq\mathbb{R}^n\) has at most \(2^n\) vertices.</p>
+<p class="ex-line"><span class="ex-lab">Strategy</span> Use the class characterization of vertices by their support, then count how many supports are possible.</p>
+<p class="ex-line"><span class="ex-lab">Key idea</span> A vertex is pinned down by which coordinates are nonzero, and there are only \(2^n\) possible sets of nonzero coordinates.</p>
+<p class="ex-line"><span class="ex-lab why">Why this move</span> "At most \(2^n\)" screams "one per subset of \(n\) things," so we look for a way to attach each vertex to a subset of the columns.</p>
 <ol class="gsteps">
-  <li>Recall the theorem proved in class: a feasible point \(y\in P\) is a vertex (a basic feasible solution) if and only if the columns of \(A\) indexed by \(\operatorname{supp}(y)=\{i:y_i>0\}\) are linearly independent — equivalently, the submatrix \(A_y\) of those columns has full column rank.</li>
-  <li>This associates to every vertex \(y\) a specific subset of columns, namely its support. The map "\(y\mapsto\operatorname{supp}(y)\)" is <em>injective</em>: if two vertices \(y,y'\) had the same support \(S\), then both would satisfy \(A_S\,z_S=b\) with \(z_i=0\) for \(i\notin S\). Since the columns in \(S\) are linearly independent, that system has at most one solution, forcing \(y=y'\).</li>
-  <li>Therefore distinct vertices give distinct subsets of the \(n\) columns of \(A\). The total number of subsets of an \(n\)-element set is \(2^n\).</li>
+  <li><b>Recall the vertex test.</b> From class, \(y\in P\) is a vertex exactly when \(A_y\), the submatrix of columns where \(y_i>0\), has full column rank (those columns are linearly independent).</li>
+  <li><b>A vertex is fixed by its support.</b> If two vertices had the same support \(S\), both would solve \(A_S z_S=b\); independent columns make that solution unique, so the two vertices coincide. Hence "which coordinates are positive" determines the vertex.</li>
+  <li><b>Count the supports.</b> The support is a subset of the \(n\) columns, and an \(n\)-element set has \(2^n\) subsets.</li>
+  <li><b>Conclude.</b> Distinct vertices give distinct subsets, so there are at most \(2^n\) vertices.</li>
 </ol>
-<p>An injection from the set of vertices into the \(2^n\) column-subsets shows the number of vertices is at most \(2^n\). (The bound is loose — most subsets are either not independent or do not solve \(A_S z_S=b\) with \(z_S\ge 0\) — but as an upper bound it is correct.)</p>
+<p class="ex-line">Every vertex is tagged by "which coordinates are on," and there are only \(2^n\) such tags, so that many is the ceiling.</p>

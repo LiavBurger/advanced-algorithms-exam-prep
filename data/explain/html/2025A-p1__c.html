@@ -1,7 +1,9 @@
-<p>The claim is <strong>false</strong>. The statement asserts that computing the \(n\) products \(Av_1,\dots,Av_n\) <em>requires</em> time \(n^3\); the word "requires" means it is a proven lower bound. It is not.</p>
+<p class="ex-line"><span class="ex-lab">Claim</span> False — computing the \(n\) products \(Av_1, \dots, Av_n\) does not require time \(n^3\).</p>
+<p class="ex-line"><span class="ex-lab">Strategy</span> Stack the vectors into a matrix so the \(n\) products become a single matrix–matrix product, then apply fast matrix multiplication.</p>
+<p class="ex-line"><span class="ex-lab">Key idea</span> \(n\) matrix–vector products are one \(n\times n\) by \(n\times n\) multiplication, which fast algorithms do in \(O(n^\omega)\) with \(\omega < 3\).</p>
+<p class="ex-line"><span class="ex-lab why">Why this move</span> Seeing many products of one matrix against different vectors is the cue to batch them into a single matrix product and drop below the naive cube.</p>
 <ol class="gsteps">
-<li>Stack the vectors as the columns of an \(n\times n\) matrix \(B = [\,v_1 \mid v_2 \mid \cdots \mid v_n\,]\). Then the matrix product \(AB\) has columns \(Av_1,\dots,Av_n\). So computing all \(n\) products is the same task as one \(n\times n\) matrix multiplication.</li>
-<li>Fast matrix multiplication (Strassen and its successors) multiplies two \(n\times n\) matrices in \(O(n^{\omega})\) time, where \(\omega < 3\) (Strassen already gives \(\omega \le \log_2 7 \approx 2.81\)). This beats the naive \(n^3\).</li>
-<li>The hypothesis that \(v_1,\dots,v_n\) are linearly independent is irrelevant: the algorithm forms \(B\) and multiplies regardless of any relationship among the columns, so it never uses independence.</li>
+  <li><b>Batch the products.</b> Let \(B = [\,v_1 \mid \cdots \mid v_n\,]\) have the vectors as columns. Then \(AB\) has columns \(Av_1, \dots, Av_n\), so all \(n\) products come from one matrix multiplication.</li>
+  <li><b>Use fast multiplication.</b> Fast matrix multiplication computes \(AB\) in \(O(n^\omega)\) time with \(\omega < 3\) (Strassen already gives \(\omega \approx 2.81\)), regardless of any assumption on the \(v_i\) — independence is never used.</li>
 </ol>
-<p>Since there is an algorithm running in \(O(n^{\omega})\) with \(\omega < 3\), the claim that \(n^3\) time is required is refuted.</p>
+<p>Because the whole batch is a single fast matrix product, \(n^3\) is not needed, so the statement is false.</p>

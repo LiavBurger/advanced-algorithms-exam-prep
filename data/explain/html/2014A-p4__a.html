@@ -1,7 +1,10 @@
-<p>We model "choose a minimum-weight set \(S\) that dominates every vertex". Introduce one binary variable per vertex: \(x_v\in\{0,1\}\), with \(x_v=1\) meaning \(v\in S\). A \(0/1\) assignment is then the same as a subset \(S\subseteq V\).</p>
+<p class="ex-line"><span class="ex-lab">Goal</span> write the minimum-weight dominating set problem as an ILP.</p>
+<p class="ex-line"><span class="ex-lab">Strategy</span> one binary variable per vertex for membership, a cost objective, and one constraint per vertex saying it is dominated.</p>
+<p class="ex-line"><span class="ex-lab">Key idea</span> vertex \(v\) is dominated exactly when at least one vertex of its closed neighborhood \(N(v)\cup\{v\}\) is chosen.</p>
+<p class="ex-line"><span class="ex-lab why">Why this move</span> "every vertex must have someone chosen nearby" is a covering condition, which turns directly into a \(\sum\ge 1\) constraint per vertex.</p>
 <ol class="gsteps">
-<li><strong>Objective.</strong> The weight of \(S\) is \(\sum_{v\in S}w_v=\sum_{v\in V}w_v x_v\) (terms with \(x_v=0\) drop out). We minimize it: \(\min\sum_{v\in V}w_v x_v\).</li>
-<li><strong>Domination constraint.</strong> A vertex \(v\) is dominated iff \(v\in S\) or some neighbor of \(v\) is in \(S\); equivalently, at least one vertex of the closed neighborhood \(N(v)\cup\{v\}\) is chosen. In LP terms: \(\displaystyle\sum_{u\in N(v)\cup\{v\}}x_u\ge 1\), for <em>every</em> \(v\in V\). With \(0/1\) values this sum is \(\ge 1\) exactly when at least one of those vertices has \(x_u=1\).</li>
-<li><strong>Integrality.</strong> \(x_v\in\{0,1\}\) makes it an integer program (and encodes the yes/no membership).</li>
+  <li><b>Variables.</b> \(x_v\in\{0,1\}\), with \(x_v=1\) meaning \(v\in S\). A \(0/1\) vector is the same as a subset \(S\subseteq V\).</li>
+  <li><b>Objective.</b> The weight of \(S\) is \(\sum_{v\in V}w_v x_v\) (unchosen vertices drop out), and we minimize it.</li>
+  <li><b>Domination constraint.</b> For every \(v\): \(\sum_{u\in N(v)\cup\{v\}}x_u\ge 1\). With \(0/1\) values this holds exactly when \(v\) itself or one of its neighbors is chosen.</li>
+  <li><b>The ILP.</b> \(\min\sum_{v}w_v x_v\) s.t. \(\sum_{u\in N(v)\cup\{v\}}x_u\ge 1\ \forall v,\ x_v\in\{0,1\}\). Every feasible \(0/1\) vector is a dominating set of that weight and vice versa, so the ILP optimum is the minimum weight dominating set.</li>
 </ol>
-<p>So the ILP is \(\min\sum_{v}w_v x_v\) s.t. \(\sum_{u\in N(v)\cup\{v\}}x_u\ge 1\ \forall v\in V,\ x_v\in\{0,1\}\). Every feasible \(0/1\) vector is a dominating set of that weight, and conversely, so optimal ILP value = minimum weight dominating set.</p>

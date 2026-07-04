@@ -1,7 +1,10 @@
-<p>The integer program IP1 is the <strong>minimum vertex cover</strong> problem. To see this, read off what each ingredient of the program means on the graph \(G=(V,E)\).</p>
+<p class="ex-line"><span class="ex-lab">Claim</span> The integer program IP1 is the minimum vertex cover problem.</p>
+<p class="ex-line"><span class="ex-lab">Strategy</span> Read off what each piece of the program — variables, constraints, objective — means on the graph.</p>
+<p class="ex-line"><span class="ex-lab">Key idea</span> A \(0/1\) vector \(x\) picks a vertex set \(S=\{v:x_v=1\}\), and the edge constraint \(x_u+x_v\ge1\) says every edge has an endpoint in \(S\) — a vertex cover.</p>
+<p class="ex-line"><span class="ex-lab why">Why this move</span> Naming an ILP is done by translating its ingredients into graph language, so we interpret each line directly.</p>
 <ol class="gsteps">
-  <li><strong>The variables.</strong> There is one binary variable \(x_v\in\{0,1\}\) per vertex \(v\in V\). Interpret \(x_v=1\) as "\(v\) is selected into the set" and \(x_v=0\) as "\(v\) is left out." So a \(0/1\) assignment is exactly a choice of a subset \(S=\{v : x_v=1\}\subseteq V\).</li>
-  <li><strong>The constraints.</strong> For each edge \(uv\in E\) we require \(x_u+x_v\ge 1\). Since the variables are \(0/1\), this holds iff at least one of \(u,v\) is selected. In words: every edge has at least one endpoint in \(S\) — precisely the definition of \(S\) being a <em>vertex cover</em>.</li>
-  <li><strong>The objective.</strong> Minimizing \(\sum_{v\in V} x_v\) minimizes \(|S|\), the number of selected vertices.</li>
+<li><b>Variables = chosen set.</b> Each \(x_v\in\{0,1\}\) marks whether \(v\) is selected, so a solution is a subset \(S\subseteq V\).</li>
+<li><b>Constraints = covering.</b> For edge \(uv\), \(x_u+x_v\ge1\) holds iff at least one endpoint is chosen — exactly "\(S\) covers every edge."</li>
+<li><b>Objective = smallest set.</b> Minimizing \(\sum_v x_v\) minimizes \(|S|\).</li>
 </ol>
-<div class="box">Choosing a \(0/1\) point that covers every edge while minimizing the count of chosen vertices is exactly asking for a smallest vertex cover. Hence IP1 computes the minimum vertex cover of \(G\).</div>
+<p class="ex-line">Covering every edge with as few vertices as possible is the minimum vertex cover of \(G\).</p>

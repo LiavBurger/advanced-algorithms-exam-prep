@@ -1,11 +1,11 @@
-<p>The statement is <strong>true</strong>: the Gram–Schmidt process constructs an orthonormal basis, and every operation it performs is a polynomial-time vector computation.</p>
+<p class="ex-line"><span class="ex-lab">Claim</span> True: there is a polynomial-time algorithm that, given \(v_1,\dots,v_k\in\mathbb{R}^n\), finds an orthonormal basis of their span.</p>
+<p class="ex-line"><span class="ex-lab">Strategy</span> Run Gram-Schmidt to get an orthogonal basis, then normalize, and note every step is a cheap vector computation.</p>
+<p class="ex-line"><span class="ex-lab">Key idea</span> Subtracting from each vector its projections onto the earlier ones makes them mutually orthogonal.</p>
+<p class="ex-line"><span class="ex-lab why">Why this move</span> "Orthonormal basis of a span" is the textbook job of Gram-Schmidt, and the only thing to check is that it runs in polynomial time.</p>
 <ol class="gsteps">
-  <li>First reduce to independent inputs. If \(v_1,\dots,v_k\) are linearly dependent, greedily keep a maximal linearly independent subset (add vectors one at a time, dropping any that lies in the span of those already kept — an independence test is a rank computation, done in polynomial time). The kept vectors span the same subspace, so assume \(v_1,\dots,v_k\) are independent.</li>
-  <li>Build an orthogonal basis by removing, from each new vector, its components along the ones already produced. Set \(\tilde b_1=v_1\) and, for \(i\ge 2\),
-  \[\tilde b_i=v_i-\sum_{j=1}^{i-1}\mu_{i,j}\,\tilde b_j,\qquad \mu_{i,j}=\frac{\langle v_i,\tilde b_j\rangle}{\langle \tilde b_j,\tilde b_j\rangle}.\]</li>
-  <li>These \(\tilde b_i\) are pairwise orthogonal. Indeed, for any \(j<i\), the coefficient \(\mu_{i,j}\) is chosen precisely so that
-  \(\langle \tilde b_i,\tilde b_j\rangle=\langle v_i,\tilde b_j\rangle-\mu_{i,j}\langle \tilde b_j,\tilde b_j\rangle=0\)
-  (using that earlier \(\tilde b_\ell\) with \(\ell\ne j\) are already orthogonal to \(\tilde b_j\)).</li>
-  <li>Finally normalize each vector, \(e_i=\tilde b_i/\lVert \tilde b_i\rVert\), producing an orthonormal basis.</li>
+  <li><b>Reduce to independent vectors.</b> If the \(v_i\) are dependent, greedily keep a maximal independent subset (each independence test is a rank computation, polynomial time); it spans the same subspace.</li>
+  <li><b>Orthogonalize.</b> Set \(\tilde b_1=v_1\) and \(\tilde b_i=v_i-\sum_{j=1}^{i-1}\mu_{i,j}\,\tilde b_j\) with \(\mu_{i,j}=\dfrac{\langle v_i,\tilde b_j\rangle}{\langle \tilde b_j,\tilde b_j\rangle}\).</li>
+  <li><b>Check orthogonality.</b> The coefficient \(\mu_{i,j}\) is chosen exactly so that \(\langle \tilde b_i,\tilde b_j\rangle=0\) for every \(j<i\).</li>
+  <li><b>Normalize.</b> Divide each \(\tilde b_i\) by its length to get unit vectors, giving an orthonormal basis.</li>
 </ol>
-<p>Each step uses finitely many inner products and vector subtractions on vectors in \(\mathbb{R}^n\), and there are at most \(k\) steps, so the whole procedure runs in polynomial time.</p>
+<p class="ex-line">The whole thing is just a bounded number of inner products and subtractions, so it finishes quickly and hands back the basis we wanted.</p>

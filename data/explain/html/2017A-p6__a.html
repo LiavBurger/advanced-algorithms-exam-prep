@@ -1,14 +1,9 @@
-<p>We must express &quot;pick a smallest subset \(X\subseteq S\) that meets every set \(D\in C\)&quot; as a binary integer program. The natural decision variables are one indicator per element of \(S\).</p>
+<p class="ex-line"><span class="ex-lab">Goal</span> write minimum hitting set as a binary integer linear program.</p>
+<p class="ex-line"><span class="ex-lab">Strategy</span> put one \(0/1\) variable on each element, turn "hit every set" into linear constraints, and minimize the count of chosen elements.</p>
+<p class="ex-line"><span class="ex-lab">Key idea</span> "\(X\) meets \(D\)" means at least one element of \(D\) is picked, which is just \(\sum_{i\in D}x_i\ge 1\).</p>
+<p class="ex-line"><span class="ex-lab why">Why this move</span> a yes/no choice per element is the natural way to model a subset, and indicator variables convert set conditions into linear inequalities.</p>
 <ol class="gsteps">
-<li>For each \(i\in S\) introduce a variable \(x_i\in\{0,1\}\), where \(x_i=1\) means &quot;\(i\) is placed in the hitting set \(X\)&quot; and \(x_i=0\) means it is left out. The chosen set is then \(X=\{i:x_i=1\}\).</li>
-<li>The hitting requirement is \(X\cap D\neq\varnothing\) for every \(D\in C\), i.e. at least one element of \(D\) is selected. Since \(\sum_{i\in D}x_i\) counts how many elements of \(D\) are selected, &quot;at least one&quot; becomes the linear constraint
-\[
-\sum_{i\in D}x_i\ge 1\qquad\text{for all }D\in C.
-\]</li>
-<li>The objective is to minimize \(|X|=\sum_{i\in S}x_i\).</li>
+<li><b>Variables.</b> For each \(i\in S\) let \(x_i\in\{0,1\}\), where \(x_i=1\) means \(i\) is in the hitting set. The chosen set is \(X=\{i:x_i=1\}\).</li>
+<li><b>Constraints.</b> The requirement \(X\cap D\neq\varnothing\) says at least one element of \(D\) is picked. Since \(\sum_{i\in D}x_i\) counts the picked elements of \(D\), this becomes \(\sum_{i\in D}x_i\ge 1\) for every \(D\in C\).</li>
+<li><b>Objective.</b> Minimize the size \(|X|=\sum_{i\in S}x_i\). Altogether: \[\min\ \sum_{i\in S}x_i\quad\text{s.t.}\quad \sum_{i\in D}x_i\ge 1\ \ \forall D\in C,\qquad x_i\in\{0,1\}\ \ \forall i\in S.\] The \(\{0,1\}\) values force an all-or-nothing choice, so optimal solutions are exactly minimum hitting sets.</li>
 </ol>
-<p>Putting it together gives the binary integer program
-\[
-\min\ \sum_{i\in S}x_i\quad\text{s.t.}\quad \sum_{i\in D}x_i\ge 1\ \ \forall D\in C,\qquad x_i\in\{0,1\}\ \ \forall i\in S.
-\]
-Each \(\{0,1\}\) variable forces an all-or-nothing choice per element, and the constraints exactly encode &quot;hit every \(D\)&quot;, so optimal solutions are precisely minimum hitting sets.</p>

@@ -1,10 +1,11 @@
-<p>We model Minimum Dominating Set as a \(0/1\) integer program. Recall \(D\subseteq V\) is dominating if every vertex is either in \(D\) or adjacent to a vertex in \(D\); we want the smallest such \(D\).</p>
+<p class="ex-line"><span class="ex-lab">Goal</span> Write an integer program for Minimum Dominating Set and justify the variables and constraints.</p>
+<p class="ex-line"><span class="ex-lab">Strategy</span> Use one \(0/1\) variable per vertex for "selected", minimize the total selected, and add one coverage constraint per vertex.</p>
+<p class="ex-line"><span class="ex-lab">Key idea</span> "\(v\) is dominated" means \(v\) or one of its neighbors is chosen, which is a single \(\ge 1\) inequality.</p>
+<p class="ex-line"><span class="ex-lab why">Why this move</span> Selection problems map naturally to \(0/1\) indicator variables, and each "must be covered" requirement becomes a linear lower-bound constraint.</p>
 <ol class="gsteps">
-<li><strong>Variables.</strong> For each vertex \(v\in V\) introduce \(x_v\in\{0,1\}\), where \(x_v=1\) means "\(v\) is selected into the dominating set" and \(x_v=0\) means it is not. Any \(0/1\) assignment thus encodes a candidate set \(D=\{v:x_v=1\}\).</li>
-<li><strong>Objective.</strong> The size of \(D\) is \(\sum_{v\in V}x_v\), so we minimize \(\sum_{v\in V}x_v\).</li>
-<li><strong>Domination constraints.</strong> For every vertex \(v\), the domination requirement says \(v\) itself is chosen or at least one neighbor is chosen. As a linear inequality:
-\[x_v+\sum_{u:(u,v)\in E}x_u\;\ge\;1\qquad\text{for all }v\in V.\]
-The term \(x_v\) covers "\(v\in D\)"; the sum covers "some neighbor of \(v\) is in \(D\)". At least one of these must be \(1\).</li>
+<li><b>Variables.</b> For each vertex \(v\in V\) let \(x_v\in\{0,1\}\), where \(x_v=1\) means \(v\) is in the dominating set. An assignment encodes the set \(D=\{v:x_v=1\}\).</li>
+<li><b>Objective.</b> The size of \(D\) is \(\sum_{v\in V}x_v\), so minimize \(\sum_{v\in V}x_v\).</li>
+<li><b>Coverage constraints.</b> Each vertex must be chosen or have a chosen neighbor:
+\[x_v+\sum_{u:(u,v)\in E}x_u\ge 1\qquad\text{for all }v\in V.\]</li>
+<li><b>Why it corresponds.</b> A feasible \(0/1\) solution gives \(D=\{v:x_v=1\}\); each constraint guarantees \(v\in D\) or a neighbor is in \(D\), so \(D\) dominates. Conversely any dominating set is feasible, so minimizing the objective finds a minimum dominating set.</li>
 </ol>
-<div class="box">Full IP: \(\min\sum_{v\in V}x_v\) subject to \(x_v+\sum_{u:(u,v)\in E}x_u\ge1\) for all \(v\in V\), and \(x_v\in\{0,1\}\).</div>
-<p><strong>Correspondence.</strong> Every feasible \(0/1\) solution gives a set \(D=\{v:x_v=1\}\); the constraint for each \(v\) guarantees \(v\) is in \(D\) or has a neighbor in \(D\), so \(D\) is a dominating set. Conversely any dominating set yields a feasible solution. Since the objective counts \(|D|\), minimizing the IP finds a minimum dominating set.</p>

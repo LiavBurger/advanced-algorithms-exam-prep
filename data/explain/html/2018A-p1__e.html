@@ -1,6 +1,7 @@
-<p>Answer: <strong>Monte Carlo.</strong> The distinction is about which resource is fixed versus random:</p>
+<p class="ex-line"><span class="ex-lab">Claim</span> the randomized min-cut algorithm (Karger's) is <em>Monte Carlo</em>.</p>
+<p class="ex-line"><span class="ex-lab">Key idea</span> the distinction is which resource is fixed: Las Vegas always returns the correct answer with random runtime; Monte Carlo has bounded runtime but may be wrong.</p>
+<p class="ex-line"><span class="ex-lab why">Why this move</span> just check Karger's guarantee — its running time is fixed but its answer isn't always right, which is the Monte Carlo signature.</p>
 <ol class="gsteps">
-<li>A <em>Las Vegas</em> algorithm always returns a correct answer; only its running time is random.</li>
-<li>A <em>Monte Carlo</em> algorithm has a fixed (bounded) running time but may return a wrong answer with some probability.</li>
+  <li><b>How it runs.</b> Karger's algorithm contracts a uniformly random edge until two vertices remain, then outputs the surviving cut. It always halts after the same number of contractions — the runtime is fixed.</li>
+  <li><b>Why it can be wrong.</b> A single run returns a fixed minimum cut only with probability \(\ge \tfrac{2}{n(n-1)}\), since it must never contract an edge of that cut. Fixed time, possibly wrong answer — that is Monte Carlo. (Repeating many times drives the error down, but each run is still Monte Carlo.)</li>
 </ol>
-<p>Karger's randomized min-cut contracts a uniformly random edge repeatedly until two vertices remain, outputting the surviving cut. It always halts within the same number of contractions (bounded runtime), but it can output a non-minimum cut: a single run finds a fixed minimum cut only with probability \(\ge \binom{n}{2}^{-1}=\tfrac{2}{n(n-1)}\), because it succeeds only if it never contracts an edge of that cut. Fixed time, possibly wrong answer — that is Monte Carlo. (Repeating \(O(n^2\log n)\) times drives the failure probability down, but each run is still Monte Carlo.)</p>

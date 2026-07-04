@@ -1,12 +1,12 @@
-<p>We take the dual of the relaxed primal from part (b):
-\[\min \sum_{e\in E} w(e)\,x_e \quad\text{s.t.}\quad \forall v\in V:\ \sum_{uv\in E} x_{uv} = 1,\qquad x_e\ge 0.\]
-There is one primal constraint per vertex, so the dual has one variable per vertex.</p>
-<div class="box">Dual variables: for each vertex \(v\in V\) introduce \(y_v\). Because its primal constraint is an <em>equality</em>, the dual variable \(y_v\) is <em>unconstrained</em> in sign (free), rather than restricted to be nonnegative.</div>
+<p class="ex-line"><span class="ex-lab">Goal</span> Write the dual of the matching LP relaxation and state its variables.</p>
+<p class="ex-line"><span class="ex-lab">Strategy</span> Give one dual variable per vertex constraint, form the dual objective from the right-hand sides, and read off one dual constraint per primal edge variable.</p>
+<p class="ex-line"><span class="ex-lab">Key idea</span> Each edge variable appears in exactly its two endpoint constraints, so its dual constraint caps the sum of those two endpoint potentials by the edge weight.</p>
+<p class="ex-line"><span class="ex-lab why">Why this move</span> Taking a dual is mechanical once you match dual variables to primal constraints and dual constraints to primal variables — the only judgment call is the sign rules.</p>
 <ol class="gsteps">
-<li><strong>Objective.</strong> The primal right-hand sides are all \(1\) (the vertex equalities \(=1\)). The dual maximizes the inner product of right-hand sides with dual variables: \(\max \sum_{v\in V} y_v\).</li>
-<li><strong>Constraints, one per primal variable \(x_e\).</strong> The primal variable \(x_{uv}\) appears in exactly two vertex constraints, those of its endpoints \(u\) and \(v\), each with coefficient \(1\). Its primal objective coefficient is \(w(e)\). A primal minimization with \(x_e\ge 0\) yields a dual "\(\le\)" constraint, so for edge \(e = uv\) we get \(y_u + y_v \le w(e)\).</li>
-<li><strong>Sign of \(y_v\).</strong> An equality primal constraint dualizes to a free variable, so each \(y_v\) is unconstrained.</li>
+  <li><b>Dual variables.</b> One per vertex constraint: \(y_v\) for each \(v\in V\). Since each primal constraint is an <em>equality</em>, \(y_v\) is free (unconstrained in sign).</li>
+  <li><b>Objective.</b> The primal right-hand sides are all \(1\), so the dual maximizes \(\sum_{v\in V} y_v\).</li>
+  <li><b>Constraints, one per \(x_e\).</b> Edge \(x_{uv}\) appears with coefficient \(1\) in the constraints of its endpoints \(u,v\), and has objective coefficient \(w(e)\). Primal min with \(x_e\ge 0\) gives a "\(\le\)" dual constraint: \(y_u + y_v \le w(e)\).</li>
 </ol>
-<p>The dual is therefore
+<p>The dual is
 \[\max \sum_{v\in V} y_v \quad\text{s.t.}\quad \forall\, uv\in E:\ y_u + y_v \le w(e),\qquad y_v\ \text{free}.\]
-Intuitively each vertex is assigned a "potential" \(y_v\); every edge caps the sum of its endpoints' potentials by its weight, and we maximize total potential.</p>
+Think of each \(y_v\) as a vertex potential; every edge caps the sum of its endpoints' potentials, and we maximize the total.</p>

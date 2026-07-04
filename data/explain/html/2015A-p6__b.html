@@ -1,7 +1,10 @@
-<p>Suppose that during the run the very last item that forced a new bin to be opened had weight \(1/k\). We give a lower bound of \(1-\tfrac1k\) on the load of every bin other than the one opened last.</p>
+<p class="ex-line"><span class="ex-lab">Goal</span> If the last item to open a new bin had weight \(1/k\), lower-bound the load of every bin except that last one by \(1-\tfrac1k\).</p>
+<p class="ex-line"><span class="ex-lab">Strategy</span> Use why a new bin gets opened at all: the item didn't fit anywhere else.</p>
+<p class="ex-line"><span class="ex-lab">Key idea</span> A \(1/k\) item is opened into a new bin only when every existing bin has less than \(1/k\) free — meaning each was already more than \(1-\tfrac1k\) full.</p>
+<p class="ex-line"><span class="ex-lab why">Why this move</span> The algorithm opens a bin only as a last resort, so the opening event itself certifies that all other bins are nearly full.</p>
 <ol class="gsteps">
-  <li><strong>What "opening a new bin" tells us.</strong> The algorithm opens a new bin for an item only when the item does not fit in any existing bin. So at the moment this weight-\(1/k\) item was placed, every already-open bin had less than \(1/k\) of free space — otherwise the item would have gone there instead.</li>
-  <li><strong>Translate free space into load.</strong> Free space below \(1/k\) means each of those bins was filled to more than \(1-\tfrac1k\); at least \(1-\tfrac1k\) of every such bin was already occupied.</li>
-  <li><strong>Loads only grow afterwards.</strong> Since this was the <em>last</em> bin-opening event, any items placed after it are merely added into existing bins, so no bin's load ever decreases. Every bin except the last-opened therefore keeps a load of at least \(1-\tfrac1k\) at the end.</li>
+<li><b>Read the opening event.</b> When this \(1/k\) item was placed in a new bin, it fit in no existing bin, so every existing bin had free space below \(1/k\).</li>
+<li><b>Turn free space into load.</b> Free space under \(1/k\) means each such bin was filled to more than \(1-\tfrac1k\).</li>
+<li><b>Loads never drop.</b> This was the last opening event, so later items only add to existing bins; no bin's load decreases afterward.</li>
 </ol>
-<div class="box">Hence in the final packing, each bin other than the one opened last contains items of total weight at least \(1-\tfrac1k\).</div>
+<p class="ex-line">So in the final packing, every bin other than the last-opened holds items of total weight at least \(1-\tfrac1k\).</p>

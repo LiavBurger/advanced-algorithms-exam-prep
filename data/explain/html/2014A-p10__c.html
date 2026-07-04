@@ -1,17 +1,9 @@
-<p>To decide which variable should enter the basis, simplex rewrites the objective so that it only mentions the current non-basic variables \(x_2,x_3,s_1\) (which are all at \(0\)). The sign of each coefficient then tells us whether nudging that variable up from \(0\) would raise or lower the objective.</p>
+<p class="ex-line"><span class="ex-lab">Goal</span> find which non-basic variable enters the basis on the first pivot.</p>
+<p class="ex-line"><span class="ex-lab">Strategy</span> rewrite the objective using only the non-basic variables and pick the one whose coefficient is most positive.</p>
+<p class="ex-line"><span class="ex-lab">Key idea</span> a positive coefficient means raising that variable raises the objective, so the biggest coefficient is the steepest climb.</p>
+<p class="ex-line"><span class="ex-lab why">Why this move</span> at a vertex the basic variables are locked to the non-basics; writing the objective in the free variables shows exactly which direction pays off.</p>
 <ol class="gsteps">
-  <li>Take the objective \(2x_1+5x_2+2x_3\) and replace the basic variable \(x_1\) by its dictionary expression \(x_1=10-2x_2-s_1\) from part (b):
-  \[
-  2x_1+5x_2+2x_3=2(10-2x_2-s_1)+5x_2+2x_3 .
-  \]</li>
-  <li>Expand and collect like terms:
-  \[
-  =20-4x_2-2s_1+5x_2+2x_3=20+x_2+2x_3-2s_1 .
-  \]</li>
-  <li>Read off the coefficients of the non-basic variables: \(x_2\) has \(+1\), \(x_3\) has \(+2\), and \(s_1\) has \(-2\). Since \(x_2\) and \(x_3\) have positive coefficients, increasing either of them (from its current value \(0\)) increases the objective; \(s_1\) would decrease it, so it is not a candidate.</li>
-  <li>Among the improving variables we pick the one with the largest coefficient, i.e. the steepest per-unit gain. That is \(x_3\) with rate \(+2\) versus \(+1\) for \(x_2\).</li>
+  <li><b>Substitute \(x_1\).</b> Using \(x_1=10-2x_2-s_1\), the objective becomes \(2(10-2x_2-s_1)+5x_2+2x_3=20+x_2+2x_3-2s_1\).</li>
+  <li><b>Compare coefficients.</b> \(x_2\) gives \(+1\), \(x_3\) gives \(+2\), \(s_1\) gives \(-2\). Only \(x_2,x_3\) improve, and \(x_3\)'s rate is larger.</li>
 </ol>
-<div class="box">
-The entering variable is \(x_3\): it offers the best rate of increase of the objective, \(+2\) per unit.
-</div>
-<p>This is the standard (Dantzig) pivoting rule — enter the non-basic variable with the most positive reduced cost — and it sets up the ratio test in part (d) that determines who must leave.</p>
+<p>So \(x_3\) enters the basis — the most positive coefficient, i.e. the best gain per unit. This is the standard Dantzig rule, and it sets up the ratio test in part (d).</p>

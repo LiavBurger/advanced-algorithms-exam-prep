@@ -1,10 +1,10 @@
-<p>We form the LP dual of the relaxation from part (c). Mechanically, each <em>primal constraint</em> becomes a <em>dual variable</em>, and each <em>primal variable</em> becomes a <em>dual constraint</em>; a max-primal becomes a min-dual.</p>
+<p class="ex-line"><span class="ex-lab">Goal</span> Write the LP dual of the knapsack relaxation from part (c).</p>
+<p class="ex-line"><span class="ex-lab">Strategy</span> Apply the mechanical dual recipe: each primal constraint becomes a dual variable, each primal variable becomes a dual constraint, and max flips to min.</p>
+<p class="ex-line"><span class="ex-lab">Key idea</span> The one capacity row gives a variable \(z\), the \(n\) bounds \(x_i\le1\) give variables \(y_i\), and the objective is built from the primal right-hand sides.</p>
+<p class="ex-line"><span class="ex-lab why">Why this move</span> Dualizing is a fixed procedure — reading off constraint-vs-variable roles is all that's needed, no cleverness.</p>
 <ol class="gsteps">
-<li><strong>List the primal constraints and assign dual variables.</strong> The primal (in \(x\)) is \(\max\sum_i b_i x_i\) subject to the single capacity row \(\sum_i w_i x_i\le W\) and the \(n\) upper bounds \(x_i\le 1\). Give the capacity row a dual variable \(z\ge 0\) and each upper bound \(x_i\le 1\) a dual variable \(y_i\ge 0\). (Both are \(\ge 0\) because these are \(\le\) constraints in a maximization.)</li>
-<li><strong>Dual objective = combination of the primal right-hand sides.</strong> The capacity RHS is \(W\) and each upper-bound RHS is \(1\), so we minimize \(Wz + \sum_i y_i\).</li>
-<li><strong>One dual constraint per primal variable \(x_i\).</strong> Collect the coefficients of \(x_i\) across the primal constraints: it appears with coefficient \(w_i\) in the capacity row (multiplied by \(z\)) and coefficient \(1\) in its own bound (multiplied by \(y_i\)). Their sum must be at least the objective coefficient \(b_i\):
-\[w_i z + y_i \ge b_i \quad \forall i.\]</li>
-<li><strong>Sign constraints.</strong> Since the primal variables \(x_i\ge 0\), the dual constraints are inequalities \(\ge\) (not equalities), and the dual variables satisfy \(y_i\ge 0,\ z\ge 0\).</li>
+<li><b>Assign dual variables.</b> The primal \(\max\sum_i b_i x_i\) has the capacity row \(\sum_i w_i x_i\le W\) (variable \(z\ge0\)) and the bounds \(x_i\le1\) (variables \(y_i\ge0\)). Both are \(\ge0\) since these are \(\le\) rows in a maximization.</li>
+<li><b>Build the dual objective.</b> Combine the primal right-hand sides: capacity RHS \(W\) and each bound RHS \(1\), so minimize \(Wz+\sum_i y_i\).</li>
+<li><b>One constraint per \(x_i\).</b> Collect \(x_i\)'s coefficients across primal rows — \(w_i\) in the capacity row and \(1\) in its own bound — and require their weighted sum to be at least the objective coefficient \(b_i\): \[w_i z + y_i \ge b_i \quad \forall i.\]</li>
+<li><b>Write it out.</b> \[\min\ Wz + \sum_i y_i \quad\text{s.t.}\quad w_i z + y_i \ge b_i\ \forall i,\qquad y_i\ge 0,\ z\ge 0.\] The \(\ge\) direction comes from the primal variables being \(\ge0\).</li>
 </ol>
-<p>The dual is
-\[\min\ Wz + \sum_i y_i \quad\text{s.t.}\quad w_i z + y_i \ge b_i\ \forall i,\qquad y_i\ge 0\ \forall i,\qquad z\ge 0.\]</p>

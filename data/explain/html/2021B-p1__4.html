@@ -1,8 +1,11 @@
-<p>The claim is that solving the LP relaxation of the semi-matching program and rounding every \(x_e\ge \tfrac12\) up to \(1\) (and the rest to \(0\)) always yields a feasible integer semi-matching. This is <strong>false</strong>; we disprove it with one explicit counterexample.</p>
+<p class="ex-line"><span class="ex-lab">Claim</span> <b>False</b> — rounding every \(x_e\ge\tfrac12\) up to \(1\) can produce an infeasible integer solution.</p>
+<p class="ex-line"><span class="ex-lab">Strategy</span> to break a "for all inputs" claim, exhibit one graph where the LP optimum, when rounded this way, overloads a vertex.</p>
+<p class="ex-line"><span class="ex-lab">Key idea</span> pile many edges onto a single capacity-\(2\) vertex: each gets fractional value \(\tfrac12\), and rounding them all up blows past the cap.</p>
+<p class="ex-line"><span class="ex-lab why">Why this move</span> threshold rounding at \(\tfrac12\) has no built-in respect for the "\(\le 2\)" constraint, so a star where four half-valued edges meet one vertex is the natural place it fails.</p>
 <ol class="gsteps">
-  <li>Take \(V_1=\{a,b,c,d\}\), \(V_2=\{u\}\), and \(E=\{au,bu,cu,du\}\): a "star" of four edges all meeting the single \(V_2\)-vertex \(u\).</li>
-  <li>Consider the fractional point \(x_e=\tfrac12\) for all four edges. Check feasibility of the relaxation: each \(V_1\)-vertex is on one edge, contributing \(\tfrac12\le 1\); vertex \(u\) is on all four, contributing \(4\cdot\tfrac12=2\le 2\). So it is LP-feasible, with value \(4\cdot\tfrac12=2\).</li>
-  <li>This is in fact LP-optimal: the constraint at \(u\) is \(\sum_e x_e\le 2\), so no feasible point can exceed value \(2\); ours attains \(2\).</li>
-  <li>Now round: every \(x_e=\tfrac12\ge\tfrac12\), so all four variables become \(1\). But then vertex \(u\) has degree \(4>2\), violating its cap. The rounded vector is <em>not</em> a semi-matching.</li>
+<li><b>Pick the graph.</b> \(V_1=\{a,b,c,d\}\), \(V_2=\{u\}\), \(E=\{au,bu,cu,du\}\): four edges all meeting \(u\).</li>
+<li><b>Give the fractional optimum.</b> Set \(x_e=\tfrac12\) for all four. Each \(V_1\)-vertex carries \(\tfrac12\le 1\); vertex \(u\) carries \(4\cdot\tfrac12=2\le 2\). Feasible, value \(2\).</li>
+<li><b>Check it is optimal.</b> The constraint at \(u\) caps the objective at \(2\), and this point hits \(2\).</li>
+<li><b>Round and fail.</b> Every \(x_e=\tfrac12\ge\tfrac12\), so all become \(1\); now \(u\) has degree \(4>2\), which is not a semi-matching.</li>
 </ol>
-<p>Hence the rounding rule can turn a feasible fractional optimum into an infeasible integer point, so the claim fails. (Other witnesses work too, e.g. a triangle-free star \(V_1=\{a,b,c\},V_2=\{u\}\) with \(x_e=\tfrac23\), or \(V_1=\{a\},V_2=\{u,v\}\) with \(x_e=\tfrac12\).) The moral: threshold rounding at \(\tfrac12\) has no reason to respect capacity-\(2\) constraints when many edges pile up on one vertex.</p>
+<p class="ex-line">The rounding turned a legal fractional optimum into an illegal integer point, so the rule does not always work — whenever many edges crowd one vertex, rounding them all up breaks its cap.</p>

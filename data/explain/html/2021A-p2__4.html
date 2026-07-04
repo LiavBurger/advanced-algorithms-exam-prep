@@ -1,10 +1,11 @@
-<p>The claim is that when all caps are \(c_j=1\) and all courses have the same size \(|U_j|=u\), solving the LP relaxation of the primal optimally and then rounding "\(x_i\ge \tfrac1u\mapsto 1\), else \(0\)" always gives a <em>feasible</em> integral solution. This is <strong>false</strong>; the fix is to exhibit an instance where the optimal fractional solution sits exactly at the threshold \(1/u\), so rounding pushes too many variables up to \(1\) and breaks a cap.</p>
+<p class="ex-line"><span class="ex-lab">Claim</span> false — the rounding "\(x_i\ge \tfrac1u\mapsto 1\), else \(0\)" can produce an infeasible integral solution.</p>
+<p class="ex-line"><span class="ex-lab">Strategy</span> exhibit one small instance where the optimal fractional solution sits exactly at the threshold \(1/u\), so rounding pushes everything up to \(1\) and blows a cap.</p>
+<p class="ex-line"><span class="ex-lab">Key idea</span> a cap of \(1\) split evenly among \(u\) students gives each \(x_i=1/u\) — right at the threshold — so all of them round up and the sum jumps to \(u>1\).</p>
+<p class="ex-line"><span class="ex-lab why">Why this move</span> to refute a "for every input" claim you only need one counterexample, and the threshold \(1/u\) is precisely where a balanced fractional optimum lands, making it the natural place to attack.</p>
 <ol class="gsteps">
-  <li><strong>Simplest counterexample.</strong> Take \(A=\{a_1,a_2\}\), \(m=1\), \(U_1=A\), so \(u=2\) and \(c_1=1\). The only constraint is \(x_1+x_2\le 1\). The fractional optimum sets \(x_1=x_2=\tfrac12\), with value \(1\); it is optimal because the single constraint caps the sum at \(1\), so no feasible point beats value \(1\).</li>
-  <li>Apply the rounding: the threshold is \(1/u=1/2\), and both variables equal \(\tfrac12\ge\tfrac12\), so both round to \(1\). Now \(x_1+x_2=2>1\), violating the cap — the rounded solution is infeasible.</li>
-  <li><strong>A second, "tighter" counterexample.</strong> Take \(A=\{a_1,a_2,a_3,a_4\}\), \(m=4\), \(U_j=A\setminus\{a_j\}\), so \(u=3\) and every \(c_j=1\). Setting \(x_i=\tfrac13\) for all \(i\) is feasible (each constraint sums \(3\cdot\tfrac13=1\le 1\)) with value \(4/3\); it is optimal because any higher-value solution would force three variables to sum to more than \(1\), which some constraint forbids.</li>
-  <li>Rounding with threshold \(1/u=1/3\): every \(x_i=\tfrac13\ge\tfrac13\) rounds to \(1\). Then each constraint \(\sum_{a_i\in U_j}x_i\) equals \(3>1\), again infeasible.</li>
+  <li><b>Simplest instance.</b> Take \(A=\{a_1,a_2\}\), \(m=1\), \(U_1=A\), so \(u=2\) and \(c_1=1\). The only constraint is \(x_1+x_2\le 1\), and the fractional optimum is \(x_1=x_2=\tfrac12\) with value \(1\) — optimal since the cap holds the sum at \(1\).</li>
+  <li><b>Rounding breaks it.</b> The threshold is \(1/u=\tfrac12\), and both \(x_i=\tfrac12\ge\tfrac12\), so both round to \(1\). Now \(x_1+x_2=2>1\): the cap is violated, so the rounded solution is infeasible.</li>
+  <li><b>A tighter instance.</b> Take \(A=\{a_1,a_2,a_3,a_4\}\), \(m=4\), \(U_j=A\setminus\{a_j\}\), so \(u=3\), each \(c_j=1\). Setting every \(x_i=\tfrac13\) is feasible (each constraint sums \(3\cdot\tfrac13=1\)) with value \(4/3\), and it is optimal because any better value would force three variables to exceed a sum of \(1\).</li>
+  <li><b>Same failure.</b> Threshold \(1/u=\tfrac13\), and every \(x_i=\tfrac13\ge\tfrac13\) rounds to \(1\); then each course's sum is \(3>1\), infeasible again.</li>
 </ol>
-<div class="box">
-False: in both instances the optimal fractional solution puts every variable exactly at the rounding threshold \(1/u\), so all of them round up to \(1\) and every cap-\(1\) constraint is violated.
-</div>
+<p>So the rule fails exactly because a fair fractional split lands every variable on the rounding line — round them all up and each cap-\(1\) course is overfilled.</p>

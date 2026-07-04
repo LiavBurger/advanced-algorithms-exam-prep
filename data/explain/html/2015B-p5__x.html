@@ -1,9 +1,11 @@
-<p>We are given a Las Vegas algorithm \(A\): it is <em>always correct</em>, but its running time \(T(n)\) is random with expectation \(\mathbb{E}[T(n)]\le 10n\). We must build a Monte Carlo algorithm \(B\) that always runs in \(O(n)\) time and is correct with probability \(\ge 9/10\). The idea is to run \(A\) but cut it off after a fixed budget of steps, using \(A\) as a black box.</p>
+<p class="ex-line"><span class="ex-lab">Goal</span> Turn an always-correct Las Vegas algorithm \(A\) (expected time \(\le 10n\)) into a Monte Carlo algorithm \(B\) running in \(O(n)\) time and correct with probability at least \(9/10\).</p>
+<p class="ex-line"><span class="ex-lab">Strategy</span> Run \(A\) as a black box but cut it off after a fixed step budget, returning a default answer if it hasn't finished.</p>
+<p class="ex-line"><span class="ex-lab">Key idea</span> \(A\) only "fails" \(B\) when it runs unusually long, and a long run is rare because its expected time is small.</p>
+<p class="ex-line"><span class="ex-lab why">Why this move</span> To bound the probability of a large running time from just its expectation, Markov's inequality is the natural tool, so you set the cutoff as a multiple of the expected time.</p>
 <ol class="gsteps">
-<li><strong>Algorithm \(B\).</strong> Run \(A(x)\) for at most \(100n\) steps. If \(A\) finishes within that budget, output \(A\)'s answer. If \(A\) has not finished, halt it and output \(0\).</li>
-<li><strong>Running time.</strong> By construction \(B\) never runs more than \(100n\) steps (plus the trivial cutoff overhead), so \(B\) runs in \(O(n)\) time on every execution — deterministically bounded.</li>
-<li><strong>When can \(B\) err?</strong> If \(A\) finishes, its answer is correct (\(A\) is Las Vegas, always correct), so \(B\) is correct. The only way \(B\) can be wrong is when \(A\) fails to finish within \(100n\) steps and \(B\) outputs the default \(0\).</li>
-<li><strong>Bounding that probability.</strong> \(T(n)\ge0\), so Markov's inequality applies:
-\[\Pr[\,T(n)\ge 100n\,]\le\frac{\mathbb{E}[T(n)]}{100n}\le\frac{10n}{100n}=\frac1{10}.\]</li>
+<li><b>Algorithm \(B\).</b> Run \(A(x)\) for at most \(100n\) steps. If it finishes, output its answer; otherwise halt it and output \(0\).</li>
+<li><b>Running time.</b> \(B\) never runs past \(100n\) steps, so it is \(O(n)\) on every execution.</li>
+<li><b>When it errs.</b> If \(A\) finishes, its answer is correct (Las Vegas), so \(B\) is correct. The only error is when \(A\) doesn't finish in \(100n\) steps and \(B\) outputs the default \(0\).</li>
+<li><b>Bound that chance.</b> Since \(T(n)\ge0\), Markov gives \(\Pr[T(n)\ge 100n]\le \tfrac{\mathbb{E}[T(n)]}{100n}\le \tfrac{10n}{100n}=\tfrac1{10}\).</li>
 </ol>
-<p>Thus \(B\) errs with probability at most \(1/10\), i.e. it is correct with probability at least \(9/10\). This bound uses only \(\mathbb{E}[T(n)]\le10n\), so it depends solely on the algorithm's internal randomness and not on the particular input \(x\), exactly as required.</p>
+<p class="ex-line">So \(B\) is wrong with probability at most \(1/10\), i.e. correct at least \(9/10\) of the time. The bound uses only \(\mathbb{E}[T(n)]\le 10n\), so it depends on the algorithm's randomness, not on the input.</p>

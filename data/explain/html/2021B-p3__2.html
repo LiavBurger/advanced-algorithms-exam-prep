@@ -1,9 +1,11 @@
-<p>We prove the greedy algorithm achieves a \(\tfrac23\)-approximation: the legally colored weight is at least \(\tfrac23\) of the optimum. Let \(v_1,\dots,v_{|V|}\) be the vertices in the order they are processed, and let \(A_i,B_i,C_i\) denote the three classes at the moment \(v_i\) is considered (so they contain only vertices processed before \(v_i\)).</p>
+<p class="ex-line"><span class="ex-lab">Claim</span> The greedy algorithm is a \(2/3\)-approximation: its legally colored weight is at least \(\tfrac23\) of the optimum.</p>
+<p class="ex-line"><span class="ex-lab">Strategy</span> Bound the illegal weight created at each step by an average, sum over vertices so every edge is counted once, then compare to the easy bound \(\mathrm{OPT}\le w(E)\).</p>
+<p class="ex-line"><span class="ex-lab">Key idea</span> Choosing the lightest of three classes puts the new illegal weight at most one-third of the vertex's edges into placed vertices, so total illegal weight is at most \(\tfrac13 w(E)\).</p>
+<p class="ex-line"><span class="ex-lab why">Why this move</span> A greedy "pick the minimum" rule always pairs with "min \(\le\) average", and charging each edge to its later endpoint is the standard way to make the per-step bounds add up cleanly.</p>
 <ol class="gsteps">
-<li><strong>Per-vertex bound.</strong> When \(v_i\) is placed, it is added to the class minimizing \(w(v_i,\cdot)\). The minimum of three numbers is at most their average, so the illegal weight created at this step is
-\[\min\big(w(v_i,A_i),w(v_i,B_i),w(v_i,C_i)\big)\le \tfrac13\big(w(v_i,A_i)+w(v_i,B_i)+w(v_i,C_i)\big).\]</li>
-<li><strong>Each edge counted once.</strong> An edge \((v_i,v_j)\) with \(i<j\) is accounted for exactly when the later endpoint \(v_j\) is processed—at that time \(v_i\) is already placed in one of \(A_j,B_j,C_j\). Summing the three back-degrees over all vertices therefore counts every edge exactly once:
-\[\sum_{i=1}^{|V|}\big(w(v_i,A_i)+w(v_i,B_i)+w(v_i,C_i)\big)=w(E).\]</li>
-<li><strong>Total illegal weight.</strong> Summing the per-vertex bound in step 1 over all \(i\), the total weight of illegally colored edges is at most \(\tfrac13 w(E)\).</li>
-<li><strong>Legal weight and comparison to OPT.</strong> Hence the legal weight is at least \(w(E)-\tfrac13 w(E)=\tfrac23 w(E)\). Since no coloring can legalize more than all the edges, \(\mathrm{OPT}\le w(E)\), giving legal weight \(\ge \tfrac23 w(E)\ge \tfrac23\,\mathrm{OPT}\).</li>
+<li><b>Set up the timeline.</b> Let \(v_1,\dots,v_{|V|}\) be the processing order and \(A_i,B_i,C_i\) the classes when \(v_i\) is considered (only earlier vertices are in them).</li>
+<li><b>Per-vertex bound.</b> Since \(v_i\) goes to the class minimizing \(w(v_i,\cdot)\), and the minimum of three numbers is at most their average, the illegal weight created is \[\min\big(w(v_i,A_i),w(v_i,B_i),w(v_i,C_i)\big)\le \tfrac13\big(w(v_i,A_i)+w(v_i,B_i)+w(v_i,C_i)\big).\]</li>
+<li><b>Each edge once.</b> An edge \((v_i,v_j)\) with \(i<j\) is seen exactly when the later endpoint \(v_j\) is processed, so \[\sum_{i}\big(w(v_i,A_i)+w(v_i,B_i)+w(v_i,C_i)\big)=w(E).\]</li>
+<li><b>Total illegal weight.</b> Summing the per-vertex bound over all \(i\), the total illegally colored weight is at most \(\tfrac13 w(E)\).</li>
+<li><b>Compare to OPT.</b> So the legal weight is at least \(w(E)-\tfrac13 w(E)=\tfrac23 w(E)\). Since no coloring beats all edges, \(\mathrm{OPT}\le w(E)\), giving legal weight \(\ge \tfrac23 w(E)\ge \tfrac23\,\mathrm{OPT}\) — the greedy loses at most a third of the weight.</li>
 </ol>

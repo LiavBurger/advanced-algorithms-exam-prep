@@ -1,12 +1,12 @@
-<p>The LP relaxation is obtained by replacing the integrality constraint \(x_e\in\{0,1\}\) with the real interval \(0\le x_e\le 1\). The task then asks us to drop any constraint that is implied by the others.</p>
-<p>Naively the relaxation would read
-\[\min \sum_{e\in E} w(e)\,x_e \quad\text{s.t.}\quad \forall v\in V:\ \sum_{uv\in E} x_{uv} = 1,\qquad \forall e\in E:\ 0\le x_e\le 1.\]
-We claim the upper bounds \(x_e\le 1\) are redundant.</p>
+<p class="ex-line"><span class="ex-lab">Goal</span> Write the LP relaxation of the matching ILP and drop any redundant constraint.</p>
+<p class="ex-line"><span class="ex-lab">Strategy</span> Replace \(x_e\in\{0,1\}\) by \(0\le x_e\le 1\), then notice the upper bounds \(x_e\le 1\) are already forced by the vertex equalities.</p>
+<p class="ex-line"><span class="ex-lab">Key idea</span> A single edge value cannot exceed the sum at its endpoint, which equals \(1\), so \(x_e\le 1\) comes for free.</p>
+<p class="ex-line"><span class="ex-lab why">Why this move</span> "Relax and remove redundant constraints" is the standard LP-relaxation exercise — swap integrality for an interval, then prune what other constraints already imply.</p>
 <ol class="gsteps">
-<li>Take any edge \(e = uv\). Its endpoint constraint at \(u\) is \(\sum_{uw\in E} x_{uw} = 1\), a sum that <em>includes</em> the term \(x_{uv}\).</li>
-<li>Every term in that sum is nonnegative, because the constraint \(x_{uw}\ge 0\) is kept. So \(x_{uv} \le \sum_{uw\in E} x_{uw} = 1\).</li>
-<li>Hence \(x_e\le 1\) already follows from the vertex equality plus \(x_e\ge 0\); writing it explicitly adds nothing and can be removed.</li>
+  <li><b>Relax integrality.</b> Replace \(x_e\in\{0,1\}\) with \(0\le x_e\le 1\), keeping the vertex equalities \(\sum_{uv\in E} x_{uv} = 1\).</li>
+  <li><b>Upper bound is redundant.</b> For edge \(e=uv\), the endpoint equality at \(u\) is \(\sum_{uw\in E} x_{uw} = 1\), and it contains the term \(x_{uv}\). Since every term is nonnegative, \(x_{uv}\le 1\) automatically.</li>
+  <li><b>Prune it.</b> So each \(x_e\le 1\) follows from the vertex equality plus \(x_e\ge 0\) and can be removed.</li>
 </ol>
-<p>Removing the redundant upper bounds gives the clean relaxation
+<p>The clean relaxation is
 \[\min \sum_{e\in E} w(e)\,x_e \quad\text{s.t.}\quad \forall v\in V:\ \sum_{uv\in E} x_{uv} = 1,\qquad \forall e\in E:\ x_e\ge 0.\]
-This is the standard matching-polytope LP: only the vertex equalities and nonnegativity remain.</p>
+Only the vertex equalities and nonnegativity remain.</p>

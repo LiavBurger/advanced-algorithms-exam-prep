@@ -1,6 +1,9 @@
-<p>Read the dual of (e) as an ILP by forcing \(y_{uv}\in\{0,1\}\): now \(y_{uv}=1\) means "select edge \((u,v)\)" and a \(0/1\) vector is a subset \(F\subseteq E\) of edges.</p>
+<p class="ex-line"><span class="ex-lab">Claim</span> reading the dual of (e) as an ILP gives the <em>minimum edge cover</em> problem.</p>
+<p class="ex-line"><span class="ex-lab">Strategy</span> force \(y_{uv}\in\{0,1\}\) and translate each part into edge/vertex language.</p>
+<p class="ex-line"><span class="ex-lab">Key idea</span> a \(0/1\) value \(y_{uv}\) is a yes/no for "select edge \((u,v)\)", so a solution is a subset \(F\subseteq E\) of edges.</p>
+<p class="ex-line"><span class="ex-lab why">Why this move</span> the dual constraint "\(\ge 1\) around each vertex" is the signature of a covering problem — read literally, it says every vertex must be touched.</p>
 <ol class="gsteps">
-<li>The constraint \(\sum_{uv\ni v} y_{uv}\ge 1\) for each vertex \(v\) says: at least one selected edge is incident to \(v\). In words, every vertex is <em>covered</em> (touched) by some chosen edge.</li>
-<li>The objective \(\min\sum_{uv\in E} y_{uv}\) counts the selected edges, so we want as few edges as possible.</li>
+  <li><b>Constraint.</b> \(\sum_{uv\ni v}y_{uv}\ge 1\) for each \(v\) says at least one chosen edge is incident to \(v\): every vertex is covered by some selected edge.</li>
+  <li><b>Objective.</b> \(\min\sum_{uv\in E}y_{uv}\) counts selected edges, so we want as few as possible.</li>
+  <li><b>Name it.</b> Choosing a smallest edge set that touches every vertex is exactly the minimum edge cover — the natural companion to the maximum independent set we started from.</li>
 </ol>
-<p>Choosing a smallest set of edges so that every vertex is incident to at least one of them is exactly the <em>minimum edge cover</em> problem. (It is the natural "dual" companion to the maximum independent set problem we started from.)</p>

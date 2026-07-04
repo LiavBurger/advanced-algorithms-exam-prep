@@ -1,7 +1,10 @@
-<p>The converse fails because the degree constraints only enforce "in-degree \(1\) and out-degree \(1\) at every vertex" — they say nothing about the selected edges forming a <em>single</em> connected tour. A union of several disjoint cycles satisfies the same degree constraints.</p>
+<p class="ex-line"><span class="ex-lab">Claim</span> The converse fails — a feasible IP solution need not be a Hamiltonian cycle.</p>
+<p class="ex-line"><span class="ex-lab">Strategy</span> Exhibit a graph whose edges split into two disjoint cycles, each obeying the degree constraints.</p>
+<p class="ex-line"><span class="ex-lab">Key idea</span> The degree constraints only force in-degree and out-degree \(1\); they never force a single connected tour.</p>
+<p class="ex-line"><span class="ex-lab why">Why this move</span> The hint points at connectivity — the fastest counterexample is a disconnected union of small cycles, which no degree constraint can rule out.</p>
 <ol class="gsteps">
-<li>Take a graph on, say, six vertices consisting of two vertex-disjoint directed triangles: cycle \(1\to2\to3\to1\) and cycle \(4\to5\to6\to4\). Set \(x_{u,v}=1\) on these six edges and \(0\) elsewhere.</li>
-<li>Check the constraints: in each triangle every vertex has exactly one incoming and one outgoing chosen edge. So for every vertex the incoming sum is \(1\) and the outgoing sum is \(1\), and all variables are \(0/1\). This is a feasible IP solution.</li>
-<li>But this edge set is <em>not</em> a Hamiltonian cycle: a Hamiltonian cycle is a single cycle through all vertices, whereas here the vertices split into two separate cycles. The subgraph is not even connected, so it cannot be one cycle covering all six vertices.</li>
+<li><b>Pick the graph.</b> On six vertices take two vertex-disjoint directed triangles, \(1\to2\to3\to1\) and \(4\to5\to6\to4\); set \(x_{u,v}=1\) on those six edges, \(0\) elsewhere.</li>
+<li><b>Check feasibility.</b> In each triangle every vertex has exactly one chosen incoming and one chosen outgoing edge, so every incoming and outgoing sum is \(1\) and all variables are \(0/1\). Feasible.</li>
+<li><b>Show it isn't Hamiltonian.</b> A Hamiltonian cycle is one cycle through all vertices, but here the vertices split into two separate cycles — the subgraph isn't even connected.</li>
 </ol>
-<div class="box">This is the classic "subtour" phenomenon: the degree constraints permit any collection of vertex-disjoint cycles that together cover all vertices, not just one grand cycle. That is exactly the gap part (c) fixes with subtour-elimination constraints.</div>
+<p class="ex-line">This is the classic subtour phenomenon: the degree constraints allow any collection of disjoint cycles covering all vertices, which is exactly the gap part (c) fixes.</p>

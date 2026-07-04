@@ -1,21 +1,20 @@
-<p>For the concrete instance \(n=5,\ m=4\) with \(U_1=\{a_1,a_3\}\), \(U_2=\{a_2,a_3,a_4,a_5\}\), \(U_3=\{a_1,a_3,a_4,a_5\}\), \(U_4=\{a_2,a_5\}\) and caps \(c=(1,2,2,1)\), we first encode "who attends what" in a matrix, write the primal compactly, and then form its dual by the standard rule for a packing program.</p>
+<p class="ex-line"><span class="ex-lab">Goal</span> put the concrete instance in matrix/vector form and write its dual BIP with \(y_1,\dots,y_4\).</p>
+<p class="ex-line"><span class="ex-lab">Strategy</span> build the "who attends what" matrix, write the primal Max compactly, then transpose to get the dual Min.</p>
+<p class="ex-line"><span class="ex-lab">Key idea</span> the dual of this packing program swaps Max\(\leftrightarrow\)Min, rows\(\leftrightarrow\)columns, and the caps \(c\leftrightarrow\) the all-ones right-hand side.</p>
+<p class="ex-line"><span class="ex-lab why">Why this move</span> once the primal is in matrix form, the dual is mechanical — transpose the matrix and flip the direction — so encoding membership as a matrix does all the work.</p>
 <ol class="gsteps">
-  <li><strong>Membership matrix.</strong> Let \(M\) be the \(5\times 4\) matrix with \(M_{ij}=1\) iff \(a_i\in U_j\). Reading off each student's courses gives the rows
+  <li><b>Membership matrix.</b> Let \(M\) be \(5\times 4\) with \(M_{ij}=1\) iff \(a_i\in U_j\) (row = student, column = course):
   \[
-  M=\begin{pmatrix}1&0&1&0\\0&1&0&1\\1&1&1&0\\0&1&1&0\\0&1&1&1\end{pmatrix}
-  \quad(\text{row }i=\text{student }a_i,\ \text{col }j=\text{course }j).
+  M=\begin{pmatrix}1&0&1&0\\0&1&0&1\\1&1&1&0\\0&1&1&0\\0&1&1&1\end{pmatrix}.
   \]
-  Then \((M^{\top}x)_j=\sum_i M_{ij}x_i=\sum_{a_i\in U_j}x_i\), exactly the count of selected attendees of course \(j\).</li>
-  <li><strong>Primal in matrix form.</strong> With \(\vec x=(x_1,\dots,x_5)\) and objective vector all-ones, part 1 becomes
+  Then \((M^{\top}x)_j=\sum_{a_i\in U_j}x_i\), the count of selected attendees of course \(j\).</li>
+  <li><b>Primal.</b> With \(\vec x=(x_1,\dots,x_5)\) and caps \(c=(1,2,2,1)\),
   \[
   \max\ (1,1,1,1,1)\,\vec x\quad\text{s.t.}\quad M^{\top}\vec x\le (1,2,2,1),\ \ x_i\in\{0,1\}.
   \]</li>
-  <li><strong>Dual.</strong> For a packing LP \(\max\{1^{\top}x: M^{\top}x\le c,\ x\ge 0\}\), the dual is the covering LP \(\min\{c^{\top}y:(M^{\top})^{\top}y\ge 1,\ y\ge 0\}\), i.e. \(\min\{c^{\top}y: My\ge \mathbf 1,\ y\ge 0\}\), with one dual variable \(y_j\) per primal constraint (per course). Restricting to integers gives the dual BIP.</li>
+  <li><b>Dual.</b> Transposing back, the dual takes one variable \(y_j\) per course, minimizes total cap-cost, and each student gives a "\(\ge 1\)" row:
+  \[
+  \min\ (1,2,2,1)\,(y_1,y_2,y_3,y_4)\quad\text{s.t.}\quad M\,\vec y\ge(1,1,1,1,1)^{\top},\ \ y_j\in\{0,1\}.
+  \]</li>
 </ol>
-<div class="box">
-\[
-\min\ (1,2,2,1)\,(y_1,y_2,y_3,y_4)\quad\text{s.t.}\quad
-M\,\vec y\ge (1,1,1,1,1)^{\top},\ \ y_j\in\{0,1\}.
-\]
-</div>
-<p>Each of the five rows of \(My\ge\mathbf 1\) is one student's covering constraint (e.g. row 1: \(y_1+y_3\ge 1\)), matching the interpretation developed in part 3.</p>
+<p>Each of the five rows of \(M\vec y\ge\mathbf 1\) is one student's requirement (for instance row 1 reads \(y_1+y_3\ge 1\)) — the same covering meaning spelled out in part 3.</p>

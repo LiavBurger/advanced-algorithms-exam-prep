@@ -1,10 +1,11 @@
-<p>Approximation ratio \(1\) would mean the greedy always returns a <em>maximum</em> independent set. To refute this we exhibit, for every \(n\ge3\), a graph where the min-degree greedy is fooled into stopping after picking just two vertices, while a much larger independent set exists.</p>
+<p class="ex-line"><span class="ex-lab">Claim</span> False — the min-degree greedy does not have approximation ratio \(1\); on a family of graphs it returns \(2\) while the optimum is \(n\).</p>
+<p class="ex-line"><span class="ex-lab">Strategy</span> Ratio \(1\) would mean greedy always finds a maximum independent set, so we only need one family of graphs where it does much worse, forever.</p>
+<p class="ex-line"><span class="ex-lab">Key idea</span> Picking the globally minimum-degree vertex can be a trap: that vertex drags in neighbors whose removal wipes out a large independent set that was sitting right there.</p>
+<p class="ex-line"><span class="ex-lab why">Why this move</span> To refute a claim you never argue in general — you build the single cleanest counterexample and just compute what greedy does versus what's possible.</p>
 <ol class="gsteps">
-  <li><strong>The graph.</strong> On \(2n+1\) vertices \(x,\ v_1,\dots,v_n,\ w_1,\dots,w_n\) put edges: \(x v_i\) for all \(i\) (a star from \(x\) to the \(v\)'s); \(v_i w_j\) for all \(i,j\) (complete bipartite between \(v\)'s and \(w\)'s); and \(w_i w_j\) for all \(i\ne j\) (a clique on the \(w\)'s).</li>
-  <li><strong>Degrees.</strong> \(\deg(x)=n\) (just the \(v\)'s). \(\deg(v_i)=n+1\): \(n\) edges to the \(w\)'s plus one to \(x\). \(\deg(w_i)=2n-1\): \(n\) edges to the \(v\)'s plus \(n-1\) inside the \(w\)-clique. For \(n\ge3\), \(\ n<n+1<2n-1\), so \(x\) is the unique minimum-degree vertex.</li>
-  <li><strong>What greedy does.</strong> It first takes \(x\) (min degree) and deletes \(x\) together with all its neighbors, the \(v_i\)'s. What remains is just the clique \(w_1,\dots,w_n\). It then takes some \(w_i\) and deletes it and all its neighbors — the entire rest of the clique — so the graph empties and the algorithm halts, returning \(\{x,w_i\}\) of size \(2\).</li>
-  <li><strong>The optimum is far bigger.</strong> There are no edges among the \(v_i\)'s, so \(\{v_1,\dots,v_n\}\) is an independent set of size \(n\); hence \(\mathrm{OPT}\ge n\).</li>
+  <li><b>The graph.</b> For any \(n\ge 3\) take \(2n+1\) vertices \(x, v_1,\dots,v_n, w_1,\dots,w_n\), with edges \(x v_i\) for all \(i\), \(v_i w_j\) for all \(i,j\), and \(w_i w_j\) for all \(i\ne j\) (the \(w\)'s form a clique).</li>
+  <li><b>Degrees.</b> \(\deg(x)=n\), \(\deg(v_i)=n+1\) (the \(w\)'s plus \(x\)), and \(\deg(w_i)=2n-1\) (the \(v\)'s plus the other \(w\)'s). For \(n\ge 3\), \(x\) is the strict minimum-degree vertex.</li>
+  <li><b>What greedy does.</b> It grabs \(x\) first and deletes \(x\) with all its neighbors, the \(v_i\)'s. Only the \(w\)-clique is left; it picks one \(w_i\), which deletes the whole clique. Now the graph is empty, so greedy stops with \(\{x, w_i\}\), size \(2\).</li>
+  <li><b>The optimum.</b> The \(v_i\)'s have no edges among themselves, so \(\{v_1,\dots,v_n\}\) is an independent set of size \(n\); hence \(\mathrm{OPT}\ge n\).</li>
 </ol>
-<div class="box">
-The greedy returns an independent set of size \(2\) while \(\mathrm{OPT}\ge n\), so the ratio is at least \(n/2\), which grows without bound. The claim of approximation ratio \(1\) is false.
-</div>
+<p class="ex-line">So greedy returns \(2\) while \(n\) was available, and the ratio \(n/2\) can be made as large as we like. In short, chasing the smallest-degree vertex once fooled greedy into throwing away the whole good set, so ratio \(1\) simply can't hold.</p>

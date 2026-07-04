@@ -1,10 +1,10 @@
-<p>A simplex "basis" names which variables are allowed to be nonzero; the remaining (nonbasic) variables are set to \(0\), and the basic ones are solved for from the two equality constraints. Here the basis is \(\{x_1,s_1\}\).</p>
+<p class="ex-line"><span class="ex-lab">Claim</span> the basis \(\{x_1,s_1\}\) gives the vertex \(x_1=3,\ x_2=0,\ x_3=0,\ s_1=11,\ s_2=0\).</p>
+<p class="ex-line"><span class="ex-lab">Strategy</span> a basis names which variables may be nonzero; set the others to \(0\) and solve the two equality constraints for the basic ones.</p>
+<p class="ex-line"><span class="ex-lab">Key idea</span> the nonbasic variables \(x_2,x_3,s_2\) are all \(0\), which collapses each constraint to a single unknown.</p>
+<p class="ex-line"><span class="ex-lab why">Why this move</span> a vertex of the feasible region is exactly a basic solution, so "read off the vertex" just means zero the nonbasic variables and back out the rest.</p>
 <ol class="gsteps">
-  <li>There are five variables \(x_1,x_2,x_3,s_1,s_2\). Since the basis is \(\{x_1,s_1\}\), the <em>nonbasic</em> variables are \(x_2,x_3,s_2\), and we set \(x_2=x_3=s_2=0\).</li>
-  <li>Use the second equality constraint \(3x_1-x_2+2x_3+s_2=9\). Substituting \(x_2=x_3=s_2=0\) leaves \(3x_1=9\), hence \(x_1=3\).</li>
-  <li>Use the first equality constraint \(2x_1-x_2-s_1=-5\). Substituting \(x_2=0\) gives \(2x_1-s_1=-5\); with \(x_1=3\) this is \(6-s_1=-5\), so \(s_1=11\).</li>
+<li><b>Identify nonbasic.</b> Of \(x_1,x_2,x_3,s_1,s_2\), the basis is \(\{x_1,s_1\}\), so \(x_2=x_3=s_2=0\).</li>
+<li><b>Solve for \(x_1\).</b> From \(3x_1-x_2+2x_3+s_2=9\) with the zeros, \(3x_1=9\), so \(x_1=3\).</li>
+<li><b>Solve for \(s_1\).</b> From \(2x_1-x_2-s_1=-5\) with \(x_2=0\): \(6-s_1=-5\), so \(s_1=11\).</li>
 </ol>
-<div class="box">
-\[x_1=3,\quad x_2=0,\quad x_3=0,\quad s_1=11,\quad s_2=0.\]
-</div>
-<p>Both basic variables came out nonnegative (\(x_1=3\ge 0\), \(s_1=11\ge 0\)), so this vertex is feasible. (Equivalently, from the dictionary form of part (d): \(s_2=9-3x_1+x_2-2x_3=0\) forces \(x_1=3\), and \(s_1=5+2x_1-x_2=5+6=11\).) The basis \(\{x_1,s_1\}\) therefore corresponds to the feasible vertex above.</p>
+<p class="ex-line">Both basic values came out nonnegative (\(x_1=3\), \(s_1=11\)), so the vertex is feasible — the basis \(\{x_1,s_1\}\) sits at a real corner of the region.</p>

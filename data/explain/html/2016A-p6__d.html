@@ -1,12 +1,11 @@
-<p>The simplex algorithm needs every inequality turned into an equality by adding a nonnegative slack/surplus variable, after which the "slack" variables are expressed as functions of the original ones (the dictionary/slack form used to read off a starting vertex).</p>
+<p class="ex-line"><span class="ex-lab">Goal</span> add slack variables and rewrite the LP in the equality (dictionary) form that simplex runs on.</p>
+<p class="ex-line"><span class="ex-lab">Strategy</span> turn each inequality into an equality with a nonnegative slack/surplus variable, then solve each equation for its slack.</p>
+<p class="ex-line"><span class="ex-lab">Key idea</span> a "\(\ge\)" constraint loses a surplus, a "\(\le\)" constraint gains a slack, and once everything is an equality simplex can read a starting vertex by zeroing the nonbasic variables.</p>
+<p class="ex-line"><span class="ex-lab why">Why this move</span> simplex only works on equalities plus nonnegativity, so converting the two inequalities is the required setup step.</p>
 <ol class="gsteps">
-  <li>The first constraint \(2x_1-x_2\ge -5\) is a "\(\ge\)" inequality. Subtract a nonnegative surplus \(s_1\ge 0\) to make it an equality: \(2x_1-x_2-s_1=-5\).</li>
-  <li>The second constraint \(3x_1-x_2+2x_3\le 9\) is a "\(\le\)" inequality. Add a nonnegative slack \(s_2\ge 0\): \(3x_1-x_2+2x_3+s_2=9\).</li>
-  <li>Keeping all variables nonnegative, \(s_i,x_i\ge 0\), the standard (equality) form is
-  \[\max\ 5x_1-7x_2+2x_3\ \text{ s.t. } 2x_1-x_2-s_1=-5,\ \ 3x_1-x_2+2x_3+s_2=9.\]</li>
-  <li>Now solve each equation for its slack to get the dictionary form (slacks basic, original variables nonbasic). From line one, \(s_1=2x_1-x_2+5=5+2x_1-x_2\); from line two, \(s_2=9-3x_1+x_2-2x_3\).</li>
+<li><b>Fix the "\(\ge\)" row.</b> \(2x_1-x_2\ge -5\) needs a surplus \(s_1\ge 0\) subtracted: \(2x_1-x_2-s_1=-5\).</li>
+<li><b>Fix the "\(\le\)" row.</b> \(3x_1-x_2+2x_3\le 9\) needs a slack \(s_2\ge 0\) added: \(3x_1-x_2+2x_3+s_2=9\).</li>
+<li><b>State the equality form.</b> With \(s_i,x_i\ge 0\): \(\max\,5x_1-7x_2+2x_3\) s.t. \(2x_1-x_2-s_1=-5\), \(3x_1-x_2+2x_3+s_2=9\).</li>
+<li><b>Solve for the slacks.</b> \(s_1=5+2x_1-x_2\) and \(s_2=9-3x_1+x_2-2x_3\), the dictionary form.</li>
 </ol>
-<div class="box">
-\[\max\ 5x_1-7x_2+2x_3\quad\text{s.t.}\quad s_1=5+2x_1-x_2,\qquad s_2=9-3x_1+x_2-2x_3,\qquad s_i,x_i\ge 0.\]
-</div>
-<p>This is exactly the form simplex runs on: the basic variables \(s_1,s_2\) are written in terms of the nonbasic \(x_1,x_2,x_3\), so setting the nonbasic variables to \(0\) reads off a candidate vertex.</p>
+<p class="ex-line">Now the basic variables \(s_1,s_2\) are written in terms of \(x_1,x_2,x_3\), so setting those to \(0\) hands simplex a candidate vertex to start from.</p>

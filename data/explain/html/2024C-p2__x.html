@@ -1,9 +1,10 @@
-<p>Boolean product is defined by \((A\circ B)_{i,j}=\bigvee_{k=1}^n (A_{i,k}\wedge B_{k,j})\): entry \((i,j)\) is \(1\) iff some index \(k\) has both \(A_{i,k}=1\) and \(B_{k,j}=1\). Computing this directly costs \(\Theta(n^3)\). We beat that by reducing to <em>ordinary integer</em> matrix multiplication, which has fast \(O(n^\omega)\) algorithms with \(\omega<3\).</p>
-<div class="box">Key idea: a Boolean OR-of-ANDs is positive exactly when the corresponding integer inner product is positive. So run fast matrix multiplication over the integers, then threshold each entry at \(0\).</div>
+<p class="ex-line"><span class="ex-lab">Goal</span> Compute the boolean product \(A\circ B\) in time \(o(n^3)\).</p>
+<p class="ex-line"><span class="ex-lab">Strategy</span> Cast the boolean OR-of-ANDs as an ordinary integer matrix product, run fast matrix multiplication, then threshold each entry at \(0\).</p>
+<p class="ex-line"><span class="ex-lab">Key idea</span> The boolean entry \((A\circ B)_{i,j}\) is \(1\) exactly when the integer inner product \(\sum_k A_{i,k}B_{k,j}\) is positive.</p>
+<p class="ex-line"><span class="ex-lab why">Why this move</span> Fast matrix multiplication only exists over rings, not for boolean OR/AND directly — so we borrow it by turning the logic into arithmetic.</p>
 <ol class="gsteps">
-<li><strong>Rewrite AND/OR as arithmetic.</strong> Treat the 0/1 entries as integers. For each \(k\), \(A_{i,k}\wedge B_{k,j}\) equals the integer product \(A_{i,k}B_{k,j}\) (it is \(1\) iff both are \(1\)). The OR over \(k\) is true iff at least one product is \(1\), i.e. iff the integer sum \((A\cdot B)_{i,j}=\sum_{k=1}^n A_{i,k}B_{k,j}\) is strictly positive.</li>
-<li><strong>Equivalence.</strong> Hence \((A\circ B)_{i,j}=1 \iff (A\cdot B)_{i,j} > 0\), where \(A\cdot B\) is the standard integer matrix product. (The sum is a nonnegative integer; it is \(0\) iff every term is \(0\).)</li>
-<li><strong>Compute \(C=A\cdot B\) fast.</strong> Run a fast matrix-multiplication algorithm over the integers in time \(O(n^\omega)\), where \(\omega<3\) (e.g. \(\omega\approx 2.37\)). This dominates the runtime.</li>
-<li><strong>Threshold.</strong> Output the matrix whose \((i,j)\) entry is \(1\) if \(C_{i,j}>0\) and \(0\) otherwise. Scanning all \(n^2\) entries costs \(O(n^2)\).</li>
+<li><b>Logic to arithmetic.</b> Treat entries as integers. For each \(k\), \(A_{i,k}\wedge B_{k,j}\) equals the product \(A_{i,k}B_{k,j}\), and the OR over \(k\) is true iff the sum \((A\cdot B)_{i,j}=\sum_{k=1}^n A_{i,k}B_{k,j}\) is strictly positive.</li>
+<li><b>Equivalence.</b> So \((A\circ B)_{i,j}=1 \iff (A\cdot B)_{i,j}>0\), where \(A\cdot B\) is the standard integer product (a nonnegative sum that is \(0\) only if every term is \(0\)).</li>
+<li><b>Multiply fast.</b> Compute \(C=A\cdot B\) with fast matrix multiplication in \(O(n^\omega)\), where \(\omega<3\) (about \(2.37\)); this dominates the cost.</li>
+<li><b>Threshold.</b> Output the matrix with entry \(1\) where \(C_{i,j}>0\) and \(0\) otherwise, scanning all entries in \(O(n^2)\). Total \(O(n^\omega)=o(n^3)\), as required.</li>
 </ol>
-<p>Total time \(O(n^\omega)+O(n^2)=O(n^\omega)\), which is \(o(n^3)\) since \(\omega<3\), as required.</p>

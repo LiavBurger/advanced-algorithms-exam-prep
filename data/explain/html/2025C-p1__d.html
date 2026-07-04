@@ -1,6 +1,10 @@
-<p>The statement is <strong>false</strong>. The claimed equivalence "\(x\) is optimal \(\iff\) \(x\) is a vertex" fails in <em>both</em> directions, and a single simple example already breaks it.</p>
+<p class="ex-line"><span class="ex-lab">Claim</span> False: it is not the case that \(x\) is optimal for an LP if and only if \(x\) is a vertex.</p>
+<p class="ex-line"><span class="ex-lab">Strategy</span> Give one tiny counterexample that breaks the equivalence in both directions.</p>
+<p class="ex-line"><span class="ex-lab">Key idea</span> Optima can lie at non-vertex points, and vertices can be far from optimal; "there exists an optimal vertex" is the correct, weaker fact.</p>
+<p class="ex-line"><span class="ex-lab why">Why this move</span> A claimed iff is fastest to kill with a single small LP that violates each direction, rather than arguing in general.</p>
 <ol class="gsteps">
-<li><strong>An optimal solution need not be a vertex.</strong> Consider the program: minimize \(0\) subject to \(0\le x\le 1\). The objective is constant, so <em>every</em> feasible point is optimal—including all the non-vertex points in the open interval \((0,1)\), not just the vertices \(x=0\) and \(x=1\). Thus optimality does not force being a vertex.</li>
-<li><strong>A vertex need not be optimal.</strong> In the same box \(0\le x\le 1\), if instead we minimize \(x\), the vertex \(x=1\) is feasible but has value \(1\), while the optimum is \(0\) at the other vertex. So a vertex can be strictly suboptimal.</li>
-<li>What <em>is</em> true (and what the false statement distorts) is a one-directional fact: if the LP is feasible and bounded, then there <em>exists</em> an optimal solution that is a vertex. That guarantees an optimal vertex, but says nothing forcing every optimum to be a vertex or every vertex to be optimal.</li>
+<li><b>Optimal need not be a vertex.</b> Minimize \(0\) subject to \(0\le x\le 1\). Every feasible point is optimal, including all interior points of \((0,1)\), which are not vertices.</li>
+<li><b>Vertex need not be optimal.</b> In the same box, minimize \(x\): the vertex \(x=1\) is feasible with value \(1\), while the optimum is \(0\) at \(x=0\). So a vertex can be strictly worse than optimal.</li>
+<li><b>What is actually true.</b> For a feasible bounded LP there exists an optimal solution that is a vertex — an existence statement, not an equivalence.</li>
+<li><b>Conclude.</b> Both directions of the iff fail, so the statement is false.</li>
 </ol>

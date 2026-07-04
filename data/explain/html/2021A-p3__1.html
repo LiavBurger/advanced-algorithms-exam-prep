@@ -1,7 +1,10 @@
-<p>\(G\) is a complete graph whose every edge costs \(1\) or \(2\), and we want a \(\tfrac43\)-approximation for TSP. The first step is given: since \(G\) is complete it has a cycle cover, so let \(C\) be a <em>minimum-cost cycle cover</em> — a set of vertex-disjoint cycles that together visit every vertex exactly once, of least total edge cost (computable in polynomial time). We must finish the algorithm by turning \(C\) into a single tour.</p>
+<p class="ex-line"><span class="ex-lab">Goal</span> finish a \(\tfrac43\)-approximation for TSP on a complete graph with edge weights \(1\) or \(2\), where the given first step computes a minimum-cost cycle cover \(C\).</p>
+<p class="ex-line"><span class="ex-lab">Strategy</span> stitch the vertex-disjoint cycles of \(C\) into a single tour by rerouting one edge of each cycle to jump into the next cycle.</p>
+<p class="ex-line"><span class="ex-lab">Key idea</span> a cycle cover is a cheap stand-in for a tour (a tour is a cover with one cycle), so we only need to merge the pieces without paying much.</p>
+<p class="ex-line"><span class="ex-lab why">Why this move</span> the minimum cycle cover is computable in polynomial time and lower-bounds OPT; each cycle has \(\ge 3\) vertices, so there are few of them and few patch edges to pay for.</p>
 <ol class="gsteps">
-  <li>Fix an arbitrary order \(C_1,C_2,\dots,C_k\) of the cycles of \(C\). Write the vertices of \(C_i\) around the cycle as \(c_{i,1}-c_{i,2}-\cdots-c_{i,l_i}-c_{i,1}\), so \((c_{i,l_i}-c_{i,1})\) is the edge that closes cycle \(C_i\).</li>
-  <li>For each \(1\le i<k\), do not close cycle \(C_i\): delete its closing edge \((c_{i,l_i}-c_{i,1})\) and instead add the edge \((c_{i,l_i}-c_{i+1,1})\) jumping to the first vertex of the next cycle.</li>
-  <li>For the last cycle \(C_k\), replace its closing edge \((c_{k,l_k}-c_{k,1})\) by \((c_{k,l_k}-c_{1,1})\), an edge back to the very first vertex, which closes everything into one big cycle.</li>
+<li><b>Order the cycles.</b> Take the cycles of \(C\) in any order \(C_1,\dots,C_k\), writing \(C_i\) as \(c_{i,1}-c_{i,2}-\cdots-c_{i,l_i}-c_{i,1}\), so \((c_{i,l_i}-c_{i,1})\) is its closing edge.</li>
+<li><b>Bridge each cycle to the next.</b> For \(1\le i<k\), delete the closing edge of \(C_i\) and add \((c_{i,l_i}-c_{i+1,1})\), continuing into the first vertex of \(C_{i+1}\) instead of closing.</li>
+<li><b>Close the loop.</b> For the last cycle, replace \((c_{k,l_k}-c_{k,1})\) by \((c_{k,l_k}-c_{1,1})\), returning to the very first vertex.</li>
 </ol>
-<p>Because \(G\) is complete, every replacement edge exists. Each cycle contributes its path of vertices, and the new "bridge" edges chain the cycles \(C_1\to C_2\to\cdots\to C_k\to C_1\). The result is a single closed cycle passing through every vertex exactly once, i.e. a Hamiltonian tour — a valid TSP solution. Its cost bound is proved in part (2).</p>
+<p class="ex-line">Every replacement edge exists because \(G\) is complete, and chaining \(C_1\to C_2\to\cdots\to C_k\to C_1\) leaves one cycle through all vertices exactly once — a valid tour, whose cost is bounded in part (2).</p>

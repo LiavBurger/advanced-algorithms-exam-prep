@@ -1,9 +1,11 @@
-<p>We must decide whether the subspace \(V=\operatorname{span}(B_1,\dots,B_k)\subseteq\mathbb{R}^{n\times n}\) contains an invertible matrix, i.e. whether some \(\sum_{i=1}^k x_i B_i\) is invertible. The idea is to test invertibility at a random point and use the Schwartz–Zippel lemma.</p>
+<p class="ex-line"><span class="ex-lab">Claim</span> there is a polynomial-time randomized algorithm deciding whether the span of \(B_1,\dots,B_k\) contains an invertible matrix.</p>
+<p class="ex-line"><span class="ex-lab">Strategy</span> plug random values into \(\sum_i x_i B_i\) and check invertibility; correctness rests on the determinant being a low-degree polynomial that is nonzero somewhere exactly when an invertible combination exists.</p>
+<p class="ex-line"><span class="ex-lab">Key idea</span> "some combination is invertible" is the same as "the polynomial \(P(x)=\det(\sum_i x_i B_i)\) is not the zero polynomial", so this is a polynomial-identity test.</p>
+<p class="ex-line"><span class="ex-lab why">Why this move</span> invertibility is \(\det\ne 0\), a polynomial condition, and testing whether a polynomial is identically zero is exactly what a random evaluation plus Schwartz–Zippel handles.</p>
 <ol class="gsteps">
-  <li><strong>Algorithm.</strong> Draw \(\alpha_1,\dots,\alpha_k\) independently and uniformly from \(\{1,2,\dots,10n\}\); answer "yes" iff \(\sum_{i=1}^k \alpha_i B_i\) is invertible (checked in polynomial time via a determinant / Gaussian elimination).</li>
-  <li><strong>Key polynomial.</strong> Let \(P(x_1,\dots,x_k):=\det\!\big(\sum_{i=1}^k x_i B_i\big)\). Each entry of \(\sum_i x_i B_i\) is a linear form in the \(x_i\), and a determinant of an \(n\times n\) matrix is a degree-\(n\) polynomial in its entries; hence \(P\) has total degree at most \(n\). A matrix is invertible iff its determinant is nonzero, so \(\sum_i x_i B_i\) is invertible exactly when \(P(x)\ne 0\).</li>
-  <li><strong>No false "yes".</strong> If \(V\) contains no invertible matrix then \(P\equiv 0\), the tested matrix is always singular, and we correctly answer "no".</li>
-  <li><strong>Rare false "no".</strong> If \(V\) does contain an invertible matrix, there is an assignment with \(P\ne 0\), so \(P\) is a nonzero polynomial of degree \(\le n\). By Schwartz–Zippel, for random \(\alpha\) drawn from a set \(S\) of size \(10n\),
-  \[\Pr[P(\alpha)=0]\ \le\ \frac{\deg P}{|S|}\ \le\ \frac{n}{10n}\ =\ \frac{1}{10}.\]</li>
+<li><b>Algorithm.</b> Draw \(\alpha_1,\dots,\alpha_k\) independently and uniformly from \(\{1,\dots,10n\}\); answer "yes" iff \(\sum_i \alpha_i B_i\) is invertible (a determinant check, polynomial time).</li>
+<li><b>The polynomial.</b> Let \(P(x_1,\dots,x_k)=\det(\sum_i x_i B_i)\). Its entries are linear in the \(x_i\) and a determinant has degree \(n\), so \(\deg P\le n\), and \(\sum_i x_i B_i\) is invertible iff \(P(x)\ne 0\).</li>
+<li><b>No false "yes".</b> If the span has no invertible matrix then \(P\equiv 0\), every tested matrix is singular, and we correctly say "no".</li>
+<li><b>Rare false "no".</b> If an invertible matrix exists then \(P\) is a nonzero degree-\(\le n\) polynomial, and by Schwartz–Zippel over a set of size \(10n\), \(\Pr[P(\alpha)=0]\le n/(10n)=1/10\).</li>
 </ol>
-<p>So when an invertible matrix exists the algorithm says "yes" with probability at least \(9/10\), and it never errs otherwise: a one-sided-error, polynomial-time randomized decider. (The success probability can be boosted by independent repetitions.)</p>
+<p class="ex-line">So the algorithm answers "yes" with probability at least \(9/10\) when an invertible matrix exists and never errs otherwise; repeating a few times drives the error way down.</p>

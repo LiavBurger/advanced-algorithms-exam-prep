@@ -1,10 +1,10 @@
-<p>We sample points uniformly in the unit cube and count how many land inside the radius-\(1/2\) ball, whose volume is \(\pi/6\). Let \(X_i\) be an indicator random variable for the event that the \(i\)-th sample falls inside the ball; since the cube has volume \(1\), \(E[X_i]=\pi/6\). Let \(X=\sum_{i=1}^n X_i\), so \(\mu:=E[X]=n\pi/6\), and the algorithm outputs \(6X/n\), whose expectation is \(\pi\).</p>
+<p class="ex-line"><span class="ex-lab">Goal</span> find a closed-form number of samples so the \(\pi\)-estimate is within \(10\%\) with probability at least \(3/4\).</p>
+<p class="ex-line"><span class="ex-lab">Strategy</span> sample points in the unit cube, count how many land in the radius-\(1/2\) ball, turn the accuracy target into a deviation bound, and force Chernoff below \(1/4\).</p>
+<p class="ex-line"><span class="ex-lab">Key idea</span> the fraction of points inside the ball estimates its volume \(\pi/6\), and Chernoff says the relative error stays small once you take enough samples.</p>
+<p class="ex-line"><span class="ex-lab why">Why this move</span> the estimator is a sum of independent \(0/1\) indicators, so a Chernoff bound on its relative deviation is the direct tool.</p>
 <ol class="gsteps">
-<li><strong>Translate the accuracy requirement into a deviation of \(X\).</strong> We want \(\Pr[\,|6X/n-\pi|>0.1\pi\,]<\tfrac14\). Dividing the inequality inside by \(6\) gives \(|X/n-\pi/6|>0.1\pi/6\); multiplying by \(n\) gives a deviation of \(X\) from its mean of \(0.1\cdot\tfrac{n\pi}{6}=0.1\mu\). So we need the relative deviation \(\delta=0.1\).</li>
-<li><strong>Apply the (two-sided) Chernoff bound</strong> for a sum of independent \(\{0,1\}\) variables, \(\Pr[|X-\mu|>\delta\mu]\le 2e^{-\mu\delta^2/3}\), with \(\delta=0.1\):
-\[
-\Pr\!\left[\Bigl|\tfrac{6X}{n}-\pi\Bigr|>0.1\pi\right]\le 2\exp\!\left(-\frac{\mu(0.1)^2}{3}\right)=2\exp\!\left(-\frac{(n\pi/6)(0.01)}{3}\right)=2e^{-n\pi/1800}.\]</li>
-<li><strong>Force this below \(1/4\).</strong> Require \(2e^{-n\pi/1800}<\tfrac14\), i.e. \(e^{-n\pi/1800}<\tfrac18\). Taking logs: \(-\tfrac{n\pi}{1800}<\ln\tfrac18=-\ln 8\), which rearranges to \(\tfrac{n\pi}{1800}>\ln 8\).</li>
-<li><strong>Solve for \(n\):</strong> \(\displaystyle n>\frac{1800\ln 8}{\pi}\).</li>
+<li><b>Set up the estimator.</b> Let \(X_i\) be an indicator random variable for the \(i\)-th sample landing in the ball; the cube has volume \(1\), so \(E[X_i]=\pi/6\). With \(X=\sum_{i=1}^n X_i\), the mean is \(\mu=n\pi/6\), and the algorithm outputs \(6X/n\), whose expectation is \(\pi\).</li>
+<li><b>Translate accuracy into a deviation.</b> We want \(\Pr[\,|6X/n-\pi|>0.1\pi\,]<\tfrac14\). Dividing by \(6\) and multiplying by \(n\), this is a deviation of \(X\) from \(\mu\) by \(0.1\mu\); so the relative error is \(\delta=0.1\).</li>
+<li><b>Apply two-sided Chernoff.</b> For a sum of independent \(0/1\) variables, \(\Pr[|X-\mu|>\delta\mu]\le 2e^{-\mu\delta^2/3}\). With \(\delta=0.1\) and \(\mu=n\pi/6\): \[\Pr\!\left[\Bigl|\tfrac{6X}{n}-\pi\Bigr|>0.1\pi\right]\le 2e^{-(n\pi/6)(0.01)/3}=2e^{-n\pi/1800}.\]</li>
+<li><b>Force it below \(1/4\) and solve.</b> Require \(2e^{-n\pi/1800}<\tfrac14\), i.e. \(e^{-n\pi/1800}<\tfrac18\); taking logs gives \(\tfrac{n\pi}{1800}>\ln 8\), so \[n>\frac{1800\ln 8}{\pi}.\] Any such \(n\) works &mdash; a closed form, no numeric evaluation needed.</li>
 </ol>
-<div class="box">A number of samples \(n>\dfrac{1800\ln 8}{\pi}\) suffices (a closed-form expression, as requested).</div>

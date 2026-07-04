@@ -1,7 +1,10 @@
-<p>We must show that for any set of \(m\) three-literal clauses there is an assignment satisfying at least \(m/2\) of them. The proof pairs each assignment with its bitwise complement.</p>
+<p class="ex-line"><span class="ex-lab">Goal</span> Prove some assignment always satisfies at least \(m/2\) of the \(m\) clauses.</p>
+<p class="ex-line"><span class="ex-lab">Strategy</span> Pair any assignment \(x\) with its bitwise negation \(\bar x\) and show every clause is caught by at least one of them.</p>
+<p class="ex-line"><span class="ex-lab">Key idea</span> A clause failed by \(x\) has all its literals false, so flipping every variable makes them all true — the complement \(\bar x\) satisfies it.</p>
+<p class="ex-line"><span class="ex-lab why">Why this move</span> To force a \(\ge m/2\) guarantee, average two complementary assignments; if their satisfied counts sum to \(\ge m\), the larger clears \(m/2\).</p>
 <ol class="gsteps">
-  <li><strong>The pairing.</strong> Fix any assignment \(x\), and let \(\bar x\) be its negation: \(\bar x\) assigns to each variable the opposite value it has in \(x\). We compare how many clauses \(x\) satisfies with how many \(\bar x\) satisfies.</li>
-  <li><strong>Every clause is caught by one of them.</strong> Take any clause, a disjunction of three literals. If \(x\) does <em>not</em> satisfy it, then all three of its literals are false under \(x\). Passing to \(\bar x\) flips every variable, hence flips every literal to true, so \(\bar x\) satisfies that clause. Therefore each clause is satisfied by \(x\), by \(\bar x\), or by both — never by neither.</li>
-  <li><strong>Count.</strong> Summing over all \(m\) clauses, \[ (\text{clauses satisfied by } x) + (\text{clauses satisfied by } \bar x) \ge m, \] because each clause contributes at least \(1\) to the left side.</li>
+<li><b>The pairing.</b> Fix any assignment \(x\) and let \(\bar x\) flip every variable. Compare how many clauses each satisfies.</li>
+<li><b>Every clause is caught.</b> If \(x\) fails a clause, all three literals are false under \(x\); flipping every variable turns them all true, so \(\bar x\) satisfies it. No clause is failed by both.</li>
+<li><b>Count.</b> Summing over clauses, (clauses satisfied by \(x\)) + (clauses satisfied by \(\bar x\)) \(\ge m\), since each clause contributes at least \(1\).</li>
 </ol>
-<div class="box">If two nonnegative numbers sum to at least \(m\), the larger is at least \(m/2\). So at least one of \(x,\bar x\) satisfies at least \(m/2\) clauses, proving that such an assignment always exists.</div>
+<p class="ex-line">If two nonnegative numbers add to at least \(m\), the bigger is at least \(m/2\). So one of \(x,\bar x\) satisfies \(\ge m/2\) clauses — such an assignment always exists.</p>

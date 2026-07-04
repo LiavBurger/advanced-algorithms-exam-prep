@@ -1,8 +1,10 @@
-<p>The statement is <strong>true</strong>. Here "root of unity of order \(k\)" means any complex number \(\omega\) with \(\omega^k=1\) (a \(k\)-th root of unity, not necessarily primitive). We are told \(k\mid n\) and must show every such \(\omega\) also satisfies \(\omega^n=1\).</p>
+<p class="ex-line"><span class="ex-lab">Claim</span> True: if \(k\) divides \(n\), then every root of unity of order \(k\) is also a root of unity of order \(n\).</p>
+<p class="ex-line"><span class="ex-lab">Strategy</span> Write \(n=km\) and raise the defining equation \(\omega^k=1\) to the power \(m\).</p>
+<p class="ex-line"><span class="ex-lab">Key idea</span> "Order \(k\)" just means \(\omega^k=1\); divisibility lets you reach \(\omega^n=1\) by taking a power.</p>
+<p class="ex-line"><span class="ex-lab why">Why this move</span> When a divisibility hypothesis meets an exponent, the natural move is to factor the big exponent through the small one so the known relation kicks in.</p>
 <ol class="gsteps">
-<li>Since \(k\) divides \(n\), we can write \(n=km\) for some natural number \(m\).</li>
-<li>Let \(\omega\) be any root of unity of order \(k\), so by definition \(\omega^k=1\).</li>
-<li>Then \(\omega^n=\omega^{km}=(\omega^k)^m=1^m=1\), using the exponent law \(\omega^{km}=(\omega^k)^m\).</li>
-<li>Thus \(\omega^n=1\), i.e. \(\omega\) is a root of unity of order \(n\). As \(\omega\) was arbitrary, every order-\(k\) root of unity is an order-\(n\) root of unity.</li>
+<li><b>Use the divisibility.</b> Since \(k\mid n\), write \(n=km\) for some natural number \(m\).</li>
+<li><b>Start from the definition.</b> Let \(\omega\) satisfy \(\omega^k=1\), i.e. \(\omega\) is a root of unity of order \(k\).</li>
+<li><b>Raise to the power.</b> Then \(\omega^n=\omega^{km}=(\omega^k)^m=1^m=1\).</li>
+<li><b>Conclude.</b> So \(\omega^n=1\), meaning \(\omega\) is a root of unity of order \(n\) too. Geometrically the \(k\) evenly spaced points sit among the \(n\) evenly spaced ones.</li>
 </ol>
-<div class="box">Geometrically, the \(k\)-th roots of unity are the \(k\) evenly spaced points on the unit circle, and when \(k\mid n\) they form a subset of the \(n\) evenly spaced \(n\)-th roots of unity.</div>

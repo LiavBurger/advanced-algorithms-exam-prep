@@ -1,8 +1,11 @@
-<p>Let \(M\) be any maximal matching (no edge can be added to it while keeping it a matching) and let \(N\) be a maximum matching (largest possible). We must show \(|M|\ge\tfrac12|N|\), so that \(M\) is never worse than half the optimum — a \(2\)-approximation.</p>
+<p class="ex-line"><span class="ex-lab">Claim</span> Any maximal matching \(M\) is a \(2\)-approximation for maximum matching: \(|M|\ge\tfrac12|N|\) where \(N\) is a maximum matching.</p>
+<p class="ex-line"><span class="ex-lab">Strategy</span> Show every edge of \(N\) is blocked by a vertex that \(M\) already uses, then count those vertices.</p>
+<p class="ex-line"><span class="ex-lab">Key idea</span> Maximality means no edge can be added, so every optimal edge must share an endpoint with some edge of \(M\).</p>
+<p class="ex-line"><span class="ex-lab why">Why this move</span> "Maximal but maybe not maximum" invites comparing the two matchings vertex by vertex, and maximality is precisely a statement about which vertices are already occupied.</p>
 <ol class="gsteps">
-  <li><strong>Every edge of \(N\) is blocked by \(M\).</strong> Take any edge \(e'\in N\). At least one of its two endpoints must already be an endpoint of some edge \(e\in M\). Otherwise both endpoints of \(e'\) would be untouched by \(M\), so \(e'\) shares no vertex with any edge of \(M\), and \(M\cup\{e'\}\) would be a matching strictly larger than \(M\) — contradicting maximality of \(M\).</li>
-  <li><strong>Charge each \(N\)-edge to a matched vertex.</strong> Map each edge \(e'\in N\) to one of its endpoints that lies in \(V(M)\), the set of vertices touched by \(M\). Since \(M\) has \(|M|\) edges, \(|V(M)|\le 2|M|\).</li>
-  <li><strong>This map is injective.</strong> Because \(N\) is a matching, its edges are pairwise vertex-disjoint, so no vertex is an endpoint of two different edges of \(N\). Hence distinct edges of \(N\) map to distinct vertices of \(V(M)\).</li>
-  <li><strong>Count.</strong> An injection from the \(|N|\) edges of \(N\) into \(V(M)\) gives \(|N|\le|V(M)|\le 2|M|\), so \(|M|\ge \tfrac12|N|\).</li>
+  <li><b>Every \(N\)-edge is blocked.</b> Take any \(e'\in N\). At least one endpoint of \(e'\) is used by some edge of \(M\); otherwise \(M\cup\{e'\}\) would still be a matching, contradicting maximality.</li>
+  <li><b>Charge each \(N\)-edge to a used vertex.</b> Map \(e'\) to one of its endpoints lying in \(V(M)\), the set of vertices \(M\) touches, and note \(|V(M)|\le 2|M|\).</li>
+  <li><b>The map is injective.</b> Edges of \(N\) are vertex-disjoint, so distinct \(N\)-edges map to distinct vertices.</li>
+  <li><b>Count.</b> The injection gives \(|N|\le|V(M)|\le 2|M|\), so \(|M|\ge\tfrac12|N|\).</li>
 </ol>
-<p>Combined with the trivial \(|M|\le|N|\) (since \(N\) is maximum), the size of any maximal matching lies within a factor \(2\) of the maximum, which is the claimed \(2\)-approximation.</p>
+<p class="ex-line">Since \(M\) also cannot exceed \(N\), any maximal matching sits within a factor \(2\) of the best one, which is the claimed \(2\)-approximation.</p>

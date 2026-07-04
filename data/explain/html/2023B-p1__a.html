@@ -1,7 +1,10 @@
-<p>The statement is <strong>true</strong>, and it is exactly the content of the strong duality theorem for linear programming. Recall the setup: to every primal LP (say a minimization \(\min c^\top x\) over a polyhedron \(\{x : Ax \ge b,\ x \ge 0\}\)) there is an associated dual LP (a maximization). We must argue that when the primal polyhedron is bounded and non-empty, the two optimal objective values coincide.</p>
+<p class="ex-line"><span class="ex-lab">Claim</span> True — this is exactly strong duality.</p>
+<p class="ex-line"><span class="ex-lab">Strategy</span> Recognize the hypothesis as the setup of the strong duality theorem and quote its conclusion.</p>
+<p class="ex-line"><span class="ex-lab">Key idea</span> If the primal is feasible ("non-empty") and its objective can't run off to infinity ("bounded"), then the dual is feasible too and both optima are equal.</p>
+<p class="ex-line"><span class="ex-lab why">Why this move</span> Any statement equating primal and dual optimal values over a nice feasible region is a duality question, so reach straight for the duality theorem.</p>
 <ol class="gsteps">
-  <li><strong>The primal has a finite optimum.</strong> "Non-empty" means the primal is feasible (there is at least one \(x\) in the polyhedron). "Bounded" means the objective cannot run off to \(\pm\infty\) over the feasible region. A feasible LP whose objective is bounded attains its optimum at a vertex, so the primal optimal value is a finite number.</li>
-  <li><strong>Weak duality gives one inequality.</strong> For every primal-feasible \(x\) and dual-feasible \(y\), weak duality gives \(\text{(dual objective)} \le \text{(primal objective)}\). So the dual is bounded above by the finite primal optimum and cannot be unbounded.</li>
-  <li><strong>Strong duality closes the gap.</strong> The duality theorem states that if the primal is feasible and bounded, then the dual is also feasible, and the two optimal objective values are <em>equal</em>, not merely ordered by weak duality.</li>
+<li><b>Primal has a finite optimum.</b> Non-empty means a feasible point exists; bounded means the objective doesn't go to \(\pm\infty\). So the primal optimum is a finite number.</li>
+<li><b>Weak duality orders them.</b> For any feasible primal \(x\) and dual \(y\), the dual value is at most the primal value, so the dual can't be unbounded.</li>
+<li><b>Strong duality closes the gap.</b> The theorem then guarantees the dual is feasible and the two optimal values are equal, not just ordered.</li>
 </ol>
-<div class="box">The parenthetical remark is the contrapositive intuition: if the dual were infeasible, the primal would be unbounded (or infeasible). Since here the primal is feasible and bounded, the dual must be feasible, and both optima agree.</div>
+<p class="ex-line">The parenthetical is the same idea in reverse: an infeasible dual would force an unbounded primal, which can't happen here.</p>

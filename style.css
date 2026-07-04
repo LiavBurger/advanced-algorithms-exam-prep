@@ -168,6 +168,11 @@ math{font-size:1.04em}
 .expl{margin-top:10px;background:var(--panel2);border:1px solid var(--line);border-left:3px solid var(--med-fg);
   border-radius:8px;padding:10px 14px;font-size:13.5px;line-height:1.6}
 .expl p{margin:7px 0}
+.expl .ex-line{margin:6px 0}
+.ex-lab{display:inline-block;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;
+  color:var(--accent-ink);background:var(--accent-weak);padding:1px 7px;border-radius:6px;margin-right:8px;vertical-align:baseline}
+.ex-lab.why{color:var(--med-fg);background:var(--med-bg)}
+.expl .gsteps>li>b:first-child{color:var(--ink)}
 .expl .gsteps{counter-reset:st;list-style:none;padding-left:0;margin:8px 0}
 .expl .gsteps>li{position:relative;padding:2px 0 2px 30px;margin:6px 0}
 .expl .gsteps>li::before{counter-increment:st;content:counter(st);position:absolute;left:0;top:1px;width:20px;height:20px;

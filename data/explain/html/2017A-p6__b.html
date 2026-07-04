@@ -1,8 +1,10 @@
-<p>Start from the LP relaxation of part (a): replace \(x_i\in\{0,1\}\) by \(0\le x_i\le 1\), giving \(\min\sum_{i\in S}x_i\) subject to \(\sum_{i\in D}x_i\ge1\) for all \(D\in C\) and \(0\le x_i\le1\).</p>
+<p class="ex-line"><span class="ex-lab">Goal</span> write the dual of the LP relaxation of the hitting-set program.</p>
+<p class="ex-line"><span class="ex-lab">Strategy</span> relax to \(x_i\ge0\), drop the useless upper bounds, then form the dual with one variable per set.</p>
+<p class="ex-line"><span class="ex-lab">Key idea</span> a min-LP with "\(\ge\)" constraints and \(x\ge0\) dualizes to a max-LP with "\(\le\)" constraints and \(y\ge0\), swapping the roles of objective and right-hand side.</p>
+<p class="ex-line"><span class="ex-lab why">Why this move</span> the mechanical dual recipe is the reliable way to get the dual, and clearing the redundant \(x_i\le1\) bounds first keeps it clean.</p>
 <ol class="gsteps">
-<li><strong>Drop the redundant upper bounds.</strong> Because we are minimizing \(\sum_i x_i\) and every &quot;\(\ge1\)&quot; constraint has nonnegative coefficients, no optimal solution ever needs \(x_i>1\): lowering any \(x_i\) to \(1\) keeps all constraints satisfied and does not increase the objective. So the constraints \(x_i\le1\) can be removed, leaving \(\min\sum_i x_i\) s.t. \(\sum_{i\in D}x_i\ge1\), \(x_i\ge0\).</li>
-<li><strong>Form the dual.</strong> This is a minimization with \(\ge\) constraints and \(x\ge0\), whose dual is a maximization with \(\le\) constraints and \(y\ge0\). Introduce one dual variable \(y_D\ge0\) per primal constraint (one per set \(D\in C\)).</li>
-<li><strong>Dual objective.</strong> The primal right-hand sides are all \(1\), so the dual objective is \(\max\sum_{D\in C}y_D\).</li>
-<li><strong>Dual constraints (one per primal variable \(x_i\)).</strong> The primal objective coefficient of \(x_i\) is \(1\), and \(x_i\) appears in constraint \(D\) exactly when \(i\in D\). Collecting its column gives \(\sum_{D:i\in D}y_D\le1\) for every \(i\in S\).</li>
+<li><b>Relax and prune.</b> The relaxation is \(\min\sum_i x_i\) s.t. \(\sum_{i\in D}x_i\ge1\), \(0\le x_i\le1\). Since we minimize and every constraint has nonnegative coefficients, no optimal \(x_i\) ever needs to exceed \(1\), so the bounds \(x_i\le1\) are redundant and drop out, leaving \(x_i\ge0\).</li>
+<li><b>One dual variable per constraint.</b> Introduce \(y_D\ge0\) for each set-constraint \(D\in C\). The dual is a maximization with "\(\le\)" constraints.</li>
+<li><b>Dual objective.</b> The primal right-hand sides are all \(1\), so the dual maximizes \(\sum_{D\in C}y_D\).</li>
+<li><b>Dual constraints.</b> One per primal variable \(x_i\): its objective coefficient is \(1\) and it appears in constraint \(D\) exactly when \(i\in D\), giving \(\sum_{D:\,i\in D}y_D\le1\) for each \(i\in S\). So the dual is \[\max\sum_{D\in C}y_D\quad\text{s.t.}\quad \sum_{D:\,i\in D}y_D\le1\ \ \forall i\in S,\qquad y_D\ge0.\]</li>
 </ol>
-<div class="box">Dual: \(\displaystyle \max\sum_{D\in C}y_D\ \ \text{s.t.}\ \ \sum_{D:\,i\in D}y_D\le1\ \ \forall i\in S,\qquad y_D\ge0\ \ \forall D\in C.\)</div>

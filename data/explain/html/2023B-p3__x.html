@@ -1,13 +1,12 @@
-<p>Both standard 2-approximations for vertex cover in ordinary graphs generalize to a 3-approximation on a 3-uniform hypergraph, where each edge is a triple \(\{u,v,w\}\) and a cover must hit every triple. We give the combinatorial one in full and note the LP version.</p>
+<p class="ex-line"><span class="ex-lab">Goal</span> give an efficient algorithm that finds a vertex cover at most \(3\) times the optimum in a 3-uniform hypergraph, where every edge is a triple \(\{u,v,w\}\) and a cover must hit every triple.</p>
+<p class="ex-line"><span class="ex-lab">Strategy</span> repeatedly grab an uncovered edge, throw all three of its vertices into the cover, and delete every edge they touch; then charge the cost against a set of disjoint edges.</p>
+<p class="ex-line"><span class="ex-lab">Key idea</span> the edges we pick are pairwise disjoint, and any cover must spend at least one distinct vertex on each of them — so the optimum is at least the number of picks, while we spend exactly \(3\) vertices per pick.</p>
+<p class="ex-line"><span class="ex-lab why">Why this move</span> this is the same maximal-matching trick behind the classic \(2\)-approximation for vertex cover in ordinary graphs; edges here hold \(3\) vertices instead of \(2\), so the ratio simply climbs from \(2\) to \(3\).</p>
 <ol class="gsteps">
-  <li><strong>Greedy algorithm.</strong> Start with \(C=\varnothing\). While \(E\neq\varnothing\): pick an arbitrary edge \(\{u,v,w\}\), add all three vertices \(u,v,w\) to \(C\), and erase every edge that contains at least one of \(u,v,w\). Each iteration deletes at least the picked edge, so the loop ends in polynomial time.</li>
-  <li><strong>Output size.</strong> Let \(k\) be the number of iterations. Each adds exactly \(3\) vertices, so \(|C|=3k\).</li>
-  <li><strong>Lower bound on \(\mathrm{OPT}\).</strong> The \(k\) edges that were picked are pairwise <em>disjoint</em>: when an edge is picked, every other edge sharing a vertex with it is erased, so a later-picked edge shares no vertex with earlier ones. Any valid cover must contain a vertex from each picked edge; since these \(k\) edges are vertex-disjoint, that forces \(k\) <em>distinct</em> vertices. Hence \(\mathrm{OPT}\ge k\).</li>
-  <li><strong>Ratio.</strong> Combining, \(|C|=3k\le 3\,\mathrm{OPT}\), a 3-approximation.</li>
+<li><b>Greedy loop.</b> Start with \(C=\varnothing\). While edges remain: pick any edge \(\{u,v,w\}\), add all three vertices to \(C\), and erase every edge that contains at least one of \(u,v,w\). Each round removes at least the picked edge, so this finishes in polynomial time.</li>
+<li><b>What we spent.</b> Let \(k\) be the number of rounds. Each round adds exactly \(3\) vertices, so \(|C|=3k\).</li>
+<li><b>The picked edges are disjoint.</b> When an edge is picked, every other edge sharing a vertex with it is erased, so a later pick shares no vertex with the earlier ones. The \(k\) picked edges are therefore pairwise vertex-disjoint.</li>
+<li><b>Lower bound on the optimum.</b> Any valid cover must contain a vertex from each picked edge, and since these \(k\) edges share no vertices, that forces \(k\) <em>distinct</em> vertices. Hence \(\mathrm{OPT}\ge k\).</li>
+<li><b>Put it together.</b> \(|C|=3k\le 3\,\mathrm{OPT}\), so the algorithm is a \(3\)-approximation.</li>
 </ol>
-<div class="box">
-\[
-|C|=3k\ \le\ 3\,\mathrm{OPT},\qquad\text{since the }k\text{ picked edges are disjoint and }\mathrm{OPT}\ge k .
-\]
-</div>
-<p><strong>LP-rounding alternative.</strong> The IP is \(\min\sum_{v}x_v\) subject to \(x_u+x_v+x_w\ge1\) for every edge \(\{u,v,w\}\) and \(x_v\in\{0,1\}\). Relax to \(0\le x_v\le1\), solve for an optimal fractional \(x^{*}\), and round \(x_v\) to \(1\) iff \(x^{*}_v\ge\tfrac13\). Feasibility: each edge's three fractional values sum to \(\ge1\), so at least one is \(\ge\tfrac13\) and gets rounded up, covering the edge. Cost: rounding only raises a variable when \(x^{*}_v\ge\tfrac13\), i.e. \(1\le 3x^{*}_v\), so the rounded cost is at most \(3\sum_v x^{*}_v\le 3\,\mathrm{OPT}\) — the class analysis with \(3\) in place of \(2\).</p>
+<p>There's also an LP version: write \(\min\sum_v x_v\) with \(x_u+x_v+x_w\ge 1\) per edge, relax \(x_v\in\{0,1\}\) to \(0\le x_v\le 1\), solve, and round \(x_v\) up to \(1\) exactly when \(x^{*}_v\ge\tfrac13\). Every edge's three values sum to at least \(1\), so one of them is at least \(\tfrac13\) and gets rounded up — the edge stays covered — and each rounded-up variable had \(x^{*}_v\ge\tfrac13\), so the cost grows by at most a factor of \(3\). Same \(3\) either way, which is the intuition to hold onto: a triple simply costs you three where a pair cost two.</p>

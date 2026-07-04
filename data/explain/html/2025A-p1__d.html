@@ -1,8 +1,10 @@
-<p>The claim is <strong>true</strong>. The set \(\{v\in\mathbb{R}^n : Av = v\}\) is precisely the eigenspace of the adjacency matrix \(A\) for eigenvalue \(1\), so its dimension equals the multiplicity of the eigenvalue \(1\). We must argue this multiplicity is exactly \(1\) for a connected regular graph.</p>
-<p>A subtlety: the statement uses \(A\) (the adjacency matrix) and eigenvalue \(1\). For a \(d\)-regular graph the all-ones vector satisfies \(A\mathbf{1} = d\mathbf{1}\), so eigenvalue \(1\) here refers to the <em>normalized</em> setting where \(A\) is divided by \(d\) (the random-walk / normalized adjacency matrix), whose top eigenvalue is \(1\). Under that normalization the argument is exactly the one seen in class and the homework.</p>
+<p class="ex-line"><span class="ex-lab">Claim</span> True — for a connected regular graph, the space \(\{v : Av = v\}\) has dimension exactly \(1\).</p>
+<p class="ex-line"><span class="ex-lab">Strategy</span> Identify that space as the eigenspace of the top eigenvalue \(1\) (in the normalized setting) and use connectivity to pin its multiplicity to one.</p>
+<p class="ex-line"><span class="ex-lab">Key idea</span> For a connected regular graph the largest eigenvalue is simple — the all-ones vector spans it and nothing else does.</p>
+<p class="ex-line"><span class="ex-lab why">Why this move</span> "Dimension of an eigenspace" points straight to eigenvalue multiplicity, and connectivity is exactly the property that controls the gap below the top eigenvalue.</p>
 <ol class="gsteps">
-<li>The all-ones vector is an eigenvector with eigenvalue \(1\): each row of the normalized matrix sums to \(1\), so \(A\mathbf{1} = \mathbf{1}\). Thus \(1\) is indeed an eigenvalue and the eigenspace has dimension at least \(1\).</li>
-<li>Regular graphs are symmetric, so \(A\) is diagonalizable with real eigenvalues \(1 = \lambda_1 \ge \lambda_2 \ge \dots \ge \lambda_n \ge -1\), and all eigenvalues satisfy \(|\lambda_i|\le 1\).</li>
-<li>It was proved in the homework that if \(G\) is <em>connected</em> then the second eigenvalue is strictly smaller than \(1\), i.e. \(\lambda_2 < 1\). This is the spectral characterization of connectivity: a spectral gap at the top.</li>
+  <li><b>What the space is.</b> \(\{v : Av = v\}\) is the eigenspace for eigenvalue \(1\), so its dimension is the multiplicity of \(1\). (Here \(A\) is the normalized adjacency matrix, whose top eigenvalue is \(1\).)</li>
+  <li><b>The top eigenvalue is attained.</b> Each row sums to \(1\), so the all-ones vector satisfies \(A\mathbf{1} = \mathbf{1}\); thus \(1\) is an eigenvalue and the dimension is at least \(1\).</li>
+  <li><b>Connectivity makes it simple.</b> It was shown in the homework that for a connected graph the second eigenvalue is strictly below \(1\), so \(1\) has multiplicity exactly \(1\).</li>
 </ol>
-<p>Since only \(\lambda_1 = 1\) equals \(1\) and \(\lambda_2 < 1\), the multiplicity of the eigenvalue \(1\) is exactly \(1\), so the eigenspace \(\{v : Av = v\}\) has dimension exactly \(1\).</p>
+<p>The eigenspace is just the line through the all-ones vector, so its dimension is one.</p>

@@ -1,10 +1,11 @@
-<p>The obstacle is that \(|\cdot|\) is not linear. The standard fix is to replace each absolute value by a fresh variable that is forced to equal it at the optimum, using the identity \(|t|=\min\{w: w\ge t\text{ and }w\ge -t\}\).</p>
+<p class="ex-line"><span class="ex-lab">Goal</span> Model \(\min\;|2x+y-3|+|10x+y+5|\) as a linear program.</p>
+<p class="ex-line"><span class="ex-lab">Strategy</span> Replace each absolute value by a fresh variable bounded below by the expression and its negation, then minimize the sum.</p>
+<p class="ex-line"><span class="ex-lab">Key idea</span> \(|t|\) is the smallest number that is at least \(t\) and at least \(-t\).</p>
+<p class="ex-line"><span class="ex-lab why">Why this move</span> Absolute value is not linear, but under a minimization it can be squeezed from above by a new variable that the objective automatically pushes down to the true value.</p>
 <ol class="gsteps">
-<li>Introduce \(w\) to stand for \(|2x+y-3|\) and \(z\) to stand for \(|10x+y+5|\). The objective becomes the linear \(\min\; w+z\).</li>
-<li>For each absolute value, add the two "sandwich" constraints. Since \(|t|\) is the smallest number that is \(\ge t\) and \(\ge -t\):
-\[w\ge 2x+y-3,\qquad w\ge -(2x+y-3)=-2x-y+3,\]
-\[z\ge 10x+y+5,\qquad z\ge -(10x+y+5)=-10x-y-5.\]</li>
-<li>Why this is exact: each pair of constraints forces \(w\ge|2x+y-3|\) and \(z\ge|10x+y+5|\). Because we are <em>minimizing</em> \(w+z\), the optimum pushes each variable down to its lower bound, i.e. \(w=|2x+y-3|\) and \(z=|10x+y+5|\). So the LP optimum equals the original objective.</li>
-<li>Sign restrictions: \(w,z\ge0\) (automatically true since they dominate a value and its negation, but stated explicitly), while \(x,y\) remain free (unrestricted) variables.</li>
+<li><b>Name the pieces.</b> Let \(w\) stand for \(|2x+y-3|\) and \(z\) for \(|10x+y+5|\); the objective becomes the linear \(\min\;w+z\).</li>
+<li><b>Sandwich each one.</b> Force \(w\) and \(z\) above the expression and its negation:
+\[w\ge 2x+y-3,\quad w\ge -2x-y+3,\quad z\ge 10x+y+5,\quad z\ge -10x-y-5.\]</li>
+<li><b>Why it's exact.</b> These give \(w\ge|2x+y-3|\) and \(z\ge|10x+y+5|\); since we minimize \(w+z\), each is driven down to equal its absolute value at the optimum.</li>
+<li><b>Finish.</b> Add \(w,z\ge0\); \(x,y\) stay free. The full LP is \(\min\;w+z\) subject to the four constraints above.</li>
 </ol>
-<div class="box">Resulting LP: \(\min\; w+z\) subject to \(w\ge 2x+y-3\), \(w\ge-2x-y+3\), \(z\ge 10x+y+5\), \(z\ge-10x-y-5\), \(w,z\ge0\).</div>

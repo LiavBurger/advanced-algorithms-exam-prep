@@ -1,7 +1,10 @@
-<p>The statement is <strong>true</strong>. The claim is only about the cost of a <em>single</em> pivoting step, not about how many pivots the whole simplex run performs (that number can be exponential). We check that one pivot is a fixed number of polynomial-size linear-algebra operations.</p>
+<p class="ex-line"><span class="ex-lab">Claim</span> True — one pivoting step of simplex runs in polynomial time.</p>
+<p class="ex-line"><span class="ex-lab">Strategy</span> List what happens in a single pivot and note each piece is cheap linear algebra.</p>
+<p class="ex-line"><span class="ex-lab">Key idea</span> The claim is about the cost of one pivot, not how many pivots the whole run takes (that count can be exponential).</p>
+<p class="ex-line"><span class="ex-lab why">Why this move</span> "Polynomial per step" is decided by opening up the step into its operations, so we just itemize a pivot.</p>
 <ol class="gsteps">
-  <li><strong>Choosing the entering variable.</strong> The algorithm computes the reduced-cost vector and picks a coordinate \(i\) whose reduced cost signals that bringing it into the basis improves the objective. Forming the reduced costs is a matrix-vector computation on the input data, hence polynomial in the input length.</li>
-  <li><strong>Choosing the leaving variable.</strong> Given the entering column, the ratio test compares the current basic solution against that column entrywise and selects the coordinate \(j\) to remove from the basis. This is a linear scan of polynomially many ratios.</li>
-  <li><strong>Updating the basis.</strong> Swapping \(i\) in and \(j\) out requires recomputing the basis inverse and the associated basic solution, i.e. some matrix inversions and matrix multiplications. Each of these runs in polynomial time in the size of the matrices, which are bounded by the input dimensions.</li>
+<li><b>Pick the entering variable.</b> Compute the reduced-cost vector and choose a coordinate \(i\) whose reduced cost shows the objective can improve. This is a matrix-vector computation on the input data.</li>
+<li><b>Pick the leaving variable.</b> Using the entering column, the ratio test scans polynomially many ratios and selects a coordinate \(j\) to drop from the basis.</li>
+<li><b>Update the basis.</b> Swapping \(i\) in and \(j\) out needs a basis-inverse recompute and the new basic solution — some matrix inversions and multiplications, each polynomial in the input dimensions.</li>
 </ol>
-<div class="box">Every ingredient of a pivot — reduced costs, ratio test, and the inverse/multiplication update — is a standard polynomial-time linear-algebra routine, so each pivoting step is polynomial in the input length. The open difficulty of simplex is the possible number of steps, not the cost per step.</div>
+<p class="ex-line">Every ingredient of a pivot is a standard polynomial-time routine, so the step is polynomial. The hard part of simplex is the possible number of steps, not the price of one.</p>

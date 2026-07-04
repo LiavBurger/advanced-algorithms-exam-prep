@@ -1,8 +1,11 @@
-<p>We dualize LP1, the primal \(\min \sum_{v} x_v\) subject to \(x_u+x_v\ge 1\) for every edge and \(x_v\ge 0\). The dual has one variable per primal constraint and one constraint per primal variable.</p>
+<p class="ex-line"><span class="ex-lab">Goal</span> Write DLP1, the dual of the vertex-cover LP relaxation LP1.</p>
+<p class="ex-line"><span class="ex-lab">Strategy</span> Apply the mechanical dual rules: one dual variable per primal constraint, one dual constraint per primal variable.</p>
+<p class="ex-line">
+<span class="ex-lab">Key idea</span> Each edge constraint becomes a variable \(y_{uv}\ge0\); each vertex \(v\) becomes the constraint that its incident edge-weights sum to at most \(1\).</p>
+<p class="ex-line"><span class="ex-lab why">Why this move</span> Dualizing is a fixed recipe once the primal is in standard form, so we turn the crank rather than invent anything.</p>
 <ol class="gsteps">
-  <li><strong>Dual variables.</strong> Each primal inequality is an edge constraint \(x_u+x_v\ge 1\), so we introduce one dual variable \(y_{uv}\ge 0\) per edge \(uv\in E\).</li>
-  <li><strong>Dual objective.</strong> The right-hand sides of the primal constraints are all \(1\), and the dual maximizes \(\sum_{uv\in E} 1\cdot y_{uv} = \sum_{uv\in E} y_{uv}\).</li>
-  <li><strong>Dual constraints.</strong> There is one dual constraint per primal variable \(x_v\). In the primal, \(x_v\) appears (with coefficient \(1\)) exactly in the constraints of edges incident to \(v\). Its primal objective coefficient is \(1\), giving the dual constraint \(\sum_{u\in N(v)} y_{uv} \le 1\) for every \(v\in V\).</li>
-  <li><strong>Sign.</strong> Because the primal variables satisfy \(x_v\ge 0\), the dual constraints are \(\le\); and dualizing \(\ge\) primal constraints in a min-problem yields \(y_{uv}\ge 0\).</li>
+<li><b>Dual variables.</b> One \(y_{uv}\ge0\) per edge constraint \(x_u+x_v\ge1\).</li>
+<li><b>Dual objective.</b> The primal right-hand sides are all \(1\), so the dual maximizes \(\sum_{uv\in E} y_{uv}\).</li>
+<li><b>Dual constraints.</b> Each variable \(x_v\) (objective coefficient \(1\)) appears in the constraints of edges touching \(v\), giving \(\sum_{u\in N(v)} y_{uv}\le1\) for every \(v\).</li>
 </ol>
-<div class="box">The dual DLP1 is \[ \max \sum_{uv\in E} y_{uv}\quad\text{s.t.}\quad \sum_{u\in N(v)} y_{uv}\le 1\ \ \forall\, v\in V,\qquad y_{uv}\ge 0\ \ \forall\, uv\in E. \] It puts a weight on each edge so that the weights around any vertex sum to at most \(1\), maximizing total weight — a fractional matching.</div>
+<p class="ex-line">So DLP1 is \(\max\sum_{uv\in E} y_{uv}\) s.t. \(\sum_{u\in N(v)} y_{uv}\le1\) for all \(v\) and \(y_{uv}\ge0\): put weights on edges so each vertex's total is at most \(1\), a fractional matching.</p>

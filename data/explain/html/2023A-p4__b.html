@@ -1,14 +1,10 @@
-<p>The primal from part (a) is \(\min -\mathbf{1}^\top x\) s.t. \(A_G x+Is=\mathbf{1},\ x,s\ge 0\). We dualize it and then simplify.</p>
+<p class="ex-line"><span class="ex-lab">Goal</span> Write the dual of the standard-form matching LP from part (a), simplified as much as possible.</p>
+<p class="ex-line"><span class="ex-lab">Strategy</span> Apply the standard dual rule, split the constraint by the \(x\)-block and the slack-block, then flip signs to clean it up.</p>
+<p class="ex-line"><span class="ex-lab">Key idea</span> The slack columns are the identity, so their dual constraints simply bound the dual variables' sign.</p>
+<p class="ex-line"><span class="ex-lab why">Why this move</span> Every equality-constrained primal has a mechanical dual, and the only work left is reading the two column-blocks and tidying the signs.</p>
 <ol class="gsteps">
-  <li><strong>One dual variable per equality.</strong> There are \(|V|\) equality constraints (one per vertex), and equality constraints produce <em>free</em> (unconstrained) dual variables, so the dual has a vector \(y\in\mathbb{R}^{|V|}\).</li>
-  <li><strong>Apply the standard dual rule.</strong> For \(\min c^\top w\) s.t. \(Mw=\mathbf{1},\ w\ge 0\) the dual is \(\max \mathbf{1}^\top y\) s.t. \(M^\top y\le c\). Here the variable is \(w=(x,s)\), the constraint matrix is \(M=[\,A_G\mid I\,]\), and the cost is \(c=(-\mathbf{1},\,\mathbf{0})\) (\(-1\) on each \(x\)-coordinate, \(0\) on each slack). The block \(M^\top y\le c\) splits into two families:
-  \[A_G^\top y\le -\mathbf{1}\quad(\text{from the }x\text{ columns}),\qquad I^\top y\le \mathbf{0}\ \Rightarrow\ y\le 0\quad(\text{from the slack columns}).\]
-  So the dual is \(\max \mathbf{1}^\top y\) s.t. \(A_G^\top y\le -\mathbf{1},\ y\le 0\).</li>
-  <li><strong>Clean up by flipping signs.</strong> Substitute \(y\mapsto -y\). Then \(\mathbf{1}^\top y\) becomes \(-\mathbf{1}^\top y\) (so \(\max\) turns into \(\min \mathbf{1}^\top y\)), \(A_G^\top y\le-\mathbf{1}\) becomes \(A_G^\top y\ge\mathbf{1}\), and \(y\le 0\) becomes \(y\ge 0\).</li>
+  <li><b>One variable per equality.</b> The primal has \(|V|\) equality constraints, so the dual has a free vector \(y\in\mathbb{R}^{|V|}\), and the dual is \(\max \mathbf{1}^\top y\) s.t. \([\,A_G\mid I\,]^\top y\le(-\mathbf{1},\mathbf{0})\).</li>
+  <li><b>Split the blocks.</b> The \(x\)-columns give \(A_G^\top y\le -\mathbf{1}\); the slack columns give \(I y\le \mathbf{0}\), i.e. \(y\le 0\).</li>
+  <li><b>Flip signs to simplify.</b> Substitute \(y\mapsto -y\): the objective becomes \(\min \mathbf{1}^\top y\), the constraint becomes \(A_G^\top y\ge \mathbf{1}\), and \(y\le 0\) becomes \(y\ge 0\).</li>
 </ol>
-<div class="box">
-\[
-\min\; \mathbf{1}^\top y\qquad\text{s.t.}\qquad A_G^\top y\ge \mathbf{1},\quad y\ge 0.
-\]
-</div>
-<p>Reading \(A_G^\top y\ge\mathbf{1}\) row by row: for each edge \((u,v)\), \(y_u+y_v\ge 1\).</p>
+<p class="ex-line">The clean dual is \(\min \mathbf{1}^\top y\) s.t. \(A_G^\top y\ge\mathbf{1},\ y\ge 0\), i.e. per edge \((u,v)\), \(y_u+y_v\ge 1\).</p>

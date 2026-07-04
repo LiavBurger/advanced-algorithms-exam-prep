@@ -1,7 +1,9 @@
-<p>The LP relaxation LP1 is obtained from IP1 by dropping the integrality requirement: replace each constraint \(x_v\in\{0,1\}\) with the continuous constraint \(x_v\ge 0\). The relaxed program is</p>
-<p>\[ \min \sum_{v\in V} x_v \quad\text{s.t.}\quad x_u+x_v\ge 1 \ \ \forall\, uv\in E,\qquad x_v\ge 0 \ \ \forall\, v\in V. \]</p>
+<p class="ex-line"><span class="ex-lab">Goal</span> Write LP1, the relaxation of the vertex-cover ILP IP1.</p>
+<p class="ex-line"><span class="ex-lab">Strategy</span> Drop integrality: replace \(x_v\in\{0,1\}\) by \(x_v\ge0\), and note the upper bound \(x_v\le1\) is unnecessary.</p>
+<p class="ex-line"><span class="ex-lab">Key idea</span> A relaxation enlarges the feasible region from the box \(\{0,1\}\) to the interval \([0,1]\), and for this min-problem the cap \(x_v\le1\) never binds.</p>
+<p class="ex-line"><span class="ex-lab why">Why this move</span> Relaxing an ILP always means loosening the integrality constraint into the tightest continuous version, so we just swap \(\{0,1\}\) for \(\ge0\).</p>
 <ol class="gsteps">
-  <li><strong>Why only \(x_v\ge 0\).</strong> A relaxation must enlarge the feasible region. The box \(\{0,1\}\) becomes the interval \([0,1]\), which is described by \(x_v\ge 0\) together with \(x_v\le 1\). We keep the lower bound but can safely omit the upper bound.</li>
-  <li><strong>Why \(x_v\le 1\) is redundant.</strong> The objective is a minimization and every constraint on \(x_v\) is a lower bound (edge constraints and \(x_v\ge 0\)). If some optimal solution had \(x_v>1\), lowering that coordinate down to \(1\) keeps all edge constraints satisfied — an endpoint value of \(1\) already satisfies \(x_u+x_v\ge 1\) — and strictly decreases the objective. So no optimal solution ever needs a coordinate above \(1\); imposing \(x_v\le 1\) does not change the optimum.</li>
+<li><b>The relaxed program.</b> \[ \min \sum_{v\in V} x_v \quad\text{s.t.}\quad x_u+x_v\ge1\ \ \forall uv\in E,\qquad x_v\ge0\ \ \forall v\in V. \]</li>
+<li><b>Why no \(x_v\le1\).</b> The objective minimizes and all constraints on \(x_v\) are lower bounds. If some optimum had \(x_v>1\), lowering it to \(1\) still satisfies every edge (an endpoint of \(1\) already makes \(x_u+x_v\ge1\)) and decreases the objective.</li>
 </ol>
-<div class="box">Thus LP1 with just \(x_v\ge 0\) has the same optimal value as the version with \(0\le x_v\le 1\), which is why the upper bound is called redundant.</div>
+<p class="ex-line">So no optimal solution ever needs a coordinate above \(1\); that's why \(x_v\le1\) is redundant.</p>

@@ -1,9 +1,10 @@
-<p>We need an instance where the LP relaxation (same constraints, but \(x_v\ge 0\) instead of \(x_v\in\{0,1\}\)) has optimum strictly below the integer optimum. The example is the \(4\)-cycle \(C_4\) with all weights \(1\); the fractional solution sets three vertices to \(\tfrac12\) and the fourth to \(0\).</p>
-<div class="box">Key idea: fractional \(x\) can "spread" domination across a vertex's closed neighborhood, satisfying \(\sum\ge 1\) more cheaply than any integral choice can.</div>
+<p class="ex-line"><span class="ex-lab">Goal</span> give an instance where the LP relaxation's optimum is strictly below the integer optimum.</p>
+<p class="ex-line"><span class="ex-lab">Strategy</span> use the \(4\)-cycle \(C_4\) with all weights \(1\); set three vertices to \(\tfrac12\) and one to \(0\).</p>
+<p class="ex-line"><span class="ex-lab">Key idea</span> fractional values let domination be "shared" across a closed neighborhood, meeting \(\sum\ge 1\) more cheaply than any integer choice can.</p>
+<p class="ex-line"><span class="ex-lab why">Why this move</span> a short even cycle is the classic small gap example — each closed neighborhood overlaps its neighbors, so half-values pile up to exactly \(1\).</p>
 <ol class="gsteps">
-<li><strong>Setup.</strong> \(C_4\) has vertices on a square; each vertex has exactly \(2\) neighbors, so its closed neighborhood \(N(v)\cup\{v\}\) has \(3\) vertices. Assign one vertex \(x=0\) and the other three \(x=\tfrac12\).</li>
-<li><strong>Feasibility.</strong> Check \(\sum_{u\in N(v)\cup\{v\}}x_u\ge 1\) for each \(v\). The zero vertex: its two neighbors are the two adjacent \(\tfrac12\) vertices, giving \(0+\tfrac12+\tfrac12=1\ge 1\). Each \(\tfrac12\) vertex: its closed neighborhood always contains at least two \(\tfrac12\) vertices, so its sum is \(\ge 1\). All constraints hold.</li>
-<li><strong>LP cost.</strong> \(3\cdot\tfrac12+0=\tfrac32\). So the LP optimum is \(\le\tfrac32\).</li>
-<li><strong>Integer cost.</strong> One chosen vertex dominates only itself plus its \(2\) neighbors = \(3\) of the \(4\) vertices, missing the opposite corner, so a single vertex is not enough; a minimum dominating set of \(C_4\) needs \(2\) vertices, cost \(2\).</li>
+  <li><b>Setup.</b> On \(C_4\), each vertex has \(2\) neighbors, so its closed neighborhood has \(3\) vertices. Set one vertex to \(x=0\) and the other three to \(x=\tfrac12\).</li>
+  <li><b>Feasibility.</b> The zero vertex sees its two \(\tfrac12\) neighbors: \(0+\tfrac12+\tfrac12=1\ge 1\). Each \(\tfrac12\) vertex has at least two \(\tfrac12\) vertices in its closed neighborhood, so its sum is \(\ge 1\). All constraints hold.</li>
+  <li><b>LP cost.</b> \(3\cdot\tfrac12+0=\tfrac32\), so the LP optimum is \(\le\tfrac32\).</li>
+  <li><b>Integer cost.</b> One vertex dominates only itself and its \(2\) neighbors — \(3\) of the \(4\) vertices, missing the opposite corner — so a dominating set needs \(2\) vertices, cost \(2\). Hence LP \(=\tfrac32<2=\) ILP: not integral.</li>
 </ol>
-<p>Hence LP optimum \(=\tfrac32<2=\) ILP optimum: the relaxation is not integral (an integrality gap of \(\tfrac{4}{3}\)).</p>

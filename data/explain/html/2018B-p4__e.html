@@ -1,12 +1,12 @@
-<p>We are given a Monte Carlo view: the selection algorithm runs in expected \(\le cn\) operations. We want a version that <em>always</em> stops within \(25cn\) operations and is correct with probability \(\ge 1-2^{-5}\). The trick is capped repetition plus Markov.</p>
-<div class="box">Key idea: a run that goes over \(2cn\) steps is "unlucky." By Markov each run is unlucky with probability \(\le\tfrac12\); make the runs independent and 5 of them all fail with probability \(\le 2^{-5}\).</div>
+<p class="ex-line"><span class="ex-lab">Goal</span> Turn the expected-\(cn\) selection algorithm into one that always runs in \(\le 25cn\) operations and is correct with probability \(\ge 1-\tfrac{1}{2^5}\).</p>
+<p class="ex-line"><span class="ex-lab">Strategy</span> Run capped attempts: abort any run once it passes \(2cn\) steps, retry up to 5 times with fresh randomness, and return the first run that finishes.</p>
+<p class="ex-line"><span class="ex-lab">Key idea</span> A run that exceeds twice its expected length is "unlucky"; by Markov that happens with probability at most \(\tfrac12\), and five independent unlucky runs is at most \(\tfrac{1}{2^5}\).</p>
+<p class="ex-line"><span class="ex-lab why">Why this move</span> We want a hard time cap but the base algorithm only bounds expected time — capping each run and repeating trades a small failure chance for a guaranteed running time, and Markov is the one tool that needs only the expectation.</p>
 <ol class="gsteps">
-<li><strong>Cap each run.</strong> Run the algorithm, but abort a run as soon as its step counter reaches \(2c n\). Do this at most 5 times, using fresh independent randomness each time.</li>
-<li><strong>Output rule.</strong> If some run finishes within its \(2cn\) budget, return its (correct) answer. If all 5 runs are aborted, return the first array element (a possibly wrong guess).</li>
-<li><strong>Worst-case operation count.</strong> Each run does at most \(2cn\) steps, so five runs do at most \(10cn\) steps. With the counter bookkeeping this stays within the required \(25cn\) operations — always, deterministically. So it is Las Vegas in time (bounded) and Monte Carlo only in correctness... actually the reverse: bounded worst-case time, small error probability.</li>
-<li><strong>Failure only if all runs overshoot.</strong> The output is wrong only when every run exceeded \(2cn\) steps, since any run that finishes returns the exact correct selection.</li>
-<li><strong>Markov on one run.</strong> Let \(T(n)\) be one run's step count, with \(\mathbb{E}[T(n)]\le cn\). Markov gives \(\Pr[T(n) > 2cn] = \Pr[T(n) > 2\mathbb{E}[T(n)]\cdot\tfrac{\mathbb{E}[T(n)]}{cn}]\le \Pr[T(n)>2\mathbb{E}[T(n)]]\le \tfrac12.\)</li>
-<li><strong>Independence across runs.</strong> The 5 runs use independent coins, so
-\[\Pr[\text{all 5 overshoot}] \le \Big(\tfrac12\Big)^5 = 2^{-5}.\]</li>
+<li><b>Cap each run.</b> Run the algorithm but stop a run the moment its step counter hits \(2cn\). Repeat at most 5 times, using independent randomness each time.</li>
+<li><b>Output rule.</b> If some run finishes within its \(2cn\) budget, return its (correct) answer. If all 5 are aborted, just return the first array element as a guess.</li>
+<li><b>Bound the operations.</b> Each run does at most \(2cn\) steps, so 5 runs do at most \(10cn\); with the counter bookkeeping the total stays under \(25cn\) always — a hard worst-case cap.</li>
+<li><b>Failure needs all to overshoot.</b> The answer is wrong only if every run exceeded \(2cn\) steps, since any run that finishes returns the exact correct selection.</li>
+<li><b>Markov on one run.</b> With \(\mathbb{E}[T(n)]\le cn\), Markov gives \(\Pr[T(n) > 2cn]\le \Pr[T(n)>2\mathbb{E}[T(n)]]\le \tfrac12\).</li>
+<li><b>Multiply independent runs.</b> The 5 runs use independent coins, so \(\Pr[\text{all 5 overshoot}] \le \big(\tfrac12\big)^5 = \tfrac{1}{2^5}\). Hence the answer is correct with probability \(\ge 1-\tfrac{1}{2^5}\), and each extra retry cuts the failure chance in half.</li>
 </ol>
-<p>Therefore the algorithm returns the correct answer with probability \(\ge 1-2^{-5}\) while never exceeding \(25cn\) operations.</p>

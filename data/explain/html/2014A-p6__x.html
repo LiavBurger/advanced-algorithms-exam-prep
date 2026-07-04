@@ -1,9 +1,11 @@
-<p>This is Karatsuba's algorithm: multiply two \(n\)-bit integers with only <em>three</em> half-size multiplications instead of the naive four, giving the recurrence \(T(n)=3T(n/2)+O(n)\).</p>
-<div class="box">Key idea: the middle coefficient \(bc+ad\) is recovered from the single product \((a+b)(c+d)\) by subtracting the \(ac\) and \(bd\) we already compute — trading one multiplication for a few cheap additions.</div>
+<p class="ex-line"><span class="ex-lab">Claim</span> two \(n\)-bit integers can be multiplied in \(O(n^{\log_2 3})\) time (Karatsuba).</p>
+<p class="ex-line"><span class="ex-lab">Strategy</span> split each number into high/low halves, expand the product, and compute it with only three half-size multiplications instead of four.</p>
+<p class="ex-line"><span class="ex-lab">Key idea</span> the middle term \(bc+ad\) is recovered from the single product \((a+b)(c+d)\) by subtracting off \(ac\) and \(bd\), which we compute anyway.</p>
+<p class="ex-line"><span class="ex-lab why">Why this move</span> the naive expansion needs four half-products, giving \(T(n)=4T(n/2)+O(n)=O(n^2)\); killing one multiplication drops the branching factor to \(3\) and beats \(n^2\).</p>
 <ol class="gsteps">
-<li><strong>Split.</strong> Write each \(n\)-bit number by its high and low halves: \(A=a\,2^{n/2}+b\) and \(C=c\,2^{n/2}+d\), where \(a,b,c,d\) are \(n/2\)-bit numbers. (\(a\) = top \(n/2\) bits, \(b\) = bottom \(n/2\) bits; the \(2^{n/2}\) factor is a shift.)</li>
-<li><strong>Expand the product.</strong> \(A\cdot C=(a2^{n/2}+b)(c2^{n/2}+d)=ac\,2^{n}+(bc+ad)\,2^{n/2}+bd.\) Naively this needs the four products \(ac,bc,ad,bd\).</li>
-<li><strong>Karatsuba's trick.</strong> Note \((a+b)(c+d)=ac+ad+bc+bd\), so the needed middle term is \(bc+ad=(a+b)(c+d)-ac-bd\). Hence \(A\cdot C=ac\,2^{n}+\big((a+b)(c+d)-ac-bd\big)2^{n/2}+bd\), and we only compute the three products \(ac,\ bd,\ (a+b)(c+d)\), each on \(n/2\)-bit numbers (the sums \(a+b,c+d\) are \(n/2+1\) bits — still \(O(n/2)\)).</li>
-<li><strong>Cost of the glue.</strong> Everything else is a constant number of additions/subtractions of \(O(n)\)-bit numbers (\(O(n)\) each by the allowed basic op) and shifts by \(2^{n}\), \(2^{n/2}\) (\(O(n)\) each). So the non-recursive work is \(O(n)\), giving \(T(n)=3T(n/2)+O(n)\).</li>
-<li><strong>Solve.</strong> Master Theorem with \(a=3,\ b=2,\ k=1\): since \(a=3>b^k=2\), \(T(n)=\Theta\!\big(n^{\log_b a}\big)=O\!\big(n^{\log_2 3}\big)\approx O(n^{1.585})\), beating the \(O(n^2)\) schoolbook method.</li>
+  <li><b>Split.</b> Write \(A=a\,2^{n/2}+b\) and \(C=c\,2^{n/2}+d\), where \(a,b,c,d\) are \(n/2\)-bit numbers (high and low halves; the \(2^{n/2}\) is a shift).</li>
+  <li><b>Expand.</b> \(A\cdot C=ac\,2^n+(bc+ad)\,2^{n/2}+bd\). Naively this is the four products \(ac,bc,ad,bd\).</li>
+  <li><b>The trick.</b> Since \((a+b)(c+d)=ac+ad+bc+bd\), we get \(bc+ad=(a+b)(c+d)-ac-bd\). So we only need three half-size products: \(ac,\ bd,\ (a+b)(c+d)\).</li>
+  <li><b>Cost of the glue.</b> The remaining additions and shifts (by \(2^n,2^{n/2}\)) are each \(O(n)\) by the allowed basic operations, so the non-recursive work is \(O(n)\): \(T(n)=3T(n/2)+O(n)\).</li>
+  <li><b>Solve.</b> Master Theorem with \(a=3,b=2,k=1\): since \(3>2^1\), \(T(n)=\Theta\!\big(n^{\log_2 3}\big)\approx O(n^{1.585})\). Intuitively, saving one of every four multiplications compounds across all the recursion levels into a genuinely smaller exponent.</li>
 </ol>

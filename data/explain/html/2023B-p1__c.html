@@ -1,8 +1,11 @@
-<p>The statement is <strong>false</strong>: no nonzero five-variable polynomial can vanish at every integer point. The Schwartz–Zippel lemma provides an explicit non-root, contradicting the claim.</p>
+<p class="ex-line"><span class="ex-lab">Claim</span> False — no nonzero 5-variable polynomial vanishes at every integer point.</p>
+<p class="ex-line"><span class="ex-lab">Strategy</span> Use Schwartz–Zippel on a small integer grid to produce a point where the polynomial is nonzero.</p>
+<p class="ex-line"><span class="ex-lab">Key idea</span> A nonzero degree-\(d\) polynomial has very few roots on a grid, so a non-root must exist among finitely many integer points.</p>
+<p class="ex-line"><span class="ex-lab why">Why this move</span> "Does a nonzero polynomial have a non-root?" is precisely what Schwartz–Zippel answers, so it is the natural tool.</p>
 <ol class="gsteps">
-  <li><strong>Set up.</strong> Suppose \(f(x_1,\dots,x_5)\) is a nonzero polynomial and let \(d\) be its total degree. We want an integer assignment where \(f\) does not vanish.</li>
-  <li><strong>Pick a finite grid.</strong> Take the set \(S=\{1,2,\dots,d+1\}\), which has \(|S|=d+1\) integer values. Consider assignments \((\alpha_1,\dots,\alpha_5)\) drawn from \(S^5\), i.e. each variable ranges over \(S\).</li>
-  <li><strong>Apply Schwartz–Zippel.</strong> For a nonzero polynomial of degree \(d\) and a uniformly random point of \(S^5\), the lemma bounds the probability of hitting a root by \(\Pr[f=0] \le \dfrac{d}{|S|} = \dfrac{d}{d+1} < 1\).</li>
-  <li><strong>Conclude a non-root exists.</strong> Since the probability of being a root is strictly less than \(1\), some point \((\alpha_1,\dots,\alpha_5)\in S^5\) satisfies \(f(\alpha_1,\dots,\alpha_5)\neq 0\).</li>
+<li><b>Set up.</b> Let \(f(x_1,\dots,x_5)\) be nonzero of total degree \(d\); we want an integer point where it doesn't vanish.</li>
+<li><b>Choose a grid.</b> Take \(S=\{1,2,\dots,d+1\}\), so \(|S|=d+1\), and consider assignments in \(S^5\).</li>
+<li><b>Apply Schwartz–Zippel.</b> For a uniform point of \(S^5\), \(\Pr[f=0]\le \dfrac{d}{|S|}=\dfrac{d}{d+1}<1\).</li>
+<li><b>Conclude.</b> Since the chance of hitting a root is below \(1\), some \((\alpha_1,\dots,\alpha_5)\in S^5\) has \(f(\alpha_1,\dots,\alpha_5)\neq 0\).</li>
 </ol>
-<div class="box">The values \(\alpha_1,\dots,\alpha_5\in\{1,\dots,d+1\}\) are integers, so we have exhibited an integer assignment on which \(f\) is nonzero. Hence a nonzero polynomial cannot vanish on <em>every</em> integer assignment, and the statement is false.</div>
+<p class="ex-line">Those \(\alpha\)'s are integers, so we found an integer assignment where \(f\) is nonzero — a nonzero polynomial cannot vanish everywhere, hence the statement is false.</p>

@@ -1,10 +1,10 @@
-<p>We read off what the dual LP of part (b) is "asking for". Recall it is</p>
-<div class="box">
-\[\min\ \sum_{v\in V}y_v\quad\text{s.t.}\quad y_u+y_v\ge w(uv)\ \ \forall uv\in E,\qquad y_v\ge 0.\]
-</div>
+<p class="ex-line"><span class="ex-lab">Claim</span> the dual from part (b) is (fractional) <b>weighted vertex cover</b>.</p>
+<p class="ex-line"><span class="ex-lab">Strategy</span> read each variable as an amount of "resource" placed on a vertex and read each constraint as a demand on an edge.</p>
+<p class="ex-line"><span class="ex-lab">Key idea</span> the constraint \(y_u+y_v\ge w(uv)\) says every edge's demand \(w(uv)\) is met by the resource sitting on its two endpoints.</p>
+<p class="ex-line"><span class="ex-lab why">Why this move</span> "sum over the two endpoints \(\ge\) something, minimize total" is the signature of a covering problem, so naming it as vertex cover is immediate.</p>
 <ol class="gsteps">
-  <li>Interpret each variable \(y_v\ge 0\) as an amount of a "resource" (a weight, or budget) that we place on vertex \(v\).</li>
-  <li>The constraint \(y_u+y_v\ge w(uv)\) says: for every edge \(uv\), the total resource sitting on its two endpoints must be at least the edge's demand \(w(uv)\). So every edge is "covered" by the resource at its endpoints.</li>
-  <li>The objective \(\min\sum_v y_v\) says we want to use as little total resource as possible.</li>
+<li><b>Variables as weights.</b> Each \(y_v\ge 0\) is how much weight (budget) we put on vertex \(v\).</li>
+<li><b>Constraints as coverage.</b> For every edge \(uv\), the weights on its endpoints must total at least \(w(uv)\).</li>
+<li><b>Objective as thrift.</b> Minimize the total weight placed, \(\min\sum_v y_v\).</li>
 </ol>
-<p>This is a <strong>(fractional) weighted vertex cover</strong>: assign weights \(y_v\) to the vertices so that each edge \(uv\) has its endpoints' weights summing to at least \(w(uv)\), while minimizing the total weight assigned. In the classic unweighted vertex cover we pick a set of vertices touching every edge; here each edge instead demands a real amount \(w(uv)\) that must be met by the amounts placed on its two endpoints, and the variables are allowed to be fractional because this is the LP (not the integer program). This matches the official phrasing: put enough resource at the vertices so that for each edge \(e\) the amount at its endpoints is at least \(w(e)\).</p>
+<p class="ex-line">So it is: put enough weight on the vertices that each edge \(e\) has at least \(w(e)\) on its endpoints, using as little total weight as possible — fractional because we are in the LP, not the integer program.</p>

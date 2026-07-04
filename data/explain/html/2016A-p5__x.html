@@ -1,8 +1,11 @@
-<p>The claim "the greedy algorithm is a \(2\)-approximation for maximum cut" is <strong>false</strong>; we refute it by tracing the algorithm and showing it can output a cut of value \(0\), which no finite approximation ratio can justify.</p>
+<p class="ex-line"><span class="ex-lab">Claim</span> False — the greedy algorithm is not a \(2\)-approximation for maximum cut.</p>
+<p class="ex-line"><span class="ex-lab">Strategy</span> Trace the algorithm carefully and show it can put every vertex on one side, giving a cut of value \(0\).</p>
+<p class="ex-line"><span class="ex-lab">Key idea</span> Both sides start empty and the test is a strict "more neighbors in \(S\)", which no vertex can ever pass, so everything drifts to \(T\).</p>
+<p class="ex-line"><span class="ex-lab why">Why this move</span> To refute an approximation claim, the cleanest move is one instance where the algorithm's output is \(0\) but the optimum is positive, making the ratio unbounded.</p>
 <ol class="gsteps">
-<li><strong>Read the rule carefully.</strong> Both \(S\) and \(T\) start empty. A vertex \(w\) is placed in \(S\) only "if \(w\) has more neighbors at \(S\) than at \(T\)"; otherwise it goes to \(T\). Note the tie case (equal counts) fails the strict "more than", so it defaults to \(T\).</li>
-<li><strong>First vertex.</strong> With \(S,T\) both empty, \(w\) has \(0\) neighbors in each. Since \(0>0\) is false, \(w\) is added to \(T\). So \(S\) is still empty.</li>
-<li><strong>By induction, everything goes to \(T\).</strong> As long as \(S\) stays empty, every later vertex \(w\) has \(0\) neighbors in \(S\) and \(\ge0\) neighbors in \(T\); the condition \(0>(\text{neighbors in }T)\) is never true, so \(w\) is added to \(T\) again. Hence <em>all</em> vertices end in \(T\) and \(S=\varnothing\).</li>
-<li><strong>The cut is empty.</strong> The cut counts edges with one endpoint in \(S\) and one in \(T\); with \(S=\varnothing\) that count is \(0\). Yet for any graph with at least one edge the optimum cut is positive (e.g. \(\ge1\)).</li>
+<li><b>Read the rule.</b> \(S\) and \(T\) both start empty. A vertex \(w\) joins \(S\) only if it has strictly more neighbors in \(S\) than in \(T\); otherwise it joins \(T\) (ties go to \(T\)).</li>
+<li><b>First vertex.</b> With both sets empty, \(w\) has \(0\) neighbors in each; \(0>0\) is false, so \(w\) goes to \(T\), leaving \(S\) empty.</li>
+<li><b>Everything follows to \(T\).</b> As long as \(S\) is empty, every vertex has \(0\) neighbors in \(S\), so it never has strictly more there — it always joins \(T\). Hence all vertices end in \(T\) and \(S=\varnothing\).</li>
+<li><b>The cut is zero.</b> With \(S\) empty, no edge crosses, so the cut value is \(0\), while any graph with an edge has optimum at least \(1\).</li>
 </ol>
-<p>So the algorithm outputs value \(0\) while \(\mathrm{OPT}>0\). A \(2\)-approximation would require \(\mathrm{ALG}\ge \mathrm{OPT}/2>0\), which is violated. The ratio \(\mathrm{OPT}/\mathrm{ALG}\) is unbounded (and the output is not even a valid partition into two non-empty sets), so the claim is refuted.</p>
+<p class="ex-line">Since the algorithm outputs \(0\) while the optimum is positive, no constant ratio (let alone \(2\)) can hold, so the claim is refuted.</p>

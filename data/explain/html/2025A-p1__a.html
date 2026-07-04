@@ -1,7 +1,9 @@
-<p>The claim is <strong>true</strong>. Read the statement carefully: it asks whether there is <em>always</em> an assignment satisfying <em>at most</em> \(7m/8\) clauses. This is a weaker demand than the familiar "at least \(7m/8\)" statement, and it follows from the same averaging (probabilistic-method) argument.</p>
+<p class="ex-line"><span class="ex-lab">Claim</span> True — every 3-CNF with \(m\) clauses has an assignment satisfying at most \(7m/8\) clauses.</p>
+<p class="ex-line"><span class="ex-lab">Strategy</span> Compute the average number of satisfied clauses over all assignments, then argue some assignment must sit at or below that average.</p>
+<p class="ex-line"><span class="ex-lab">Key idea</span> A random assignment satisfies exactly \(7m/8\) clauses in expectation, and no quantity is entirely above its own average.</p>
+<p class="ex-line"><span class="ex-lab why">Why this move</span> "There exists an assignment with property X" is the classic cue for the averaging (probabilistic) argument — bound the average, then a real assignment must reach it.</p>
 <ol class="gsteps">
-<li>Pick a uniformly random assignment: set each variable to true or false independently with probability \(1/2\). A fixed clause of a 3-CNF has 3 literals; it is <em>unsatisfied</em> only when all 3 literals are false, which happens with probability \((1/2)^3 = 1/8\). So it is satisfied with probability \(7/8\).</li>
-<li>Let \(Y\) be the number of satisfied clauses. By linearity of expectation, \(\mathbb{E}[Y] = \sum_{j=1}^{m}\Pr[\text{clause } j \text{ satisfied}] = m\cdot\tfrac{7}{8} = \tfrac{7m}{8}\).</li>
-<li>A random variable cannot always lie strictly above its mean, nor always strictly below it. Formally, if every assignment satisfied strictly more than \(7m/8\) clauses, then \(\mathbb{E}[Y] > 7m/8\), a contradiction. Hence there exists at least one assignment with \(Y \le 7m/8\).</li>
+  <li><b>Expected count.</b> Set each variable true or false by a fair coin. A 3-clause fails only when all three literals are false, probability \((1/2)^3 = 1/8\), so it is satisfied with probability \(7/8\). Let \(Y\) be the number of satisfied clauses; by linearity of expectation \(\mathbb{E}[Y] = 7m/8\).</li>
+  <li><b>Average forces a witness.</b> If every assignment satisfied strictly more than \(7m/8\), then \(\mathbb{E}[Y] > 7m/8\), a contradiction. So some assignment satisfies at most \(7m/8\) clauses.</li>
 </ol>
-<p>That is exactly the requested assignment satisfying at most \(7m/8\) clauses, so the statement holds. Note the same expectation also gives an assignment satisfying <em>at least</em> \(7m/8\); the mean is sandwiched, so both directions have witnesses.</p>
+<p>Such an assignment always exists — the average is just a value that some actual assignment cannot exceed. The same mean also gives a witness for "at least" \(7m/8\).</p>

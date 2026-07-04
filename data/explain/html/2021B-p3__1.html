@@ -1,8 +1,10 @@
-<p>We give a greedy algorithm for MAX-3-COL. Recall the goal: color the vertices with \(\{a,b,c\}\) so that the total weight of edges colored <em>legally</em> (endpoints differently colored) is as large as possible. Equivalently we partition \(V\) into three color classes \(A,B,C\) (containing the vertices colored \(a,b,c\)); an edge is legal iff its endpoints fall into different classes. The algorithm colors vertices one at a time, each time choosing the class that creates the least new illegal weight.</p>
+<p class="ex-line"><span class="ex-lab">Goal</span> Design a \(2/3\)-approximation for MAX-3-COL: color \(V\) with \(\{a,b,c\}\) to maximize the total weight of legally colored edges (endpoints differently colored).</p>
+<p class="ex-line"><span class="ex-lab">Strategy</span> Think of the coloring as a partition of \(V\) into three classes \(A,B,C\), and place vertices one at a time, each into the class that adds the least illegal weight.</p>
+<p class="ex-line"><span class="ex-lab">Key idea</span> Putting \(v\) in a class makes exactly its edges to already-placed vertices of that class illegal, so greedily choosing the lightest of the three classes controls the damage.</p>
+<p class="ex-line"><span class="ex-lab why">Why this move</span> This is the three-color version of the two-color greedy max-cut from Homework 2; whenever "maximize agreeing/differing edges" appears, sequential greedy placement is the natural reach.</p>
 <ol class="gsteps">
-<li>Initialize the three classes empty: \(A=B=C=\varnothing\).</li>
-<li>Process the vertices \(v\) in an arbitrary fixed order. For the current vertex \(v\) and each class \(X\in\{A,B,C\}\), let \(w(v,X)\) be the total weight of edges connecting \(v\) to vertices <em>already placed</em> in \(X\).</li>
-<li>Add \(v\) to a class \(X\in\{A,B,C\}\) for which \(w(v,X)\) is minimal. (Placing \(v\) in class \(X\) makes exactly the edges from \(v\) to \(X\) illegal, since those endpoints now share \(v\)'s color, so we greedily minimize this newly created illegal weight.)</li>
-<li>After all vertices are placed, output the coloring: \(c(v)=a\) for \(v\in A\), \(c(v)=b\) for \(v\in B\), and \(c(v)=c\) for \(v\in C\).</li>
+<li><b>Initialize.</b> Start with three empty color classes \(A=B=C=\varnothing\).</li>
+<li><b>Process in order.</b> Go through the vertices in an arbitrary fixed order. For the current vertex \(v\) and each class \(X\in\{A,B,C\}\), let \(w(v,X)\) be the total weight of edges from \(v\) to vertices already in \(X\).</li>
+<li><b>Greedy placement.</b> Add \(v\) to a class \(X\) minimizing \(w(v,X)\) — this makes only the edges from \(v\) into \(X\) illegal, so we add as little illegal weight as possible.</li>
+<li><b>Output the coloring.</b> Once all vertices are placed, set \(c(v)=a\) for \(v\in A\), \(c(v)=b\) for \(v\in B\), \(c(v)=c\) for \(v\in C\). Coloring greedily by the lightest class is the whole algorithm.</li>
 </ol>
-<div class="box">This is the natural three-color extension of the two-color greedy max-cut algorithm from Homework 2; the algorithm and its analysis are identical in structure.</div>

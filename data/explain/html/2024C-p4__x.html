@@ -1,8 +1,11 @@
-<p>Since no bin can help beyond one-item-per-bin, at most \(n\) bins are ever needed; so index candidate bins \(j\in\{1,\dots,n\}\). Use two families of \(0/1\) variables.</p>
+<p class="ex-line"><span class="ex-lab">Goal</span> write an ILP for bin packing and explain why every feasible solution is a valid packing.</p>
+<p class="ex-line"><span class="ex-lab">Strategy</span> use \(n\) candidate bins with a "used" variable each, plus an assignment variable per item-bin pair, and tie capacity to the used-flag.</p>
+<p class="ex-line"><span class="ex-lab">Key idea</span> the single constraint \(\sum_i w_i x_{i,j}\le B\,y_j\) does double duty: it caps a used bin at \(B\) and forbids putting anything into an unused bin.</p>
+<p class="ex-line"><span class="ex-lab why">Why this move</span> since one item per bin is always feasible, at most \(n\) bins are ever needed, so indexing bins \(1,\dots,n\) loses nothing and makes the model finite.</p>
 <ol class="gsteps">
-<li><strong>Variables.</strong> \(y_j\in\{0,1\}\): does bin \(j\) get used (\(1\)) or not (\(0\)). \(x_{i,j}\in\{0,1\}\): is item \(i\) placed in bin \(j\).</li>
-<li><strong>Objective.</strong> Minimize the number of used bins: \(\min\sum_{j=1}^{n}y_j\).</li>
-<li><strong>Each item placed exactly once:</strong> \(\sum_{j=1}^{n}x_{i,j}=1\) for every item \(i\). With \(0/1\) values, this forces exactly one \(x_{i,j}\) to be \(1\), i.e. item \(i\) sits in exactly one bin.</li>
-<li><strong>Capacity, tied to "used":</strong> \(\sum_{i=1}^{n}w_i x_{i,j}\le B\,y_j\) for every bin \(j\). The left side is the total weight loaded into bin \(j\). If \(y_j=1\) it reads \(\le B\) (respect capacity); if \(y_j=0\) it reads \(\le 0\), which (as \(w_i\ge0\)) forces every \(x_{i,j}=0\) — nothing may be placed in an unused bin. This single constraint enforces both capacity and the meaning of \(y_j\).</li>
+  <li><b>Variables.</b> \(y_j\in\{0,1\}\): is bin \(j\) used. \(x_{i,j}\in\{0,1\}\): is item \(i\) placed in bin \(j\).</li>
+  <li><b>Objective.</b> Minimize the number of used bins: \(\min\sum_{j=1}^n y_j\).</li>
+  <li><b>Each item placed once.</b> \(\sum_{j=1}^n x_{i,j}=1\) for every item \(i\) forces exactly one bin to hold it.</li>
+  <li><b>Capacity tied to "used".</b> \(\sum_{i=1}^n w_i x_{i,j}\le B\,y_j\) for every bin \(j\). If \(y_j=1\) this reads \(\le B\) (respect capacity); if \(y_j=0\) it reads \(\le 0\), which (weights \(\ge 0\)) forces all \(x_{i,j}=0\) — nothing may go into an unused bin.</li>
+  <li><b>Why it's valid.</b> The placement constraints put each item in exactly one bin; the capacity constraints keep each used bin within weight \(B\); any bin holding an item is forced to \(y_j=1\), so \(\sum_j y_j\) truly counts bins used. Conversely any real packing gives a feasible \((x,y)\) of equal cost, so the ILP optimum equals the minimum number of bins.</li>
 </ol>
-<div class="box">Why every feasible IP solution is a valid packing: the placement constraints put each item in exactly one bin; the capacity constraints keep each used bin within weight \(B\); and any bin holding an item is forced to have \(y_j=1\), so \(\sum_j y_j\) truly counts the bins used. Conversely any real packing yields a feasible \((x,y)\) of equal cost, so the IP optimum equals the minimum number of bins.</div>

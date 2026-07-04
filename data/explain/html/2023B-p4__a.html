@@ -1,8 +1,10 @@
-<p>We must show any Hamiltonian cycle yields a point satisfying every constraint of the integer program. The natural encoding is to let the variables be the indicator of "is this edge used by the cycle".</p>
+<p class="ex-line"><span class="ex-lab">Claim</span> Every Hamiltonian cycle gives a feasible solution to the degree-constrained TSP integer program.</p>
+<p class="ex-line"><span class="ex-lab">Strategy</span> Encode the cycle by setting each variable to whether its edge is used, then check both degree constraints.</p>
+<p class="ex-line"><span class="ex-lab">Key idea</span> A Hamiltonian cycle enters and leaves each vertex exactly once, which is precisely what the constraints ask.</p>
+<p class="ex-line"><span class="ex-lab why">Why this move</span> The IP variables are edge indicators, so the natural candidate solution is just the indicator vector of the cycle's edges.</p>
 <ol class="gsteps">
-<li>Given a Hamiltonian cycle \(H\), define \(x_{u,v}=1\) if the directed edge \((u,v)\) belongs to \(H\), and \(x_{u,v}=0\) otherwise. These values are in \(\{0,1\}\), satisfying the integrality constraint \(x_{u,v}\in\{0,1\}\).</li>
-<li>Recall the two families of constraints: for every vertex \(v\), the incoming edges sum to \(1\) (\(\sum_{u:(u,v)\in E}x_{u,v}=1\)), and the outgoing edges sum to \(1\) (\(\sum_{w:(v,w)\in E}x_{v,w}=1\)).</li>
-<li>A Hamiltonian cycle visits every vertex exactly once and is a single closed tour. Hence at each vertex \(v\) the cycle enters through exactly one edge and leaves through exactly one edge — in-degree \(1\) and out-degree \(1\) inside \(H\).</li>
-<li>Therefore, for each \(v\), exactly one incoming variable equals \(1\) (the rest \(0\)), so the incoming sum is \(1\); likewise exactly one outgoing variable equals \(1\), so the outgoing sum is \(1\). Both constraint families hold.</li>
+<li><b>Build the solution.</b> Given a Hamiltonian cycle \(H\), set \(x_{u,v}=1\) if edge \((u,v)\) is in \(H\), else \(x_{u,v}=0\). These are in \(\{0,1\}\), meeting the integrality constraint.</li>
+<li><b>Recall the degree constraints.</b> For every vertex \(v\), the incoming edges must sum to \(1\) and the outgoing edges must sum to \(1\).</li>
+<li><b>Use the cycle structure.</b> \(H\) visits each vertex exactly once as a single closed tour, so at each \(v\) it enters through one edge and leaves through one edge.</li>
+<li><b>Conclude feasibility.</b> Thus each incoming sum and each outgoing sum equals exactly \(1\), so all constraints hold and the indicator vector is feasible. (Its objective value is exactly the cycle's weight, which is why the IP models TSP.)</li>
 </ol>
-<p>All constraints are met, so the edge-indicator vector of \(H\) is a feasible solution to the program. (Its objective value \(\sum_{(u,v)}c_{u,v}x_{u,v}\) is exactly the weight of the cycle, which is why the IP models TSP.)</p>

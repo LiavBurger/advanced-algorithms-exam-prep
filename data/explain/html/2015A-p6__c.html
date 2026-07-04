@@ -1,7 +1,10 @@
-<p>We combine parts (a) and (b) to show the algorithm uses at most one bin more than the optimum. Let \(x\) be the number of full bins and \(y\) the number of non-full bins it produces, so the algorithm uses \(x+y\) bins. Let \(1/k\) be the weight of the item that opened the last bin.</p>
+<p class="ex-line"><span class="ex-lab">Goal</span> Prove the algorithm uses at most one bin more than the optimum (an additive \(1\)-approximation).</p>
+<p class="ex-line"><span class="ex-lab">Strategy</span> Bound the total item weight from below using parts (a) and (b), then compare with how many bins OPT needs.</p>
+<p class="ex-line"><span class="ex-lab">Key idea</span> If the total weight is more than \(x+y-2\), then even a perfect packing needs at least \(x+y-1\) bins, while the algorithm uses \(x+y\).</p>
+<p class="ex-line"><span class="ex-lab why">Why this move</span> Total weight is the universal lower bound on bins (each holds at most \(1\)), so counting weight is how you compare against OPT.</p>
 <ol class="gsteps">
-  <li><strong>Lower-bound the total weight.</strong> Each full bin holds weight exactly \(1\), contributing \(x\). By part (b), each non-full bin except the last-opened one holds at least \(1-\tfrac1k\); there are \(y-1\) such bins. So the total item weight is at least \[ x + \Big(1-\tfrac1k\Big)(y-1) = x + y - 1 - \tfrac{y}{k} + \tfrac1k. \]</li>
-  <li><strong>Use part (a).</strong> Part (a) gives \(y\le k-1\), hence \(\tfrac{y}{k}\le \tfrac{k-1}{k}<1\). Plugging \(\tfrac{y}{k}<1\) into the bound, the total weight is strictly greater than \(x+y-1-1 = x+y-2\).</li>
-  <li><strong>Compare with OPT.</strong> Every bin holds weight at most \(1\), so any valid packing needs at least (total weight) bins; in particular \(\mathrm{OPT}\ge \text{total weight} > x+y-2\). Since OPT is an integer, \(\mathrm{OPT}\ge x+y-1\).</li>
+<li><b>Bound the weight.</b> Let \(x\) be the full bins and \(y\) the non-full bins; \(1/k\) opened the last bin. Full bins give \(x\); by part (b) each of the other \(y-1\) non-full bins gives at least \(1-\tfrac1k\). Total weight \(\ge x+(1-\tfrac1k)(y-1)=x+y-1-\tfrac{y}{k}+\tfrac1k\).</li>
+<li><b>Use part (a).</b> Part (a) gives \(y\le k-1\), so \(\tfrac{y}{k}<1\). Hence total weight \(> x+y-2\).</li>
+<li><b>Compare with OPT.</b> Every bin holds at most weight \(1\), so \(\mathrm{OPT}\ge\text{total weight}>x+y-2\). Being an integer, \(\mathrm{OPT}\ge x+y-1\).</li>
 </ol>
-<div class="box">The algorithm uses \(x+y\) bins while \(\mathrm{OPT}\ge x+y-1\), so it uses at most \(\mathrm{OPT}+1\) bins. This is an additive \(1\)-approximation.</div>
+<p class="ex-line">The algorithm uses \(x+y\) bins and \(\mathrm{OPT}\ge x+y-1\), so it uses at most one extra bin — an additive \(1\)-approximation.</p>

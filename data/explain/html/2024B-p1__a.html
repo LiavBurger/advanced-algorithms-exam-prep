@@ -1,8 +1,10 @@
-<p>The statement is <strong>true</strong>. Solving integer linear programs (ILP) is NP-hard, because many NP-complete problems encode naturally as ILPs. So a polynomial-time ILP solver would place an NP-hard problem in \(\mathrm{P}\), collapsing \(\mathrm{P}=\mathrm{NP}\).</p>
+<p class="ex-line"><span class="ex-lab">Claim</span> True: a polynomial-time algorithm for integer linear programs would imply \(\mathrm{P}=\mathrm{NP}\).</p>
+<p class="ex-line"><span class="ex-lab">Strategy</span> Encode an NP-complete problem (maximum independent set) as an ILP; a fast ILP solver would then solve it fast, forcing the collapse.</p>
+<p class="ex-line"><span class="ex-lab">Key idea</span> ILP is NP-hard because \(0/1\) variables plus linear constraints can express NP-complete problems, and it is itself in NP.</p>
+<p class="ex-line"><span class="ex-lab why">Why this move</span> "Would a fast algorithm imply \(\mathrm{P}=\mathrm{NP}\)" is answered by exhibiting a reduction from a known NP-complete problem into the problem in question.</p>
 <ol class="gsteps">
-<li>Recall the reduction seen in class from <strong>maximum independent set</strong>. Given a graph \(G=(V,E)\) and a target \(k\), introduce a \(0/1\) variable \(x_v\) for each vertex \(v\), with the integrality/bound constraints \(x_v\in\{0,1\}\).</li>
-<li>For every edge \((u,v)\in E\) add the constraint \(x_u+x_v\le 1\); this forbids selecting both endpoints, so the chosen vertices \(\{v: x_v=1\}\) form an independent set.</li>
-<li>Maximize \(\sum_{v\in V} x_v\). The optimum equals the size of the maximum independent set, and it is \(\ge k\) iff \(G\) has an independent set of size \(k\). This transformation is clearly polynomial.</li>
-<li>Since deciding maximum independent set is NP-complete, a polynomial-time ILP algorithm would solve it (and every NP problem, via such encodings) in polynomial time.</li>
-<li>ILP is itself in NP (a satisfying integer assignment is a short certificate). An NP-hard problem solvable in polynomial time forces \(\mathrm{P}=\mathrm{NP}\).</li>
+<li><b>Set up variables.</b> Given a graph \(G=(V,E)\), introduce a \(0/1\) variable \(x_v\) for each vertex, meaning "\(v\) is chosen".</li>
+<li><b>Encode independence.</b> For each edge \((u,v)\) add \(x_u+x_v\le 1\), so no two adjacent vertices are both chosen; the chosen set is independent.</li>
+<li><b>Objective.</b> Maximize \(\sum_v x_v\); the optimum equals the maximum independent set size, and this ILP is built in polynomial time.</li>
+<li><b>Collapse.</b> Since maximum independent set is NP-complete and ILP is in NP, a polynomial-time ILP solver would decide an NP-hard problem in polynomial time, giving \(\mathrm{P}=\mathrm{NP}\).</li>
 </ol>

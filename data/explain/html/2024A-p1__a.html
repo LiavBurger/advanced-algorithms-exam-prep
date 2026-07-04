@@ -1,7 +1,11 @@
-<p>The statement is <strong>false</strong>. It is contradicted directly by the strong duality theorem.</p>
+<p class="ex-line"><span class="ex-lab">Claim</span> False: if a standard-form LP \((P)\) and its dual \((D)\) are both feasible, the optimum of \((P)\) cannot be strictly greater than the optimum of \((D)\).</p>
+<p class="ex-line"><span class="ex-lab">Strategy</span> Quote strong duality, which forces the two optimal values to be equal.</p>
+<p class="ex-line"><span class="ex-lab">Key idea</span> When both programs are feasible there is no duality gap, so a strict inequality is impossible.</p>
+<p class="ex-line"><span class="ex-lab why">Why this move</span> Any T/F about the gap between a primal and its dual optimum is really a question about which duality theorem applies, and "both feasible" is exactly the trigger for strong duality.</p>
 <ol class="gsteps">
-  <li>Fix the standard convention: \((P)\) is a minimization LP in standard form, \(\min c^\top x\) s.t. \(Ax=b,\ x\ge 0\), and \((D)\) is its dual, \(\max b^\top y\) s.t. \(A^\top y\le c\). "Optimum of \((P)\)" is the minimized value, "optimum of \((D)\)" is the maximized value.</li>
-  <li>Weak duality already gives \(c^\top x\ge b^\top y\) for all feasible \(x,y\), so \(\text{opt}(P)\ge\text{opt}(D)\) always. The statement asks whether this can be a <em>strict</em> inequality when both are feasible.</li>
-  <li>Strong duality says: if both \((P)\) and \((D)\) are feasible, then both optima are finite and <em>equal</em>, \(\text{opt}(P)=\text{opt}(D)\). There is no duality gap.</li>
+  <li><b>Set the convention.</b> Take \((P)=\min c^\top x\) s.t. \(Ax=b,\ x\ge 0\), with dual \((D)=\max b^\top y\) s.t. \(A^\top y\le c\).</li>
+  <li><b>Weak duality gives one direction.</b> Always \(\mathrm{opt}(P)\ge \mathrm{opt}(D)\), so the only question is whether the inequality can be strict.</li>
+  <li><b>Strong duality closes the gap.</b> If both \((P)\) and \((D)\) are feasible, both optima are finite and equal: \(\mathrm{opt}(P)=\mathrm{opt}(D)\).</li>
+  <li><b>Conclude.</b> Equal values leave no room for "strictly greater," so the statement is false.</li>
 </ol>
-<p>Because the two optimal values must coincide, it is impossible for the optimum of \((P)\) to be strictly greater than the optimum of \((D)\). Hence the claimed situation cannot occur, and the statement is false.</p>
+<p class="ex-line">Once both sides are feasible, the primal and dual meet at the same value, so neither can beat the other.</p>

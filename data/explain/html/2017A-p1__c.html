@@ -1,11 +1,8 @@
-<p>The statement is <strong>True</strong>, and the reason is linearity of expectation.</p>
+<p class="ex-line"><span class="ex-lab">Claim</span> <b>True</b> &mdash; \(E[2x-y]=2E[x]-E[y]\) always holds.</p>
+<p class="ex-line"><span class="ex-lab">Strategy</span> apply linearity of expectation, and note it needs no independence.</p>
+<p class="ex-line"><span class="ex-lab">Key idea</span> expectation is a weighted sum over outcomes, and sums split apart regardless of how the variables relate.</p>
+<p class="ex-line"><span class="ex-lab why">Why this move</span> the statement is a linear combination of two random variables, which is the exact form linearity of expectation covers.</p>
 <ol class="gsteps">
-<li>Linearity of expectation says that for any random variables \(x,y\) on the same sample space and any constants \(a,b\), \(E[ax+by]=aE[x]+bE[y]\). Applying it with \(a=2\), \(b=-1\) gives exactly \(E[2x-y]=2E[x]-E[y]\).</li>
-<li>The crucial point the problem is testing: this identity requires <strong>no</strong> independence assumption. Linearity follows directly from the definition of expectation as a sum (or integral) over the sample space,
-\[
-E[2x-y]=\sum_{\omega\in\Omega}\Pr[\omega]\,\bigl(2x(\omega)-y(\omega)\bigr)
-=2\sum_{\omega}\Pr[\omega]x(\omega)-\sum_{\omega}\Pr[\omega]y(\omega),
-\]
-which is just \(2E[x]-E[y]\). No term ever requires the joint distribution to factor.</li>
+<li><b>State the rule.</b> For any random variables \(x,y\) on the same sample space and constants \(a,b\), \(E[ax+by]=aE[x]+bE[y]\). With \(a=2,\ b=-1\) this is precisely \(E[2x-y]=2E[x]-E[y]\).</li>
+<li><b>Note independence is irrelevant.</b> Linearity comes straight from the definition \(E[2x-y]=\sum_{\omega}\Pr[\omega]\bigl(2x(\omega)-y(\omega)\bigr)\), and a sum always splits term by term. Independence is only needed for products like \(E[xy]=E[x]E[y]\), never for a linear combination &mdash; so the identity holds even for dependent \(x,y\).</li>
 </ol>
-<p>Independence is needed only for statements about <em>products</em>, such as \(E[xy]=E[x]E[y]\); it is irrelevant for linear combinations. So the equation holds for arbitrary, possibly dependent, \(x\) and \(y\).</p>
