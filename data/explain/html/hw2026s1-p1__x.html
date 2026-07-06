@@ -1,0 +1,19 @@
+<p>We prove \(\Pr[f(\alpha_1,\dots,\alpha_n)=0]\le d/|S|\) by induction on the number of variables \(n\), where the \(\alpha_i\) are drawn independently and uniformly from the finite set \(S\).</p>
+<ol class="gsteps">
+  <li><strong>Base case \(n=1\).</strong> A nonzero univariate polynomial of degree \(d\) has at most \(d\) roots, so at most \(d\) of the \(|S|\) values in \(S\) are roots of \(f\). As \(\alpha_1\) is uniform on \(S\), \(\Pr[f(\alpha_1)=0]\le d/|S|\).</li>
+  <li><strong>Inductive step.</strong> Group \(f\) by powers of the last variable, with coefficients that are polynomials in the rest:
+  \[
+  f(x_1,\dots,x_n)=\sum_{i=0}^{d}x_n^{\,i}\,f_i(x_1,\dots,x_{n-1}).
+  \]
+  Let \(k\) be the largest index with \(f_k\not\equiv 0\); it exists because \(f\not\equiv 0\), and \(0\le k\le d\). Since the term \(x_n^{\,k}f_k\) has total degree at most \(d\), we get \(\deg f_k\le d-k\).</li>
+  <li><strong>Split the failure event.</strong> Let \(A\) be the event \(f_k(\alpha_1,\dots,\alpha_{n-1})=0\) and \(B\) the event \(f(\alpha_1,\dots,\alpha_n)=0\). Then, splitting on \(A\),
+  \[
+  \Pr[B]=\Pr[B\cap A]+\Pr[B\cap A^c]\le \Pr[A]+\Pr[B\mid A^c].
+  \]</li>
+  <li><strong>Bound each term.</strong> The polynomial \(f_k\) is nonzero in \(n-1\) variables of degree \(\le d-k\), so by induction \(\Pr[A]\le (d-k)/|S|\). Conditioned on \(A^c\), the univariate polynomial \(g(x_n)=f(\alpha_1,\dots,\alpha_{n-1},x_n)\) has leading coefficient \(f_k(\alpha_1,\dots,\alpha_{n-1})\ne 0\), hence degree exactly \(k\); since \(\alpha_n\) is independent and uniform on \(S\), the base case gives \(\Pr[g(\alpha_n)=0]\le k/|S|\).</li>
+</ol>
+<div class="box">
+\[
+\Pr[B]\le\frac{d-k}{|S|}+\frac{k}{|S|}=\frac{d}{|S|}.
+\]
+</div>

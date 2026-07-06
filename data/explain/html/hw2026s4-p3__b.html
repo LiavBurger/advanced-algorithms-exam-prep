@@ -1,0 +1,12 @@
+<p>The rounded family \(\mathcal S\) is random, so its size is a random variable; we compute its mean and compare it to the optimum. Recall the rule adds each set \(S\) to \(\mathcal S\) independently with probability \(x_S^*\), where \(x^*\) is an optimal LP solution.</p>
+<ol class="gsteps">
+  <li>For each \(S\in\mathcal F\) let \(Y_S\) be an indicator random variable for the event that \(S\in\mathcal S\). An indicator's expectation equals the probability of its event, and that event has probability \(x_S^*\) by the rounding rule, so \(\mathbb E[Y_S]=\Pr[S\in\mathcal S]=x_S^*\).</li>
+  <li>The number of chosen sets is \(|\mathcal S|=\sum_{S\in\mathcal F}Y_S\), because each present set adds \(1\) to the count.</li>
+  <li>Linearity of expectation applies to any sum of random variables, dependent or not, giving
+  \[
+  \mathbb E[\,|\mathcal S|\,]=\sum_{S\in\mathcal F}\mathbb E[Y_S]=\sum_{S\in\mathcal F}x_S^*=\text{LPOPT},
+  \]
+  where the last equality holds because \(\sum_S x_S^*\) is exactly the LP objective evaluated at its optimal point \(x^*\).</li>
+  <li>Finally \(\text{LPOPT}\le\text{OPT}\): the LP is a relaxation of the IP, since every integral cover is a feasible LP point with the same objective value. Minimizing over the larger feasible region can only lower the optimum.</li>
+</ol>
+<p>Hence \(\mathbb E[\,|\mathcal S|\,]=\text{LPOPT}\le\text{OPT}\): on average a single round selects no more sets than the best possible integral cover.</p>

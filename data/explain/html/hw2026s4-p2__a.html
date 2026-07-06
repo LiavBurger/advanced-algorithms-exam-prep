@@ -1,0 +1,15 @@
+<p>A clique is a set of pairwise-adjacent vertices, and we want the largest one. The natural binary decision is, for each vertex, whether to include it.</p>
+<ol class="gsteps">
+  <li><strong>Variables.</strong> Introduce \(x_v\in\{0,1\}\) for each \(v\in V\), where \(x_v=1\) means \(v\) is placed in the clique. The objective \(\sum_{v\in V}x_v\) counts the chosen vertices, i.e. the clique size, and we maximize it.</li>
+  <li><strong>Constraints.</strong> A chosen set is a clique exactly when every two of its vertices are adjacent, equivalently when it contains no non-adjacent pair. So for each pair \(\{u,v\}\) that is <em>not</em> an edge we must forbid taking both, which the inequality \(x_u+x_v\le 1\) does: it rules out \(x_u=x_v=1\) but permits any other combination. Pairs that are edges get no constraint and may both be chosen.</li>
+</ol>
+<div class="box">
+\[
+\max \sum_{v\in V} x_v \quad\text{s.t.}\quad
+\begin{aligned}
+&x_u+x_v\le 1 &&\text{for all } \{u,v\}\notin E,\ u\ne v,\\
+&x_v\in\{0,1\} &&\text{for all } v\in V.
+\end{aligned}
+\]
+</div>
+<p>Any feasible \(\{0,1\}\)-vector selects a set with no non-adjacent pair, i.e. a clique, and conversely every clique is feasible; maximizing the count therefore returns a maximum clique.</p>

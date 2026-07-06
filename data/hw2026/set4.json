@@ -1,0 +1,116 @@
+[
+  {
+    "sid": "hw2026s4-p1",
+    "part": "a",
+    "topic": "lp/duality-farkas",
+    "difficulty": "medium",
+    "summary": "Prove infeasibility of Cx<=d implies infeasibility of Cx<=d+2^{-L'}1, via Farkas' Lemma II and the vertex volume bound",
+    "has_figure": false,
+    "questionImage": "images/lp-duality-farkas__hw2026s4-p1-a__q.png",
+    "solutionImage": "images/lp-duality-farkas__hw2026s4-p1-a__sol.png",
+    "solutionImage2": "images/lp-duality-farkas__hw2026s4-p1-a__sol2.png",
+    "source": { "kind": "homework", "iteration": 2026, "set": 4, "problem": 1, "part": "a" }
+  },
+  {
+    "sid": "hw2026s4-p1",
+    "part": "b",
+    "topic": "lp/basics",
+    "difficulty": "medium",
+    "summary": "Prove a feasible Cx<=d has a point whose radius-2^{-2L'} ball lies inside the relaxed polyhedron Cx<=d+2^{-L'}1",
+    "has_figure": false,
+    "questionImage": "images/lp-basics__hw2026s4-p1-b__q.png",
+    "solutionImage": "images/lp-basics__hw2026s4-p1-b__sol.png",
+    "source": { "kind": "homework", "iteration": 2026, "set": 4, "problem": 1, "part": "b" }
+  },
+  {
+    "sid": "hw2026s4-p2",
+    "part": "a",
+    "topic": "lp/ilp-tum",
+    "difficulty": "easy",
+    "summary": "Formulate MAX-CLIQUE as an IP: binary var per vertex, forbid each non-adjacent pair with xu+xv<=1, maximize the sum",
+    "has_figure": false,
+    "questionImage": "images/lp-ilp-tum__hw2026s4-p2-a__q.png",
+    "solutionImage": "images/lp-ilp-tum__hw2026s4-p2-a__sol.png",
+    "source": { "kind": "homework", "iteration": 2026, "set": 4, "problem": 2, "part": "a" }
+  },
+  {
+    "sid": "hw2026s4-p2",
+    "part": "b",
+    "topic": "lp/ilp-tum",
+    "difficulty": "easy",
+    "summary": "Formulate SUBSET-SUM as an IP feasibility: binary var per integer, single equality sum xi*wi = t",
+    "has_figure": false,
+    "questionImage": "images/lp-ilp-tum__hw2026s4-p2-b__q.png",
+    "solutionImage": "images/lp-ilp-tum__hw2026s4-p2-b__sol.png",
+    "source": { "kind": "homework", "iteration": 2026, "set": 4, "problem": 2, "part": "b" }
+  },
+  {
+    "sid": "hw2026s4-p2",
+    "part": "c",
+    "topic": "lp/ilp-tum",
+    "difficulty": "medium",
+    "summary": "Formulate MIN-COLORING as an IP: color-assignment vars plus color-used flags yi, edge constraints, minimize sum yi",
+    "has_figure": false,
+    "questionImage": "images/lp-ilp-tum__hw2026s4-p2-c__q.png",
+    "solutionImage": "images/lp-ilp-tum__hw2026s4-p2-c__sol.png",
+    "solutionImage2": "images/lp-ilp-tum__hw2026s4-p2-c__sol2.png",
+    "source": { "kind": "homework", "iteration": 2026, "set": 4, "problem": 2, "part": "c" }
+  },
+  {
+    "sid": "hw2026s4-p3",
+    "part": "a",
+    "topic": "lp/ilp-tum",
+    "difficulty": "easy",
+    "summary": "Formulate set cover as an IP: binary xS per set, coverage constraint sum_{S contains i} xS >= 1, minimize sum xS",
+    "has_figure": false,
+    "questionImage": "images/lp-ilp-tum__hw2026s4-p3-a__q.png",
+    "solutionImage": "images/lp-ilp-tum__hw2026s4-p3-a__sol.png",
+    "source": { "kind": "homework", "iteration": 2026, "set": 4, "problem": 3, "part": "a" }
+  },
+  {
+    "sid": "hw2026s4-p3",
+    "part": "b",
+    "topic": "approx/approximation",
+    "difficulty": "easy",
+    "summary": "Show the expected size of the randomly rounded family S equals LPOPT <= OPT via linearity of expectation",
+    "has_figure": false,
+    "questionImage": "images/approx-approximation__hw2026s4-p3-b__q.png",
+    "solutionImage": "images/approx-approximation__hw2026s4-p3-b__sol.png",
+    "source": { "kind": "homework", "iteration": 2026, "set": 4, "problem": 3, "part": "b" }
+  },
+  {
+    "sid": "hw2026s4-p3",
+    "part": "c",
+    "topic": "approx/approximation",
+    "difficulty": "medium",
+    "summary": "Prove each element is covered by S with probability at least 1-1/e, using 1+y<=e^y and the LP covering constraint",
+    "has_figure": false,
+    "questionImage": "images/approx-approximation__hw2026s4-p3-c__q.png",
+    "solutionImage": "images/approx-approximation__hw2026s4-p3-c__sol.png",
+    "source": { "kind": "homework", "iteration": 2026, "set": 4, "problem": 3, "part": "c" }
+  },
+  {
+    "sid": "hw2026s4-p3",
+    "part": "d",
+    "topic": "approx/approximation",
+    "difficulty": "medium",
+    "summary": "With T=ln(n/e) rounds, show C covers all elements w.p. >= 1-e and E[|C|] <= OPT*ln(n/e) via union bound",
+    "has_figure": false,
+    "questionImage": "images/approx-approximation__hw2026s4-p3-d__q.png",
+    "solutionImage": "images/approx-approximation__hw2026s4-p3-d__sol.png",
+    "solutionImage2": "images/approx-approximation__hw2026s4-p3-d__sol2.png",
+    "source": { "kind": "homework", "iteration": 2026, "set": 4, "problem": 3, "part": "d" }
+  },
+  {
+    "sid": "hw2026s4-p4",
+    "part": null,
+    "topic": "approx/approximation",
+    "difficulty": "hard",
+    "summary": "SDP relaxation with Goemans-Williamson random-hyperplane rounding gives a 0.878 approximation for Max-2-LIN",
+    "has_figure": false,
+    "questionImage": "images/approx-approximation__hw2026s4-p4-x__q.png",
+    "solutionImage": "images/approx-approximation__hw2026s4-p4-x__sol.png",
+    "solutionImage2": "images/approx-approximation__hw2026s4-p4-x__sol2.png",
+    "source": { "kind": "homework", "iteration": 2026, "set": 4, "problem": 4, "part": null }
+  }
+]

@@ -12,3 +12,5 @@ __pycache__/
 study-workbook.html
 fonttest.*
 data/explain/batch-*.json
+text2026/
+data/explain/hwbatch/

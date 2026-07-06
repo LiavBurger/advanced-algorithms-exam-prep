@@ -18,7 +18,8 @@
     }
   };
   let marks = load(LS.marks, {}), reveal = load(LS.reveal, {});
-  let ui = load(LS.ui, { topic: null, tiers: { 1: true, 2: false, 3: false }, weak: false, theme: "dark" });
+  let ui = load(LS.ui, { topic: null, tiers: { 1: true, 2: false, 3: false, 4: false }, weak: false, theme: "dark" });
+  if (ui.tiers[4] === undefined) ui.tiers = { 1: !!ui.tiers[1], 2: !!ui.tiers[2], 3: !!ui.tiers[3], 4: false };
   const applyTheme = () => document.documentElement.setAttribute("data-theme", ui.theme || "dark");
   applyTheme();
 
@@ -81,7 +82,7 @@
     const el = document.getElementById("controls");
     const tchk = (n, lbl) => `<label class="chk ${ui.tiers[n] ? "on" : ""}"><input type="checkbox" data-tier="${n}" ${ui.tiers[n] ? "checked" : ""}>${lbl}</label>`;
     el.innerHTML =
-      `<div class="grp">Show tiers: ${tchk(1, "2023+ Exams")} ${tchk(2, "Homework")} ${tchk(3, "Pre-2023")}</div>
+      `<div class="grp">Show: ${tchk(1, "2023+ Exams")} ${tchk(2, "Current HW")} ${tchk(3, "Old HW")} ${tchk(4, "Pre-2023")}</div>
        <div class="grp"><label class="chk ${ui.weak ? "on" : ""}"><input type="checkbox" id="weak" ${ui.weak ? "checked" : ""}>Show only my Shaky / Failed</label></div>
        <div class="grp" style="margin-left:auto">
          <a class="btn" href="Advanced-Algorithms-Practice-Workbook.pdf" download title="Questions-only PDF workbook for iPad / Notability (solutions stay here on the site)">📄 iPad workbook</a>
@@ -103,7 +104,7 @@
     h += guideHTML(t.topic);
 
     // group problems by tier
-    const tiers = [[1, "2023+ Exams"], [2, "Homework"], [3, "Pre-2023 Exams"]];
+    const tiers = [[1, "2023+ Exams"], [2, "Current Homework"], [3, "Old Homework"], [4, "Pre-2023 Exams"]];
     let anyShown = false;
     tiers.forEach(([tn, tlabel]) => {
       if (!ui.tiers[tn]) return;

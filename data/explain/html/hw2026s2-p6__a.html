@@ -1,0 +1,10 @@
+<p>Recall the definition: a symmetric real \(A\) is positive semi-definite (PSD) when \(v^\top A v\ge 0\) for <em>every</em> \(v\in\mathbb{R}^n\). We must show this forces every eigenvalue to be \(\ge 0\). The trick is to feed the PSD inequality the eigenvector itself.</p>
+<ol class="gsteps">
+  <li><strong>Pick an eigenpair.</strong> Let \(\lambda\) be an eigenvalue of \(A\) with an eigenvector \(v\neq 0\), so by definition \(Av=\lambda v\).</li>
+  <li><strong>Evaluate the quadratic form at \(v\).</strong> Substitute \(Av=\lambda v\):
+  \[v^\top A v=v^\top(\lambda v)=\lambda\,(v^\top v)=\lambda\|v\|^2,\]
+  where \(v^\top v=\sum_i v_i^2=\|v\|^2\) is the squared Euclidean norm, and \(\lambda\) is a scalar that pulls out of the product.</li>
+  <li><strong>Combine the two facts.</strong> Since \(A\) is PSD, \(v^\top A v\ge 0\), so \(\lambda\|v\|^2\ge 0\). Because \(v\neq 0\) we have \(\|v\|^2>0\), a strictly positive number.</li>
+  <li><strong>Divide.</strong> Dividing the inequality \(\lambda\|v\|^2\ge 0\) by the positive quantity \(\|v\|^2\) preserves its direction, yielding \(\lambda\ge 0\).</li>
+</ol>
+<p>As \(\lambda\) was an arbitrary eigenvalue, all eigenvalues of a PSD matrix are non-negative. (Here \(\lambda\) is guaranteed real because \(A\) is real symmetric.)</p>

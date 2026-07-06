@@ -1,0 +1,17 @@
+<p>We must decide whether the subspace \(V=\operatorname{span}\{B_1,\dots,B_k\}\subseteq\mathbb{Q}^{n\times n}\) contains an invertible matrix, i.e. whether some \(\sum_i x_i B_i\) is invertible. The idea is to encode this as a polynomial identity test (PIT) and solve it by random evaluation via Schwartz–Zippel.</p>
+<ol class="gsteps">
+  <li><em>Encode with a determinant.</em> A matrix is invertible iff its determinant is nonzero. Introduce formal variables \(x_1,\dots,x_k\) and define
+  \[
+  p(x_1,\dots,x_k)=\det\!\big(x_1B_1+\cdots+x_kB_k\big),
+  \]
+  so that \(p(\alpha_1,\dots,\alpha_k)\) is exactly the determinant of the matrix \(\alpha_1B_1+\cdots+\alpha_kB_k\in V\).</li>
+  <li><em>Reduce to PIT.</em> \(V\) contains an invertible matrix \(\iff p\) is not the zero polynomial. Forward: if some combination is invertible, its determinant \(p(\alpha)\neq0\), so \(p\not\equiv0\). Backward: if \(p\not\equiv0\) then \(p(\alpha)\neq0\) for some \(\alpha\), and that matrix, lying in \(V\), is invertible.</li>
+  <li><em>Degree bound.</em> Every entry of \(x_1B_1+\cdots+x_kB_k\) is a degree-\(1\) linear form in the \(x_i\). The determinant is a signed sum of products of \(n\) entries (one per row), so \(\deg p\le n\).</li>
+  <li><em>Algorithm.</em> Let \(S=\{1,2,\dots,10n\}\). Pick \(\alpha_1,\dots,\alpha_k\) independently and uniformly from \(S\), form \(M'=\sum_i\alpha_i B_i\), compute \(\det(M')\) by Gaussian elimination, and output "yes" iff \(\det(M')\neq0\).</li>
+  <li><em>Correctness.</em> If \(V\) has no invertible matrix, \(p\equiv0\), so \(\det(M')=0\) always and the algorithm correctly says "no" with no error. If \(V\) has an invertible matrix, \(p\) is nonzero of degree \(\le n\), and Schwartz–Zippel gives
+  \[
+  \Pr[p(\alpha)=0]\le\frac{\deg p}{|S|}\le\frac{n}{10n}=0.1,
+  \]
+  so it outputs "yes" with probability \(\ge 0.9\).</li>
+</ol>
+<p>The error is at most \(0.1\) (one-sided, only on yes-instances), and every step — sampling, summing \(k\) matrices, one determinant — is polynomial in \(n\) and \(k\).</p>

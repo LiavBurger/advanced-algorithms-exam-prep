@@ -1,0 +1,7 @@
+<p>Combining parts (a) and (b) gives two coordinates whose values differ by at least \(\tfrac1{\sqrt n}\). Walking along a path between them and using that this total drop is spread over at most \(n-1\) edges produces a single edge carrying a large share of the difference.</p>
+<ol class="gsteps">
+<li>By (a) there is a coordinate with \(x_i\ge\tfrac1{\sqrt n}\), and by (b) a different coordinate with \(x_j\le0\). Hence \(x_i-x_j\ge\tfrac1{\sqrt n}-0=\tfrac1{\sqrt n}\).</li>
+<li>Since \(G\) is connected there is a path \(i=v_0,v_1,\dots,v_L=j\) using edges of \(G\), of length \(L\le n-1\) (a simple path visits at most \(n\) vertices).</li>
+<li>Write the difference as a telescoping sum along the path and apply the triangle inequality: \[\tfrac1{\sqrt n}\le x_i-x_j=\sum_{t=1}^{L}\big(x_{v_{t-1}}-x_{v_t}\big)\le\sum_{t=1}^{L}\big|x_{v_{t-1}}-x_{v_t}\big|\le L\cdot\max_{t}\big|x_{v_{t-1}}-x_{v_t}\big|.\]</li>
+<li>Let \((u,v):=(v_{t-1},v_t)\) be the edge attaining the maximum. Dividing by \(L\), \[|x_u-x_v|\ge\tfrac1{L\sqrt n}\ge\tfrac1{(n-1)\sqrt n}\ge\tfrac1{n\sqrt n},\] and \((u,v)\) is an edge of \(G\), as required.</li>
+</ol>

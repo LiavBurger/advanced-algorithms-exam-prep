@@ -10,7 +10,8 @@ data = json.load(open("data/questions.json"))
 WEBSITE = "https://liavburger.github.io/advanced-algorithms-exam-prep/"
 
 DR = {"easy": 0, "medium": 1, "hard": 2}
-TIER_LABEL = {1: "Priority 1 — 2023+ Exams", 2: "Priority 2 — Homework", 3: "Priority 3 — Pre-2023 Exams"}
+TIER_LABEL = {1: "Priority 1 — 2023+ Exams", 2: "Priority 2 — Current Homework",
+              3: "Priority 3 — Old Homework", 4: "Priority 4 — Pre-2023 Exams"}
 def esc(s): return html.escape(s or "")
 def src_label(s):
     if s.get("kind") == "homework": return f"HW {s.get('iteration')} · Set {s.get('set')}"

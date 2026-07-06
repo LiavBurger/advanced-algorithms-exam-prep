@@ -1,0 +1,10 @@
+<p>The displayed chain rewrites \(\lambda_2\) as a weighted sum of squared differences \((x_k-x_\ell)^2\) over the entries of \(B\); a single large term, supplied by part (c), then pushes \(\lambda_2\) strictly below \(1\).</p>
+<ol class="gsteps">
+<li>\(\lambda_2=\lambda_2\langle x,x\rangle\), since \(\langle x,x\rangle=\|x\|_2^2=1\).</li>
+<li>\(\lambda_2\langle x,x\rangle=\langle\lambda_2 x,x\rangle\), by linearity of the inner product in its first argument.</li>
+<li>\(\langle\lambda_2 x,x\rangle=\langle Bx,x\rangle\), because \(x\) is an eigenvector of \(B\) with eigenvalue \(\lambda_2\), so \(\lambda_2 x=Bx\).</li>
+<li>\(\langle Bx,x\rangle=\sum_{k,\ell}B_{k,\ell}x_kx_\ell\): expand \((Bx)_k=\sum_\ell B_{k,\ell}x_\ell\) and \(\langle Bx,x\rangle=\sum_k(Bx)_kx_k\).</li>
+<li>Substitute the identity \(2x_kx_\ell=x_k^2+x_\ell^2-(x_k-x_\ell)^2\) termwise: \(\sum_{k,\ell}B_{k,\ell}x_kx_\ell=\tfrac12\sum_{k,\ell}B_{k,\ell}\big[x_k^2+x_\ell^2-(x_k-x_\ell)^2\big]\).</li>
+<li>Every row and column of \(B\) sums to \(1\), so \(\sum_{k,\ell}B_{k,\ell}x_k^2=\sum_k x_k^2\sum_\ell B_{k,\ell}=\sum_k x_k^2\) and likewise \(\sum_{k,\ell}B_{k,\ell}x_\ell^2=\sum_\ell x_\ell^2\); hence \(\tfrac12\sum_{k,\ell}B_{k,\ell}(x_k^2+x_\ell^2)=\sum_k x_k^2=1\). Therefore \(\lambda_2=1-\tfrac12\sum_{k,\ell}B_{k,\ell}(x_k-x_\ell)^2\).</li>
+</ol>
+<div class="box"><p><strong>The bound.</strong> By (c) some edge \((u,v)\) has \((x_u-x_v)^2\ge\tfrac1{n^3}\). On an edge \(A_{u,v}=\tfrac1d\), so \(B_{u,v}=B_{v,u}=\tfrac12 A_{u,v}=\tfrac1{2d}\); both ordered pairs \((u,v)\) and \((v,u)\) occur in the sum, every other term is nonnegative, and diagonal terms vanish since \((x_k-x_k)^2=0\). Thus \[\sum_{k,\ell}B_{k,\ell}(x_k-x_\ell)^2\ge 2\cdot\tfrac1{2d}(x_u-x_v)^2=\tfrac{(x_u-x_v)^2}{d}\ge\tfrac1{dn^3}.\] Plugging in, \(\lambda_2=1-\tfrac12\sum_{k,\ell}B_{k,\ell}(x_k-x_\ell)^2\le 1-\tfrac1{2dn^3}\le 1-\tfrac1{4dn^3}.\)</p></div>

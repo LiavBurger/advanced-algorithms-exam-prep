@@ -1,0 +1,10 @@
+<p>Encode the two sets as \(0/1\)-coefficient polynomials, \(f_A=\sum_{i\in A}x^i\) and \(f_B=\sum_{i\in B}x^i\); membership \(i\in A\) is recorded as the coefficient of \(x^i\) being \(1\) (and \(0\) otherwise), and likewise for \(B\). The claim is that multiplying these polynomials counts, for every \(k\), the representations \(k=i+j\).</p>
+<ol class="gsteps">
+  <li>Write \(g=f_A\cdot f_B\), and let \(a_i,b_j\) denote the coefficients of \(x^i\) in \(f_A\) and of \(x^j\) in \(f_B\). By the definition of polynomial multiplication, the coefficient of \(x^k\) in \(g\) collects all pairs of exponents that add to \(k\):
+  \[
+  [x^k]\,g=\sum_{i+j=k}a_i\,b_j.
+  \]</li>
+  <li>Each \(a_i,b_j\in\{0,1\}\), so the product \(a_i b_j\in\{0,1\}\) as well, and \(a_i b_j=1\) exactly when \(a_i=1\) and \(b_j=1\), i.e. when \(i\in A\) and \(j\in B\). Hence each valid pair \((i,j)\) with \(i\in A,\ j\in B,\ i+j=k\) contributes exactly \(1\) to the sum, and every other pair contributes \(0\).</li>
+  <li>Therefore \([x^k]\,g\) equals the number of ways to write \(k=i+j\) with \(i\in A\) and \(j\in B\) — precisely the quantity we want, and it is produced for all \(k\) simultaneously.</li>
+</ol>
+<p>Both \(f_A\) and \(f_B\) have degree at most \(n\), so their product can be computed in \(O(n\log n)\) time by the FFT-based multiplication algorithm from class. The algorithm simply forms \(f_A\cdot f_B\) and reads off its coefficients, yielding all the counts within that time bound.</p>

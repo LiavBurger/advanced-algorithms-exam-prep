@@ -1,0 +1,9 @@
+<p>Let \(A\) be the normalized adjacency matrix of the \(d\)-regular bipartite graph \(G\), with eigenvalues \(\lambda_1\ge\cdots\ge\lambda_n\). We produce an eigenvector with eigenvalue \(-1\). Since it was shown in class that \(|\lambda_i|\le1\) for all \(i\), the value \(-1\) is the smallest an eigenvalue can be, so exhibiting it as an eigenvalue proves \(\lambda_n=-1\).</p>
+<ol class="gsteps">
+<li><strong>Block form of \(A\).</strong> Let \(L,R\) be the two sides of the bipartition. Number the \(|L|\) vertices of \(L\) first, then the \(|R|\) vertices of \(R\). Since edges run only between \(L\) and \(R\), in this ordering \(A=\begin{bmatrix}0&B\\ B^T&0\end{bmatrix}\), where \(B\) is the \(|L|\times|R|\) normalized biadjacency matrix.</li>
+<li><strong>Row sums are \(1\).</strong> Because \(G\) is \(d\)-regular, each left vertex has exactly \(d\) neighbours on the right, each contributing \(1/d\); so every row of \(B\) sums to \(1\), i.e. \(B\mathbf 1=\mathbf 1\). Symmetrically \(B^T\mathbf 1=\mathbf 1\).</li>
+<li><strong>Test vector \(y\).</strong> Let \(y=(\mathbf 1,-\mathbf 1)^T\), equal to \(+1\) on the \(L\)-coordinates and \(-1\) on the \(R\)-coordinates. Then
+\[Ay=\begin{bmatrix}0&B\\ B^T&0\end{bmatrix}\begin{bmatrix}\mathbf 1\\ -\mathbf 1\end{bmatrix}=\begin{bmatrix}B(-\mathbf 1)\\ B^T\mathbf 1\end{bmatrix}=\begin{bmatrix}-\mathbf 1\\ \mathbf 1\end{bmatrix}=-y,\]
+using \(B\mathbf 1=\mathbf 1\) and \(B^T\mathbf 1=\mathbf 1\).</li>
+<li><strong>Conclude.</strong> Thus \(y\neq0\) is an eigenvector with eigenvalue \(-1\). Since every eigenvalue satisfies \(|\lambda_i|\le1\), the value \(-1\) is minimal, so \(\lambda_n=-1\).</li>
+</ol>

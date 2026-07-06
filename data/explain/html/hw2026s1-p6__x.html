@@ -1,0 +1,18 @@
+<p>For nonempty \(I\subseteq\{1,\dots,n\}\) and \(v\in\{-1,1\}^n\), \(e_I(v)=\prod_{i\in I}v_i\in\{-1,1\}\). A set \(S\) is \(\varepsilon\)-balanced if \(\big|\sum_{v\in S}e_I(v)\big|\le\varepsilon|S|\) for every nonempty \(I\). We exhibit a simple sampling algorithm and prove correctness with a Chernoff/Hoeffding bound plus a union bound over all \(2^n-1\) subsets \(I\).</p>
+<div class="box">
+<strong>Algorithm.</strong> Set \(m=Cn/\varepsilon^2\) for a constant \(C\). Pick \(m\) vectors uniformly at random <em>without replacement</em> from \(\{-1,1\}^n\); output that set \(S\). Then \(|S|=m=O(n/\varepsilon^2)\).
+</div>
+<ol class="gsteps">
+  <li><em>Rewrite the balance sum.</em> Fix a nonempty \(I\) and let \(X_I=|\{v\in S:e_I(v)=1\}|\) count the sampled vectors with product \(+1\). Since each \(v\) contributes \(+1\) or \(-1\), \(\sum_{v\in S}e_I(v)=X_I-(m-X_I)=2X_I-m\).</li>
+  <li><em>Mean.</em> For a uniformly random \(v\), \(e_I(v)=\prod_{i\in I}v_i\) is a product of independent uniform \(\pm1\) bits, hence itself uniform on \(\{-1,1\}\); so \(\Pr[e_I(v)=1]=\tfrac12\) and \(\mathbb{E}[X_I]=m/2\). Thus the balance sum has mean \(0\), and \(|2X_I-m|\ge\varepsilon m\) is the same as \(|X_I-m/2|\ge\varepsilon m/2\).</li>
+  <li><em>Concentration.</em> Hoeffding's inequality for a sum of \(m\) bounded \(\pm1\) terms (and sampling without replacement is at least as concentrated as with replacement) gives
+  \[
+  \Pr\!\Big[\big|\textstyle\sum_{v\in S}e_I(v)\big|\ge\varepsilon m\Big]\le 2\exp\!\Big(-\tfrac{2(\varepsilon m/2)^2}{m}\Big)=2e^{-\varepsilon^2 m/2}.
+  \]</li>
+  <li><em>Union bound.</em> \(S\) fails only if some nonempty \(I\) violates its bound; there are \(2^n-1\) of them, so
+  \[
+  \Pr[S\text{ not }\varepsilon\text{-balanced}]\le 2^{n+1}e^{-\varepsilon^2 m/2}=2\big(2e^{-C/2}\big)^{n},
+  \]
+  using \(\varepsilon^2 m/2=Cn/2\). Choosing \(C\) large (e.g. \(C=20\)) makes \(2e^{-C/2}<1\) and the bound \(\le 0.01\).</li>
+</ol>
+<p>Hence \(S\) is \(\varepsilon\)-balanced with probability at least \(0.99\), and sampling \(m\) vectors of \(n\) bits takes \(O(mn)=O(n^2/\varepsilon^2)\) time, polynomial in \(n\).</p>

@@ -1,0 +1,11 @@
+<p>Question 1's LP is the diet program \(\min 50x_1+70x_2\) subject to \(100x_1+130x_2\ge 200,\ 150x_1+110x_2\ge 350,\ 80x_2\ge 120,\ x\ge 0\). We convert to the standard pair \((P)\ \min c^Tx,\ Ax=b,\ x\ge 0\) with dual \((D)\ \max b^Ty,\ A^Ty\le c\), then read off, interpret, solve, and verify.</p>
+<ol class="gsteps">
+  <li><strong>Standard form.</strong> The constraints are \(\ge\), so subtract a nonnegative surplus \(s_1,s_2,s_3\ge 0\) from each to force equalities:
+  \[
+  100x_1+130x_2-s_1=200,\quad 150x_1+110x_2-s_2=350,\quad 80x_2-s_3=120.
+  \]
+  The objective is unchanged (surplus variables cost \(0\)), giving \(c=(50,70,0,0,0)^T\), \(b=(200,350,120)^T\), and a matrix \(A\) with one column per variable \(x_1,x_2,s_1,s_2,s_3\).</li>
+  <li><strong>The dual.</strong> There is one free variable \(y=(y_1,y_2,y_3)\) per equality and one inequality per column of \(A\): from \(x_1\), \(100y_1+150y_2\le 50\); from \(x_2\), \(130y_1+110y_2+80y_3\le 70\); the surplus columns give \(-y_i\le 0\), i.e. \(y_1,y_2,y_3\ge 0\). Collecting, \((D)\) is \(\max 200y_1+350y_2+120y_3\) subject to those two inequalities and \(y\ge 0\).</li>
+  <li><strong>Interpretation.</strong> A vendor prices the three raw nutrients per gram, \(y_1\) (tomatoes), \(y_2\) (cucumbers), \(y_3\) (chicken), all nonnegative since no nutrient is worth less than nothing. The objective is the vendor's revenue on the amounts the diet forces the student to buy (200, 350, 120 g). Each constraint keeps a salad no cheaper to rebuild from raw nutrients than its listed price (50 and 70), so each \(y_i\) is the shadow price of one more gram of nutrient \(i\).</li>
+  <li><strong>Solve and verify.</strong> A solver gives \(y_1=0,\ y_2=\tfrac13,\ y_3=\tfrac{5}{12}\), with value \(350\cdot\tfrac13+120\cdot\tfrac{5}{12}=\tfrac{350}{3}+50=\tfrac{500}{3}\approx 166.67\). This equals the primal cost from Question 1; by weak duality every dual value is at most every primal value, so a feasible pair hitting the same value must both be optimal. This certifies \(\tfrac{500}{3}\) as the true minimum (the equality guaranteed by strong duality, as both programs are feasible). The zero price \(y_1=0\) matches the slack tomato constraint in Question 1.</li>
+</ol>

@@ -1,0 +1,8 @@
+<p>We multiply two bivariate polynomials \(f,g\) by turning them into univariate polynomials via the Kronecker substitution \(y=x^{2n+1}\), performing a single fast univariate multiplication, then reading the bivariate answer back off.</p>
+<ol class="gsteps">
+<li><strong>Group by \(y\)-degree.</strong> Write \(f(x,y)=\sum_{j=0}^d f_j(x)y^j\) and \(g(x,y)=\sum_{j=0}^d g_j(x)y^j\), where each coefficient polynomial satisfies \(\deg f_j,\deg g_j\le n\). Their product is \(h(x,y)=\sum_{j=0}^{2d}h_j(x)y^j\) with \(h_j(x)=\sum_{i+k=j}f_i(x)g_k(x)\), so \(\deg h_j\le 2n\).</li>
+<li><strong>Substitute \(y=x^{2n+1}\).</strong> Let \(\tilde f(x)=f(x,x^{2n+1})\), \(\tilde g(x)=g(x,x^{2n+1})\), and \(\tilde h(x)=h(x,x^{2n+1})\). Evaluation is a ring homomorphism, so it commutes with the product: \(\tilde h=\tilde f\cdot\tilde g\), and
+\[\tilde h(x)=\sum_{j=0}^{2d}h_j(x)\,x^{j(2n+1)}.\]</li>
+<li><strong>Blocks do not overlap.</strong> Since \(\deg h_j\le 2n\), the monomials contributed by \(h_j\) occupy degrees in \([\,(2n+1)j,\ (2n+1)j+2n\,]\). Consecutive blocks are disjoint, because block \(j+1\) starts at \((2n+1)(j+1)=(2n+1)j+2n+1\), exactly one past where block \(j\) ends. Hence each coefficient of \(\tilde h\) belongs to a unique \(h_j\).</li>
+<li><strong>Algorithm and cost.</strong> Form \(\tilde f,\tilde g\) (each of degree \(\le d(2n+1)+n=O(nd)\)); multiply them with the FFT-based univariate multiplication from class in \(O(nd\log(nd))\) time; then split \(\tilde h\)'s coefficient vector into consecutive blocks of length \(2n+1\) to recover every \(h_j\), and hence all of \(h(x,y)\).</li>
+</ol>

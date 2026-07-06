@@ -1,0 +1,11 @@
+<p>Here \(A\) is the normalized adjacency matrix of the \(d\)-regular graph and \(B=\tfrac12(I+A)\) is the lazy walk matrix; \(x\) is the unit eigenvector of its second eigenvalue \(\lambda_2\), so \(Bx=\lambda_2 x\). We rewrite \(\lambda_2\) as a quadratic form and lower-bound the "defect" from \(1\).</p>
+<ol class="gsteps">
+<li><strong>Turn \(\lambda_2\) into a quadratic form.</strong> Using \(\langle x,x\rangle=\|x\|_2^2=1\) and \(Bx=\lambda_2x\),
+\[\lambda_2=\lambda_2\langle x,x\rangle=\langle \lambda_2 x,x\rangle=\langle Bx,x\rangle=x^TBx=\sum_{k,\ell}B_{k,\ell}\,x_kx_\ell.\]</li>
+<li><strong>Symmetrize each product.</strong> Apply the identity \(x_kx_\ell=\tfrac12\big(x_k^2+x_\ell^2-(x_k-x_\ell)^2\big)\):
+\[\lambda_2=\tfrac12\sum_{k,\ell}B_{k,\ell}\,x_k^2+\tfrac12\sum_{k,\ell}B_{k,\ell}\,x_\ell^2-\tfrac12\sum_{k,\ell}B_{k,\ell}(x_k-x_\ell)^2.\]</li>
+<li><strong>Use that \(B\) is doubly stochastic.</strong> Each row of \(B\) sums to \(1\), so \(\sum_{k,\ell}B_{k,\ell}x_k^2=\sum_k x_k^2\sum_\ell B_{k,\ell}=\sum_k x_k^2=1\); by symmetry the \(x_\ell^2\) sum equals \(1\) as well. The first two sums contribute \(\tfrac12(1+1)=1\), giving
+\[\lambda_2=1-\tfrac12\sum_{k,\ell}B_{k,\ell}(x_k-x_\ell)^2.\]</li>
+<li><strong>Lower-bound the remaining sum.</strong> Every term \(B_{k,\ell}(x_k-x_\ell)^2\ge 0\), so we may keep only the edge \((u,v)\) from part (c). There \(|x_u-x_v|\ge \frac{1}{n\sqrt n}\) gives \((x_u-x_v)^2\ge \frac{1}{n^3}\), and since \((u,v)\) is an edge, \(A_{u,v}\ge \frac1d\), hence \(B_{u,v}=\tfrac12 A_{u,v}\ge \frac{1}{2d}\). Therefore \(\tfrac12\sum_{k,\ell}B_{k,\ell}(x_k-x_\ell)^2\ge \tfrac12\cdot\frac{1}{2d}\cdot\frac{1}{n^3}=\frac{1}{4dn^3}\).</li>
+</ol>
+<div class="box">Combining, \(\lambda_2\le 1-\dfrac{1}{4dn^3}\); equivalently the spectral gap satisfies \(1-\lambda_2\ge \dfrac{1}{4dn^3}\).</div>

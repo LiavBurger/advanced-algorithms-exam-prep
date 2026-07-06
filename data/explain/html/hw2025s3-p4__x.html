@@ -1,0 +1,10 @@
+<p>We model the shipping problem as a linear program: decide how many tons to send from each field to each city so that every city's demand is met, no field ships more than it produces, and the total shipping cost is minimized.</p>
+<ol class="gsteps">
+<li><strong>Variables.</strong> For each field \(F\in\{G,N\}\) and city \(C\in\{T,J,H\}\) let \(x_{F,C}\ge 0\) be the tons shipped from \(F\) to \(C\). This gives \(6\) variables \(x_{G,T},x_{G,J},x_{G,H},x_{N,T},x_{N,J},x_{N,H}\).</li>
+<li><strong>Objective.</strong> Weight each shipment by its per-ton cost and minimize
+\[5.99\,x_{G,T}+9\,x_{G,J}+2\,x_{G,H}+5\,x_{N,T}+6\,x_{N,J}+9.99\,x_{N,H}.\]</li>
+<li><strong>Demand (equalities).</strong> Each city receives exactly its demand: \(x_{G,T}+x_{N,T}=10\), \(x_{G,J}+x_{N,J}=6\), and \(x_{G,H}+x_{N,H}=8\).</li>
+<li><strong>Supply (inequalities).</strong> No field ships beyond its production: \(x_{G,T}+x_{G,J}+x_{G,H}\le 13\) and \(x_{N,T}+x_{N,J}+x_{N,H}\le 11\).</li>
+<li><strong>Solve.</strong> Feeding this LP to a solver gives the optimum \(x_{G,T}=5,\ x_{G,J}=0,\ x_{G,H}=8,\ x_{N,T}=5,\ x_{N,J}=6,\ x_{N,H}=0\). This is feasible: the demands \(5{+}5,\ 0{+}6,\ 8{+}0\) equal \(10,6,8\), and the fields ship \(13\le 13\) and \(11\le 11\) tons.</li>
+</ol>
+<div class="box">The cost is \(5.99\cdot5+2\cdot8+5\cdot5+6\cdot6=29.95+16+25+36=106.95\) (in thousands of shekels), i.e. a minimum total shipping cost of \(106{,}950\) shekels.</div>

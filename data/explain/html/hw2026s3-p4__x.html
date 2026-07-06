@@ -1,0 +1,20 @@
+<p>We derive the classic Farkas' lemma — if \(\{Ax=b,\ x\ge0\}\) is infeasible then there is \(y\in\mathbb{R}^m\) with \(y^{\top}A\ge0\) and \(y^{\top}b<0\) — from the inequality version proved in class:</p>
+<div class="box">
+<strong>Farkas' Lemma II (from class).</strong> If \(\{Cx\le d\}\) is infeasible, then there exists \(z\ge0\) with \(z^{\top}C=0\) and \(z^{\top}d<0\).
+</div>
+<p>All the work is rewriting the equality-plus-nonnegativity system in the form \(Cx\le d\).</p>
+<ol class="gsteps">
+  <li><em>Encode \(Ax=b,\ x\ge0\) as inequalities.</em> The equality \(Ax=b\) is the pair \(Ax\le b\) and \(-Ax\le -b\); the sign constraint \(x\ge0\) is \(-Ix\le0\). Stack the three blocks:
+  \[
+  C=\begin{pmatrix}A\\-A\\-I\end{pmatrix},\qquad d=\begin{pmatrix}b\\-b\\0\end{pmatrix}.
+  \]
+  A vector \(x\) satisfies \(Cx\le d\) exactly when it satisfies the original system, so \(\{Cx\le d\}\) is infeasible by assumption.</li>
+  <li><em>Apply Farkas II.</em> It supplies \(z\ge0\) with \(z^{\top}C=0\) and \(z^{\top}d<0\). Split \(z=(z_1,z_2,z_3)\) to match the row blocks, with \(z_1,z_2\in\mathbb{R}^m\), \(z_3\in\mathbb{R}^n\), all nonnegative.</li>
+  <li><em>Expand \(z^{\top}C=0\).</em>
+  \[
+  z_1^{\top}A-z_2^{\top}A-z_3^{\top}=(z_1-z_2)^{\top}A-z_3^{\top}=0,\quad\text{so}\quad (z_1-z_2)^{\top}A=z_3^{\top}\ge0,
+  \]
+  the inequality because \(z_3\ge0\).</li>
+  <li><em>Expand \(z^{\top}d<0\).</em> The third block of \(d\) is zero, so \(z^{\top}d=z_1^{\top}b-z_2^{\top}b=(z_1-z_2)^{\top}b<0\).</li>
+  <li><em>Conclude.</em> Set \(y=z_1-z_2\in\mathbb{R}^m\) (note \(y\) is unrestricted in sign, as the classic statement allows). Then \(y^{\top}A=z_3^{\top}\ge0\) and \(y^{\top}b<0\), exactly the required certificate of infeasibility.</li>
+</ol>

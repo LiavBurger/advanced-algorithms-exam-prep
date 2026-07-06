@@ -1,0 +1,14 @@
+<p>We repeat the rounding \(T=\ln(n/\varepsilon)\) times with fresh independent randomness, producing families \(\mathcal S_1,\dots,\mathcal S_T\), and set \(\mathcal C=\bigcup_{j=1}^{T}\mathcal S_j\). Two claims must be shown: a bound on the expected size and a bound on the failure probability.</p>
+<ol class="gsteps">
+  <li><strong>Expected size.</strong> A union is never larger than the sum of the sizes of its parts (a set shared between rounds is counted once on the left but at least once on the right), so \(|\mathcal C|\le\sum_{j=1}^{T}|\mathcal S_j|\). Taking expectations and using linearity together with part (b), where \(\mathbb E[|\mathcal S_j|]=\text{LPOPT}\),
+  \[
+  \mathbb E[|\mathcal C|]\le\sum_{j=1}^{T}\mathbb E[|\mathcal S_j|]=T\cdot\text{LPOPT}\le T\cdot\text{OPT}=\text{OPT}\cdot\ln(n/\varepsilon),
+  \]
+  using \(\text{LPOPT}\le\text{OPT}\) once more from part (b).</li>
+  <li><strong>Cover probability.</strong> Fix an element \(i\). It is uncovered by \(\mathcal C\) exactly when it is uncovered by every single round \(\mathcal S_j\). The rounds use independent randomness, so these events multiply, and by part (c) each has probability at most \(1/e\):
+  \[
+  \Pr[i\text{ uncovered by }\mathcal C]=\prod_{j=1}^{T}\Pr[i\text{ uncovered by }\mathcal S_j]\le\Bigl(\tfrac1e\Bigr)^{T}=e^{-\ln(n/\varepsilon)}=\frac{\varepsilon}{n}.
+  \]</li>
+  <li><strong>Union bound.</strong> The event "some element is uncovered" is the union of the \(n\) events "element \(i\) is uncovered", so its probability is at most their sum, \(n\cdot\frac{\varepsilon}{n}=\varepsilon\).</li>
+</ol>
+<p>Therefore \(\mathcal C\) covers all \(n\) elements with probability at least \(1-\varepsilon\), while its expected size is at most \(\text{OPT}\cdot\ln(n/\varepsilon)\).</p>

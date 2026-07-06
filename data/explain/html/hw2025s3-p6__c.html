@@ -1,0 +1,6 @@
+<p>This is the converse direction: if \(A=B^TB\) for some matrix \(B\), then \(A\) is positive semidefinite.</p>
+<ol class="gsteps">
+<li><strong>Rewrite the quadratic form.</strong> Fix an arbitrary \(v\in\mathbb R^n\). Using \(A=B^TB\) and the transpose rule \((Bv)^T=v^TB^T\),
+\[v^TAv=v^TB^TBv=(Bv)^T(Bv)=\|Bv\|_2^2.\]</li>
+<li><strong>Conclude non-negativity.</strong> A squared Euclidean norm is always \(\ge 0\), so \(v^TAv=\|Bv\|_2^2\ge 0\). Since this holds for every \(v\), by definition \(A\) is positive semidefinite.</li>
+</ol>

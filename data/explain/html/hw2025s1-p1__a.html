@@ -1,0 +1,14 @@
+<p>We show \(\mathsf{ZPP}\) (languages with a zero-error randomized algorithm running in <em>expected</em> polynomial time) equals the class of languages having an algorithm \(M'\) that is (i) worst-case polynomial time, (ii) outputs yes / no / "I don't know", (iii) never errs when it commits to yes or no, and (iv) says "I don't know" with probability at most \(1/3\). Both directions convert one guarantee into the other.</p>
+<ol class="gsteps">
+  <li><em>\(\mathsf{ZPP}\Rightarrow\) the "I don't know" model.</em> Let \(M\) be a zero-error algorithm for \(A\) with running time \(T\), so \(\mathbb{E}[T]\le f(n)\) for a polynomial \(f\). Define \(M'\): simulate \(M\) for at most \(10f(n)\) steps; if \(M\) halts, echo its answer, otherwise output "I don't know". Properties (i),(ii) are immediate, and (iii) holds because whenever \(M\) halts it is correct. For (iv), \(T\ge 0\), so Markov's inequality gives
+  \[
+  \Pr[M'\text{ says "I don't know"}]=\Pr[T>10f(n)]\le\Pr[T\ge 10\,\mathbb{E}[T]]\le\tfrac1{10}\le\tfrac13,
+  \]
+  using \(10f(n)\ge 10\,\mathbb{E}[T]\).</li>
+  <li><em>The "I don't know" model \(\Rightarrow\mathsf{ZPP}\).</em> Given \(M'\) with the four properties and running time \(\le f(n)\), define \(M\): run \(M'\); if it answers yes/no, output that; if it says "I don't know", rerun with fresh randomness, repeating until an answer appears. Every answer of \(M'\) is correct, so \(M\) is zero-error.</li>
+  <li><em>Expected time is polynomial.</em> Let \(p=\Pr[M'\text{ says "I don't know"}]\le 1/3\). Each independent run "succeeds" (returns an answer) with probability \(1-p\), so the number of runs is geometric with mean \(\tfrac{1}{1-p}\); the expected time is \(\tfrac{1}{1-p}f(n)\le\tfrac{3}{2}f(n)\), a polynomial. Directly: \(\Pr[k\text{ runs}]=p^{k-1}(1-p)\), so
+  \[
+  \mathbb{E}[T]=\sum_{k\ge1}(1-p)p^{k-1}\,k f(n)=(1-p)f(n)\frac{d}{dp}\!\sum_{k\ge1}p^{k}=(1-p)f(n)\frac{d}{dp}\Big(\tfrac{1}{1-p}\Big)=\frac{f(n)}{1-p},
+  \]
+  since \(\frac{d}{dp}\frac{1}{1-p}=\frac{1}{(1-p)^2}\).</li>
+</ol>

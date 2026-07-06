@@ -1,0 +1,11 @@
+<p>We have a set system \(\mathcal{F}\) of \(m\) sets over a universe \(\{1,\dots,n\}\). The algorithm colors each element independently red or blue with probability \(\tfrac12\) each; we show that with high probability every set has discrepancy \(O(\sqrt{n\log m})\).</p>
+<ol class="gsteps">
+  <li><strong>Encode the coloring.</strong> For each element \(i\) let \(X_i=+1\) if \(i\) is red and \(-1\) if blue. The \(X_i\) are independent with \(\mathbb{E}[X_i]=0\), and the discrepancy of a set \(S\) is \(\mathrm{Disc}_h(S)=\big|\sum_{i\in S}X_i\big|\) (reds minus blues in \(S\)).</li>
+  <li><strong>Fix one set and apply Chernoff.</strong> Fix \(S\in\mathcal{F}\) and let \(s=|S|\le n\). Since \(s\le n\), the threshold \(C\sqrt{n\log m}\ge C\sqrt{s\log m}\), so the larger-threshold event is contained in the smaller-threshold one:
+  \[\Pr\!\big[\mathrm{Disc}_h(S)\ge C\sqrt{n\log m}\big]\le\Pr\!\Big[\big|\textstyle\sum_{i\in S}X_i\big|\ge C\sqrt{s\log m}\Big].\]
+  The sum of \(s\) independent \(\pm1\) mean-zero variables obeys the Chernoff/Hoeffding bound \(\Pr[|\sum|\ge t]\le e^{-\Omega(t^2/s)}\). With \(t=C\sqrt{s\log m}\), the exponent is \(\Omega\!\big(\tfrac{C^2 s\log m}{s}\big)=\Omega(C^2\log m)\), giving
+  \[\le e^{-\Omega(C^2\log m)}\le\frac{1}{10m^2}\]
+  once the constant \(C\) is chosen large enough (a larger \(C\) drives \(m^{-\Omega(C^2)}\) below \(m^{-2}/10\)).</li>
+  <li><strong>Union bound over all \(m\) sets.</strong> The probability that <em>some</em> set exceeds the threshold is at most \(m\cdot\tfrac{1}{10m^2}=\tfrac{1}{10m}\).</li>
+</ol>
+<p>Hence with probability at least \(1-\tfrac{1}{10m}\), every set simultaneously has \(\mathrm{Disc}_h(S)<C\sqrt{n\log m}=O(\sqrt{n\log m})\), so the random coloring meets the requirement with high probability.</p>

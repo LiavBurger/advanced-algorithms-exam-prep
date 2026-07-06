@@ -1,0 +1,9 @@
+<p>We evaluate \(\tilde f\cdot d\) coordinate by coordinate and reach a contradiction with part (d). Partition the indices \(\{1,\dots,n\}\) into \(s\), \(t\), the other fickle indices of \(B\), the non-fickle indices of \(B\), and the nonbasic indices \(N\setminus\{s\}\):
+\[\tilde f\cdot d=\tilde f_sd_s+\tilde f_td_t+\!\!\sum_{\substack{j\in B\ \text{fickle}\\ j\neq s,t}}\!\!\tilde f_jd_j+\!\!\sum_{\substack{j\in B\\ \text{not fickle}}}\!\!\tilde f_jd_j+\!\!\sum_{\substack{j\in N\\ j\neq s}}\!\!\tilde f_jd_j.\]</p>
+<ol class="gsteps">
+<li><strong>The \(s\) and \(t\) terms are strictly positive.</strong> \(\tilde f_sd_s>0\) since \(\tilde f_s>0\) (part e) and \(d_s=1>0\) (part b). And \(\tilde f_td_t>0\) since both factors are negative: \(\tilde f_t<0\) (part e) and \(d_t=-\bar A_{t,s}<0\) (part b), and a product of two negatives is positive.</li>
+<li><strong>The remaining fickle terms are nonnegative.</strong> For fickle \(j\in B\setminus\{s,t\}\), part (e) gives \(\tilde f_j\ge0\) and part (b) gives \(d_j\ge0\), so \(\tilde f_jd_j\ge0\).</li>
+<li><strong>The last two sums vanish.</strong> For non-fickle \(j\in B\), \(\tilde f_j=0\) by part (e). For \(j\in N\setminus\{s\}\), \(d_j=0\) by the definition of \(d\). Hence both sums are \(0\).</li>
+<li><strong>Contradiction.</strong> Adding the pieces, the two strictly positive terms plus nonnegative and zero terms give \(\tilde f\cdot d>0\). But part (d) proved \(\tilde f\cdot d=0\). This contradiction shows the assumed cycle cannot exist.</li>
+</ol>
+<div class="box">Under the cycling assumption the vector \(\tilde f=\tilde c'-\tilde c\) is simultaneously orthogonal to \(d\) (part d) and has strictly positive inner product with \(d\) (parts a–c, e). The contradiction proves that the simplex method with Bland's rule never cycles, and therefore terminates.</div>

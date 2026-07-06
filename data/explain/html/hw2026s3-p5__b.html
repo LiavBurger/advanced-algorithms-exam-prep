@@ -1,0 +1,7 @@
+<p>Now (D) is infeasible and (P) is feasible, and we must show (P) is unbounded (its minimization objective is driven to \(-\infty\)). The argument mirrors part (a) with the roles reversed.</p>
+<ol class="gsteps">
+<li><strong>Apply Farkas' Lemma II to (D).</strong> The feasible region of (D) is the inequality system \(A^Ty\le c\), so we use the class version of Farkas with \(C=A^T\) and \(d=c\). Its infeasibility yields \(x'\ge 0\) with \((x')^TA^T=0\) and \((x')^Tc<0\). Transposing the first condition, this says \(Ax'=0\) and \(c^Tx'<0\).</li>
+<li><strong>Shift a feasible primal point.</strong> Let \(x\) be any feasible solution of (P), so \(Ax=b\) and \(x\ge 0\). For each \(\lambda>0\) define \(x_\lambda=x+\lambda x'\).</li>
+<li><strong>\(x_\lambda\) stays feasible.</strong> \(Ax_\lambda=Ax+\lambda Ax'=b+0=b\), and \(x_\lambda\ge 0\) because \(x,x'\ge 0\) and \(\lambda>0\).</li>
+<li><strong>The objective drops without bound.</strong> \(c^Tx_\lambda=c^Tx+\lambda\,c^Tx'\); since \(c^Tx'<0\), this tends to \(-\infty\) as \(\lambda\to\infty\). As (P) is a minimization, it is unbounded.</li>
+</ol>

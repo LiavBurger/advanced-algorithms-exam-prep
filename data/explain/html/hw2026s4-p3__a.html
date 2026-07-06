@@ -1,0 +1,16 @@
+<p>We must write set cover as an integer program whose feasible \(\{0,1\}\)-vectors are exactly the covers and whose objective counts sets. For each set \(S\in\mathcal F\) the one decision is binary: take it or leave it.</p>
+<ol class="gsteps">
+  <li><strong>Variables.</strong> Introduce one variable \(x_S\in\{0,1\}\) for every \(S\in\mathcal F\), with the meaning \(x_S=1\) iff \(S\) is placed in the cover \(\mathcal S\). The integrality restriction \(x_S\in\{0,1\}\) is itself one of the constraints, as the problem requests.</li>
+  <li><strong>Objective.</strong> The size of the chosen family is \(|\mathcal S|=\sum_{S\in\mathcal F}x_S\), since each selected set contributes \(1\) and each rejected set \(0\). We minimize this sum.</li>
+  <li><strong>Coverage constraints.</strong> A family covers element \(i\) exactly when at least one selected set contains \(i\). The selected sets containing \(i\) contribute \(\sum_{S\ni i}x_S\) to the left side, so requiring this to be \(\ge 1\) forces at least one such set to be chosen. Writing one constraint per element \(1\le i\le n\) guarantees the whole ground set is covered.</li>
+</ol>
+<div class="box">
+\[
+\min \sum_{S\in\mathcal F} x_S \quad\text{s.t.}\quad
+\begin{aligned}
+&\sum_{S\in\mathcal F:\, i\in S} x_S \ge 1 &&\text{for all } 1\le i\le n,\\
+&x_S\in\{0,1\} &&\text{for all } S\in\mathcal F.
+\end{aligned}
+\]
+</div>
+<p>Every \(\{0,1\}\)-solution satisfying all \(n\) coverage constraints is a cover, and conversely every cover satisfies them, so the feasible integer points are precisely the covers and the optimum is the minimum cover size.</p>

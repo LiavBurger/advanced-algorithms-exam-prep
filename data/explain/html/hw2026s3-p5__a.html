@@ -1,0 +1,8 @@
+<p>The primal-dual pair is (P): \(\min c^Tx\) subject to \(Ax=b,\ x\ge 0\), and (D): \(\max b^Ty\) subject to \(A^Ty\le c\). We are told (P) is infeasible and (D) is feasible, and must show (D) is unbounded.</p>
+<ol class="gsteps">
+<li><strong>Apply Farkas (from Q4).</strong> Infeasibility of (P) means the system \(Ax=b,\ x\ge 0\) has no solution. The version of Farkas' lemma proved in Question 4 then produces a vector \(y'\) with \((y')^TA\ge 0\) and \((y')^Tb<0\).</li>
+<li><strong>Shift a feasible dual point.</strong> Let \(y\) be any feasible solution of (D), so \(A^Ty\le c\). For each \(\lambda>0\) define \(y_\lambda=y-\lambda y'\).</li>
+<li><strong>\(y_\lambda\) stays feasible.</strong> Transposing \((y')^TA\ge 0\) gives \(A^Ty'\ge 0\), hence \(\lambda A^Ty'\ge 0\), and therefore
+\[A^Ty_\lambda=A^Ty-\lambda A^Ty'\le A^Ty\le c.\]</li>
+<li><strong>The objective blows up.</strong> Its value is \(b^Ty_\lambda=b^Ty-\lambda\,b^Ty'\). Since \(b^Ty'=(y')^Tb<0\), the term \(-\lambda\,b^Ty'\) is positive and grows without bound as \(\lambda\to\infty\). Thus (D) has feasible points of arbitrarily large objective value, i.e. it is unbounded.</li>
+</ol>

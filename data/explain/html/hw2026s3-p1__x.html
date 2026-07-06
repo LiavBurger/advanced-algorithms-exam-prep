@@ -1,0 +1,7 @@
+<p>Let \(x_1\) and \(x_2\) be the number of kilograms of vegetable salad and of chicken salad the student buys; both are continuous and nonnegative. The table lists grams of each ingredient per kilogram of salad, so reading it one column at a time turns each dietary minimum into a single linear inequality, and the price to minimize is \(50x_1+70x_2\).</p>
+<div class="box"><p>\[\begin{aligned}\text{minimize}\quad&50x_1+70x_2\\ \text{subject to}\quad&100x_1+130x_2\ge 200 &&\text{(tomatoes)}\\ &150x_1+110x_2\ge 350 &&\text{(cucumbers)}\\ &80x_2\ge 120 &&\text{(chicken)}\\ &x_1,\,x_2\ge 0.\end{aligned}\]</p></div>
+<ol class="gsteps">
+<li>Feeding this program to any LP solver returns the optimum \(x_1=\tfrac{37}{30}\approx1.233\) and \(x_2=\tfrac32=1.5\).</li>
+<li>The minimum cost is \(50\cdot\tfrac{37}{30}+70\cdot\tfrac32=\tfrac{500}{3}\approx166.67\) shekels — about \(1.233\) kg of vegetable salad and \(1.5\) kg of chicken salad.</li>
+<li>At this solution the cucumber and chicken constraints are tight (\(150\cdot\tfrac{37}{30}+110\cdot1.5=185+165=350\) and \(80\cdot1.5=120\)), while the tomato intake is \(100\cdot\tfrac{37}{30}+130\cdot1.5=318.\overline{3}\) grams, comfortably above the required \(200\), so the tomato constraint is slack.</li>
+</ol>

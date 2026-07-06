@@ -1,0 +1,7 @@
+<p>Let \(B\) be a symmetric \(m\times m\) matrix with eigenvalues \(\lambda_1,\dots,\lambda_m\) (listed with multiplicity). We show \(\operatorname{rank}(B)=m-\#\{i:\lambda_i=0\}\), i.e. the rank drops by exactly one for each zero eigenvalue.</p>
+<ol class="gsteps">
+<li>By rank–nullity, if \(\dim\ker(B)=k\) then \(\operatorname{rank}(B)=m-k\). So it suffices to show \(\dim\ker(B)\) equals the number of zero eigenvalues.</li>
+<li>\(\dim\ker(B)\) is the dimension of the eigenspace for eigenvalue \(0\), that is, the geometric multiplicity of \(0\).</li>
+<li>A real symmetric matrix is diagonalizable by the spectral theorem, and for a diagonalizable matrix the geometric multiplicity of every eigenvalue equals its algebraic multiplicity. In particular the geometric multiplicity of \(0\) equals its algebraic multiplicity, which is exactly the number of indices \(i\) with \(\lambda_i=0\).</li>
+<li>Combining, \(\dim\ker(B)=\#\{i:\lambda_i=0\}\), hence \(\operatorname{rank}(B)=m-\#\{i:\lambda_i=0\}\).</li>
+</ol>

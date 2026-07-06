@@ -1,0 +1,6 @@
+<p>We use that the largest eigenvalue of the (normalized) walk matrix is \(1\), with the all-ones vector \(\mathbf 1\) as its eigenvector, to force some coordinate of \(x\) to be non-positive.</p>
+<ol class="gsteps">
+<li><strong>\(x\) is orthogonal to \(\mathbf 1\).</strong> As shown in class, \(\mathbf 1\) is an eigenvector for the eigenvalue \(1\). Since \(x\) is an eigenvector for a different eigenvalue \(\lambda_2\neq 1\), and eigenvectors of a symmetric matrix belonging to distinct eigenvalues are orthogonal, we get \(\langle x,\mathbf 1\rangle=0\).</li>
+<li><strong>The coordinates sum to zero.</strong> By definition of the inner product with \(\mathbf 1\), \(\;\langle x,\mathbf 1\rangle=\sum_{k=1}^n x_k\), so \(\sum_{k=1}^n x_k=0\).</li>
+<li><strong>Some coordinate is \(\le 0\).</strong> From part (a) the chosen coordinate satisfies \(x_i\ge \frac{1}{\sqrt n}>0\). If every coordinate were positive the sum would be strictly positive, contradicting \(\sum_k x_k=0\). Hence there is a different coordinate \(j\) with \(x_j\le 0\).</li>
+</ol>

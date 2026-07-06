@@ -1,0 +1,7 @@
+<p>The recursive block form of \(H_n\) turns one \(N\times N\) matrix–vector product into two products of half the size plus \(O(N)\) additions — exactly the FFT butterfly pattern. Here \(N=2^n\).</p>
+<ol class="gsteps">
+<li><strong>Block identity.</strong> Split \(x=\binom{x^{(0)}}{x^{(1)}}\) with \(x^{(0)},x^{(1)}\in\mathbb R^{N/2}\). Then \[H_nx=\begin{pmatrix}H_{n-1}&H_{n-1}\\ H_{n-1}&-H_{n-1}\end{pmatrix}\binom{x^{(0)}}{x^{(1)}}=\binom{H_{n-1}(x^{(0)}+x^{(1)})}{H_{n-1}(x^{(0)}-x^{(1)})},\] since the top block is \(H_{n-1}x^{(0)}+H_{n-1}x^{(1)}\) and the bottom is \(H_{n-1}x^{(0)}-H_{n-1}x^{(1)}\).</li>
+<li><strong>Algorithm \(\mathrm{WH}(n,x)\).</strong> If \(n=1\), return \((x_1+x_2,\;x_1-x_2)\). Otherwise compute \(u=x^{(0)}+x^{(1)}\) and \(v=x^{(0)}-x^{(1)}\) in \(O(N)\) time, then return \(\binom{\mathrm{WH}(n-1,u)}{\mathrm{WH}(n-1,v)}\).</li>
+<li><strong>Correctness (induction on \(n\)).</strong> Base \(n=1\): \(H_1x=(x_1+x_2,\,x_1-x_2)\), which is what the algorithm returns. Step: assuming \(\mathrm{WH}(n-1,\cdot)\) computes \(H_{n-1}\) times its input, the returned vector is \(\binom{H_{n-1}u}{H_{n-1}v}=\binom{H_{n-1}(x^{(0)}+x^{(1)})}{H_{n-1}(x^{(0)}-x^{(1)})}=H_nx\) by the block identity.</li>
+<li><strong>Running time.</strong> The two recursive calls on inputs of size \(N/2\) plus the \(O(N)\) work give \(T(N)=2T(N/2)+O(N)\). With \(a=b=2\) and \(f(N)=\Theta(N)=\Theta(N^{\log_b a})\), the Master Theorem yields \(T(N)=O(N\log N)\).</li>
+</ol>

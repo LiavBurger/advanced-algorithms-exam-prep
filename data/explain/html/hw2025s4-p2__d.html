@@ -1,0 +1,8 @@
+<p>Define the cost-difference vector \(\tilde f=\tilde c'-\tilde c\). We show that \(\tilde f^{\,T}\) lies in the row space of \(A\), which makes it orthogonal to \(d\) (since \(Ad=0\) from part (b)).</p>
+<ol class="gsteps">
+<li><strong>Expand both reduced-cost vectors.</strong> Using \(\tilde c^{\,T}=c^T-c_B^T(A_B)^{-1}A\) for basis \(B\) and \(\tilde c'^{\,T}=c^T-c_{B'}^T(A_{B'})^{-1}A\) for basis \(B'\),
+\[\tilde f^{\,T}=\tilde c'^{\,T}-\tilde c^{\,T}=\bigl(c^T-c_{B'}^T(A_{B'})^{-1}A\bigr)-\bigl(c^T-c_B^T(A_B)^{-1}A\bigr)=\bigl(c_B^T(A_B)^{-1}-c_{B'}^T(A_{B'})^{-1}\bigr)A.\]
+The two copies of \(c^T\) cancel, and \(A\) factors out on the right.</li>
+<li><strong>Write it as \(v^TA\).</strong> Set \(v^T:=c_B^T(A_B)^{-1}-c_{B'}^T(A_{B'})^{-1}\). Then \(\tilde f^{\,T}=v^TA\) for this vector \(v\).</li>
+<li><strong>Conclude \(\tilde f^{\,T}d=0\).</strong> Hence \(\tilde f^{\,T}d=v^T(Ad)=v^T\cdot 0=0\), where \(Ad=0\) was proved in part (b).</li>
+</ol>

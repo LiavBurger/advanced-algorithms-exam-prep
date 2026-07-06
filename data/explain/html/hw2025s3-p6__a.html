@@ -1,0 +1,7 @@
+<p>We show that positive semidefiniteness of \(A\) (meaning \(v^TAv\ge 0\) for all \(v\)) forces every eigenvalue of \(A\) to be non-negative.</p>
+<ol class="gsteps">
+<li><strong>Take an eigenpair.</strong> Let \(\lambda\) be any eigenvalue and \(u\neq 0\) a corresponding eigenvector, so \(Au=\lambda u\).</li>
+<li><strong>Evaluate the quadratic form at \(u\).</strong> By the PSD assumption \(u^TAu\ge 0\). On the other hand, substituting \(Au=\lambda u\),
+\[0\le u^TAu=u^T(\lambda u)=\lambda\,u^Tu=\lambda\|u\|_2^2.\]</li>
+<li><strong>Conclude.</strong> Since \(u\neq 0\) we have \(\|u\|_2^2>0\). Dividing the inequality \(\lambda\|u\|_2^2\ge 0\) by the positive number \(\|u\|_2^2\) yields \(\lambda\ge 0\). As \(\lambda\) was an arbitrary eigenvalue, all eigenvalues of \(A\) are non-negative.</li>
+</ol>

@@ -1,0 +1,15 @@
+<p>The proof mirrors part (a) with the roles swapped. Now \((D)\ \max b^Ty\text{ s.t. }A^Ty\le c\) is infeasible and \((P)\ \min c^Tx\text{ s.t. }Ax=b,\ x\ge 0\) has a feasible point \(x\); we drive the primal objective to \(-\infty\).</p>
+<ol class="gsteps">
+  <li><strong>Farkas certificate.</strong> Since \(A^Ty\le c\) has no solution, the version of Farkas' Lemma from class supplies \(x'\ge 0\) with \((x')^TA^T=0\), i.e. \(Ax'=0\), and \((x')^Tc<0\), i.e. \(c^Tx'<0\).</li>
+  <li><strong>A feasible ray.</strong> For every \(\lambda>0\) set \(x_\lambda=x+\lambda x'\). It stays feasible for \((P)\):
+  \[
+  Ax_\lambda=Ax+\lambda Ax'=b+0=b,
+  \]
+  using \(Ax=b\) (feasibility of \(x\)) and \(Ax'=0\); and \(x_\lambda\ge 0\) since \(x\ge 0\), \(x'\ge 0\), and \(\lambda>0\) make it a sum of nonnegative vectors.</li>
+  <li><strong>Objective blows up.</strong> The primal value at \(x_\lambda\) is
+  \[
+  c^Tx_\lambda=c^Tx+\lambda\,c^Tx'.
+  \]
+  Since \(c^Tx'<0\), the term \(\lambda\,c^Tx'\) is negative and tends to \(-\infty\) as \(\lambda\to\infty\), so \(c^Tx_\lambda\to-\infty\).</li>
+</ol>
+<p>We have exhibited feasible primal points of arbitrarily small (very negative) objective value, so the minimization \((P)\) is unbounded.</p>

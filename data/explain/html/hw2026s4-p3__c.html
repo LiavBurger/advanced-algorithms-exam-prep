@@ -1,0 +1,13 @@
+<p>Fix an element \(i\) and let \(S_1,\dots,S_k\) be the members of \(\mathcal F\) that contain \(i\). Only these sets can cover \(i\), and the rounding rule handles them independently, so we can compute the chance \(i\) is missed exactly.</p>
+<ol class="gsteps">
+  <li>Set \(S_j\) is left out of \(\mathcal S\) with probability \(1-x_{S_j}^*\). Element \(i\) is uncovered precisely when every one of the \(k\) sets containing it is left out, and by independence these events multiply:
+  \[
+  \Pr[i\text{ uncovered}]=\prod_{j=1}^{k}\bigl(1-x_{S_j}^*\bigr).
+  \]</li>
+  <li>Apply the standard inequality \(1+y\le e^{y}\) (valid for all real \(y\)) with \(y=-x_{S_j}^*\), giving \(1-x_{S_j}^*\le e^{-x_{S_j}^*}\) for each factor. Multiplying these bounds,
+  \[
+  \Pr[i\text{ uncovered}]\le\prod_{j=1}^{k}e^{-x_{S_j}^*}=e^{-\sum_{j=1}^{k}x_{S_j}^*}.
+  \]</li>
+  <li>The coverage constraint from part (a) for element \(i\) reads \(\sum_{j=1}^{k}x_{S_j}^*\ge 1\), and the optimal \(x^*\) satisfies it. Hence the exponent is at most \(-1\), so \(\Pr[i\text{ uncovered}]\le e^{-1}\).</li>
+</ol>
+<p>Taking complements, \(\Pr[i\text{ covered}]=1-\Pr[i\text{ uncovered}]\ge 1-\tfrac1e\), as required.</p>

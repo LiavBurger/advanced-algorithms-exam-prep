@@ -1,0 +1,16 @@
+<p>Subset-Sum only asks whether a target is achievable, so we build an IP whose <em>feasibility</em> mirrors the answer; there is nothing to optimize.</p>
+<ol class="gsteps">
+  <li><strong>Variables.</strong> Introduce \(x_i\in\{0,1\}\) for each integer \(w_i\), with \(x_i=1\) meaning \(w_i\in S\). A \(\{0,1\}\)-vector \(x\) thus encodes an arbitrary subset \(S\subseteq U\).</li>
+  <li><strong>Objective.</strong> Because this is a decision problem, we attach a constant objective (say minimize \(0\)); its value is irrelevant, since all we care about is whether any feasible point exists.</li>
+  <li><strong>Constraint.</strong> The subset selected by \(x\) sums to \(\sum_{i=1}^{n}x_i w_i\), and it hits the target exactly when this equals \(t\). That single equality is the only constraint.</li>
+</ol>
+<div class="box">
+\[
+\min\ 0 \quad\text{s.t.}\quad
+\begin{aligned}
+&\sum_{i=1}^{n} x_i w_i = t,\\
+&x_i\in\{0,1\} &&\text{for all } 1\le i\le n.
+\end{aligned}
+\]
+</div>
+<p>The IP has a feasible point if and only if some subset of \(U\) sums to \(t\), which is exactly the question Subset-Sum asks; so the instance is a "yes" instance precisely when this IP is feasible.</p>

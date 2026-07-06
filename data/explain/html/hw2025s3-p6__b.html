@@ -1,0 +1,8 @@
+<p>Assuming \(A\) is symmetric with non-negative eigenvalues (part a), we construct a matrix \(B\) with \(B^TB=A\) by taking a "square root" of \(A\) in its eigenbasis.</p>
+<ol class="gsteps">
+<li><strong>Orthogonal diagonalization.</strong> Since \(A\) is symmetric it diagonalizes as \(A=PDP^{-1}\), where the columns of \(P\) are eigenvectors and \(D\) is the diagonal matrix of eigenvalues. The eigenvectors can be chosen orthonormal, so \(P^TP=I\): the \((i,j)\) entry of \(P^TP\) is the inner product of columns \(i\) and \(j\) of \(P\), which equals \(1\) when \(i=j\) and \(0\) otherwise. Hence \(P^{-1}=P^T\) and \(A=PDP^T\).</li>
+<li><strong>Take a diagonal square root.</strong> By part (a) each \(D_{i,i}\ge 0\), so we may define the diagonal matrix \(D'=\sqrt D\) with \((D')_{i,i}=\sqrt{D_{i,i}}\) (well defined precisely because \(D_{i,i}\ge 0\)). Being diagonal, \(D'\) satisfies \((D')^2=D\) and \((D')^T=D'\).</li>
+<li><strong>Assemble \(B\).</strong> Set \(B=D'P^T\). Then
+\[B^TB=(D'P^T)^T(D'P^T)=P\,(D')^T D'\,P^T=P\,(D')^2P^T=PDP^T=A,\]
+using \((D')^TD'=(D')^2=D\). Thus \(A=B^TB\) as required.</li>
+</ol>

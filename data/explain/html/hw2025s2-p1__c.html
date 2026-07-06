@@ -1,0 +1,8 @@
+<p>We connect the "large" coordinate \(i\) (with \(x_i\ge 1/\sqrt n\)) to the "small" coordinate \(j\) (with \(x_j\le 0\)) by a path, and show that one edge along it carries a large difference.</p>
+<ol class="gsteps">
+<li><strong>A short path exists.</strong> Since \(G\) is connected there is a path from \(i\) to \(j\); we may take it simple, so it visits each vertex at most once and hence has at most \(n\) vertices. Write it \(i=i_1,i_2,\dots,i_t=j\) with \(t\le n\), where each consecutive pair \((i_k,i_{k+1})\) is an edge.</li>
+<li><strong>The endpoints differ a lot.</strong> Because \(x_i\ge \frac{1}{\sqrt n}\) and \(x_j\le 0\), we have \(x_i-x_j\ge x_i\ge \frac{1}{\sqrt n}\), so \(|x_{i_1}-x_{i_t}|\ge \frac{1}{\sqrt n}\).</li>
+<li><strong>Telescoping and the triangle inequality.</strong> Writing the endpoint gap as a telescoping sum of consecutive differences,
+\[\tfrac{1}{\sqrt n}\le\Big|\sum_{k=1}^{t-1}(x_{i_k}-x_{i_{k+1}})\Big|\le \sum_{k=1}^{t-1}\big|x_{i_k}-x_{i_{k+1}}\big|.\]</li>
+<li><strong>Averaging over edges.</strong> This is a sum of at most \(t-1\le n\) non-negative terms totalling at least \(1/\sqrt n\), so some term is at least \(\frac{1}{n}\cdot\frac{1}{\sqrt n}=\frac{1}{n\sqrt n}\). Calling that edge \((u,v)\) yields \(|x_u-x_v|\ge \frac{1}{n\sqrt n}\). (The printed \(x_n\) is a typo for \(x_v\).)</li>
+</ol>

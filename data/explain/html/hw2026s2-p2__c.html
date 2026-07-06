@@ -1,0 +1,19 @@
+<p>This is the expander mixing lemma. The strategy is to expand the quadratic form \(\mathbf{1}_S^{\top}A\,\mathbf{1}_T\) from part (b) in an orthonormal eigenbasis of \(A\): the top eigenvalue reproduces the "expected" term \(d|S||T|/n\), and the remaining eigenvalues, all bounded by \(\lambda\) in absolute value, control the error via Cauchy–Schwarz.</p>
+<ol class="gsteps">
+  <li><em>Top eigenvector.</em> As \(G\) is \(d\)-regular, each row of \(A\) sums to \(d\), so \(A\mathbf{1}=d\mathbf{1}\); hence \(u_1:=\mathbf{1}/\sqrt{n}\) is a unit eigenvector with eigenvalue \(\lambda_1=d\). Because \(A\) is real symmetric, extend to an orthonormal eigenbasis \(u_1,\dots,u_n\) with \(\lambda_1\ge\cdots\ge\lambda_n\) (spectral theorem).</li>
+  <li><em>Coordinates.</em> Write \(\mathbf{1}_S=\sum_i a_i u_i\) and \(\mathbf{1}_T=\sum_i b_i u_i\). Then \(a_1=\langle\mathbf{1}_S,u_1\rangle=\frac{1}{\sqrt n}\sum_{u\in S}1=\frac{|S|}{\sqrt n}\), and similarly \(b_1=\frac{|T|}{\sqrt n}\). Parseval gives \(\sum_i a_i^2=\|\mathbf{1}_S\|^2=|S|\), so the tail satisfies \(\sum_{i\ge 2}a_i^2=|S|-a_1^2\le|S|\), and likewise \(\sum_{i\ge2}b_i^2\le|T|\).</li>
+  <li><em>Diagonalize the form.</em> Using orthonormality and \(Au_i=\lambda_i u_i\), part (b) gives
+  \[
+  |E(S,T)|=\mathbf{1}_S^{\top}A\,\mathbf{1}_T=\sum_i\lambda_i a_i b_i=\lambda_1 a_1 b_1+\sum_{i\ge2}\lambda_i a_i b_i.
+  \]
+  The leading term is \(\lambda_1 a_1 b_1=d\cdot\frac{|S|}{\sqrt n}\cdot\frac{|T|}{\sqrt n}=\frac{d|S||T|}{n}\).</li>
+  <li><em>Bound the tail.</em> By definition of \(\lambda=\max\{\lambda_2,|\lambda_n|\}\), every \(i\ge2\) has \(|\lambda_i|\le\lambda\). Hence, by Cauchy–Schwarz,
+  \[
+  \Big|\sum_{i\ge2}\lambda_i a_i b_i\Big|\le\lambda\sum_{i\ge2}|a_i b_i|\le\lambda\sqrt{\textstyle\sum_{i\ge2}a_i^2}\,\sqrt{\textstyle\sum_{i\ge2}b_i^2}\le\lambda\sqrt{|S||T|}.
+  \]</li>
+</ol>
+<div class="box">
+\[
+\Big|\,|E(S,T)|-\tfrac{d|S||T|}{n}\,\Big|=\Big|\sum_{i\ge2}\lambda_i a_i b_i\Big|\le\lambda\sqrt{|S||T|}.
+\]
+</div>

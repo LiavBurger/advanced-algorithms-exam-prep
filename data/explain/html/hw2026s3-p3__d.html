@@ -1,0 +1,10 @@
+<p>Now \(r\) is drawn uniformly from \([0,1]\). We compute the expected size of the threshold set \(S(r)=\{v:y_v\ge r\}\) by breaking its cardinality into one indicator per vertex.</p>
+<ol class="gsteps">
+  <li><strong>Size as a sum of indicators.</strong> For each vertex \(v\), let \(Z_v\) be an indicator for the event \(y_v\ge r\) (it is \(1\) when \(v\in S(r)\) and \(0\) otherwise). Counting the members of \(S(r)\) one at a time,
+  \[|S(r)|=\sum_{v\in V}Z_v.\]</li>
+  <li><strong>Expectation of one indicator.</strong> First note \(0\le y_v\le 1\): the \(y_v\) are nonnegative, and \(\sum_v y_v\le 1\) forces each single \(y_v\le 1\). For a uniform \(r\in[0,1]\), the expectation of an indicator equals the probability of its event, and the probability that \(r\) lands at or below \(y_v\) is exactly the length of \([0,y_v]\):
+  \[\mathbb{E}_r[Z_v]=\Pr_r[r\le y_v]=y_v.\]</li>
+  <li><strong>Linearity of expectation.</strong> Summing over all vertices — valid regardless of dependence between the \(Z_v\) —
+  \[\mathbb{E}_r\big[|S(r)|\big]=\sum_{v\in V}\mathbb{E}_r[Z_v]=\sum_{v\in V}y_v.\]</li>
+</ol>
+<p>So the average number of surviving vertices is precisely the total \(y\)-weight, \(\sum_{v\in V}y_v\).</p>

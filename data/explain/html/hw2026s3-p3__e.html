@@ -1,0 +1,10 @@
+<p>This mirrors part (d), now counting edges of the threshold set \(E(r)=\{(u,v)\in E:x_{uv}\ge r\}\) with \(r\) uniform on \([0,1]\). We split \(|E(r)|\) into one indicator per edge.</p>
+<ol class="gsteps">
+  <li><strong>Size as a sum of indicators.</strong> For each edge \((u,v)\in E\), let \(W_{uv}\) be an indicator for the event \(x_{uv}\ge r\) (equal to \(1\) when \((u,v)\in E(r)\), else \(0\)). Then
+  \[|E(r)|=\sum_{(u,v)\in E}W_{uv}.\]</li>
+  <li><strong>Expectation of one indicator.</strong> Each \(x_{uv}\) lies in \([0,1]\): it is nonnegative, and feasibility gives \(x_{uv}\le y_u\le 1\) (using \(y_u\le 1\), which follows from \(\sum_v y_v\le 1\)). So for uniform \(r\in[0,1]\), the expectation of the indicator is the probability of its event, namely the length of \([0,x_{uv}]\):
+  \[\mathbb{E}_r[W_{uv}]=\Pr_r[r\le x_{uv}]=x_{uv}.\]</li>
+  <li><strong>Linearity of expectation.</strong> Summing over all edges,
+  \[\mathbb{E}_r\big[|E(r)|\big]=\sum_{(u,v)\in E}\mathbb{E}_r[W_{uv}]=\sum_{(u,v)\in E}x_{uv}.\]</li>
+</ol>
+<p>Thus the average number of surviving edges equals the LP objective \(\sum_{(u,v)\in E}x_{uv}=\alpha\). Combined with part (d), the expected density-numerator and density-denominator of the random threshold graph are exactly the LP's edge-mass and vertex-mass.</p>

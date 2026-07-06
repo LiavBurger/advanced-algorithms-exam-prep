@@ -1,0 +1,7 @@
+<p>Let \(p\) be the characteristic polynomial of \(B=A^\top A\). Parts (a) and (b) let us read \(\operatorname{rank}(A)\) off the position of the lowest nonzero coefficient of \(p\), which is cheap to compute in parallel.</p>
+<ol class="gsteps">
+<li>Let \(k=\#\{i:\lambda_i=0\}\) be the multiplicity of \(0\) as an eigenvalue of \(B\). By (b), \(\operatorname{rank}(B)=m-k\); by (a), \(\operatorname{rank}(A)=\operatorname{rank}(B)=m-k\).</li>
+<li>Since \(0\) is a root of \(p\) with multiplicity \(k\), \(x^k\mid p(x)\); and \(x^k\) is the largest such power, since otherwise the multiplicity of the root \(0\) would exceed \(k\). Thus \(p(x)=x^k q(x)\) with \(q(0)\ne0\).</li>
+<li>Equivalently, the coefficients of \(x^0,\dots,x^{k-1}\) in \(p\) are all \(0\) while the coefficient of \(x^k\) is \(q(0)\ne0\). So the smallest \(k\) with a nonzero coefficient of \(x^k\) is exactly this eigenvalue multiplicity, and the answer is \(\operatorname{rank}(A)=m-k\).</li>
+<li><strong>Parallel cost.</strong> Compute \(B=A^\top A\) in \(O(\log n)\); compute the characteristic polynomial of the \(m\times m\) matrix \(B\) in \(O(\log^2 m)=O(\log^2 n)\) by the algorithm seen in class; then find the smallest \(k\) with nonzero coefficient using a comparison tree in \(O(\log m)=O(\log n)\).</li>
+</ol>

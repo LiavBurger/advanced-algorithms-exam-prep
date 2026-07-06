@@ -1,0 +1,8 @@
+<p>Let \(A\) be the \(n\times n\) adjacency matrix of \(G\): \(A_{i,j}=1\) exactly when \(\{i,j\}\) is an edge, and \(A_{i,i}=0\) (no self-loops). We count triangles from the diagonal of \(A^3\), then get the running time from fast matrix multiplication.</p>
+<ol class="gsteps">
+  <li><strong>Powers of \(A\) count walks.</strong> By the definition of matrix multiplication, \((A^2)_{i,j}=\sum_{k}A_{i,k}A_{k,j}\) counts length-2 walks \(i\to k\to j\) (each term is \(1\) iff both edges exist). Similarly \((A^3)_{i,j}=\sum_{k,\ell}A_{i,k}A_{k,\ell}A_{\ell,j}\) counts length-3 walks \(i\to k\to\ell\to j\).</li>
+  <li><strong>Diagonal entries are closed length-3 walks.</strong> \((A^3)_{i,i}\) counts walks \(i\to k\to\ell\to i\). With no self-loops, \(i,k,\ell\) must be three distinct vertices forming a triangle through \(i\); conversely every triangle on \(i\) yields such walks.</li>
+  <li><strong>Account for over-counting.</strong> A fixed triangle \(\{i,j,k\}\) is traversed from \(i\) in two directions, \(i\to j\to k\to i\) and \(i\to k\to j\to i\), so it contributes \(2\) to \((A^3)_{i,i}\). The same triangle also sits on the diagonal at \(j\) and at \(k\), each again contributing \(2\). Hence each triangle is counted \(3\times 2=6\) times in \(\sum_i(A^3)_{i,i}=\operatorname{tr}(A^3)\).</li>
+</ol>
+<p>The algorithm therefore computes \(A^3\) and outputs \(\tfrac16\sum_{i=1}^n(A^3)_{i,i}\).</p>
+<div class="box">Forming \(A^3\) takes two \(n\times n\) matrix multiplications, done in \(O(n^{2.81\ldots})\) time via the Strassen-type algorithm from class; summing the \(n\) diagonal entries and dividing by \(6\) is an extra \(O(n)\). So the triangle count is obtained in \(O(n^{2.81\ldots})\) time, beating the naive \(O(n^3)\).</div>

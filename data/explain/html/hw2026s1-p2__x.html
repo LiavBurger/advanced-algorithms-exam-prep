@@ -1,0 +1,8 @@
+<p>A formula is a rooted tree whose leaves are labeled by variables or scalars and whose internal nodes are \(+\) or \(\times\) gates; its size \(s\) is the number of vertices. We prove by induction on \(s\) that the polynomial it computes has degree at most \(s\).</p>
+<ol class="gsteps">
+<li><strong>Base case \(s=1\).</strong> A size-\(1\) formula is a single leaf. If it is a variable it computes a degree-\(1\) polynomial; if it is a scalar it computes a constant, of degree \(0\) (with the convention that the zero polynomial has degree \(\le 0\)). Either way the degree is \(\le 1=s\).</li>
+<li><strong>Inductive step \(s>1\).</strong> The root is an internal gate whose subformulas compute \(f_1,f_2\) and have sizes \(s_1,s_2\). The root itself contributes one extra vertex, so \(s_1+s_2+1=s\). By the induction hypothesis \(\deg f_i\le s_i\) for \(i=1,2\).</li>
+<li><strong>Addition gate.</strong> Summing cannot raise the degree beyond the larger operand, so \(\deg(f_1+f_2)\le\max(s_1,s_2)\le s_1+s_2=s-1\).</li>
+<li><strong>Multiplication gate.</strong> The degree of a product is the sum of degrees, so \(\deg(f_1\cdot f_2)=\deg f_1+\deg f_2\le s_1+s_2=s-1\).</li>
+</ol>
+<p>In both cases the degree is at most \(s-1\le s\), completing the induction. The same bound holds for gates of higher fan-in: for children of sizes \(s_1,\dots,s_k\) with \(\sum_i s_i+1=s\), a product has degree \(\sum_i\deg f_i\le\sum_i s_i=s-1\) and a sum has degree \(\le\max_i s_i\le s-1\).</p>

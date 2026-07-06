@@ -1,0 +1,10 @@
+<p>Let \(\alpha=\sum_{(u,v)\in E}x_{uv}\ge 0\) be the objective of our feasible \((x,y)\). We want a single level \(r\) with \(|E(r)|\ge\alpha\,|S(r)|\); then \(S=S(r)\) has density \(\ge\alpha\). We argue by contradiction.</p>
+<ol class="gsteps">
+  <li><strong>The assumption.</strong> Suppose \(|E(r)|<\alpha\,|S(r)|\) for <em>every</em> \(r\in[0,1]\). Put \(g(r)=\alpha\,|S(r)|-|E(r)|\), so \(g(r)>0\) for all \(r\).</li>
+  <li><strong>The strict gap survives averaging.</strong> As \(r\) grows, both \(|S(r)|\) and \(|E(r)|\) only shrink and each jumps at finitely many places (the values \(y_1,\dots,y_n\)), so \(g\) is a step function taking finitely many values, all positive. Hence \(g\) is bounded below by some \(\delta>0\), giving \(\int_0^1 g(r)\,dr\ge\delta>0\). In expectation over \(r\sim\mathrm{Unif}[0,1]\) this reads
+  \[\mathbb{E}_r\big[|E(r)|\big]<\alpha\,\mathbb{E}_r\big[|S(r)|\big].\]</li>
+  <li><strong>Substitute parts (d) and (e).</strong> Using \(\mathbb{E}_r[|E(r)|]=\sum x_{uv}=\alpha\) and \(\mathbb{E}_r[|S(r)|]=\sum_v y_v\),
+  \[\alpha=\sum_{(u,v)\in E}x_{uv}<\alpha\sum_{v\in V}y_v\le\alpha,\]
+  where the last step uses \(\sum_v y_v\le 1\) together with \(\alpha\ge 0\). This says \(\alpha<\alpha\), a contradiction.</li>
+</ol>
+<p>So some \(r\) satisfies \(|E(r)|\ge\alpha\,|S(r)|\). Taking \(S=S(r)\), part (c) gives \(E_S=E(r)\), hence \(D(S)=|E_S|/|S|=|E(r)|/|S(r)|\ge\alpha\). This proves \(D^\*\le\max_S D(S)\); with part (a), \(D^\*=\max_S D(S)\). Since \(|S(r)|\) changes only at the \(n\) values \(y_1,\dots,y_n\), the good \(r\) is found efficiently by testing those \(n\) candidates.</p>

@@ -1,0 +1,7 @@
+<p>Given any feasible point \(\hat x\) (so \(C\hat x\le d\)), we show that a small Euclidean ball around it stays inside the slightly relaxed polyhedron \(\{x:Cx\le d+2^{-L'}\mathbf 1\}\). The only tools are Cauchy–Schwarz and a crude bound on the row norms of \(C\).</p>
+<ol class="gsteps">
+<li>Let \(c_j^\top\) be the \(j\)-th row of \(C\). Take any \(x\) with \(\|x-\hat x\|_2\le 2^{-2L'}\) and any row \(j\). Splitting \(x=\hat x+(x-\hat x)\), \[c_j^\top x=c_j^\top\hat x+c_j^\top(x-\hat x)\le d_j+\|c_j\|_2\,\|x-\hat x\|_2,\] using \(c_j^\top\hat x\le d_j\) and Cauchy–Schwarz on the second term.</li>
+<li>The entries of \(C\) are part of the input, so \(|c_{j,i}|\le 2^{L_2}\) for some polynomial \(L_2\); with \(n\) entries, \(\|c_j\|_2=\sqrt{\textstyle\sum_i c_{j,i}^2}\le\sqrt{n\,2^{2L_2}}=\sqrt n\,2^{L_2}\).</li>
+<li>Choose \(L'\) polynomial in the input and large enough that \(\|c_j\|_2\le 2^{L'}\) for every row \(j\). Then, since \(\|x-\hat x\|_2\le 2^{-2L'}\), \[c_j^\top x\le d_j+2^{L'}\cdot 2^{-2L'}=d_j+2^{-L'}.\]</li>
+<li>This holds for every row \(j\), so \(Cx\le d+2^{-L'}\mathbf 1\). Hence the whole ball \(\{x:\|x-\hat x\|_2\le 2^{-2L'}\}\) lies inside \(\{x:Cx\le d+2^{-L'}\mathbf 1\}\).</li>
+</ol>

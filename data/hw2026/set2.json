@@ -1,0 +1,148 @@
+[
+  {
+    "sid": "hw2026s2-p1",
+    "part": "a",
+    "topic": "randomized/random-walks",
+    "difficulty": "easy",
+    "summary": "Show a normalized lambda2-eigenvector of B=1/2I+1/2A has a coordinate with |x_i| >= 1/sqrt(n).",
+    "has_figure": false,
+    "questionImage": "images/randomized-random-walks__hw2026s2-p1-a__q.png",
+    "solutionImage": "images/randomized-random-walks__hw2026s2-p1-a__sol.png",
+    "source": { "kind": "homework", "iteration": 2026, "set": 2, "problem": 1, "part": "a" }
+  },
+  {
+    "sid": "hw2026s2-p1",
+    "part": "b",
+    "topic": "randomized/random-walks",
+    "difficulty": "medium",
+    "summary": "Assuming x_i >= 1/sqrt(n), show the lambda2-eigenvector x has some coordinate x_j <= 0, using x orthogonal to 1.",
+    "has_figure": false,
+    "questionImage": "images/randomized-random-walks__hw2026s2-p1-b__q.png",
+    "solutionImage": "images/randomized-random-walks__hw2026s2-p1-b__sol.png",
+    "solutionImage2": "images/randomized-random-walks__hw2026s2-p1-b__sol2.png",
+    "source": { "kind": "homework", "iteration": 2026, "set": 2, "problem": 1, "part": "b" }
+  },
+  {
+    "sid": "hw2026s2-p1",
+    "part": "c",
+    "topic": "randomized/random-walks",
+    "difficulty": "medium",
+    "summary": "Show G has an edge (u,v) with |x_u - x_v| >= 1/(n sqrt(n)) via a connecting path and a telescoping sum.",
+    "has_figure": false,
+    "questionImage": "images/randomized-random-walks__hw2026s2-p1-c__q.png",
+    "solutionImage": "images/randomized-random-walks__hw2026s2-p1-c__sol.png",
+    "source": { "kind": "homework", "iteration": 2026, "set": 2, "problem": 1, "part": "c" }
+  },
+  {
+    "sid": "hw2026s2-p1",
+    "part": "d",
+    "topic": "randomized/random-walks",
+    "difficulty": "hard",
+    "summary": "Justify the identity lambda2 = 1 - 1/2 sum B_kl(x_k-x_l)^2 and conclude the spectral gap bound lambda2 <= 1 - 1/(4dn^3).",
+    "has_figure": false,
+    "questionImage": "images/randomized-random-walks__hw2026s2-p1-d__q.png",
+    "solutionImage": "images/randomized-random-walks__hw2026s2-p1-d__sol.png",
+    "source": { "kind": "homework", "iteration": 2026, "set": 2, "problem": 1, "part": "d" }
+  },
+  {
+    "sid": "hw2026s2-p2",
+    "part": "a",
+    "topic": "randomized/prob-basics",
+    "difficulty": "medium",
+    "summary": "Prove E[|E(S,T)|] = d|S||T|/n for a uniformly random d-regular graph via edge indicators and linearity of expectation.",
+    "has_figure": false,
+    "questionImage": "images/randomized-prob-basics__hw2026s2-p2-a__q.png",
+    "solutionImage": "images/randomized-prob-basics__hw2026s2-p2-a__sol.png",
+    "source": { "kind": "homework", "iteration": 2026, "set": 2, "problem": 2, "part": "a" }
+  },
+  {
+    "sid": "hw2026s2-p2",
+    "part": "b",
+    "topic": "randomized/random-walks",
+    "difficulty": "easy",
+    "summary": "Show that |E(S,T)| = 1_S^T A 1_T for the (unnormalized) adjacency matrix A and indicator vectors of S, T.",
+    "has_figure": false,
+    "questionImage": "images/randomized-random-walks__hw2026s2-p2-b__q.png",
+    "solutionImage": "images/randomized-random-walks__hw2026s2-p2-b__sol.png",
+    "solutionImage2": "images/randomized-random-walks__hw2026s2-p2-b__sol2.png",
+    "source": { "kind": "homework", "iteration": 2026, "set": 2, "problem": 2, "part": "b" }
+  },
+  {
+    "sid": "hw2026s2-p2",
+    "part": "c",
+    "topic": "randomized/random-walks",
+    "difficulty": "hard",
+    "summary": "Expander mixing lemma: prove | |E(S,T)| - d|S||T|/n | <= lambda sqrt(|S||T|) with lambda = max{lambda2,|lambda_n|}.",
+    "has_figure": false,
+    "questionImage": "images/randomized-random-walks__hw2026s2-p2-c__q.png",
+    "solutionImage": "images/randomized-random-walks__hw2026s2-p2-c__sol.png",
+    "source": { "kind": "homework", "iteration": 2026, "set": 2, "problem": 2, "part": "c" }
+  },
+  {
+    "sid": "hw2026s2-p3",
+    "part": null,
+    "topic": "randomized/isolation-lemma",
+    "difficulty": "hard",
+    "summary": "Randomized algorithm finding a common basis of two rank-n matrices via the isolation lemma and a symbolic determinant.",
+    "has_figure": false,
+    "questionImage": "images/randomized-isolation-lemma__hw2026s2-p3-x__q.png",
+    "solutionImage": "images/randomized-isolation-lemma__hw2026s2-p3-x__sol.png",
+    "solutionImage2": "images/randomized-isolation-lemma__hw2026s2-p3-x__sol2.png",
+    "source": { "kind": "homework", "iteration": 2026, "set": 2, "problem": 3, "part": null }
+  },
+  {
+    "sid": "hw2026s2-p4",
+    "part": null,
+    "topic": "algebraic/matrix-mult",
+    "difficulty": "medium",
+    "summary": "Compute the transitive closure of a directed graph in o(n^3) via Boolean matrix powers by repeated squaring.",
+    "has_figure": false,
+    "questionImage": "images/algebraic-matrix-mult__hw2026s2-p4-x__q.png",
+    "solutionImage": "images/algebraic-matrix-mult__hw2026s2-p4-x__sol.png",
+    "source": { "kind": "homework", "iteration": 2026, "set": 2, "problem": 4, "part": null }
+  },
+  {
+    "sid": "hw2026s2-p5",
+    "part": null,
+    "topic": "algebraic/fft",
+    "difficulty": "medium",
+    "summary": "Divide-and-conquer algorithm computing the Walsh-Hadamard transform H_n x in O(N log N) time.",
+    "has_figure": false,
+    "questionImage": "images/algebraic-fft__hw2026s2-p5-x__q.png",
+    "solutionImage": "images/algebraic-fft__hw2026s2-p5-x__sol.png",
+    "source": { "kind": "homework", "iteration": 2026, "set": 2, "problem": 5, "part": null }
+  },
+  {
+    "sid": "hw2026s2-p6",
+    "part": "a",
+    "topic": "approx/approximation",
+    "difficulty": "easy",
+    "summary": "Prove that if A is positive semi-definite then all of its eigenvalues are non-negative.",
+    "has_figure": false,
+    "questionImage": "images/approx-approximation__hw2026s2-p6-a__q.png",
+    "solutionImage": "images/approx-approximation__hw2026s2-p6-a__sol.png",
+    "source": { "kind": "homework", "iteration": 2026, "set": 2, "problem": 6, "part": "a" }
+  },
+  {
+    "sid": "hw2026s2-p6",
+    "part": "b",
+    "topic": "approx/approximation",
+    "difficulty": "medium",
+    "summary": "Prove a real symmetric matrix with non-negative eigenvalues factors as A = B^T B (via the spectral theorem).",
+    "has_figure": false,
+    "questionImage": "images/approx-approximation__hw2026s2-p6-b__q.png",
+    "solutionImage": "images/approx-approximation__hw2026s2-p6-b__sol.png",
+    "source": { "kind": "homework", "iteration": 2026, "set": 2, "problem": 6, "part": "b" }
+  },
+  {
+    "sid": "hw2026s2-p6",
+    "part": "c",
+    "topic": "approx/approximation",
+    "difficulty": "easy",
+    "summary": "Prove that if A = B^T B for some real matrix B then A is positive semi-definite.",
+    "has_figure": false,
+    "questionImage": "images/approx-approximation__hw2026s2-p6-c__q.png",
+    "solutionImage": "images/approx-approximation__hw2026s2-p6-c__sol.png",
+    "source": { "kind": "homework", "iteration": 2026, "set": 2, "problem": 6, "part": "c" }
+  }
+]

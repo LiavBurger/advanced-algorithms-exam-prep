@@ -1,0 +1,9 @@
+<p>The direction we are now proving is \(D^\*\le\max_S D(S)\): from any feasible \((x,y)\) of value \(\alpha\) we will later extract a set with density \(\ge\alpha\). Part (b) first argues we may assume the \(x\)-variables are pushed as high as the constraints allow, namely \(x_{uv}=\min\{y_u,y_v\}\), because doing so can only help.</p>
+<ol class="gsteps">
+  <li><strong>The modification.</strong> Take any feasible \((x,y)\). Keep \(y\) unchanged and replace \(x\) by \(x'\), defined edge by edge as \(x'_{uv}=\min\{y_u,y_v\}\).</li>
+  <li><strong>\((x',y)\) is still feasible.</strong> For each edge, \(\min\{y_u,y_v\}\le y_u\) and \(\le y_v\), so the constraints \(x'_{uv}\le y_u\) and \(x'_{uv}\le y_v\) hold. It is nonnegative since \(y\ge 0\) makes the minimum \(\ge 0\). The only other constraint, \(\sum_v y_v\le 1\), involves \(y\) alone and is untouched.</li>
+  <li><strong>The value does not drop.</strong> Feasibility of the original \((x,y)\) forces \(x_{uv}\le y_u\) and \(x_{uv}\le y_v\), hence \(x_{uv}\le\min\{y_u,y_v\}=x'_{uv}\) for every edge. Summing over all edges,
+  \[\sum_{(u,v)\in E}x_{uv}\ \le\ \sum_{(u,v)\in E}x'_{uv},\]
+  so the new objective is \(\ge\alpha\).</li>
+</ol>
+<div class="box">Any feasible solution can be converted, without lowering its value, into one of the special form \(x_{uv}=\min\{y_u,y_v\}\). Hence proving \(D(S)\ge\alpha\) for solutions of this form proves it for all of them — the assumption "costs nothing."</div>

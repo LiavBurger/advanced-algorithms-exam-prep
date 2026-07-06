@@ -1,0 +1,6 @@
+<p>Let \(B'\) be the basis at the pivot where \(t\) <em>enters</em> the basis, and let \(\tilde c'\) be its reduced-cost vector, \(\tilde c'^{\,T}=c^T-c_{B'}^T(A_{B'})^{-1}A\). Recall that every fickle index \(j\) other than \(t\) satisfies \(j<t\).</p>
+<ol class="gsteps">
+<li><strong>\(\tilde c'_t<0\).</strong> Since \(t\) is chosen to enter the basis at \(B'\), the simplex entering rule forces its reduced cost to be strictly negative.</li>
+<li><strong>\(\tilde c'_j\ge0\) for every fickle \(j\) (so \(j<t\)).</strong> If \(j\in B'\), then \(\tilde c'_j=0\), because the reduced cost of a basic variable is always \(0\). If \(j\notin B'\), recall Bland's rule enters the smallest-index variable \(\ell\) with \(\tilde c'_\ell<0\); the rule picked \(t\), so no index below \(t\) can have a negative reduced cost. Since \(j<t\), this forces \(\tilde c'_j\ge0\). In both cases \(\tilde c'_j\ge0\).</li>
+</ol>
+<p>In particular, since \(s\) is fickle with \(s<t\), this gives \(\tilde c'_s\ge0\), a fact we use in part (e).</p>

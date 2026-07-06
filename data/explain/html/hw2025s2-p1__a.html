@@ -1,0 +1,6 @@
+<p>We are given a unit eigenvector \(x=(x_1,\dots,x_n)\) of \(\lambda_2\), so \(\|x\|_2^2=\sum_{k=1}^n x_k^2=1\). We must find a coordinate whose square is at least the average value \(1/n\).</p>
+<ol class="gsteps">
+<li><strong>Averaging argument.</strong> The \(n\) non-negative numbers \(x_1^2,\dots,x_n^2\) sum to \(1\), so their average is \(1/n\), and at least one of them must reach the average. Indeed, if every \(x_k^2<1/n\), then \(\sum_{k=1}^n x_k^2<n\cdot\frac1n=1\), contradicting \(\sum_k x_k^2=1\).</li>
+<li><strong>Pick the largest coordinate.</strong> Let \(i\) be an index for which \(x_i^2\) is maximal; by the previous step \(x_i^2\ge 1/n\), and taking square roots gives \(|x_i|\ge \frac{1}{\sqrt n}\).</li>
+<li><strong>Fix the sign.</strong> An eigenvector is determined only up to sign, and \(-x\) is also a unit eigenvector of \(\lambda_2\). Replacing \(x\) by \(-x\) if necessary, we may assume \(x_i\ge \frac{1}{\sqrt n}\); the later parts rely on this positive coordinate.</li>
+</ol>

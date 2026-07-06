@@ -1,0 +1,9 @@
+<p>We must exhibit one feasible LP point whose objective equals \(D(S)=|E_S|/|S|\); since the LP maximizes, its optimum \(D^\*\) is then at least that value. The hint hands us the point to use.</p>
+<ol class="gsteps">
+  <li><strong>The assignment.</strong> For the fixed nonempty \(S\) set \(y_j=\tfrac1{|S|}\) for \(j\in S\) and \(y_j=0\) otherwise; set \(x_{uv}=\tfrac1{|S|}\) when both \(u,v\in S\) and \(x_{uv}=0\) otherwise. Intuitively we spread a total weight of \(1\) evenly over the vertices of \(S\).</li>
+  <li><strong>Edge constraints \(x_{uv}\le y_u,\ x_{uv}\le y_v\).</strong> If both endpoints lie in \(S\), then \(x_{uv}=\tfrac1{|S|}=y_u=y_v\), so both inequalities hold with equality. For any other edge at least one endpoint is outside \(S\), and there \(x_{uv}=0\), which is \(\le y_u\) and \(\le y_v\) because every \(y\)-value is \(\tfrac1{|S|}\) or \(0\), hence nonnegative.</li>
+  <li><strong>The budget \(\sum_v y_v\le 1\).</strong> Exactly \(|S|\) vertices carry weight \(\tfrac1{|S|}\), so \(\sum_v y_v=|S|\cdot\tfrac1{|S|}=1\le 1\). Nonnegativity of all \(x_{uv},y_v\) is immediate.</li>
+  <li><strong>Objective.</strong> Only edges with both endpoints in \(S\) have \(x_{uv}\neq 0\); there are \(|E_S|\) of them, each contributing \(\tfrac1{|S|}\):
+  \[\sum_{(u,v)\in E}x_{uv}=|E_S|\cdot\frac1{|S|}=\frac{|E_S|}{|S|}=D(S).\]</li>
+</ol>
+<p>This feasible point attains value \(D(S)\), so \(D^\*\ge D(S)\). As \(S\) was an arbitrary nonempty subset, \(D^\*\ge\max_{\emptyset\neq S\subseteq V}D(S)\).</p>

@@ -1,0 +1,69 @@
+[
+  {
+    "sid": "hw2026s1-p1",
+    "part": null,
+    "topic": "algebraic/pit",
+    "difficulty": "medium",
+    "summary": "Prove the Schwartz-Zippel Lemma: a nonzero degree-d polynomial vanishes at a uniform random point of S^n w.p. <= d/|S|.",
+    "has_figure": false,
+    "questionImage": "images/algebraic-pit__hw2026s1-p1-x__q.png",
+    "solutionImage": "images/algebraic-pit__hw2026s1-p1-x__sol.png",
+    "source": { "kind": "homework", "iteration": 2026, "set": 1, "problem": 1, "part": null }
+  },
+  {
+    "sid": "hw2026s1-p2",
+    "part": null,
+    "topic": "algebraic/pit",
+    "difficulty": "easy",
+    "summary": "Prove that an arithmetic formula of size s computes a polynomial of degree at most s (induction on formula size).",
+    "has_figure": true,
+    "questionImage": "images/algebraic-pit__hw2026s1-p2-x__q.png",
+    "solutionImage": "images/algebraic-pit__hw2026s1-p2-x__sol.png",
+    "source": { "kind": "homework", "iteration": 2026, "set": 1, "problem": 2, "part": null }
+  },
+  {
+    "sid": "hw2026s1-p3",
+    "part": null,
+    "topic": "randomized/karger-min-cut",
+    "difficulty": "medium",
+    "summary": "Prove a connected graph has at most n(n-1)/2 minimum cuts, via Karger's per-cut success bound and disjoint events.",
+    "has_figure": false,
+    "questionImage": "images/randomized-karger-min-cut__hw2026s1-p3-x__q.png",
+    "solutionImage": "images/randomized-karger-min-cut__hw2026s1-p3-x__sol.png",
+    "source": { "kind": "homework", "iteration": 2026, "set": 1, "problem": 3, "part": null }
+  },
+  {
+    "sid": "hw2026s1-p4",
+    "part": null,
+    "topic": "algebraic/pit",
+    "difficulty": "hard",
+    "summary": "Randomized poly-time test: does the subspace spanned by B_1..B_k contain an invertible matrix? (symbolic det + PIT)",
+    "has_figure": false,
+    "questionImage": "images/algebraic-pit__hw2026s1-p4-x__q.png",
+    "solutionImage": "images/algebraic-pit__hw2026s1-p4-x__sol.png",
+    "source": { "kind": "homework", "iteration": 2026, "set": 1, "problem": 4, "part": null }
+  },
+  {
+    "sid": "hw2026s1-p5",
+    "part": null,
+    "topic": "algebraic/pit",
+    "difficulty": "hard",
+    "summary": "Use Cauchy-Binet to build a determinant polynomial and PIT to decide if two rank-n matrices U,V share a common basis.",
+    "has_figure": false,
+    "questionImage": "images/algebraic-pit__hw2026s1-p5-x__q.png",
+    "solutionImage": "images/algebraic-pit__hw2026s1-p5-x__sol.png",
+    "solutionImage2": "images/algebraic-pit__hw2026s1-p5-x__sol2.png",
+    "source": { "kind": "homework", "iteration": 2026, "set": 1, "problem": 5, "part": null }
+  },
+  {
+    "sid": "hw2026s1-p6",
+    "part": null,
+    "topic": "randomized/concentration",
+    "difficulty": "medium",
+    "summary": "Randomized algorithm outputting an eps-balanced set S in {-1,1}^n of size O(n/eps^2) w.p. 0.99 (Chernoff + union bound).",
+    "has_figure": false,
+    "questionImage": "images/randomized-concentration__hw2026s1-p6-x__q.png",
+    "solutionImage": "images/randomized-concentration__hw2026s1-p6-x__sol.png",
+    "source": { "kind": "homework", "iteration": 2026, "set": 1, "problem": 6, "part": null }
+  }
+]

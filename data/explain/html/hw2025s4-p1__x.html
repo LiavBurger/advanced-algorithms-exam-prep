@@ -1,0 +1,13 @@
+<p>The class version of Farkas' lemma says: if the system \(\{Cx\le d\}\) is unsolvable, then there is \(z\ge 0\) with \(z^\top C=0\) and \(z^\top d<0\). We derive the standard-form variant — about the system \(\{Ax=b,\ x\ge 0\}\) — by encoding it in the "\(\le\)" shape the class version expects.</p>
+<ol class="gsteps">
+  <li><strong>Encode equality-plus-nonnegativity as inequalities.</strong> Set
+  \[C=\begin{bmatrix}A\\-A\\-I\end{bmatrix},\qquad d=\begin{bmatrix}b\\-b\\0\end{bmatrix}.\]
+  Then \(Cx\le d\) unpacks to \(Ax\le b\), \(-Ax\le-b\) (i.e. \(Ax\ge b\)), and \(-x\le 0\) (i.e. \(x\ge 0\)). The first two together force \(Ax=b\), so \(\{Cx\le d\}\) is exactly \(\{Ax=b,\ x\ge 0\}\).</li>
+  <li><strong>Apply the class version.</strong> Assuming \(\{Ax=b,\ x\ge 0\}\) is unsolvable, \(\{Cx\le d\}\) is unsolvable, so there is \(z\ge 0\) with \(z^\top C=0\) and \(z^\top d<0\). Split \(z=\big[\,z_1;\,z_2;\,z_3\,\big]\) into the three blocks matching \(A,-A,-I\); each of \(z_1,z_2,z_3\ge 0\).</li>
+  <li><strong>Unpack \(z^\top C=0\).</strong>
+  \[z^\top C=z_1^\top A-z_2^\top A-z_3^\top I=(z_1-z_2)^\top A-z_3^\top=0,\]
+  so \((z_1-z_2)^\top A=z_3^\top\ge 0\), the inequality because \(z_3\ge 0\).</li>
+  <li><strong>Unpack \(z^\top d<0\).</strong> The third block multiplies \(0\), so
+  \[z^\top d=z_1^\top b-z_2^\top b+z_3^\top 0=(z_1-z_2)^\top b<0.\]</li>
+</ol>
+<div class="box">Choose \(y=z_1-z_2\). Then \(y^\top A\ge 0\) and \(y^\top b<0\). Hence if \(\{Ax=b,\ x\ge 0\}\) has no solution, there exists \(y\) (a difference of nonnegative vectors, so unrestricted in sign) with \(y^\top A\ge 0\) and \(y^\top b<0\) — the standard-form Farkas variant.</div>

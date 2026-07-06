@@ -1,0 +1,18 @@
+<p>The claim rewrites the edge count \(|E(S,T)|\) as a single quadratic form \(\mathbf{1}_S^{\top} A\,\mathbf{1}_T\) in the indicator vectors of \(S\) and \(T\). This is proved by expanding the matrix–vector product and observing which terms survive.</p>
+<ol class="gsteps">
+  <li>Write out the bilinear form entry by entry:
+  \[
+  \mathbf{1}_S^{\top} A\,\mathbf{1}_T=\sum_{u,v}(\mathbf{1}_S)_u\,A_{u,v}\,(\mathbf{1}_T)_v,
+  \]
+  the double sum ranging over all ordered pairs \((u,v)\in V\times V\).</li>
+  <li>The scalar \((\mathbf{1}_S)_u\) equals \(1\) exactly when \(u\in S\) and \(0\) otherwise; likewise \((\mathbf{1}_T)_v=1\) iff \(v\in T\). So a term contributes only when both \(u\in S\) and \(v\in T\); every other term is killed by a zero factor. The sum collapses to
+  \[
+  \sum_{u\in S,\,v\in T} A_{u,v}.
+  \]</li>
+  <li>Since \(A\) is the (unnormalized) adjacency matrix, \(A_{u,v}\) is the indicator of the event \((u,v)\in E\): it equals \(1\) if \((u,v)\) is an edge and \(0\) otherwise. Therefore
+  \[
+  \sum_{u\in S,\,v\in T} A_{u,v}=\sum_{u\in S,\,v\in T}[\,(u,v)\in E\,]=|E(S,T)|,
+  \]
+  because the sum just counts the ordered pairs \((u,v)\) with \(u\in S,\ v\in T\) that are edges, which is exactly the definition of \(|E(S,T)|\).</li>
+</ol>
+<p>Combining the three steps gives \(\mathbf{1}_S^{\top} A\,\mathbf{1}_T=|E(S,T)|\). This identity is what lets part (c) bring the spectrum of \(A\) to bear on the edge count.</p>

@@ -1,0 +1,11 @@
+<p>We want the expected number of (ordered) edges from \(S\) to \(T\) when \(G\) is drawn uniformly among all \(d\)-regular graphs on \(n\) vertices. The clean tool is linearity of expectation over one indicator per ordered pair, together with a symmetry argument that pins down the per-pair edge probability.</p>
+<ol class="gsteps">
+  <li>For each ordered pair \((u,v)\), let \(X_{u,v}\) be an indicator random variable for the event that \((u,v)\in E\). Then \(|E(S,T)|=\sum_{u\in S,\,v\in T} X_{u,v}\), matching the convention that an edge inside \(S\cap T\) is counted twice.</li>
+  <li><em>Every ordered pair has the same edge probability.</em> The uniform distribution over \(d\)-regular graphs is invariant under relabeling the vertices: permuting labels sends one \(d\)-regular graph to another with equal probability. Hence \(p:=\Pr[X_{u,v}=1]\) does not depend on the particular pair \((u,v)\).</li>
+  <li><em>Find \(p\).</em> Summing the indicators over all ordered pairs counts each undirected edge twice (once as \((u,v)\), once as \((v,u)\)), so \(\sum_{u,v} X_{u,v}=2|E|=nd\); the last equality is the handshake identity, since the degrees sum to \(nd=2|E|\). Taking expectations and using that all \(n^2\) terms equal \(p\), we get \(n^2 p = nd\), so \(p=d/n\).</li>
+  <li><em>Assemble.</em> By linearity of expectation,
+  \[
+  \mathbb{E}\big[|E(S,T)|\big]=\sum_{u\in S,\,v\in T}\Pr[X_{u,v}=1]=p\,|S|\,|T|=\frac{d|S||T|}{n}.
+  \]</li>
+</ol>
+<p>The key point is that no independence between edges is needed: linearity of expectation only requires the marginal probability \(p\) of each pair being an edge, and symmetry hands us \(p=d/n\) directly.</p>

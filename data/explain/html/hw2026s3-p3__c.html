@@ -1,0 +1,11 @@
+<p>Recall the threshold sets: for a level \(0\le r\le 1\), \(S(r)=\{v\in V:y_v\ge r\}\) collects the vertices whose \(y\)-value clears \(r\), and \(E(r)=\{(u,v)\in E:x_{uv}\ge r\}\) the edges whose \(x\)-value clears \(r\). Assuming the form \(x_{uv}=\min\{y_u,y_v\}\) justified in (b), we show an edge is "on" exactly when both its endpoints are "on."</p>
+<p>Fix an edge \((u,v)\in E\) and a level \(r\). Then</p>
+\[
+u,v\in S(r)\iff y_u\ge r\ \text{and}\ y_v\ge r\iff \min\{y_u,y_v\}\ge r\iff x_{uv}\ge r\iff (u,v)\in E(r).
+\]
+<ol class="gsteps">
+  <li>The first equivalence is just the definition of \(S(r)\) applied to each endpoint: \(u\in S(r)\) means \(y_u\ge r\), and likewise for \(v\).</li>
+  <li>The middle equivalence is the defining property of the minimum: \(\min\{y_u,y_v\}\ge r\) holds precisely when <em>both</em> \(y_u\ge r\) and \(y_v\ge r\) — if either fell below \(r\), the smaller of the two would too.</li>
+  <li>The third equivalence substitutes \(x_{uv}=\min\{y_u,y_v\}\) from part (b), and the last is the definition of \(E(r)\).</li>
+</ol>
+<p>Chaining these gives \(u,v\in S(r)\iff(u,v)\in E(r)\): the edge \((u,v)\) survives in \(E(r)\) if and only if both its endpoints survive in \(S(r)\). In graph terms, \(E(r)\) is exactly the edge set induced by \(S(r)\), i.e. \(E(r)=E_{S(r)}\).</p>

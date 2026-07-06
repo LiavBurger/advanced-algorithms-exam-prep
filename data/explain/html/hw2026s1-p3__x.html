@@ -1,0 +1,10 @@
+<p>Let \(C_1,\dots,C_k\) be all the distinct minimum cuts of the connected graph \(G\) on \(n\) vertices; we bound \(k\le n(n-1)/2\). The tool is Karger's contraction algorithm: repeatedly contract a uniformly random edge until only two vertices remain, then output the cut separating them. In class this run was shown to succeed on any fixed minimum cut with reasonable probability, and we exploit that a single run outputs only one cut.</p>
+<ol class="gsteps">
+<li><strong>Per-cut success bound.</strong> As proved in class, for any one fixed minimum cut \(C\),
+\[\Pr[\text{algorithm returns }C]\ \ge\ \frac{2}{n(n-1)}.\]
+This bound holds separately for each of \(C_1,\dots,C_k\).</li>
+<li><strong>The output events are pairwise disjoint.</strong> A single execution of the algorithm terminates with exactly one cut, so the events \(\{\text{algorithm returns }C_i\}\) for \(i=1,\dots,k\) are mutually exclusive. Their probabilities therefore add, and the sum cannot exceed \(1\):
+\[1\ \ge\ \sum_{i=1}^{k}\Pr[\text{returns }C_i]\ \ge\ \sum_{i=1}^{k}\frac{2}{n(n-1)}\ =\ k\cdot\frac{2}{n(n-1)}.\]</li>
+<li><strong>Solve for \(k\).</strong> Rearranging \(1\ge \dfrac{2k}{n(n-1)}\) yields \(k\le \dfrac{n(n-1)}{2}\), the claimed bound on the number of minimum cuts.</li>
+</ol>
+<div class="box">Each minimum cut is produced by Karger's algorithm with probability at least \(1/\binom{n}{2}=2/\bigl(n(n-1)\bigr)\); since one run yields one cut, there is room for at most \(\binom{n}{2}=n(n-1)/2\) distinct minimum cuts.</div>

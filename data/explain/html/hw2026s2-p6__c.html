@@ -1,0 +1,9 @@
+<p>This is the converse of (b): a matrix of the form \(A=B^\top B\) with \(B\) real is automatically PSD. Being PSD requires two things — symmetry and \(v^\top A v\ge 0\) for all \(v\) — and we check both.</p>
+<ol class="gsteps">
+  <li><strong>The quadratic form is a squared length.</strong> For any \(v\in\mathbb{R}^n\), substitute \(A=B^\top B\) and regroup using \(v^\top B^\top=(Bv)^\top\):
+  \[v^\top A v=v^\top B^\top B v=(Bv)^\top(Bv)=\|Bv\|^2\ge 0.\]
+  The vector \(Bv\) is real, so its squared Euclidean norm \(\|Bv\|^2=\sum_i (Bv)_i^2\) is a sum of squares of reals, hence non-negative. This holds for every \(v\).</li>
+  <li><strong>Symmetry.</strong> The definition of PSD is stated for symmetric matrices, so we confirm \(A\) is symmetric. Using \((XY)^\top=Y^\top X^\top\) and \((B^\top)^\top=B\):
+  \[A^\top=(B^\top B)^\top=B^\top(B^\top)^\top=B^\top B=A.\]</li>
+</ol>
+<p>Both conditions hold, so \(A\) is PSD. Together, parts (a)–(c) show the three characterizations coincide: for a real symmetric \(A\), being PSD, having all eigenvalues \(\ge 0\), and admitting a factorization \(A=B^\top B\) are equivalent.</p>

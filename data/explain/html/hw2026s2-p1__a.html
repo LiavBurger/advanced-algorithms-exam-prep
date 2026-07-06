@@ -1,0 +1,7 @@
+<p>We must produce one coordinate of the unit vector \(x\) whose absolute value is at least \(\tfrac{1}{\sqrt n}\). The argument is by contradiction: if every coordinate were strictly smaller, the vector could not have norm \(1\).</p>
+<ol class="gsteps">
+<li>By definition of the Euclidean norm, \(\|x\|_2^2=\sum_{k=1}^n x_k^2\), and we are given \(\|x\|_2=1\); hence \(\sum_{k=1}^n x_k^2=1\).</li>
+<li>Assume for contradiction that \(|x_k|<\tfrac{1}{\sqrt n}\) for every coordinate \(k\). Squaring this nonnegative inequality gives \(x_k^2<\tfrac1n\).</li>
+<li>Summing the strict bound over all \(n\) coordinates, \(\sum_{k=1}^n x_k^2<n\cdot\tfrac1n=1\).</li>
+<li>This contradicts \(\sum_k x_k^2=1\) from step&nbsp;1. So the assumption fails, and at least one coordinate \(i\) satisfies \(|x_i|\ge\tfrac{1}{\sqrt n}\).</li>
+</ol>

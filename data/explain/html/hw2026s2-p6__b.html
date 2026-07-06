@@ -1,0 +1,8 @@
+<p>Given a real symmetric \(A\) whose eigenvalues are all \(\ge 0\), we build an explicit \(B\) with \(A=B^\top B\). The construction is the "matrix square root," made possible because the non-negative eigenvalues have real square roots.</p>
+<ol class="gsteps">
+  <li><strong>Spectral decomposition.</strong> Since \(A\) is real symmetric, the spectral theorem gives \(A=QDQ^\top\) with \(Q\) orthogonal (its columns are \(n\) orthonormal eigenvectors, so \(Q^\top Q=QQ^\top=I\)) and \(D=\operatorname{diag}(\lambda_1,\dots,\lambda_n)\) holding the eigenvalues.</li>
+  <li><strong>Take a square root of \(D\).</strong> By hypothesis each \(\lambda_i\ge 0\), so \(\sqrt{\lambda_i}\) is a real number. Define \(D^{1/2}=\operatorname{diag}(\sqrt{\lambda_1},\dots,\sqrt{\lambda_n})\); it is real, diagonal, hence symmetric, and \(D^{1/2}D^{1/2}=D\).</li>
+  <li><strong>Define \(B\) and verify.</strong> Set \(B:=D^{1/2}Q^\top\). Using \((XY)^\top=Y^\top X^\top\), \((D^{1/2})^\top=D^{1/2}\), and \((Q^\top)^\top=Q\):
+  \[B^\top B=(D^{1/2}Q^\top)^\top(D^{1/2}Q^\top)=Q\,D^{1/2}\,D^{1/2}\,Q^\top=Q\,D\,Q^\top=A.\]</li>
+</ol>
+<p>Every step is legitimate exactly because the eigenvalues are non-negative — that is what makes \(D^{1/2}\) real, so \(B\in\mathbb{R}^{n\times n}\). Thus a real symmetric matrix with non-negative eigenvalues factors as \(A=B^\top B\).</p>

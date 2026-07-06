@@ -1,0 +1,7 @@
+<p>Write \(B=A^\top A\). We prove the two matrices have the same kernel, \(\ker(A)=\ker(B)\) as subsets of \(\mathbb R^m\); equal kernels give equal nullities, and rank–nullity then forces equal ranks.</p>
+<ol class="gsteps">
+<li><strong>\(Av=0\Rightarrow Bv=0\).</strong> If \(Av=0\) then \(Bv=A^\top A v=A^\top(Av)=A^\top 0=0\). So \(\ker(A)\subseteq\ker(B)\).</li>
+<li><strong>\(Bv=0\Rightarrow Av=0\).</strong> Multiply \(Bv=0\) on the left by \(v^\top\): \[0=v^\top(Bv)=v^\top A^\top Av=(Av)^\top(Av)=\langle Av,Av\rangle=\|Av\|_2^2.\] A vector of zero norm is the zero vector, so \(Av=0\). Hence \(\ker(B)\subseteq\ker(A)\).</li>
+<li>The two inclusions give \(\ker(A)=\ker(B)\), so \(\dim\ker(A)=\dim\ker(B)\).</li>
+<li>Both matrices act on \(\mathbb R^m\), so by rank–nullity \(\operatorname{rank}(A)=m-\dim\ker(A)=m-\dim\ker(B)=\operatorname{rank}(B)\).</li>
+</ol>

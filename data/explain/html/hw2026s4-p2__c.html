@@ -1,0 +1,19 @@
+<p>We want the fewest colors in a legal coloring. Since a coloring maps into \(\{1,\dots,n\}\) and \(n\) colors always suffice (give every vertex its own color), we fix \(n\) as the palette and let the IP decide which colors are actually used.</p>
+<ol class="gsteps">
+  <li><strong>Variables.</strong> For each vertex \(v\) and color \(i\) take \(x_{v,i}\in\{0,1\}\), where \(x_{v,i}=1\) means \(v\) receives color \(i\). For each color \(i\) take a flag \(y_i\in\{0,1\}\) indicating whether color \(i\) is used at all. The objective \(\sum_{i=1}^n y_i\) counts the colors that appear, and we minimize it.</li>
+  <li><strong>Each vertex is colored once.</strong> The constraint \(\sum_{i=1}^{n}x_{v,i}=1\) for every \(v\in V\) forces exactly one color per vertex, encoding a genuine function \(c:V\to\{1,\dots,n\}\).</li>
+  <li><strong>Legality.</strong> A coloring is legal when the two endpoints of an edge differ, i.e. never share a color. For every edge \((u,v)\in E\) and color \(i\), the constraint \(x_{u,i}+x_{v,i}\le 1\) forbids both endpoints from taking color \(i\).</li>
+  <li><strong>Linking flags to use.</strong> The constraint \(x_{v,i}\le y_i\) forces \(y_i=1\) whenever some vertex takes color \(i\), so every color that appears is counted. A color left unused may keep \(y_i=0\), which the minimization prefers.</li>
+</ol>
+<div class="box">
+\[
+\min \sum_{i=1}^{n} y_i \quad\text{s.t.}\quad
+\begin{aligned}
+&\sum_{i=1}^{n} x_{v,i}=1 &&\text{for all } v\in V,\\
+&x_{u,i}+x_{v,i}\le 1 &&\text{for all } (u,v)\in E,\ 1\le i\le n,\\
+&x_{v,i}\le y_i &&\text{for all } v\in V,\ 1\le i\le n,\\
+&x_{v,i},\,y_i\in\{0,1\}.
+\end{aligned}
+\]
+</div>
+<p>Feasible points are exactly the legal colorings, and \(\sum_i y_i\) equals the number of distinct colors used, so minimizing it returns a coloring with the fewest colors.</p>
