@@ -1,11 +1,15 @@
 /* Advanced Algorithms — Exam Prep. Renders from window.DATA + window.GUIDES.
    All progress persists in localStorage; works offline via file://. */
 (function () {
-  const DATA = window.DATA, GUIDES = window.GUIDES || {}, EXPL = window.EXPL || {};
+  const DATA = window.DATA, GUIDES = window.GUIDES || {}, EXPL = window.EXPL || {}, INTEL = window.INTEL || null;
+  const HINTS = window.HINTS || {};
+  const hintTitles = ['Help me start', 'Relevant tool', 'Next step', 'Solution structure', 'Check my answer'];
+  const INTEL_ID = "__intel2026__";
   const LS = {
     marks: "aa_marks_v1",     // { "sid#part": "got"|"shaky"|"failed" }
     reveal: "aa_reveal_v1",   // { "sid#part": true }
-    ui: "aa_ui_v1"            // { topic, tiers:{1,2,3}, weak }
+    ui: "aa_ui_v1",           // { topic, tiers:{1,2,3}, weak }
+    hints: "aa_hints_v1"      // independent of marks, solutions and course progress
   };
   const load = (k, d) => { try { return JSON.parse(localStorage.getItem(k)) || d; } catch { return d; } };
   let storageWarned = false;
@@ -18,6 +22,8 @@
     }
   };
   let marks = load(LS.marks, {}), reveal = load(LS.reveal, {});
+  let hintProgress = load(LS.hints, {});
+  if (!hintProgress || typeof hintProgress !== 'object' || Array.isArray(hintProgress)) hintProgress = {};
   let ui = load(LS.ui, { topic: null, tiers: { 1: true, 2: false, 3: false, 4: false }, weak: false, theme: "dark" });
   if (ui.tiers[4] === undefined) ui.tiers = { 1: !!ui.tiers[1], 2: !!ui.tiers[2], 3: !!ui.tiers[3], 4: false };
   const applyTheme = () => document.documentElement.setAttribute("data-theme", ui.theme || "dark");
@@ -25,6 +31,7 @@
 
   const allTopics = [];
   DATA.units.forEach(u => u.topics.forEach(t => { t.unit = u.unit; allTopics.push(t); }));
+  if (ui.topic === INTEL_ID && !INTEL) ui.topic = null;
   if (!ui.topic) {
     const t1 = allTopics.find(t => t.groups.some(g => g.tier === 1));
     ui.topic = (t1 || allTopics.find(t => t.groups.length) || allTopics[0]).topic;
@@ -54,13 +61,23 @@
     let h = `<div class="brand">Advanced Algorithms<small>Exam Prep · ${DATA.n_parents} problems · ${DATA.generated_parts} sub-questions</small></div>`;
     const g = counts(allTopics.flatMap(t => topicParts(t, true)));
     h += overallBar(g);
+    if (INTEL) {
+      const ic = counts(intelParts());
+      const done = ic.total && ic.got === ic.total;
+      const some = ic.got + ic.shaky + ic.failed > 0;
+      h += `<div class="nav-unit"><h4>Exam Intel</h4>
+        <div class="nav-topic intel ${ui.topic === INTEL_ID ? "active" : ""}" data-topic="${INTEL_ID}">
+        <span class="dot ${done ? "done" : some ? "partial" : ""}"></span>
+        <span class="nm">🎯 2026 Predicted Exam</span>
+        <span class="ct">${ic.got}/${ic.total}</span></div></div>`;
+    }
     DATA.units.forEach(u => {
       h += `<div class="nav-unit"><h4>${u.unit}</h4>`;
       u.topics.forEach(t => {
         const c = counts(topicParts(t, true));
         const done = c.total && c.got === c.total;
         const some = c.got + c.shaky + c.failed > 0;
-        const dot = done ? "done" : some ? "part" : "";
+        const dot = done ? "done" : some ? "partial" : "";
         h += `<div class="nav-topic ${t.topic === ui.topic ? "active" : ""}" data-topic="${t.topic}">
           <span class="dot ${dot}"></span><span class="nm">${t.topic_name}</span>
           <span class="ct">${c.got}/${c.total}</span></div>`;
@@ -91,16 +108,84 @@
     el.querySelectorAll("[data-tier]").forEach(c => c.onchange = () => { ui.tiers[c.dataset.tier] = c.checked; persist(); renderAll(); });
     el.querySelector("#weak").onchange = e => { ui.weak = e.target.checked; persist(); renderAll(); };
     el.querySelector("#theme").onclick = () => { ui.theme = ui.theme === "light" ? "dark" : "light"; applyTheme(); persist(); renderControls(); };
-    el.querySelector("#reset").onclick = () => { if (confirm("Clear all your Got-it/Shaky/Failed marks and reveals?")) { marks = {}; reveal = {}; persist(); renderAll(); } };
+    el.querySelector("#reset").onclick = () => { if (confirm("Clear question-library marks, solution reveals and revealed hints? Optional lesson progress will not change.")) { marks = {}; reveal = {}; hintProgress = {}; save(LS.marks, marks); save(LS.reveal, reveal); save(LS.hints, hintProgress); renderAll(); } };
+  }
+
+  // ---------------- Exam-intel view ----------------
+  function intelParts(respectWeak) {
+    const out = [];
+    if (!INTEL) return out;
+    INTEL.sections.forEach(sec => sec.items.forEach(it => it.parts.forEach(pt => {
+      if (respectWeak && ui.weak && !["shaky", "failed"].includes(marks[key(it.id, pt.part)])) return;
+      out.push({ k: key(it.id, pt.part) });
+    })));
+    return out;
+  }
+
+  function renderIntel() {
+    const el = document.getElementById("view");
+    const c = counts(intelParts());
+    let h = `<div class="topic-head"><div class="crumb">Exam Intel</div><h1>🎯 2026 Predicted Exam — Practice</h1>
+      <div class="tprog">${overallBar(c)}</div></div>`;
+    h += `<details class="guide" open><summary>📘 ${INTEL.overviewTitle}</summary><div class="gbody">${INTEL.overview}</div></details>`;
+    let anyShown = false;
+    INTEL.sections.forEach(sec => {
+      const cards = sec.items.map(intelCardHTML).filter(Boolean);
+      if (!cards.length) return;
+      anyShown = true;
+      const cc = counts(sec.items.flatMap(it => it.parts.map(pt => ({ k: key(it.id, pt.part) }))));
+      h += `<details class="tier t${sec.tier}" ${sec.open ? "open" : ""}>
+        <summary><span class="tbadge">Priority ${sec.tier}</span> ${sec.title}
+        <span class="tcount">· ${sec.items.length} problems · ${cc.got}/${cc.total} solved</span></summary>
+        ${sec.blurb ? `<div class="tier-blurb">${sec.blurb}</div>` : ""}${cards.join("")}</details>`;
+    });
+    if (!anyShown) h += `<div class="empty">You have no Shaky/Failed items here — nice.</div>`;
+    el.innerHTML = h;
+    wire(el);
+  }
+
+  function intelCardHTML(it) {
+    const parts = it.parts.filter(pt => !ui.weak || ["shaky", "failed"].includes(marks[key(it.id, pt.part)]));
+    if (!parts.length) return "";
+    const cc = counts(it.parts.map(pt => ({ k: key(it.id, pt.part) })));
+    let h = `<div class="prob"><div class="phdr"><span class="sid">${it.sid}</span>
+      <span class="tag ${it.difficulty}">${it.difficulty}</span>
+      <span class="src">${it.src || ""}</span>
+      <span class="pprog">${cc.got}/${cc.total} parts</span></div>`;
+    if (it.stem) h += `<div class="stem"><em>Problem stem</em><div class="qtext">${it.stem}</div></div>`;
+    parts.forEach(pt => h += intelPartHTML(it, pt));
+    h += `</div>`;
+    return h;
+  }
+
+  function intelPartHTML(it, pt) {
+    const k = key(it.id, pt.part), st = marks[k], revealed = reveal[k];
+    const lab = pt.part ? "(" + pt.part + ")" : "";
+    return `<div class="part ${st ? "st-" + st : ""}" data-k="${k}">
+      <div class="plab"><span class="lt">${lab}</span><span class="tag ${pt.difficulty}">${pt.difficulty}</span>
+        <span class="psum">${esc(pt.summary)}</span></div>
+      <div class="qtext">${pt.q}</div>
+      ${pt.basis ? `<div class="basisnote">🎯 <b>Why predicted:</b> ${pt.basis}</div>` : ""}
+      <div class="reveal-row">
+        <button class="reveal-btn" data-reveal="${k}">${revealed ? "Hide solution" : "Reveal solution"}</button>
+        <span class="marks">
+          <button class="mark got ${st === "got" ? "on" : ""}" data-mark="got" data-k="${k}">✓ Got it</button>
+          <button class="mark shaky ${st === "shaky" ? "on" : ""}" data-mark="shaky" data-k="${k}">~ Shaky</button>
+          <button class="mark failed ${st === "failed" ? "on" : ""}" data-mark="failed" data-k="${k}">✗ Failed</button>
+        </span>
+      </div>
+      <div class="sol textsol" ${revealed ? "" : "style=display:none"}><div class="solcap">Model solution</div>${pt.sol}
+        ${pt.srcline ? `<div class="srcline">${pt.srcline}</div>` : ""}</div></div>`;
   }
 
   // ---------------- Topic view ----------------
   function renderTopic() {
-    const t = allTopics.find(x => x.topic === ui.topic);
+    if (ui.topic === INTEL_ID && INTEL) return renderIntel();
+    const t = allTopics.find(x => x.topic === ui.topic) || allTopics[0];
     const el = document.getElementById("view");
     const c = counts(topicParts(t, true));
     let h = `<div class="topic-head"><div class="crumb">${t.unit}</div><h1>${t.topic_name}</h1>
-      <div class="tprog">${overallBar(c)}</div></div>`;
+      <div class="tprog">${overallBar(c)}</div><p class="practice-note">Practise on paper. Reveal one hint at a time when you need it; the full solution stays separate. Hints do not change your marks.</p><p class="hint-coverage">Hint coverage: ${topicParts(t, false).filter(p => HINTS[p.k]).length}/${topicParts(t, false).length} question parts in this topic, across all source filters.</p></div>`;
     h += guideHTML(t.topic);
 
     // group problems by tier
@@ -128,10 +213,23 @@
   function guideHTML(topic) {
     const g = GUIDES[topic];
     if (!g) return `<details class="guide"><summary>📘 Study guide — strategy & how to think</summary><div class="gbody"><p class="empty">Study guide coming soon for this topic.</p></div></details>`;
-    return `<details class="guide" open><summary>📘 Study guide — ${g.title || "strategy & how to think"}</summary><div class="gbody">${g.html}</div></details>`;
+    return `<details class="guide"><summary>📘 Optional reference — ${g.title || "strategy & how to think"}</summary><div class="gbody">${g.html}</div></details>`;
   }
 
   function partVisible(p, pt) { return !ui.weak || ["shaky", "failed"].includes(marks[key(p.sid, pt.part)]); }
+
+  function hintsHTML(k) {
+    const steps = HINTS[k];
+    if (!steps) return '<p class="hint-coverage">Question-specific hints are not available for this part yet.</p>';
+    const count = Number.isInteger(hintProgress[k]) ? Math.max(0, Math.min(steps.length, hintProgress[k])) : 0;
+    const id = 'hints-' + k.replace(/[^a-zA-Z0-9_-]/g, '-');
+    return `<section class="hint-ladder" aria-label="Question-specific hints">
+      <div class="hint-toolbar"><span class="hint-count">${count} of ${steps.length} hints revealed</span>
+        ${count < steps.length ? `<button class="btn hint-next" data-hint-next="${esc(k)}" aria-controls="${id}">${count === 0 ? 'Help me start' : 'Next hint: ' + hintTitles[count]}</button>` : '<span>All hints revealed</span>'}
+        ${count ? `<button class="btn" data-hint-hide="${esc(k)}">Hide hints · try again</button>` : ''}</div>
+      <div id="${id}" class="hint-steps">${steps.slice(0, count).map((body, i) => `<section class="hint-step" tabindex="-1"><h4>${i + 1}. ${hintTitles[i]}</h4>${body}${i === 4 ? '<p class="hint-self-check">Self-check against your paper answer; this does not automatically grade your writing.</p>' : ''}</section>`).join('')}</div>
+    </section>`;
+  }
 
   function cardHTML(p) {
     const parts = p.parts.filter(pt => partVisible(p, pt));
@@ -157,7 +255,11 @@
     const hw = isHW(p), heb = p.era === "y2021";
     let qvisual = `<div class="qimg"><img loading="lazy" src="${pt.questionImage}">${pt.questionImage2 ? `<img loading="lazy" src="${pt.questionImage2}">` : ""}</div>`;
     let note = "";
-    if (hw) note = `<div class="hwnote">Homework PDF is solution-only — the prompt above is the curated summary; the image is the solution's framing.</div>`;
+    if (hw) {
+      // These crops contain solution text, not independent question statements.
+      qvisual = `<details class="question-context"><summary>Source excerpt · may reveal the solution</summary>${qvisual}</details>`;
+      note = `<div class="hwnote">Homework source is solution-only. Use the curated prompt above; the optional source excerpt may reveal solution steps.</div>`;
+    }
     else if (heb) note = `<div class="hebrew-note">Original 2021 statement is in Hebrew (no English version existed); see the summary above for the English.</div>`;
     const revealed = reveal[k];
     const explBlock = EXPL[k]
@@ -167,8 +269,10 @@
       <img loading="lazy" src="${pt.solutionImage}">${pt.solutionImage2 ? `<img loading="lazy" src="${pt.solutionImage2}">` : ""}${explBlock}</div>`;
     return `<div class="part ${st ? "st-" + st : ""}" data-k="${k}">
       <div class="plab"><span class="lt">${lab}</span><span class="tag ${pt.difficulty}">${pt.difficulty}</span>
-        <span class="psum">${esc(pt.summary)}</span></div>
+        ${hw || heb ? `<span class="psum">${esc(pt.summary.replace(/\s+(?:via|using)\s+.*$/i, '').replace(/\s*\((?:false|true)[^)]*\)\.?$/i, ''))}</span>` : ''}</div>
       ${qvisual}${note}
+      ${!hw && !heb ? `<details class="question-context"><summary>Summary / topic cue · may reveal the approach or answer</summary><p>${esc(pt.summary)}</p></details>` : ''}
+      <div class="hint-slot">${hintsHTML(k)}</div>
       <div class="reveal-row">
         <button class="reveal-btn" data-reveal="${k}">${revealed ? "Hide solution" : "Reveal solution"}</button>
         <span class="marks">
@@ -180,6 +284,23 @@
   }
 
   function wire(el) {
+    function wireHints(scope) {
+      scope.querySelectorAll('[data-hint-next], [data-hint-hide]').forEach(b => b.onclick = () => {
+        const k = b.dataset.hintNext || b.dataset.hintHide;
+        const steps = HINTS[k];
+        if (!steps) return;
+        const old = Number.isInteger(hintProgress[k]) ? Math.max(0, Math.min(steps.length, hintProgress[k])) : 0;
+        if (b.dataset.hintNext) hintProgress[k] = Math.min(steps.length, old + 1);
+        else delete hintProgress[k];
+        save(LS.hints, hintProgress);
+        const slot = b.closest('.hint-slot');
+        slot.innerHTML = hintsHTML(k);
+        wireHints(slot);
+        const target = slot.querySelector('.hint-step:last-child') || slot.querySelector('[data-hint-next]');
+        if (target) target.focus({ preventScroll: true });
+      });
+    }
+    wireHints(el);
     el.querySelectorAll("[data-reveal]").forEach(b => b.onclick = () => {
       const k = b.dataset.reveal; reveal[k] = !reveal[k]; if (!reveal[k]) delete reveal[k];
       save(LS.reveal, reveal);

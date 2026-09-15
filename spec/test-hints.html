@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><base href="../"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Hint regression test</title><link rel="stylesheet" href="style.css"><style>#test-result{white-space:pre-wrap;overflow-wrap:anywhere}</style></head>
+<body><pre id="test-result">Run this fixture in an isolated browser profile with ?run=1. It temporarily seeds test progress and restores it afterward.</pre>
+<div class="app"><aside class="side" id="side"></aside><main class="main"><div id="controls"></div><div id="view"></div></main></div>
+<script>
+const enabled = new URLSearchParams(location.search).get('run') === '1';
+const testKeys = ['aa_marks_v1','aa_reveal_v1','aa_ui_v1','aa_hints_v1','aa_exam_c_course_v1'];
+if (enabled && !sessionStorage.getItem('hints-test-reload')) {
+  sessionStorage.setItem('hints-test-backup', JSON.stringify(Object.fromEntries(testKeys.map(k => [k, localStorage.getItem(k)]))));
+  localStorage.setItem('aa_marks_v1', JSON.stringify({'2023A-p1#c':'shaky'}));
+  localStorage.setItem('aa_reveal_v1', '{}');
+  localStorage.setItem('aa_hints_v1', '{}');
+  localStorage.setItem('aa_exam_c_course_v1', JSON.stringify({selected:4,done:{1:true,2:true}}));
+  localStorage.setItem('aa_ui_v1', JSON.stringify({topic:'randomized/prob-basics',tiers:{1:true,2:true,3:true,4:true},theme:'dark',weak:false}));
+}
+</script>
+<script src="data.js"></script><script src="guides.js"></script><script src="explanations.js"></script><script src="hints.js"></script><script src="intel.js"></script>
+<script>if(enabled) document.write('<script src="app.js"><\/script>');</script>
+<script>
+function restore() {
+  const backup = JSON.parse(sessionStorage.getItem('hints-test-backup') || '{}');
+  for (const [key,value] of Object.entries(backup)) value === null ? localStorage.removeItem(key) : localStorage.setItem(key,value);
+  sessionStorage.removeItem('hints-test-backup'); sessionStorage.removeItem('hints-test-reload');
+}
+function assert(ok, message) { if (!ok) throw new Error(message); }
+function card(key) { return document.querySelector(`.part[data-k="${key}"]`); }
+function topic(id) { document.querySelector(`[data-topic="${id}"]`).click(); }
+window.addEventListener('error', e => { if(enabled) {document.getElementById('test-result').textContent='FAIL '+e.message;restore();} });
+document.addEventListener('DOMContentLoaded', () => {
+  if (!enabled) return;
+  try {
+    if (sessionStorage.getItem('hints-test-reload')) {
+      assert(card('2023A-p1#c').querySelectorAll('.hint-step').length === 3, 'hint count must survive full reload');
+      assert(document.documentElement.dataset.theme === 'light', 'theme survives reload');
+      assert(JSON.parse(localStorage.getItem('aa_marks_v1'))['2023A-p1#c'] === 'shaky', 'original mark preserved');
+      assert(JSON.parse(localStorage.getItem('aa_exam_c_course_v1')).done[2], 'course progress preserved');
+      assert(document.documentElement.scrollWidth <= window.innerWidth, 'page-level horizontal overflow');
+      document.getElementById('test-result').textContent = 'PASS: 234 parts, 1170 hint reveals, hidden solutions/cues, MathML, keyboard focus, retries, filters, marking, themes, and full-reload persistence. Original fixture storage restored.';
+      restore(); return;
+    }
+    assert(Object.keys(HINTS).length === 234, 'all parts covered');
+    let tested=0, mathCount=0;
+    for(const unit of DATA.units) for(const t of unit.topics) {
+      topic(t.topic);
+      document.querySelectorAll('.tier').forEach(tier => {tier.open=true;});
+      assert(!document.querySelector('.guide').open, 'reference must begin collapsed');
+      const size=t.groups.reduce((n,g)=>n+g.parts.length,0);
+      assert(document.querySelector('.topic-head .hint-coverage').textContent.includes(size+'/'+size),'topic coverage');
+      for(const g of t.groups) for(const p of g.parts) {
+        const k=g.sid+'#'+(p.part||'x'), c=card(k);
+        assert(c, 'missing card '+k);
+        assert(c.querySelectorAll('.hint-step').length === 0, 'initial hints closed '+k);
+        if(g.source.kind==='exam' && g.era!=='y2021') {
+          assert(!c.querySelector('.plab .psum'), 'exam summary leaks '+k);
+          assert(!c.querySelector('.question-context').open, 'exam cue open '+k);
+        }
+        if(g.source.kind==='homework') assert(!c.querySelector('.question-context').open, 'homework solution excerpt open '+k);
+        for(let n=1;n<=5;n++) {
+          c.querySelector('[data-hint-next]').click();
+          assert(c.querySelectorAll('.hint-step').length===n, 'progressive reveal '+k);
+          assert(document.activeElement===c.querySelector('.hint-step:last-child'), 'new step gets focus '+k);
+          assert(c.querySelector('.sol').style.display==='none', 'hint revealed solution '+k);
+        }
+        assert(!c.querySelector('[data-hint-next]'), 'sixth hint exists '+k);
+        const hintText=c.querySelector('.hint-steps').textContent;
+        assert(!hintText.includes('\\(') && !hintText.includes('\\[') && !hintText.includes('⟦'), 'raw math token '+k);
+        assert(c.querySelector('.hint-self-check'), 'self-check not labelled '+k);
+        mathCount+=c.querySelectorAll('.hint-step math').length;
+        c.querySelector('[data-reveal]').click();
+        assert(c.querySelector('.sol').style.display!=='none', 'solution button failed '+k);
+        c.querySelector('[data-reveal]').click();
+        c.querySelector('[data-hint-hide]').click();
+        assert(c.querySelectorAll('.hint-step').length===0, 'retry failed '+k);
+        tested++;
+      }
+    }
+    assert(tested===234 && mathCount>100, 'coverage or MathML missing');
+    topic('__intel2026__');
+    assert(document.querySelector('#view h1'), 'existing intel view regressed');
+    topic('randomized/prob-basics');
+    let c=card('2023A-p1#c');
+    c.querySelector('[data-hint-next]').click();
+    c.querySelector('[data-mark="got"]').click();
+    assert(card('2023A-p1#c').querySelectorAll('.hint-step').length===1, 'marking loses hints');
+    card('2023A-p1#c').querySelector('[data-mark="shaky"]').click();
+    const weak=document.getElementById('weak'); weak.checked=true; weak.dispatchEvent(new Event('change'));
+    assert(document.querySelectorAll('.part').length===1,'weak filter');
+    const weakAgain=document.getElementById('weak'); weakAgain.checked=false; weakAgain.dispatchEvent(new Event('change'));
+    document.getElementById('theme').click();
+    assert(document.documentElement.dataset.theme==='light','light mode');
+    document.getElementById('theme').click();
+    assert(document.documentElement.dataset.theme==='dark','dark mode');
+    document.getElementById('theme').click();
+    for(const tier of [2,3,4]) { const e=document.querySelector(`[data-tier="${tier}"]`); e.checked=false; e.dispatchEvent(new Event('change')); }
+    c=card('2023A-p1#c'); c.querySelector('[data-hint-next]').click(); c.querySelector('[data-hint-next]').click();
+    assert(JSON.parse(localStorage.getItem('aa_hints_v1'))['2023A-p1#c']===3, 'hint persistence');
+    assert(!Object.keys(JSON.parse(localStorage.getItem('aa_reveal_v1'))).length, 'solutions left revealed');
+    sessionStorage.setItem('hints-test-reload','1');
+    location.reload();
+  } catch(error) {
+    document.getElementById('test-result').textContent='FAIL: '+error.stack;
+    restore();
+  }
+});
+</script></body></html>
