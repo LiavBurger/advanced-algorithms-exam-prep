@@ -424,7 +424,7 @@
     {
      "topic": "randomized/concentration",
      "topic_name": "Concentration Bounds",
-     "n_groups": 14,
+     "n_groups": 15,
      "groups": [
       {
        "sid": "2025B-p1",
@@ -631,6 +631,36 @@
          "summary": "Randomized poly-time algorithm outputting an epsilon-unbiased set of size O(n/eps^2) w.p. 0.99 via random sampling + Chernoff + union bound.",
          "questionImage": "images/randomized-concentration__2025A-p4-x__q.png",
          "solutionImage": "images/randomized-concentration__2025A-p4-x__sol.png",
+         "solutionImage2": null,
+         "questionImage2": null
+        }
+       ]
+      },
+      {
+       "sid": "2025C-p5",
+       "source": {
+        "kind": "exam",
+        "year": 2025,
+        "moed": "C",
+        "iteration": null,
+        "set": null,
+        "problem": 5,
+        "part": null
+       },
+       "era": "modern",
+       "tier": 1,
+       "tier_name": "2023+ Exams",
+       "title": "",
+       "stemImage": null,
+       "difficulty": "hard",
+       "parts": [
+        {
+         "part": null,
+         "topic": "randomized/concentration",
+         "difficulty": "hard",
+         "summary": "Construct a k-tertiary matrix over {0,1,2} (balanced symbol counts on every k x k submatrix) whp, via Chernoff + union bound.",
+         "questionImage": "images/randomized-concentration__2025C-p5-x__q.png",
+         "solutionImage": "images/randomized-concentration__2025C-p5-x__sol.png",
          "solutionImage2": null,
          "questionImage2": null
         }
@@ -1788,8 +1818,38 @@
     {
      "topic": "algebraic/fft",
      "topic_name": "FFT & Polynomial Multiplication",
-     "n_groups": 10,
+     "n_groups": 11,
      "groups": [
+      {
+       "sid": "2024A-p5",
+       "source": {
+        "kind": "exam",
+        "year": 2024,
+        "moed": "A",
+        "iteration": null,
+        "set": null,
+        "problem": 5,
+        "part": null
+       },
+       "era": "modern",
+       "tier": 1,
+       "tier_name": "2023+ Exams",
+       "title": "",
+       "stemImage": null,
+       "difficulty": "easy",
+       "parts": [
+        {
+         "part": null,
+         "topic": "algebraic/fft",
+         "difficulty": "easy",
+         "summary": "O(n log n) algorithm computing all values of the convolution f*g of two value lists via FFT polynomial multiplication.",
+         "questionImage": "images/algebraic-fft__2024A-p5-x__q.png",
+         "solutionImage": "images/algebraic-fft__2024A-p5-x__sol.png",
+         "solutionImage2": null,
+         "questionImage2": null
+        }
+       ]
+      },
       {
        "sid": "2025C-p1",
        "source": {
@@ -2635,6 +2695,73 @@
          "summary": "T/F: parity of the number of perfect matchings in a bipartite graph is efficiently decidable via det(A) mod 2.",
          "questionImage": "images/lp-basics__2024C-p1-d__q.png",
          "solutionImage": "images/lp-basics__2024C-p1-d__sol.png",
+         "solutionImage2": null,
+         "questionImage2": null
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "topic": "algebraic/lattices",
+     "topic_name": "Lattices & LLL",
+     "n_groups": 2,
+     "groups": [
+      {
+       "sid": "2024B-p1",
+       "source": {
+        "kind": "exam",
+        "year": 2024,
+        "moed": "B",
+        "iteration": null,
+        "set": null,
+        "problem": 1,
+        "part": "a"
+       },
+       "era": "modern",
+       "tier": 1,
+       "tier_name": "2023+ Exams",
+       "title": "",
+       "stemImage": "images/lp-ilp-tum__2024B-p1__stem.png",
+       "difficulty": "easy",
+       "parts": [
+        {
+         "part": "c",
+         "topic": "algebraic/lattices",
+         "difficulty": "easy",
+         "summary": "T/F: for an orthogonal lattice basis sorted by length, b1 is a shortest nonzero lattice vector (true; integer coefficients, sum of squares).",
+         "questionImage": "images/lp-ilp-tum__2024B-p1-c__q.png",
+         "solutionImage": "images/lp-ilp-tum__2024B-p1-c__sol.png",
+         "solutionImage2": null,
+         "questionImage2": null
+        }
+       ]
+      },
+      {
+       "sid": "2024C-p5",
+       "source": {
+        "kind": "exam",
+        "year": 2024,
+        "moed": "C",
+        "iteration": null,
+        "set": null,
+        "problem": 5,
+        "part": null
+       },
+       "era": "modern",
+       "tier": 1,
+       "tier_name": "2023+ Exams",
+       "title": "",
+       "stemImage": null,
+       "difficulty": "medium",
+       "parts": [
+        {
+         "part": null,
+         "topic": "algebraic/lattices",
+         "difficulty": "medium",
+         "summary": "Prove the LLL bound ||b1|| <= 2^((n-1)/4) (det L)^(1/n) for a reduced basis, via ||b~i||^2 >= (1/2)||b~(i-1)||^2 and det L = prod ||b~i||.",
+         "questionImage": "images/algebraic-lattices__2024C-p5-x__q.png",
+         "solutionImage": "images/algebraic-lattices__2024C-p5-x__sol.png",
          "solutionImage2": null,
          "questionImage2": null
         }
@@ -5669,6 +5796,6 @@
    ]
   }
  ],
- "n_parents": 113,
- "generated_parts": 234
+ "n_parents": 116,
+ "generated_parts": 238
 }

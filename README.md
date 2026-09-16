@@ -1,14 +1,12 @@
 # Advanced Algorithms — Exam Prep Site
 
-## Current approach: practise the question bank with hints
+## Current approach: practise the question bank
 
-Open **[index.html](index.html)**. All **234 question parts** in the existing 14-topic bank now have five progressively revealed help steps: Help me start, Relevant tool, Next step, Solution structure, and Check my answer. Write on paper; there are no required textboxes, automatic proof grades, or lesson-completion gates. Definitions and reusable structures are shared by technique; the start, next step and answer checks are authored per question part.
+Open **[index.html](index.html)**. The bank has **238 question parts** across 15 topics. Write on paper, then reveal the official solution and mark yourself Got it / Shaky / Failed. Topic references and answer-revealing exam summaries start collapsed. Homework crops that contain solution text are opt-in source excerpts; their curated prompts remain visible.
 
-Hint position saves under `aa_hints_v1`, independently of existing marks, solution reveals and lesson progress. “Hide hints · try again” closes the ladder for that part. Full solutions remain a separate reveal. Topic references and answer-revealing exam summaries start collapsed. Homework crops that contain solution text are now opt-in source excerpts; their curated prompts remain visible. Major source/convention pitfalls are called out in the affected hints instead of silently repeated.
+The per-question hint ladders were removed (September 2026). `hints.js`, `data/hints/` and `spec/build_hints.py` no longer exist; any leftover `aa_hints_v1` key in browser storage is simply ignored.
 
-Hint mathematics uses the existing native MathML build, with no CDN or runtime dependency. Sources: `data/hints/tools.json` and `data/hints/questions-*.json`; compile with `python3 spec/build_hints.py`. The build rejects duplicates, unknown question keys, missing coverage, malformed records and unconverted math. `hints.js` is generated. The browser fixture `spec/test-hints.html?run=1` exercises all 1,170 reveal steps and persistence; run it in an isolated browser profile. It temporarily seeds test state and restores the previous values after completion.
-
-Coverage refers to the existing question bank, not additional imported exams or the separate historical Exam Intel predictions. Hints are study guidance, not official marking schemes or a guarantee of exam readiness. The final check is explicitly self-assessment.
+**2023+ exam coverage is complete.** An audit against every solution PDF in `Exams/Solutions` (2023A through 2025C, 77 parts) found four parts the original pipeline had dropped; they were added with `spec/add_missing_2023plus.py`: 2024A P5 (FFT convolution, previously deduplicated against 2023A P6), 2025C P5 (k-tertiary matrix, previously deduplicated against 2024B P6), and the two lattice items 2024B P1(c) and 2024C P5, which now live under a new **Algebraic → Lattices & LLL** topic.
 
 ## Optional foundation lessons — previous course approach
 

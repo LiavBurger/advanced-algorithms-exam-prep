@@ -2,14 +2,11 @@
    All progress persists in localStorage; works offline via file://. */
 (function () {
   const DATA = window.DATA, GUIDES = window.GUIDES || {}, EXPL = window.EXPL || {}, INTEL = window.INTEL || null;
-  const HINTS = window.HINTS || {};
-  const hintTitles = ['Help me start', 'Relevant tool', 'Next step', 'Solution structure', 'Check my answer'];
   const INTEL_ID = "__intel2026__";
   const LS = {
     marks: "aa_marks_v1",     // { "sid#part": "got"|"shaky"|"failed" }
     reveal: "aa_reveal_v1",   // { "sid#part": true }
-    ui: "aa_ui_v1",           // { topic, tiers:{1,2,3}, weak }
-    hints: "aa_hints_v1"      // independent of marks, solutions and course progress
+    ui: "aa_ui_v1"            // { topic, tiers:{1,2,3}, weak }
   };
   const load = (k, d) => { try { return JSON.parse(localStorage.getItem(k)) || d; } catch { return d; } };
   let storageWarned = false;
@@ -22,8 +19,6 @@
     }
   };
   let marks = load(LS.marks, {}), reveal = load(LS.reveal, {});
-  let hintProgress = load(LS.hints, {});
-  if (!hintProgress || typeof hintProgress !== 'object' || Array.isArray(hintProgress)) hintProgress = {};
   let ui = load(LS.ui, { topic: null, tiers: { 1: true, 2: false, 3: false, 4: false }, weak: false, theme: "dark" });
   if (ui.tiers[4] === undefined) ui.tiers = { 1: !!ui.tiers[1], 2: !!ui.tiers[2], 3: !!ui.tiers[3], 4: false };
   const applyTheme = () => document.documentElement.setAttribute("data-theme", ui.theme || "dark");
@@ -108,7 +103,7 @@
     el.querySelectorAll("[data-tier]").forEach(c => c.onchange = () => { ui.tiers[c.dataset.tier] = c.checked; persist(); renderAll(); });
     el.querySelector("#weak").onchange = e => { ui.weak = e.target.checked; persist(); renderAll(); };
     el.querySelector("#theme").onclick = () => { ui.theme = ui.theme === "light" ? "dark" : "light"; applyTheme(); persist(); renderControls(); };
-    el.querySelector("#reset").onclick = () => { if (confirm("Clear question-library marks, solution reveals and revealed hints? Optional lesson progress will not change.")) { marks = {}; reveal = {}; hintProgress = {}; save(LS.marks, marks); save(LS.reveal, reveal); save(LS.hints, hintProgress); renderAll(); } };
+    el.querySelector("#reset").onclick = () => { if (confirm("Clear question-library marks and solution reveals? Optional lesson progress will not change.")) { marks = {}; reveal = {}; save(LS.marks, marks); save(LS.reveal, reveal); renderAll(); } };
   }
 
   // ---------------- Exam-intel view ----------------
@@ -185,7 +180,7 @@
     const el = document.getElementById("view");
     const c = counts(topicParts(t, true));
     let h = `<div class="topic-head"><div class="crumb">${t.unit}</div><h1>${t.topic_name}</h1>
-      <div class="tprog">${overallBar(c)}</div><p class="practice-note">Practise on paper. Reveal one hint at a time when you need it; the full solution stays separate. Hints do not change your marks.</p><p class="hint-coverage">Hint coverage: ${topicParts(t, false).filter(p => HINTS[p.k]).length}/${topicParts(t, false).length} question parts in this topic, across all source filters.</p></div>`;
+      <div class="tprog">${overallBar(c)}</div></div>`;
     h += guideHTML(t.topic);
 
     // group problems by tier
@@ -218,18 +213,6 @@
 
   function partVisible(p, pt) { return !ui.weak || ["shaky", "failed"].includes(marks[key(p.sid, pt.part)]); }
 
-  function hintsHTML(k) {
-    const steps = HINTS[k];
-    if (!steps) return '<p class="hint-coverage">Question-specific hints are not available for this part yet.</p>';
-    const count = Number.isInteger(hintProgress[k]) ? Math.max(0, Math.min(steps.length, hintProgress[k])) : 0;
-    const id = 'hints-' + k.replace(/[^a-zA-Z0-9_-]/g, '-');
-    return `<section class="hint-ladder" aria-label="Question-specific hints">
-      <div class="hint-toolbar"><span class="hint-count">${count} of ${steps.length} hints revealed</span>
-        ${count < steps.length ? `<button class="btn hint-next" data-hint-next="${esc(k)}" aria-controls="${id}">${count === 0 ? 'Help me start' : 'Next hint: ' + hintTitles[count]}</button>` : '<span>All hints revealed</span>'}
-        ${count ? `<button class="btn" data-hint-hide="${esc(k)}">Hide hints · try again</button>` : ''}</div>
-      <div id="${id}" class="hint-steps">${steps.slice(0, count).map((body, i) => `<section class="hint-step" tabindex="-1"><h4>${i + 1}. ${hintTitles[i]}</h4>${body}${i === 4 ? '<p class="hint-self-check">Self-check against your paper answer; this does not automatically grade your writing.</p>' : ''}</section>`).join('')}</div>
-    </section>`;
-  }
 
   function cardHTML(p) {
     const parts = p.parts.filter(pt => partVisible(p, pt));
@@ -272,7 +255,6 @@
         ${hw || heb ? `<span class="psum">${esc(pt.summary.replace(/\s+(?:via|using)\s+.*$/i, '').replace(/\s*\((?:false|true)[^)]*\)\.?$/i, ''))}</span>` : ''}</div>
       ${qvisual}${note}
       ${!hw && !heb ? `<details class="question-context"><summary>Summary / topic cue · may reveal the approach or answer</summary><p>${esc(pt.summary)}</p></details>` : ''}
-      <div class="hint-slot">${hintsHTML(k)}</div>
       <div class="reveal-row">
         <button class="reveal-btn" data-reveal="${k}">${revealed ? "Hide solution" : "Reveal solution"}</button>
         <span class="marks">
@@ -284,23 +266,6 @@
   }
 
   function wire(el) {
-    function wireHints(scope) {
-      scope.querySelectorAll('[data-hint-next], [data-hint-hide]').forEach(b => b.onclick = () => {
-        const k = b.dataset.hintNext || b.dataset.hintHide;
-        const steps = HINTS[k];
-        if (!steps) return;
-        const old = Number.isInteger(hintProgress[k]) ? Math.max(0, Math.min(steps.length, hintProgress[k])) : 0;
-        if (b.dataset.hintNext) hintProgress[k] = Math.min(steps.length, old + 1);
-        else delete hintProgress[k];
-        save(LS.hints, hintProgress);
-        const slot = b.closest('.hint-slot');
-        slot.innerHTML = hintsHTML(k);
-        wireHints(slot);
-        const target = slot.querySelector('.hint-step:last-child') || slot.querySelector('[data-hint-next]');
-        if (target) target.focus({ preventScroll: true });
-      });
-    }
-    wireHints(el);
     el.querySelectorAll("[data-reveal]").forEach(b => b.onclick = () => {
       const k = b.dataset.reveal; reveal[k] = !reveal[k]; if (!reveal[k]) delete reveal[k];
       save(LS.reveal, reveal);

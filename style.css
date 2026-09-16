@@ -8,22 +8,11 @@
   --radius:12px; --imgcard:#f7f8fa;
 }
 
-/* Question-first practice: opt-in help, independent of solution reveals. */
-.practice-note,.hint-coverage{color:var(--muted);font-size:13px;line-height:1.6}
-.hint-ladder{margin:16px 0;border:1px solid var(--line);border-radius:10px;background:var(--panel)}
-.hint-toolbar{display:flex;align-items:center;flex-wrap:wrap;gap:10px;padding:12px}
-.hint-count{font-size:12px;color:var(--muted)}
-.hint-next{border-color:var(--accent);color:var(--accent-ink)}
-.hint-step{padding:14px 18px;border-top:1px solid var(--line);line-height:1.75;overflow-wrap:anywhere;overflow-x:auto}
-.hint-step h4{margin:0 0 8px;color:var(--accent-ink);font-size:14px}
-.hint-step p{margin:8px 0;max-width:72ch}
-.hint-step math{font-family:"STIX Two Math","Cambria Math","Latin Modern Math",math;font-size:1.1em;overflow-wrap:normal}
-.hint-step .gmath{max-width:100%;overflow-x:auto}
-.hint-self-check{font-size:12px;color:var(--muted)}
+/* Collapsed summary / topic cue under each question. */
 .question-context{margin:12px 0;color:var(--muted);font-size:13px}
 .question-context>summary{cursor:pointer;padding:8px 0}
 .question-context p{line-height:1.6}
-.hint-ladder button:focus-visible,.hint-step:focus-visible,.question-context>summary:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.question-context>summary:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 :root[data-theme="light"]{
   --bg:#f6f7f9; --panel:#ffffff; --panel2:#f7f9fc; --ink:#1c2230; --muted:#6b7280; --line:#e6e8ee;
   --accent:#3a6df0; --accent-weak:#e8efff; --accent-ink:#2b56c9;

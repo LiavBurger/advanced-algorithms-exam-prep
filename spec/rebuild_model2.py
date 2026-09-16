@@ -9,13 +9,13 @@ UNIT_OF = {"randomized": "Randomized", "algebraic": "Algebraic",
            "lp": "Linear Programming", "approx": "Approximation"}
 TOPIC_ORDER = ["randomized/prob-basics","randomized/karger-min-cut","randomized/concentration",
  "randomized/probabilistic-method","randomized/random-walks","randomized/isolation-lemma",
- "algebraic/pit","algebraic/fft","algebraic/matrix-mult","algebraic/bipartite-matching",
+ "algebraic/pit","algebraic/fft","algebraic/matrix-mult","algebraic/bipartite-matching","algebraic/lattices",
  "lp/basics","lp/duality-farkas","lp/ilp-tum","approx/approximation"]
 TOPIC_NAME = {"randomized/prob-basics":"Probability Basics & Quicksort","randomized/karger-min-cut":"Karger's Min-Cut",
  "randomized/concentration":"Concentration Bounds","randomized/probabilistic-method":"The Probabilistic Method",
  "randomized/random-walks":"Random Walks & Mixing","randomized/isolation-lemma":"Isolation Lemma",
  "algebraic/pit":"PIT & Schwartz–Zippel","algebraic/fft":"FFT & Polynomial Multiplication",
- "algebraic/matrix-mult":"Matrix-Multiplication Applications","algebraic/bipartite-matching":"Algebraic Bipartite Matching",
+ "algebraic/matrix-mult":"Matrix-Multiplication Applications","algebraic/bipartite-matching":"Algebraic Bipartite Matching","algebraic/lattices":"Lattices & LLL",
  "lp/basics":"LP Basics & Geometry","lp/duality-farkas":"LP Duality & Farkas","lp/ilp-tum":"Integer Programming & TUM",
  "approx/approximation":"Approximation Algorithms"}
 DR = {"easy": 0, "medium": 1, "hard": 2}; DIFF = ["easy", "medium", "hard"]

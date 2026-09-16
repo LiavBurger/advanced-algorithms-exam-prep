@@ -29,7 +29,7 @@ def render_math(html):
 
 EXPECTED = ["randomized/prob-basics","randomized/karger-min-cut","randomized/concentration",
   "randomized/probabilistic-method","randomized/random-walks","randomized/isolation-lemma",
-  "algebraic/pit","algebraic/fft","algebraic/matrix-mult","algebraic/bipartite-matching",
+  "algebraic/pit","algebraic/fft","algebraic/matrix-mult","algebraic/bipartite-matching","algebraic/lattices",
   "lp/basics","lp/duality-farkas","lp/ilp-tum","approx/approximation"]
 
 def norm_sid(s):

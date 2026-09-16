@@ -4848,6 +4848,68 @@
      "note": null
     }
    ]
+  },
+  {
+   "sid": "2024A-p5",
+   "era": "modern",
+   "topic": "algebraic/fft",
+   "also_topics": [],
+   "difficulty": "medium",
+   "nparts": 1,
+   "sig": [
+    "fft-convolution-poly-mult"
+   ],
+   "source": {
+    "kind": "exam",
+    "year": 2024,
+    "moed": "A",
+    "iteration": null,
+    "set": null,
+    "problem": 5,
+    "part": null
+   },
+   "parts": [
+    {
+     "part": null,
+     "topic": "algebraic/fft",
+     "difficulty": "medium",
+     "summary": "O(n log n) algorithm computing the convolution f*g via FFT polynomial multiplication.",
+     "dup_key": "fft-convolution-poly-mult",
+     "has_figure": false,
+     "note": null
+    }
+   ]
+  },
+  {
+   "sid": "2025C-p5",
+   "era": "modern",
+   "topic": "randomized/concentration",
+   "also_topics": [],
+   "difficulty": "hard",
+   "nparts": 1,
+   "sig": [
+    "random-object-balanced-chernoff"
+   ],
+   "source": {
+    "kind": "exam",
+    "year": 2025,
+    "moed": "C",
+    "iteration": null,
+    "set": null,
+    "problem": 5,
+    "part": null
+   },
+   "parts": [
+    {
+     "part": null,
+     "topic": "randomized/concentration",
+     "difficulty": "hard",
+     "summary": "Construct a k-tertiary matrix (balanced 0/1/2 entries over all k-submatrices) whp via Chernoff + union bound.",
+     "dup_key": "random-object-balanced-chernoff",
+     "has_figure": false,
+     "note": null
+    }
+   ]
   }
  ],
  "dropped": [
@@ -5104,70 +5166,6 @@
     }
    ],
    "dup_of": "hw2026s4-p4"
-  },
-  {
-   "sid": "2024A-p5",
-   "era": "modern",
-   "topic": "algebraic/fft",
-   "also_topics": [],
-   "difficulty": "medium",
-   "nparts": 1,
-   "sig": [
-    "fft-convolution-poly-mult"
-   ],
-   "source": {
-    "kind": "exam",
-    "year": 2024,
-    "moed": "A",
-    "iteration": null,
-    "set": null,
-    "problem": 5,
-    "part": null
-   },
-   "parts": [
-    {
-     "part": null,
-     "topic": "algebraic/fft",
-     "difficulty": "medium",
-     "summary": "O(n log n) algorithm computing the convolution f*g via FFT polynomial multiplication.",
-     "dup_key": "fft-convolution-poly-mult",
-     "has_figure": false,
-     "note": null
-    }
-   ],
-   "dup_of": "2023A-p6"
-  },
-  {
-   "sid": "2025C-p5",
-   "era": "modern",
-   "topic": "randomized/concentration",
-   "also_topics": [],
-   "difficulty": "hard",
-   "nparts": 1,
-   "sig": [
-    "random-object-balanced-chernoff"
-   ],
-   "source": {
-    "kind": "exam",
-    "year": 2025,
-    "moed": "C",
-    "iteration": null,
-    "set": null,
-    "problem": 5,
-    "part": null
-   },
-   "parts": [
-    {
-     "part": null,
-     "topic": "randomized/concentration",
-     "difficulty": "hard",
-     "summary": "Construct a k-tertiary matrix (balanced 0/1/2 entries over all k-submatrices) whp via Chernoff + union bound.",
-     "dup_key": "random-object-balanced-chernoff",
-     "has_figure": false,
-     "note": null
-    }
-   ],
-   "dup_of": "2024B-p6"
   },
   {
    "sid": "2015A-p1",
