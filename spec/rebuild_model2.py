@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 """Rebuild questions.json + data.js: keep existing exam + 2025-homework parts, drop the
 stale 2026-homework parts, add the freshly-cropped 2026 parts (data/hw2026/set*.json),
-and apply the 4-tier scheme (2023+ exams / current HW 2026 / old HW 2025 / pre-2023 exams)."""
+and apply the 4-tier scheme (2023+ exams / current HW 2026 / old HW 2025 / pre-2023 exams).
+Historical: its unit mapping is by slug prefix. Run spec/regroup_by_lecture.py afterwards to
+restore the lecture-based unit layout."""
 import json, glob, os, collections
 os.chdir(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))  # StudySite/
 

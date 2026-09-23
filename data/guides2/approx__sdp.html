@@ -1,0 +1,51 @@
+<!-- title: SDP, PSD Matrices & Goemans–Williamson -->
+<h3>When do I reach for this?</h3>
+<p>The question mentions a <b>positive semidefinite</b> (PSD) matrix, a <b>semidefinite program</b>, unit vectors replacing \(\pm1\) variables, or a <b>0.878</b> approximation. In the lectures this is the second half of the approximation deck: Max-Cut cannot be written as an LP, so it is relaxed to an SDP, solved with the ellipsoid method, and rounded with a random hyperplane.</p>
+<ul>
+<li>"Is this matrix PSD?" / "Prove PSD \(\Rightarrow\) ..." &rarr; pick whichever of the four equivalent definitions makes the step one line.</li>
+<li>"Give a 0.878-approximation for a Max-Cut-like problem" &rarr; write the \(\pm1\) IP, relax to unit vectors, round by a random hyperplane, compare edge by edge.</li>
+</ul>
+
+<h3>Core tools</h3>
+<div class="gtool"><div class="gtool-h">FOUR EQUIVALENT DEFINITIONS OF PSD</div><div class="gtool-body">
+For a real symmetric \(A\in\mathbb{R}^{n\times n}\) the following are equivalent (write \(A\succeq 0\)):
+<ol>
+<li>\(v^T A v\ge 0\) for every \(v\in\mathbb{R}^n\);</li>
+<li>every eigenvalue of \(A\) is \(\ge 0\);</li>
+<li>\(A=B^T B\) for some \(B\in\mathbb{R}^{m\times n}\), so \(A_{ij}=\langle u_i,u_j\rangle\) for the columns \(u_i\) of \(B\);</li>
+<li>every principal minor of \(A\) is \(\ge 0\).</li>
+</ol>
+Standard proofs: (1)&rArr;(2) plug in an eigenvector, \(v^TAv=\lambda\|v\|^2\). (2)&rArr;(3) diagonalize \(A=Q\Lambda Q^T\) and take \(B=\Lambda^{1/2}Q^T\). (3)&rArr;(1) \(v^TB^TBv=\|Bv\|^2\ge0\).
+<span class="gtool-use">homework PSD chain; true/false items about PSD matrices</span></div></div>
+
+<div class="gtool"><div class="gtool-h">SDP AND WHY IT IS SOLVABLE</div><div class="gtool-body">
+An SDP optimizes a linear function of the entries of \(X\) subject to linear constraints and \(X\succeq0\). The PSD set is convex but not polyhedral, yet the ellipsoid method still works because there is a separation oracle: if \(Y\) is not PSD it has an eigenvector \(v\) with eigenvalue \(\lambda<0\), and \(v^TYv=\lambda\|v\|^2<0\le v^TXv\) for every PSD \(X\). By definition (3) the same program can be written with vectors: \(X_{ij}=\langle u_i,u_j\rangle\).
+<span class="gtool-use">justifying that a relaxation can be solved in polynomial time</span></div></div>
+
+<div class="gtool"><div class="gtool-h">GOEMANS–WILLIAMSON ROUNDING</div><div class="gtool-body">
+Max-Cut IP: maximize \(\sum_{(u,v)\in E}\frac{1-y_uy_v}{2}\) with \(y_v\in\{-1,1\}\). Relax each \(y_v\) to a unit vector: maximize \(\sum\frac{1-\langle y_u,y_v\rangle}{2}\) with \(\|y_v\|=1\), so \(\text{SDPOPT}\ge\text{OPT}\). Pick a random \(r\) and set \(A=\{v:\langle r,y_v\rangle\ge0\}\). An edge is cut with probability \(\theta_{uv}/\pi\), where \(\theta_{uv}\) is the angle between \(y_u\) and \(y_v\). Since
+\[ \frac{\theta}{\pi}\ \ge\ \alpha\cdot\frac{1-\cos\theta}{2}\quad\text{for all }\theta\in[0,\pi],\qquad \alpha=\frac{2}{\pi}\min_{0<\theta\le\pi}\frac{\theta}{1-\cos\theta}\approx0.878, \]
+summing over edges gives \(\mathbb{E}[\text{ALG}]\ge\alpha\cdot\text{SDPOPT}\ge\alpha\cdot\text{OPT}\).
+<span class="gtool-use">Max-Cut and variants (Max-2-LIN, weighted cut)</span></div></div>
+
+<h3>Worked example — the thinking</h3>
+<div class="gworked">
+<p><b>hw2026 s4 P4.</b> Max-2-LIN: constraints \(x_ix_j=1\) or \(x_ix_j=-1\) over \(x_i\in\{-1,1\}\). Give a 0.878-approximation.</p>
+<ol class="gsteps">
+<li><b>Write the IP.</b> Split pairs into \(E_-\) (want \(x_i\ne x_j\)) and \(E_+\) (want \(x_i=x_j\)). Maximize \(\sum_{E_-}\frac{1-x_ix_j}{2}+\sum_{E_+}\frac{1+x_ix_j}{2}\).</li>
+<li><b>Relax.</b> Replace \(x_i\) by unit vectors \(v_i\) and \(x_ix_j\) by \(\langle v_i,v_j\rangle=\cos\theta_{ij}\). Any \(\pm1\) assignment is feasible, so \(\text{SDPOPT}\ge\text{OPT}\).</li>
+<li><b>Round.</b> Take a random hyperplane and set \(x_i=\operatorname{sign}\langle r,v_i\rangle\). Then \(\Pr[x_i\ne x_j]=\theta_{ij}/\pi\) and \(\Pr[x_i=x_j]=1-\theta_{ij}/\pi\).</li>
+<li><b>Compare term by term.</b> Pairs in \(E_-\) are exactly the Max-Cut inequality. For \(E_+\) substitute \(\theta'=\pi-\theta\): \(1-\frac{\theta}{\pi}=\frac{\theta'}{\pi}\) and \(\frac{1+\cos\theta}{2}=\frac{1-\cos\theta'}{2}\), which reduces to the same inequality. Summing gives \(\mathbb{E}[\text{ALG}]\ge\alpha\cdot\text{SDPOPT}\ge\alpha\cdot\text{OPT}\).</li>
+</ol>
+</div>
+
+<div class="box pitfall"><b>Traps.</b> A nonnegative determinant does not make a symmetric matrix PSD: \(-I_2\) has determinant 1 and eigenvalue \(-1\) (2024A P1b). Definition (4) needs <em>all</em> principal minors, not only the full determinant. PSD is a property of symmetric matrices; say so when you diagonalize. In the rounding analysis, compare ALG with SDPOPT, not with OPT directly, and state that the relaxation contains every integral solution. The ratio is in expectation over the random hyperplane.</div>
+
+<h3>Checklist</h3>
+<ol class="gsteps">
+<li>Name the PSD definition you are using at each step and prove any equivalence you rely on.</li>
+<li>For an approximation: write the \(\pm1\) integer program and check that its objective counts satisfied constraints.</li>
+<li>Relax to unit vectors and say why \(\text{SDPOPT}\ge\text{OPT}\).</li>
+<li>State the random-hyperplane probability \(\theta/\pi\) for each pair.</li>
+<li>Compare each term of \(\mathbb{E}[\text{ALG}]\) with the matching term of SDPOPT, then sum and chain the inequalities.</li>
+</ol>

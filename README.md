@@ -8,6 +8,10 @@ The per-question hint ladders were removed (September 2026). `hints.js`, `data/h
 
 **2023+ exam coverage is complete.** An audit against every solution PDF in `Exams/Solutions` (2023A through 2025C, 77 parts) found four parts the original pipeline had dropped; they were added with `spec/add_missing_2023plus.py`: 2024A P5 (FFT convolution, previously deduplicated against 2023A P6), 2025C P5 (k-tertiary matrix, previously deduplicated against 2024B P6), and the two lattice items 2024B P1(c) and 2024C P5, which now live under a new **Algebraic → Lattices & LLL** topic.
 
+## Units follow the four lecture decks (September 2026)
+
+Units now match `Presentations/Lectures/`. PIT & Schwartz–Zippel and bipartite matching via determinants moved to **Randomized**. Lattices & LLL, the probabilistic-method averaging questions (Max-Cut, Max-3SAT) and a new **SDP, PSD Matrices & Goemans–Williamson** topic moved to **Approximation**. Gram–Schmidt (2024A P1c) now sits with LLL. `spec/regroup_by_lecture.py` holds the layout. Question ids and part letters are unchanged, so saved marks carry over.
+
 ## Optional foundation lessons — previous course approach
 
 The user chose question-first practice after finding lessons 1–4 insufficient preparation for the mixed probability question bank. The following records describe the optional lessons, not a required route before practising. Earlier “next session” instructions are historical.

@@ -30,7 +30,7 @@ def render_math(html):
 EXPECTED = ["randomized/prob-basics","randomized/karger-min-cut","randomized/concentration",
   "randomized/probabilistic-method","randomized/random-walks","randomized/isolation-lemma",
   "algebraic/pit","algebraic/fft","algebraic/matrix-mult","algebraic/bipartite-matching","algebraic/lattices",
-  "lp/basics","lp/duality-farkas","lp/ilp-tum","approx/approximation"]
+  "lp/basics","lp/duality-farkas","lp/ilp-tum","approx/approximation","approx/sdp"]
 
 def norm_sid(s):
     """'2014A P9' -> '2014A-p9'; 'hw2025 s5 P2' -> 'hw2025s5-p2'; '2024C P1d' -> '2024C-p1'."""
