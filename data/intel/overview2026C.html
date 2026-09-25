@@ -1,0 +1,59 @@
+<p><b>Where this comes from.</b> Rebuilt on 25 September 2026, after Moed A and Moed B. Every 2026A and 2026B question was traced to its origin, and each claimed source was opened and checked by two independent reviewers. The course's own lecture decks, recitations and all past papers were analysed alongside. The prediction then came from four independent predictors, each with a different lens (Moed C history, source documents, coverage gaps, true/false). Their predictions were merged, critiqued and revised. Every practice problem below was written with a model solution and checked twice for mathematical errors. The full report, including the source map and all probabilities, is <a href="EXAM-INTEL-2026C.md">EXAM-INTEL-2026C.md</a> in this folder.</p>
+
+<h3>How the July prediction did</h3>
+<div class="tscroll"><table>
+<tr><th>Part of the July prediction</th><th>Result against the real 2026A and 2026B</th></tr>
+<tr><td>Format: "nearly certain" 32 / 20 / 16 / 16 / 16</td><td><b>Wrong.</b> The real papers were 28/16/16/20/20 (A) and 28/18/16/18/20 (B). The format is fixed within a year but changes every year, and the "byte-for-byte 2025" evidence came from a stale header in the 2025C solution PDF.</td></tr>
+<tr><td>The mock exam (the part you practised)</td><td><b>0 of the 9 real written problems.</b> The only overlap was at the level of problem type: a random construction appeared in both papers, as the mock's P5 predicted.</td></tr>
+<tr><td>Slot-by-slot blueprint</td><td>Hits: a Chernoff/union-bound construction (both papers), the FFT "wildcard" (A-P2), and fast matrix multiplication in Moed B only (B-P2). High-confidence misses: a Schwartz–Zippel algorithm "in every Moed A" and an ILP-modelling problem.</td></tr>
+<tr><td>"Source mine": unused exercises next to his verified sources</td><td><b>Two exact hits, worth 36 of 2026A's 100 points.</b> Erickson FFT Ex. 2(c) became A-P2, and Williamson–Shmoys Ex. 5.3 + 5.6 became A-P5 almost word for word. Nothing in 2026B was an exact hit.</td></tr>
+<tr><td>"Homework is the single best predictor"</td><td><b>Wrong.</b> None of the 16 items in 2026 was a homework problem. The flow runs the other way: old exam problems become homework.</td></tr>
+</table></div>
+<p><b>Lesson applied here:</b> the format comes from this year's papers, not last year's. The practice set is built around the families and documents he actually draws from, rather than one guessed exam. The mock is only the single most likely pick per slot.</p>
+
+<h3>Where the 2026 questions actually came from</h3>
+<div class="tscroll"><table>
+<tr><th>Item</th><th>Pts</th><th>Verified origin</th></tr>
+<tr><td>A-P2 · 3-term arithmetic progressions via FFT</td><td>16</td><td><b>Erickson, FFT notes, Exercise 2(c)</b> (count "well-spaced triples"); the same problem is in CMU 15-451's FFT notes. Note that the official solution double-counts: the correct answer is \(\sum_{b \in S} \frac{[x^{2b}]f(x)^2 - 1}{2}\).</td></tr>
+<tr><td>A-P3 · random vectors shatter every set of \(\le d\) coordinates</td><td>16</td><td><b>Jukna, <em>Extremal Combinatorics</em> §3.3 "Universal sets"</b> (the Kleitman–Spencer theorem)</td></tr>
+<tr><td>A-P4 · min-cost unit-flow LP; its dual is the shortest path</td><td>20</td><td><b>Dasgupta–Papadimitriou–Vazirani, Exercise 7.28</b>; also the LP-duality notes of CMU 15-451</td></tr>
+<tr><td>A-P5 · Max DiCut: random \(\frac14\), the IP, rounding with \(\frac14 + \frac{x_v}{2}\)</td><td>20</td><td><b>Williamson–Shmoys Ex. 5.3 + 5.6, verbatim</b> (also Feige's Weizmann handout 5)</td></tr>
+<tr><td>B-P5 · SDP dual \(C - \mathrm{diag}(y) \succeq 0\) and weak duality</td><td>20</td><td><b>Williamson–Shmoys Ex. 6.1</b> (the dual of the Max-Cut SDP; also Feige's handout 6)</td></tr>
+<tr><td>B-P2 · common neighbours via \(AA^T\)</td><td>18</td><td>His own re-skin of 2024B-P4 and the Seidel "\(A^2\)" slide</td></tr>
+<tr><td>B-P3 · colouring with \(\ge 0.4\deg(v)\) neighbours of each colour</td><td>16</td><td>His own re-skin of 2023B-P6 / 2024B-P6 (set balancing)</td></tr>
+<tr><td>B-P4 · prize-collecting vertex cover, threshold \(\frac13\)</td><td>18</td><td>His own re-skin of 2024B-P5 (recitation 10) and 2023B-P3</td></tr>
+<tr><td>All 8 T/F items</td><td>56</td><td>One-line traps on specific slides: LP "Bases" and ellipsoid slides, the Schwartz–Zippel slide, the Csanky power-sum and Newton-identity slides, the isolation-lemma "fantasy soccer" slide, and Gram–Schmidt</td></tr>
+</table></div>
+
+<h3>How he builds a paper</h3>
+<ul>
+<li><b>True/false is a lecture quiz.</b> 39 of 40 past T/F items restate a slide claim with a twist: negate it, swap a constant, drop a hypothesis, or overgeneralise. A few are textbook exercises (Motwani–Raghavan Problem 12.22, Bertsimas–Tsitsiklis 3.6(a)). 29 of the 40 answers were True, and slot (a) was an LP fact in 7 of 10 papers.</li>
+<li><b>Written problems</b> in 2026 were fresh textbook exercises lifted nearly verbatim (Williamson–Shmoys Ch. 5–6, Erickson FFT, Jukna, DPV) plus re-skins of his own recent problems.</li>
+<li><b>Moed C</b> (2024C, 2025C): about two-thirds of the points re-skinned same-year A/B problems or older templates. Every Moed C had one "re-prove a class theorem with a changed parameter" problem. Each added one or two topics that its year's A/B skipped, and its T/F items reused sub-topics from the previous sitting.</li>
+</ul>
+
+<h3>Predicted 2026C blueprint</h3>
+<div class="gtool"><div class="gtool-h">FRAME</div><div class="gtool-body">
+<p>3 hours, 100 points, all compulsory, two double-sided A4 sheets. <b>P1 = 4 T/F × 7 = 28</b>, then <b>four written problems of 14–22 points</b> (0.85). Moed C usually shifts one to three weights by about 2 points, so the exact 2026A split is only 0.25 and the 2026B split 0.20. Time budget: T/F about 50 min, a 16-point problem about 29 min, a 20-point problem about 36 min.</p>
+</div></div>
+<div class="tscroll"><table>
+<tr><th>Slot</th><th>Most likely content</th><th>Probability</th></tr>
+<tr><td>P1 (a)</td><td>LP fact: an ellipsoid sibling of 2026B-(a), duality edge cases, vertices/BFS, simplex degeneracy</td><td>0.75</td></tr>
+<tr><td>P1 (b)</td><td>A randomness-lemma trap: Schwartz–Zippel, isolation, BPP, Markov/Chebyshev</td><td>0.75</td></tr>
+<tr><td>P1 (c)</td><td>Algebraic: a third trace / Newton / Cayley–Hamilton item (0.30), or matrix-multiplication counts</td><td>0.75</td></tr>
+<tr><td>P1 (d)</td><td>A matrix/eigenvalue/lattice fact: lattice/PSD/SDP 0.22, spectral 0.20</td><td>0.55</td></tr>
+<tr><td>P2 (16–18)</td><td>Single-part algebraic algorithm: counting via \(AA^T\) / fast matrix multiplication (0.25), FFT (0.13), a Schwartz–Zippel algorithm (0.10), traces (0.08)</td><td>0.62</td></tr>
+<tr><td>P3 (16)</td><td>A Chernoff + union-bound construction (0.48) or a sampling estimator (0.13)</td><td>0.72</td></tr>
+<tr><td>P4 (18–20)</td><td>LP: derive and interpret a dual (0.15), write an ILP (0.12), an LP-theory re-proof (0.08); or a Schwartz–Zippel algorithm (0.13)</td><td>mixed</td></tr>
+<tr><td>P5 (6+6+8)</td><td>Approximation deck: LP-rounding approximation (0.28), SDP/Goemans–Williamson (0.15), LLL (0.07)</td><td>0.55</td></tr>
+</table></div>
+<ul>
+<li><b>Near-certain:</b> a Chernoff/union-bound written problem (0.85); at least one written problem that continues or re-skins a 2026A/B problem (0.78); a homework or class proof re-used with a changed parameter (0.80).</li>
+<li><b>Likely:</b> an LP-duality part (0.60) brings LP back after 2026B's 7 points, just as 2024C did after the LP-light 2024B. An LP-based approximation part: 0.55.</li>
+<li><b>Families 2026A/B skipped that could return:</b> write-an-ILP (0.35), a Schwartz–Zippel/PIT algorithm (0.33), SDP/Goemans–Williamson (0.22), random walks/spectral (0.13), LLL (0.10).</li>
+<li><b>No single written problem is above about 6%.</b> Drill families rather than instances: counting via \(AA^T\)/traces, Chernoff balancing, symbolic-determinant PIT, derive-and-interpret a dual, threshold or randomized rounding with an ILP, and SDP weak duality.</li>
+<li>Difficulty should be no harder than 2026A/B (0.75).</li>
+</ul>
+
+<h3>How to use this tab</h3>
+<p>Do the <b>mock</b> as a timed paper (it is the single most likely problem per slot). Then do the <b>alternates</b>: together with the mock they cover the families that carry most of the probability. Use the <b>T/F pool</b> for fast drills; each item cites the slide or exercise it is built from. The <em>Why predicted</em> box under each problem gives the evidence and a calibrated probability. Treat those numbers as honest odds, not guarantees.</p>

@@ -8,6 +8,12 @@ The per-question hint ladders were removed (September 2026). `hints.js`, `data/h
 
 **2023+ exam coverage is complete.** An audit against every solution PDF in `Exams/Solutions` (2023A through 2025C, 77 parts) found four parts the original pipeline had dropped; they were added with `spec/add_missing_2023plus.py`: 2024A P5 (FFT convolution, previously deduplicated against 2023A P6), 2025C P5 (k-tertiary matrix, previously deduplicated against 2024B P6), and the two lattice items 2024B P1(c) and 2024C P5, which now live under a new **Algebraic → Lattices & LLL** topic.
 
+## 2026 Moed C predicted exam (September 25, 2026)
+
+The **🎯 2026C Predicted Exam** entry at the top of the sidebar replaces the July prediction for Moed A. It has a briefing (how the July prediction did, the verified origin of every 2026A/B question, how Moed C papers are built, and the 2026C blueprint with probabilities), plus 16 practice problems with model solutions and a *Why predicted* note: a full mock exam, two alternates per written slot, and a 12-item true/false pool. Every problem passed two independent correctness checks. The full evidence is in [EXAM-INTEL-2026C.md](EXAM-INTEL-2026C.md); [EXAM-INTEL-2026.md](EXAM-INTEL-2026.md) is kept as the July (Moed A) prediction.
+
+Build: edit `data/intel/intel2026C.json` (problems) or `data/intel/overview2026C.html` (briefing), then run `python3 spec/build_intel.py` to regenerate `intel.js`. Math is authored in LaTeX (`\( \)`, `\[ \]`) and compiled to MathML, as in `build_guides.py`. The practice marks for these problems use new ids (`c26-…`), so older marks are untouched.
+
 ## Units follow the four lecture decks (September 2026)
 
 Units now match `Presentations/Lectures/`. PIT & Schwartz–Zippel and bipartite matching via determinants moved to **Randomized**. Lattices & LLL, the probabilistic-method averaging questions (Max-Cut, Max-3SAT) and a new **SDP, PSD Matrices & Goemans–Williamson** topic moved to **Approximation**. Gram–Schmidt (2024A P1c) now sits with LLL. `spec/regroup_by_lecture.py` holds the layout. Question ids and part letters are unchanged, so saved marks carry over.

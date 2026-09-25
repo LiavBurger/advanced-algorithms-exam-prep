@@ -1,3 +1,5 @@
+> **Superseded (September 25, 2026).** This was the July prediction for Moed A. Its scorecard against the real 2026A/B papers, and the new prediction for Moed C, are in [EXAM-INTEL-2026C.md](EXAM-INTEL-2026C.md).
+
 # 2026 Exam Intelligence — Advanced Algorithms (Ben Lee Volk)
 
 *Produced 2026-07-12 by a 63-agent research run: 8 per-exam source hunters + 4 specialty sweeps, 48 adversarial verifications of claimed matches, 3 prediction analysts. Verdicts: 24 CONFIRMED, 13 PLAUSIBLE, 11 REJECTED.*

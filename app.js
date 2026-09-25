@@ -63,7 +63,7 @@
       h += `<div class="nav-unit"><h4>Exam Intel</h4>
         <div class="nav-topic intel ${ui.topic === INTEL_ID ? "active" : ""}" data-topic="${INTEL_ID}">
         <span class="dot ${done ? "done" : some ? "partial" : ""}"></span>
-        <span class="nm">🎯 2026 Predicted Exam</span>
+        <span class="nm">🎯 ${INTEL.navLabel || "2026 Predicted Exam"}</span>
         <span class="ct">${ic.got}/${ic.total}</span></div></div>`;
     }
     DATA.units.forEach(u => {
@@ -119,7 +119,7 @@
   function renderIntel() {
     const el = document.getElementById("view");
     const c = counts(intelParts());
-    let h = `<div class="topic-head"><div class="crumb">Exam Intel</div><h1>🎯 2026 Predicted Exam — Practice</h1>
+    let h = `<div class="topic-head"><div class="crumb">Exam Intel</div><h1>🎯 ${INTEL.pageTitle || "2026 Predicted Exam — Practice"}</h1>
       <div class="tprog">${overallBar(c)}</div></div>`;
     h += `<details class="guide" open><summary>📘 ${INTEL.overviewTitle}</summary><div class="gbody">${INTEL.overview}</div></details>`;
     let anyShown = false;

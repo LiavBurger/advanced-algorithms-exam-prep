@@ -98,6 +98,11 @@ a{color:var(--accent);text-decoration:none}
 .guide .gbody{max-width:72ch}
 .guide .gbody p{margin:10px 0}
 .guide .gbody b{color:var(--ink)}
+.guide .gbody .tscroll{overflow-x:auto;margin:10px 0}
+.guide .gbody table{border-collapse:collapse;width:100%;font-size:13px}
+.guide .gbody th,.guide .gbody td{border:1px solid var(--line);padding:5px 8px;text-align:left;vertical-align:top}
+.guide .gbody th{background:var(--panel2);color:var(--ink);font-weight:700}
+.guide .gbody .gbody-wide{max-width:none}
 /* math */
 math{font-size:1.04em}
 .gmath{margin:16px 0;text-align:center;overflow-x:auto;overflow-y:hidden}
